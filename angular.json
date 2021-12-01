@@ -111,5 +111,8 @@
       }
     }
   },
-  "defaultProject": "elogger"
+  "defaultProject": "elogger",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
