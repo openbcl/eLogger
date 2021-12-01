@@ -1,6 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SwUpdate } from '@angular/service-worker';
 import { AppComponent } from './app.component';
+
+class SwUpdateServerMock {
+  public isEnabled: boolean = false;
+}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +16,10 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [{
+        provide: SwUpdate,
+        useClass: SwUpdateServerMock
+      }]
     }).compileComponents();
   });
 
@@ -20,16 +29,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'elogger'`, () => {
+  it(`should have as title 'eLogger'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('elogger');
+    expect(app.title).toEqual('eLogger');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('elogger app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('eLogger app is running!');
   });
 });
