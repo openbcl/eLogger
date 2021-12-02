@@ -9,6 +9,26 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
+import { PROCEEDINGS, Proceeding, RECORDTYPES, RecordType } from './shared/models';
+
+const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
+  return Object.getOwnPropertyNames(obj).map(property => ({
+    name: property,
+    keypath: property,
+    options: {
+      unique: property === 'id'
+    }
+  }));
+}
+
+const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStoreMeta => {
+  return {
+    store,
+    storeConfig: { keyPath: 'key', autoIncrement: true },
+    storeSchema: generateStoreSchema(templateValue)
+  }
+}
 
 @NgModule({
   declarations: [
@@ -26,7 +46,15 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     StoreModule.forRoot({}, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot()
+    StoreRouterConnectingModule.forRoot(),
+    NgxIndexedDBModule.forRoot({
+      name: 'eLoggerDB',
+      version: 1,
+      objectStoresMeta: [
+        generateObjectStoreMeta(PROCEEDINGS, new Proceeding(null!)),
+        generateObjectStoreMeta(RECORDTYPES, new RecordType())
+      ]
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
