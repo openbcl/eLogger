@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { concatMap } from 'rxjs';
+import { concatMap, map } from 'rxjs';
 import { LogType, LOGTYPES } from '../models';
+import { processResult } from '../utils/errorHandler';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,8 @@ export class LogTypeService {
   delete(value: LogType) {
     return !value.key ?
         this.getById(value.id).pipe(concatMap(result => 
-          this.db.deleteByKey(LOGTYPES, result.key!)
-        )) : this.db.deleteByKey(LOGTYPES, value.key)
+          this.db.deleteByKey(LOGTYPES, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
+        )) : this.db.deleteByKey(LOGTYPES, value.key).pipe(map(deleted => processResult(deleted, value, '')))
   }
 
 }
