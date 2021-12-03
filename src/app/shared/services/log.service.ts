@@ -12,28 +12,28 @@ export class LogService {
 
   constructor(private db: NgxIndexedDBService) { }
   
-  add(value: Log) {
+  createLog(value: Log) {
     return this.db.add(LOGS, value);
   }
 
-  update(value: Log) {
+  updateLog(value: Log) {
       return !value.key ?
-        this.getById(value.id).pipe(concatMap(result => 
+        this.loadLog(value.id).pipe(concatMap(result => 
           this.db.updateByKey<Log>(LOGS, value, result.key!)
         )) : this.db.updateByKey<Log>(LOGS, value, value.key)
   }
 
-  getAll() {
+  loadLogs() {
     return this.db.getAll<Log>(LOGS);
   }
 
-  getById(id: string) {
+  loadLog(id: string) {
     return this.db.getByIndex<Log>(LOGS, 'id', id);
   }
 
-  delete(value: Log) {
+  deleteLog(value: Log) {
     return !value.key ?
-        this.getById(value.id).pipe(concatMap(result => 
+        this.loadLog(value.id).pipe(concatMap(result => 
           this.db.deleteByKey(LOGS, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
         )) : this.db.deleteByKey(LOGS, value.key).pipe(map(deleted => processResult(deleted, value, '')))
   }

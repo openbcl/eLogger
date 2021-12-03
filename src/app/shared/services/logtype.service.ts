@@ -11,29 +11,29 @@ export class LogTypeService {
 
   constructor(private db: NgxIndexedDBService) { }
 
-  add(value: LogType) {
+  createLogType(value: LogType) {
     return this.db.add(LOGTYPES, value);
   }
 
-  update(value: LogType) {
+  updateLogType(value: LogType) {
       value.revision = new Date();
       return !value.key ?
-        this.getById(value.id).pipe(concatMap(result => 
+        this.loadLogType(value.id).pipe(concatMap(result => 
           this.db.updateByKey<LogType>(LOGTYPES, value, result.key!)
         )) : this.db.updateByKey<LogType>(LOGTYPES, value, value.key)
   }
 
-  getAll() {
+  loadLogTypes() {
     return this.db.getAll<LogType>(LOGTYPES);
   }
 
-  getById(id: string) {
+  loadLogType(id: string) {
     return this.db.getByIndex<LogType>(LOGTYPES, 'id', id);
   }
 
-  delete(value: LogType) {
+  deleteLogType(value: LogType) {
     return !value.key ?
-        this.getById(value.id).pipe(concatMap(result => 
+        this.loadLogType(value.id).pipe(concatMap(result => 
           this.db.deleteByKey(LOGTYPES, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
         )) : this.db.deleteByKey(LOGTYPES, value.key).pipe(map(deleted => processResult(deleted, value, '')))
   }
