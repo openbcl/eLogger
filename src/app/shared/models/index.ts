@@ -1,3 +1,3 @@
 export * from './event';
-export * from './proceeding';
-export * from './recordtype';
+export * from './log';
+export * from './logtype';

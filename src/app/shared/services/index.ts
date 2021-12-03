@@ -1,2 +1,2 @@
-export * from './proceeding.service';
-export * from './recordtype.service';
+export * from './log.service';
+export * from './logtype.service';

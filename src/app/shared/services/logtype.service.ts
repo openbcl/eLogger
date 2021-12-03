@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { concatMap } from 'rxjs';
+import { LogType, LOGTYPES } from '../models';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LogTypeService {
+
+  constructor(private db: NgxIndexedDBService) { }
+
+  add(value: LogType) {
+    return this.db.add(LOGTYPES, value);
+  }
+
+  update(value: LogType) {
+      value.revision = new Date();
+      return !value.key ?
+        this.getById(value.id).pipe(concatMap(result => 
+          this.db.updateByKey<LogType>(LOGTYPES, value, result.key!)
+        )) : this.db.updateByKey<LogType>(LOGTYPES, value, value.key)
+  }
+
+  getAll() {
+    return this.db.getAll<LogType>(LOGTYPES);
+  }
+
+  getById(id: string) {
+    return this.db.getByIndex<LogType>(LOGTYPES, 'id', id);
+  }
+
+}

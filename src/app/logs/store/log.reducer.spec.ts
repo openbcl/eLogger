@@ -1,6 +1,6 @@
-import { reducer, initialState } from './recordtype.reducer';
+import { reducer, initialState } from './log.reducer';
 
-describe('Recordtype Reducer', () => {
+describe('Log Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;

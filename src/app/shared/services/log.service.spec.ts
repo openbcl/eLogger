@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { NgxIndexedDBServiceStub } from '../testing/stubs';
-import { ProceedingService } from './proceeding.service';
+import { LogService } from './log.service';
 
-describe('ProceedingService', () => {
-  let service: ProceedingService;
+describe('LogService', () => {
+  let service: LogService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe('ProceedingService', () => {
         useValue: NgxIndexedDBServiceStub
       }]
     });
-    service = TestBed.inject(ProceedingService);
+    service = TestBed.inject(LogService);
   });
 
   it('should be created', () => {

@@ -10,7 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
-import { PROCEEDINGS, Proceeding, RECORDTYPES, RecordType } from './shared/models';
+import { LOGS, Log, LOGTYPES, LogType } from './shared/models';
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
   return Object.getOwnPropertyNames(obj).map(property => ({
@@ -51,8 +51,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       name: 'eLoggerDB',
       version: 1,
       objectStoresMeta: [
-        generateObjectStoreMeta(PROCEEDINGS, new Proceeding(null!)),
-        generateObjectStoreMeta(RECORDTYPES, new RecordType())
+        generateObjectStoreMeta(LOGS, new Log(null!)),
+        generateObjectStoreMeta(LOGTYPES, new LogType())
       ]
     })
   ],

@@ -1,19 +1,19 @@
 import { v4 as uuid } from 'uuid';
 import { EventLog } from '.';
 
-export const PROCEEDINGS = 'proceedings';
+export const LOGS = 'logs';
 
-export class Proceeding {
+export class Log {
     readonly id = uuid();
     readonly key?: number;
     title = '';
     desc = '';
     prev: string = null!;
     next: string = null!;
-    recordTypeId: string;
+    logTypeId: string;
     eventLogs: EventLog[] = [];
 
-    constructor(recordTypeId: string) {
-        this.recordTypeId = recordTypeId;
+    constructor(logTypeId: string) {
+        this.logTypeId = logTypeId;
     }
 }

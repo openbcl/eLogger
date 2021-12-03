@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { NgxIndexedDBServiceStub } from '../testing/stubs';
-import { RecordTypeService } from './recordtype.service';
+import { LogTypeService } from './logtype.service';
 
-describe('RecordTypeService', () => {
-  let service: RecordTypeService;
+describe('LogTypeService', () => {
+  let service: LogTypeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe('RecordTypeService', () => {
         useValue: NgxIndexedDBServiceStub
       }]
     });
-    service = TestBed.inject(RecordTypeService);
+    service = TestBed.inject(LogTypeService);
   });
 
   it('should be created', () => {

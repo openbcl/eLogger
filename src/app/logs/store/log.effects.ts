@@ -3,22 +3,22 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 
-import * as RecordActions from './record.actions';
+import * as LogActions from './log.actions';
 
 
 
 @Injectable()
-export class RecordEffects {
+export class LogEffects {
 
-  loadRecords$ = createEffect(() => {
+  loadLogs$ = createEffect(() => {
     return this.actions$.pipe( 
 
-      ofType(RecordActions.loadRecords),
+      ofType(LogActions.loadLogs),
       concatMap(() =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         EMPTY.pipe(
-          map(data => RecordActions.loadRecordsSuccess({ data })),
-          catchError(error => of(RecordActions.loadRecordsFailure({ error }))))
+          map(data => LogActions.loadLogsSuccess({ data })),
+          catchError(error => of(LogActions.loadLogsFailure({ error }))))
       )
     );
   });
