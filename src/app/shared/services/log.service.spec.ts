@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { NgxIndexedDBServiceStub } from '../testing/stubs';
+import { NgxIndexedDBServiceMock } from '../testing/mocks';
 import { LogService } from './log.service';
 
 describe('LogService', () => {
@@ -10,7 +10,7 @@ describe('LogService', () => {
     TestBed.configureTestingModule({
       providers: [{
         provide: NgxIndexedDBService,
-        useValue: NgxIndexedDBServiceStub
+        useValue: NgxIndexedDBServiceMock
       }]
     });
     service = TestBed.inject(LogService);
