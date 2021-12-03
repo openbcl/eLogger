@@ -29,4 +29,11 @@ export class LogService {
   getById(id: string) {
     return this.db.getByIndex<Log>(LOGS, 'id', id);
   }
+
+  delete(value: Log) {
+    return !value.key ?
+        this.getById(value.id).pipe(concatMap(result => 
+          this.db.deleteByKey(LOGS, result.key!)
+        )) : this.db.deleteByKey(LOGS, value.key)
+  }
 }

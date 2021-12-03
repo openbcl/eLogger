@@ -8,5 +8,6 @@ export const NgxIndexedDBServiceStub = {
     add: (_storeName : string, value: any) => of(value),
     getByIndex: (_storeName : string, _indexName : string, key: string) => of({'id': key}),
     updateByKey: (_storeName : string, value: any, _key: any) => of(value),
-    getAll: () => of([])
+    getAll: () => of([]),
+    deleteByKey: () => of(true)
 }

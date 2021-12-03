@@ -30,4 +30,11 @@ export class LogTypeService {
     return this.db.getByIndex<LogType>(LOGTYPES, 'id', id);
   }
 
+  delete(value: LogType) {
+    return !value.key ?
+        this.getById(value.id).pipe(concatMap(result => 
+          this.db.deleteByKey(LOGTYPES, result.key!)
+        )) : this.db.deleteByKey(LOGTYPES, value.key)
+  }
+
 }
