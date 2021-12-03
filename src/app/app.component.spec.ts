@@ -2,10 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SwUpdate } from '@angular/service-worker';
 import { AppComponent } from './app.component';
-
-class SwUpdateServerMock {
-  public isEnabled: boolean = false;
-}
+import { SwUpdateStub } from './shared/testing/stubs';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -18,7 +15,7 @@ describe('AppComponent', () => {
       ],
       providers: [{
         provide: SwUpdate,
-        useClass: SwUpdateServerMock
+        useValue: SwUpdateStub
       }]
     }).compileComponents();
   });
