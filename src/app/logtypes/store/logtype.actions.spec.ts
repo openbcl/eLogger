@@ -1,7 +1,7 @@
-import * as fromLogtype from './logtype.actions';
+import * as fromLogType from './logtype.actions';
 
-describe('loadLogtypes', () => {
+describe('loadLogTypes', () => {
   it('should return an action', () => {
-    expect(fromLogtype.loadLogtypes().type).toBe('[Logtype] Load Logtypes');
+    expect(fromLogType.loadLogTypes().type).toBe('[LogType] Load LogTypes');
   });
 });

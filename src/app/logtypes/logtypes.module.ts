@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LogtypesRoutingModule } from './logtypes-routing.module';
+import { LogTypesRoutingModule } from './logtypes-routing.module';
 import { StoreModule } from '@ngrx/store';
-import * as fromLogtype from './store/logtype.reducer';
+import * as fromLogType from './store/logtype.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { LogtypeEffects } from './store/logtype.effects';
+import { LogTypeEffects } from './store/logtype.effects';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    LogtypesRoutingModule,
-    StoreModule.forFeature(fromLogtype.logtypeFeatureKey, fromLogtype.reducer),
-    EffectsModule.forFeature([LogtypeEffects])
+    LogTypesRoutingModule,
+    StoreModule.forFeature(fromLogType.logtypeFeatureKey, fromLogType.reducer),
+    EffectsModule.forFeature([LogTypeEffects])
   ]
 })
-export class LogtypesModule { }
+export class LogTypesModule { }

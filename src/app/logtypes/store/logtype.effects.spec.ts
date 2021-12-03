@@ -2,21 +2,21 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { LogtypeEffects } from './logtype.effects';
+import { LogTypeEffects } from './logtype.effects';
 
-describe('LogtypeEffects', () => {
+describe('LogTypeEffects', () => {
   let actions$: Observable<any>;
-  let effects: LogtypeEffects;
+  let effects: LogTypeEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        LogtypeEffects,
+        LogTypeEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.inject(LogtypeEffects);
+    effects = TestBed.inject(LogTypeEffects);
   });
 
   it('should be created', () => {

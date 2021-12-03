@@ -1,10 +1,10 @@
-import * as fromLogtype from './logtype.reducer';
-import { selectLogtypeState } from './logtype.selectors';
+import * as fromLogType from './logtype.reducer';
+import { selectLogTypeState } from './logtype.selectors';
 
-describe('Logtype Selectors', () => {
+describe('LogType Selectors', () => {
   it('should select the feature state', () => {
-    const result = selectLogtypeState({
-      [fromLogtype.logtypeFeatureKey]: {}
+    const result = selectLogTypeState({
+      [fromLogType.logtypeFeatureKey]: {}
     });
 
     expect(result).toEqual({});
