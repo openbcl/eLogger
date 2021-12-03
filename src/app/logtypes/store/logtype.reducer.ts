@@ -1,21 +1,32 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { LogType } from '../../shared/models';
 import * as LogTypeActions from './logtype.actions';
 
-export const logtypeFeatureKey = 'logtype';
+export const logTypesFeatureKey = 'logTypes';
 
-export interface State {
-
+export interface LogTypesState {
+  logTypes: LogType[];
+  processing: boolean;
+  error: any;
 }
 
-export const initialState: State = {
-
+export const initialLogTypesState: LogTypesState = {
+  logTypes: [],
+  processing: false,
+  error: null
 };
 
-export const reducer = createReducer(
-  initialState,
+export const loadLogTypesReducer = createReducer(
+  initialLogTypesState,
 
-  on(LogTypeActions.loadLogTypes, state => state),
-  on(LogTypeActions.loadLogTypesSuccess, (state, action) => state),
-  on(LogTypeActions.loadLogTypesFailure, (state, action) => state),
+  on(LogTypeActions.loadLogTypes, state => ({
+    ...state, processing: true
+  })),
+  on(LogTypeActions.loadLogTypesSuccess, (state, action) => ({
+    ...state, logTypes: action.logTypes, processing: false
+  })),
+  on(LogTypeActions.loadLogTypesFailure, (state, action) => ({
+    ...state, error: action.error, processing: false
+  })),
 
 );

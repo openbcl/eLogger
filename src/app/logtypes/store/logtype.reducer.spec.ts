@@ -1,13 +1,11 @@
-import { reducer, initialState } from './logtype.reducer';
+import { loadLogTypes } from './logtype.actions';
+import { loadLogTypesReducer, initialLogTypesState } from './logtype.reducer';
 
 describe('LogType Reducer', () => {
-  describe('an unknown action', () => {
-    it('should return the previous state', () => {
-      const action = {} as any;
-
-      const result = reducer(initialState, action);
-
-      expect(result).toBe(initialState);
+  describe('Load LogTypes action', () => {
+    it('should enable the processing flag', () => {
+      const newState = loadLogTypesReducer(initialLogTypesState, loadLogTypes());
+      expect(newState.processing).toBe(true);
     });
   });
 });

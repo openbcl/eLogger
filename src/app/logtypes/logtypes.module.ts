@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { LogTypesRoutingModule } from './logtypes-routing.module';
 import { StoreModule } from '@ngrx/store';
-import * as fromLogType from './store/logtype.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { LogTypeEffects } from './store/logtype.effects';
+import * as fromLogType from './store/logtype.reducer';
 
 
 @NgModule({
@@ -13,7 +13,7 @@ import { LogTypeEffects } from './store/logtype.effects';
   imports: [
     CommonModule,
     LogTypesRoutingModule,
-    StoreModule.forFeature(fromLogType.logtypeFeatureKey, fromLogType.reducer),
+    StoreModule.forFeature(fromLogType.logTypesFeatureKey, fromLogType.loadLogTypesReducer),
     EffectsModule.forFeature([LogTypeEffects])
   ]
 })

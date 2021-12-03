@@ -4,9 +4,8 @@ import { selectLogTypeState } from './logtype.selectors';
 describe('LogType Selectors', () => {
   it('should select the feature state', () => {
     const result = selectLogTypeState({
-      [fromLogType.logtypeFeatureKey]: {}
+      [fromLogType.logTypesFeatureKey]: fromLogType.initialLogTypesState
     });
-
-    expect(result).toEqual({});
+    expect(result).toEqual(fromLogType.initialLogTypesState);
   });
 });
