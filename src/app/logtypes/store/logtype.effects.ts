@@ -52,6 +52,6 @@ export class LogTypeEffects {
   constructor(
     private logTypeService: LogTypeService,
     private actions$: Actions
-    ) {}
+  ) {}
 
 }

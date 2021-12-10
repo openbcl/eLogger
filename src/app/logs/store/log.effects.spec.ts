@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
+import { LogServiceMock } from '../../shared/testing/mocks';
+import { LogService } from '../../shared/services';
 
 import { LogEffects } from './log.effects';
 
@@ -12,7 +14,10 @@ describe('LogEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         LogEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$), {
+          provide: LogService,
+          useValue: LogServiceMock
+        }
       ]
     });
 
