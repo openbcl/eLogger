@@ -13,7 +13,8 @@ import * as fromLogType from './store/logtype.reducer';
   imports: [
     CommonModule,
     LogTypesRoutingModule,
-    StoreModule.forFeature(fromLogType.logTypesFeatureKey, fromLogType.loadLogTypesReducer),
+    StoreModule.forFeature(fromLogType.logTypesFeatureKey, fromLogType.logTypesReducer),
+    StoreModule.forFeature(fromLogType.logTypeFeatureKey, fromLogType.logTypeReducer),
     EffectsModule.forFeature([LogTypeEffects])
   ]
 })
