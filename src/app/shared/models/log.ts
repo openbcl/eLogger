@@ -9,7 +9,6 @@ export class Log {
     title = '';
     desc = '';
     prev: string = null!;
-    next: string = null!;
     logTypeId: string;
     eventLogs: EventLog[] = [];
 

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { concatMap, map } from 'rxjs';
+import { concatMap, from, map, take, toArray } from 'rxjs';
 import { Log, LOGS } from '../models';
 import { processResult } from '../utils/errorHandler';
+import { orderedLogs, reorderLogs } from '../utils/helper';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class LogService {
   }
 
   loadLogs() {
-    return this.db.getAll<Log>(LOGS);
+    return this.db.getAll<Log>(LOGS).pipe(map(values => orderedLogs(values)));
   }
 
   loadLog(id: string) {
@@ -32,9 +33,17 @@ export class LogService {
   }
 
   deleteLog(value: Log) {
-    return !value.key ?
+    const result = !value.key ?
         this.loadLog(value.id).pipe(concatMap(result => 
           this.db.deleteByKey(LOGS, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
-        )) : this.db.deleteByKey(LOGS, value.key).pipe(map(deleted => processResult(deleted, value, '')))
+        )) : this.db.deleteByKey(LOGS, value.key).pipe(map(deleted => processResult(deleted, value, '')));
+    this.db.getByIndex<Log>(LOGS, 'prev', value.id)
+      .pipe(take(1)).subscribe(next => this.updateLog({ ...next, prev: value.prev })
+        .pipe(take(1)).subscribe());
+    return result;
+  }
+
+  reorderLogs(values: Log[]) {
+    return from(reorderLogs(values)).pipe(concatMap(newOrderedValue => this.updateLog(newOrderedValue)), toArray())
   }
 }
