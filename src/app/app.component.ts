@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
+import { MenuItem, PrimeIcons } from 'primeng/api';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -9,6 +10,21 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'eLogger';
+
+  navitems: MenuItem[] = [{
+    label: 'Logs',
+    items: [
+      { label: 'List Logs', icon: PrimeIcons.LIST },
+      { label: 'New Log',  icon: PrimeIcons.PLUS }
+    ]
+  }, {
+    label: 'Settings',
+    icon: PrimeIcons.COG,
+    items: [
+      { label: 'Manage Log Types', icon: PrimeIcons.LIST },
+      { label: 'Device Settings', icon: PrimeIcons.MOBILE }
+    ]
+  }];
 
   constructor(
     private swUpdate: SwUpdate
