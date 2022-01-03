@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromSetting from './store/setting.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SettingEffects } from './store/setting.effects';
+import { UiModule } from '../ui/ui.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { SettingEffects } from './store/setting.effects';
   imports: [
     CommonModule,
     SettingsRoutingModule,
+    UiModule,
     StoreModule.forFeature(fromSetting.settingFeatureKey, fromSetting.reducer),
     EffectsModule.forFeature([SettingEffects])
   ]

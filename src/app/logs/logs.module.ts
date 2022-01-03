@@ -6,6 +6,8 @@ import { StoreModule } from '@ngrx/store';
 import * as fromLog from './store/log.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { LogEffects } from './store/log.effects';
+import { UiModule } from '../ui/ui.module';
+
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { LogEffects } from './store/log.effects';
   imports: [
     CommonModule,
     LogsRoutingModule,
-    StoreModule.forFeature(fromLog.logFeatureKey, fromLog.reducer),
+    UiModule,
+    StoreModule.forFeature(fromLog.logFeatureKey, fromLog.logReducer),
+    StoreModule.forFeature(fromLog.logsFeatureKey, fromLog.logsReducer),
     EffectsModule.forFeature([LogEffects])
   ]
 })

@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
 import { LOGS, Log, LOGTYPES, LogType } from './shared/models';
+import { UiModule } from './ui/ui.module';
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
   return Object.getOwnPropertyNames(obj).map(property => ({
@@ -37,6 +38,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UiModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
