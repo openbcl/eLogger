@@ -1,23 +1,23 @@
 import * as fromLogType from './logtype.reducer';
-import { selectLogTypesState, selectLogTypes, selectLogTypesProcessing, selectLogTypeState, selectLogType, selectLogTypeProcessing } from './logtype.selectors';
+import { logTypesStateSelector, logTypesSelector, logTypesProcessingSelector, logTypeStateSelector, logTypeSelector, logTypeProcessingSelector } from './logtype.selectors';
 
 describe('LogTypes Selectors', () => {
   it('should select the initial logTypes state', () => {
-    const result = selectLogTypesState({
+    const result = logTypesStateSelector({
       [fromLogType.logTypesFeatureKey]: fromLogType.initialLogTypesState
     });
     expect(result).toEqual(fromLogType.initialLogTypesState);
   });
 
   it('should select the initial logTypes', () => {
-    const result = selectLogTypes({
+    const result = logTypesSelector({
       [fromLogType.logTypesFeatureKey]: fromLogType.initialLogTypesState
     });
     expect(result).toEqual([]);
   });
 
   it('should select the initial processing status', () => {
-    const result = selectLogTypesProcessing({
+    const result = logTypesProcessingSelector({
       [fromLogType.logTypesFeatureKey]: fromLogType.initialLogTypesState
     });
     expect(result).toEqual(false);
@@ -26,21 +26,21 @@ describe('LogTypes Selectors', () => {
 
 describe('LogType Selectors', () => {
   it('should select the initial logType state', () => {
-    const result = selectLogTypeState({
+    const result = logTypeStateSelector({
       [fromLogType.logTypeFeatureKey]: fromLogType.initialLogTypeState
     });
     expect(result).toEqual(fromLogType.initialLogTypeState);
   });
 
   it('should select the initial logType', () => {
-    const result = selectLogType({
+    const result = logTypeSelector({
       [fromLogType.logTypeFeatureKey]: fromLogType.initialLogTypeState
     });
     expect(result).toEqual(null!);
   });
 
   it('should select the initial processing status', () => {
-    const result = selectLogTypeProcessing({
+    const result = logTypeProcessingSelector({
       [fromLogType.logTypeFeatureKey]: fromLogType.initialLogTypeState
     });
     expect(result).toEqual(false);

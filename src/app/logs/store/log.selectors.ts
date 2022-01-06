@@ -1,30 +1,30 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromLog from './log.reducer';
 
-export const selectLogsState = createFeatureSelector<fromLog.LogsState>(
+export const logsStateSelector = createFeatureSelector<fromLog.LogsState>(
   fromLog.logsFeatureKey
 );
 
-export const selectLogs = createSelector(
-  selectLogsState,
+export const logsSelector = createSelector(
+  logsStateSelector,
   logsState => logsState.logs
 )
 
-export const selectLogsProcessing = createSelector(
-  selectLogsState,
+export const logsProcessingSelector = createSelector(
+  logsStateSelector,
   logsState => logsState.processing
 )
 
-export const selectLogState = createFeatureSelector<fromLog.LogState>(
+export const logStateSelector = createFeatureSelector<fromLog.LogState>(
   fromLog.logFeatureKey
 );
 
-export const selectLog = createSelector(
-  selectLogState,
+export const logSelector = createSelector(
+  logStateSelector,
   logState => logState.log
 )
 
-export const selectLogProcessing = createSelector(
-  selectLogState,
+export const logProcessingSelector = createSelector(
+  logStateSelector,
   logState => logState.processing
 )
