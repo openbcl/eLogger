@@ -7,11 +7,14 @@ import * as fromLog from './store/log.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { LogEffects } from './store/log.effects';
 import { UiModule } from '../ui/ui.module';
+import { LogsComponent } from './components/logs/logs.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LogsComponent
+  ],
   imports: [
     CommonModule,
     LogsRoutingModule,

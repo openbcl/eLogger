@@ -14,15 +14,15 @@ export class AppComponent {
   navitems: MenuItem[] = [{
     label: 'Logs',
     items: [
-      { label: 'List Logs', icon: PrimeIcons.LIST },
+      { label: 'List Logs', icon: PrimeIcons.LIST, routerLink: ['/logs'] },
       { label: 'New Log',  icon: PrimeIcons.PLUS }
     ]
   }, {
     label: 'Settings',
     icon: PrimeIcons.COG,
     items: [
-      { label: 'Manage Log Types', icon: PrimeIcons.LIST },
-      { label: 'Device Settings', icon: PrimeIcons.MOBILE }
+      { label: 'Manage Log Types', icon: PrimeIcons.LIST, routerLink: ['/logtypes'] },
+      { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] }
     ]
   }];
 

@@ -7,10 +7,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { LogTypeEffects } from './store/logtype.effects';
 import * as fromLogType from './store/logtype.reducer';
 import { UiModule } from '../ui/ui.module';
+import { LogTypesComponent } from './components/logtypes/logtypes.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LogTypesComponent
+  ],
   imports: [
     CommonModule,
     LogTypesRoutingModule,

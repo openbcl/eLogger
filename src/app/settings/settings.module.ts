@@ -7,10 +7,13 @@ import * as fromSetting from './store/setting.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SettingEffects } from './store/setting.effects';
 import { UiModule } from '../ui/ui.module';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SettingsComponent
+  ],
   imports: [
     CommonModule,
     SettingsRoutingModule,

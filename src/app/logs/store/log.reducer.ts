@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { reorderLogs } from 'src/app/shared/utils/helper';
+import { reorderLogs } from '../../shared/utils/helper';
 import { Log } from '../../shared/models';
 import * as LogActions from './log.actions';
 
