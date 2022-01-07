@@ -107,7 +107,7 @@ describe('Log Reducer', () => {
 
     it('should return null', () => {
       const newState = logReducer(initialLogState, deleteLogSuccess({ log : logTemplate }));
-      expect(newState.log).toBe(null!);
+      expect(newState.log).toBe(null);
     });
 
     it('should return the error', () => {

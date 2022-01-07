@@ -49,7 +49,7 @@ export interface LogState {
 }
 
 export const initialLogState: LogState = {
-  log: null!,
+  log: null,
   processing: false,
   error: null
 };

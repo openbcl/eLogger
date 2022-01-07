@@ -32,7 +32,7 @@ export const loadLogTypeFailure = createAction(
 
 export const createLogType = createAction(
   '[LogType] Create LogType',
-  props<{ logType: LogType }>()
+  props<{ title: string, desc?: string }>()
 );
 
 export const createLogTypeSuccess = createAction(

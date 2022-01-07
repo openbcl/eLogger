@@ -36,7 +36,7 @@ describe('Log Selectors', () => {
     const result = logSelector({
       [fromLog.logFeatureKey]: fromLog.initialLogState
     });
-    expect(result).toEqual(null!);
+    expect(result).toEqual(null);
   });
 
   it('should select the initial processing status', () => {

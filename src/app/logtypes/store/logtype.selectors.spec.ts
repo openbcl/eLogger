@@ -36,7 +36,7 @@ describe('LogType Selectors', () => {
     const result = logTypeSelector({
       [fromLogType.logTypeFeatureKey]: fromLogType.initialLogTypeState
     });
-    expect(result).toEqual(null!);
+    expect(result).toEqual(null);
   });
 
   it('should select the initial processing status', () => {

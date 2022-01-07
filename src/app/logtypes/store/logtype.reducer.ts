@@ -48,7 +48,7 @@ export interface LogTypeState {
 }
 
 export const initialLogTypeState: LogTypeState = {
-  logType: null!,
+  logType: null,
   processing: false,
   error: null
 };

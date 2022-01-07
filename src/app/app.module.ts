@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -37,8 +37,9 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     UiModule,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
@@ -53,8 +54,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       name: 'eLoggerDB',
       version: 1,
       objectStoresMeta: [
-        generateObjectStoreMeta(LOGS, new Log(null!)),
-        generateObjectStoreMeta(LOGTYPES, new LogType())
+        generateObjectStoreMeta(LOGS, new Log(null)),
+        generateObjectStoreMeta(LOGTYPES, new LogType(null))
       ]
     })
   ],

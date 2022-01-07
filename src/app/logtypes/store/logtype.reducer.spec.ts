@@ -2,7 +2,7 @@ import { createLogType, deleteLogType, loadLogType, loadLogTypes, loadLogTypeSuc
 import { logTypesReducer, logTypeReducer, initialLogTypesState, initialLogTypeState } from './logtype.reducer';
 import { LogType } from '../../shared/models';
 
-const logTypeTemplate: LogType = new LogType();
+const logTypeTemplate: LogType = new LogType('');
 const errorTemplate = {}
 
 describe('LogTypes Reducer', () => {
@@ -83,7 +83,7 @@ describe('LogType Reducer', () => {
 
   describe('Create LogType action', () => {
     it('should enable the processing flag', () => {
-      const newState = logTypeReducer(initialLogTypeState, createLogType({ logType : logTypeTemplate }));
+      const newState = logTypeReducer(initialLogTypeState, createLogType({ title: '' }));
       expect(newState.processing).toBe(true);
     });
 
@@ -106,7 +106,7 @@ describe('LogType Reducer', () => {
 
     it('should return null', () => {
       const newState = logTypeReducer(initialLogTypeState, deleteLogTypeSuccess({ logType : logTypeTemplate }));
-      expect(newState.logType).toBe(null!);
+      expect(newState.logType).toBe(null);
     });
 
     it('should return the error', () => {

@@ -11,8 +11,8 @@ export class LogTypeService {
 
   constructor(private db: NgxIndexedDBService) { }
 
-  createLogType(value: LogType) {
-    return this.db.add(LOGTYPES, value);
+  createLogType(title: string, desc?: string) {
+    return this.db.add(LOGTYPES, new LogType(title, desc));
   }
 
   updateLogType(value: LogType) {

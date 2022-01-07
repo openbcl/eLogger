@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
-import { MenuItem, PrimeIcons } from 'primeng/api';
+import { MenuItem, PrimeIcons, PrimeNGConfig } from 'primeng/api';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -27,10 +27,12 @@ export class AppComponent {
   }];
 
   constructor(
-    private swUpdate: SwUpdate
+    private swUpdate: SwUpdate,
+    private primengConfig: PrimeNGConfig
   ){ }
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.pipe(
         filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')

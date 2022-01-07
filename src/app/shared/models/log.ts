@@ -8,7 +8,7 @@ export class Log {
     readonly key?: number;
     title = '';
     desc = '';
-    prev: string = null!;
+    prev: string = null;
     logTypeId: string;
     eventLogs: EventLog[] = [];
 
