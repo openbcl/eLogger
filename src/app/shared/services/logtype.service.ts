@@ -16,11 +16,10 @@ export class LogTypeService {
   }
 
   updateLogType(value: LogType) {
-      value.revision = new Date();
-      return !value.key ?
-        this.loadLogType(value.id).pipe(concatMap(result => 
-          this.db.updateByKey<LogType>(LOGTYPES, value, result.key!)
-        )) : this.db.updateByKey<LogType>(LOGTYPES, value, value.key)
+    return (!value.key ?
+      this.loadLogType(value.id).pipe(concatMap(result => 
+        this.db.update<LogType>(LOGTYPES, { ...value, revision: new Date(), key: result.key })
+      )) : this.db.update<LogType>(LOGTYPES, { ...value, revision: new Date() })).pipe(map(result => result[0]))
   }
 
   loadLogTypes() {

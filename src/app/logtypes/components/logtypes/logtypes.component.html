@@ -13,7 +13,7 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
                 </span>
-                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-success" (click)="displayNewLogTypeDialog = true"></button>
+                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayNewLogTypeDialog = true"></button>
             </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
@@ -52,7 +52,7 @@
     
     <ng-template pTemplate="footer">
         <form [formGroup]="newLogTypeForm" (ngSubmit)="submitNewLogType()">
-            <button pButton  pRipple  type="submit" [disabled]="newLogTypeForm.invalid" icon="fas fa-plus" label="Add" class="p-button-success  p-button-text"></button>
+            <button pButton  pRipple  type="submit" [disabled]="newLogTypeForm.invalid" icon="pi pi-plus" label="Add" class="p-button-success  p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>

@@ -13,3 +13,20 @@ body {
         display: grid;
     }
 }
+
+.p-float-label {
+    margin-top: 2rem;
+}
+
+.p-panel-content {
+    .p-datatable .p-datatable-header {
+        border: unset;
+        padding: 0 !important;
+        .p-input-icon-left {
+            margin-bottom: 1rem;
+        }
+        button {
+            margin-bottom: 1rem;
+        }
+    }
+}

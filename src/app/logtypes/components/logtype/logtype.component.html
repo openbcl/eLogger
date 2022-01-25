@@ -1,1 +1,66 @@
-<p>logtype works!</p>
+<div class="grid" *ngIf="logType$ | async as logType">
+    <p-panel class="col-12" [header]="logType.title">
+        <ng-template pTemplate="icons">
+            <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning" iconPos="right" (click)="updateLogType(logType)"></button>
+        </ng-template>
+        <span class="el-subtitle">{{ logType.desc || 'no description set' }}</span>
+    </p-panel>
+    <p-panel class="col-12" header="Event Templates">
+        <p-table
+            #dt
+            styleClass="p-datatable-striped"
+            dataKey="name"
+            [rowHover]="true"
+            [columns]="cols"
+            [value]="logType.eventTemplates"
+            [loading]="logTypeLoading$ | async">
+            <ng-template pTemplate="caption">
+                <div class="flex flex-wrap table-header justify-content-between">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                    </span>
+                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayNewEventTemplateDialog = true"></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">{{ col.header }} <p-sortIcon [field]="col.field"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-eventTemplate>
+                <tr style="cursor: pointer;">
+                    <td>{{ eventTemplate.icon }}</td>
+                    <td>{{ eventTemplate.name }}</td>
+                    <td>{{ eventTemplate.eventType }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-columns>
+                <tr>
+                    <td style="text-align: center;" [attr.colspan]="cols.length">
+                        No Event Templates found.
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-panel>
+<div>
+
+<p-dialog *ngIf="logType$ | async as logType" header="Update Log Type" [maximizable]="true" [(visible)]="displayUpdateLogTypeDialog">
+    <form [formGroup]="updateLogTypeForm">
+        <span class="p-float-label field">
+            <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
+            <label for="float-input">Title</label>
+        </span>
+        <span class="p-float-label field">
+            <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
+            <label for="float-input">Description</label>
+        </span>
+    </form>
+    
+    <ng-template pTemplate="footer">
+        <form [formGroup]="updateLogTypeForm" (ngSubmit)="submitUpdatedLogType(logType)">
+            <button pButton  pRipple  type="submit" [disabled]="updateLogTypeForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
+        </form>
+    </ng-template>
+</p-dialog>

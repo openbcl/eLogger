@@ -4,20 +4,20 @@ export enum EventType {
 
 export interface EventTemplate {
     name: string,
-    log: EventType,
+    eventType: EventType,
     icon: string
 }
 
 export class EventLog implements EventTemplate {
     name: string;
-    log: EventType;
+    eventType: EventType;
     icon: string;
     text?: string;
     date: Date;
 
     constructor(template: EventTemplate) {
         this.name = template.name;
-        this.log = template.log;
+        this.eventType = template.eventType;
         this.icon = template.icon;
         this.date = new Date();
     }
