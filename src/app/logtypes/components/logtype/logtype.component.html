@@ -64,3 +64,30 @@
         </form>
     </ng-template>
 </p-dialog>
+
+<p-dialog *ngIf="logType$ | async as logType" header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog">
+
+    <p-selectButton class="el-icon-selector" [options]="icons" optionLabel="icon">
+        <ng-template let-icon>
+            <i [class]="icon.class" [style]="icon.style"></i>
+        </ng-template>
+    </p-selectButton>
+    <!--
+        <form [formGroup]="updateLogTypeForm">
+            <span class="p-float-label field">
+                <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
+                <label for="float-input">Title</label>
+            </span>
+            <span class="p-float-label field">
+                <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
+                <label for="float-input">Description</label>
+            </span>
+        </form>
+        
+        <ng-template pTemplate="footer">
+            <form [formGroup]="updateLogTypeForm" (ngSubmit)="submitUpdatedLogType(logType)">
+                <button pButton  pRipple  type="submit" [disabled]="updateLogTypeForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
+            </form>
+        </ng-template>
+    -->
+</p-dialog>

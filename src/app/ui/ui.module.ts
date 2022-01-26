@@ -9,7 +9,13 @@ import { PanelModule } from 'primeng/panel';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { EventTypeTextPipe, EventTypeIconTextPipe } from './pipes/event.pipe';
 
+const pipes = [
+  EventTypeTextPipe,
+  EventTypeIconTextPipe
+]
 
 const modules = [
   ReactiveFormsModule,
@@ -21,12 +27,15 @@ const modules = [
   ButtonModule,
   PanelModule,
   ScrollPanelModule,
-  DialogModule
+  DialogModule,
+  SelectButtonModule
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...pipes
+  ],
   imports: [ ...modules ],
-  exports: [ ...modules ]
+  exports: [ ...modules, ...pipes ]
 })
 export class UiModule { }

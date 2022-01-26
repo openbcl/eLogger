@@ -1,5 +1,5 @@
 export enum EventType {
-    DEFAULT, START, END, TEXT, PICTURE, AUDIO
+    DEFAULT, START, PAUSE, RESUME, END, TEXT, PICTURE, AUDIO
 }
 
 export interface EventTemplate {

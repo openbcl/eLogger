@@ -3,9 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
-import { LogType } from '../../../shared/models';
+import { EventType, LogType } from '../../../shared/models';
 import { loadLogType, updateLogType } from '../../store/logtype.actions';
 import { logTypeProcessingSelector, logTypeSelector } from '../../store/logtype.selectors';
+import { icons } from '../../../shared/utils/helper';
 
 @Component({
   selector: 'el-logtype',
@@ -14,8 +15,10 @@ import { logTypeProcessingSelector, logTypeSelector } from '../../store/logtype.
 })
 export class LogTypeComponent implements OnInit {
 
+  icons = icons;
+  eventTypes = Object.getOwnPropertyNames(EventType).filter(value => value.match(/\d+/)).map<EventType>(value => (<any>EventType)[value]);
   searchTerm = '';
-  displayNewEventTemplateDialog = false;
+  displayNewEventTemplateDialog = true;
   displayUpdateLogTypeDialog = false;
 
   logType$ = this.store.pipe(select(logTypeSelector), filter(logType => !!logType), map(logType => ({ ...logType, eventTemplates: [ ...logType.eventTemplates ] })));
@@ -40,6 +43,7 @@ export class LogTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadLogType({ id: this.route.snapshot.paramMap.get('id') }));
+    console.log(this.eventTypes);
   }
 
   updateLogType(logType: LogType) {
