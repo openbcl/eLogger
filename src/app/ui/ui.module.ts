@@ -10,11 +10,12 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { EventTypeTextPipe, EventTypeIconTextPipe } from './pipes/event.pipe';
+import { EventTypeTextPipe, EventTypeIconTextPipe, EventTypesIconTextPipe } from './pipes/event.pipe';
 
 const pipes = [
   EventTypeTextPipe,
-  EventTypeIconTextPipe
+  EventTypeIconTextPipe,
+  EventTypesIconTextPipe
 ]
 
 const modules = [

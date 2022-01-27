@@ -66,7 +66,12 @@
 </p-dialog>
 
 <p-dialog *ngIf="logType$ | async as logType" header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog">
-
+    <p-selectButton class="el-icon-selector" [options]="eventTypes | eventTypesIconText">
+        <ng-template let-eventType>
+            <span>{{ eventType.label }}</span>
+            <i [class]="eventType.icon" [style]="eventType.style"></i>
+        </ng-template>
+    </p-selectButton>
     <p-selectButton class="el-icon-selector" [options]="icons" optionLabel="icon">
         <ng-template let-icon>
             <i [class]="icon.class" [style]="icon.style"></i>

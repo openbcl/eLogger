@@ -1,4 +1,4 @@
-import { Log } from "../models";
+import { EventType, Log } from "../models";
 
 export const reorderLogs = (values: Log[]) => values.map<Log>((value, index, array) => ({
     ...value,
@@ -17,6 +17,8 @@ export const orderedLogs = (values: Log[]) => {
         return reorderLogs(values);
     }
 }
+
+export const eventTypes = Object.getOwnPropertyNames(EventType).filter(value => !value.match(/\d+/)).map<EventType>(value => (<any>EventType)[value]);
 
 export const icons = [
     { class: 'pi pi-code', style: 'opacity: 0;' },
