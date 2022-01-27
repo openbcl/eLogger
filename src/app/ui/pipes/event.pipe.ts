@@ -2,39 +2,45 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { EventType } from '../../shared/models';
 
 @Pipe({
-  name: 'eventTypeText'
+  name: 'eventLabelPipe'
 })
-export class EventTypeTextPipe implements PipeTransform {
+export class EventLabelPipe implements PipeTransform {
 
   transform(eventType: EventType): string {
-    return eventTypeLabel(eventType);
+    return eventLabel(eventType);
   }
 
 }
 
 @Pipe({
-  name: 'eventTypeIconText'
+  name: 'eventLabelWithIconPipe'
 })
-export class EventTypeIconTextPipe implements PipeTransform {
+export class EventLabelWithIconPipe implements PipeTransform {
 
   transform(eventType: EventType) {
-    return eventTypeLabelWithIcon(eventType);
+    switch(eventType) {
+      case EventType.START:
+        return { label: eventLabel(eventType), value: 'pi pi-play' };
+      case EventType.PAUSE:
+        return { label: eventLabel(eventType), value: 'pi pi-pause' };
+      case EventType.RESUME:
+        return { label: eventLabel(eventType), value: 'pi pi-forward' };
+      case EventType.END:
+        return { label: eventLabel(eventType), value: 'pi pi-stop' };
+      case EventType.TEXT:
+        return { label: eventLabel(eventType), value: 'pi pi-comments' };
+      case EventType.PICTURE:
+        return { label: eventLabel(eventType), value: 'pi pi-camera' };
+      case EventType.AUDIO:
+        return { label: eventLabel(eventType), value: 'fas fa-microphone', styleClass: 'el-icon-w16' };
+      default:
+        return { label: eventLabel(eventType), value: 'pi pi-cog' };
+    }
   }
 
 }
 
-@Pipe({
-  name: 'eventTypesIconText'
-})
-export class EventTypesIconTextPipe implements PipeTransform {
-
-  transform(eventTypes: EventType[]): any[] {
-    return eventTypes.map(eventType => eventTypeLabelWithIcon(eventType));
-  }
-
-}
-
-const eventTypeLabel = (eventType: EventType): string => {
+const eventLabel = (eventType: EventType): string => {
   switch(eventType) {
     case EventType.START:
       return 'Start';
@@ -52,26 +58,5 @@ const eventTypeLabel = (eventType: EventType): string => {
       return 'Audio';
     default:
       return 'Default'
-  }
-}
-
-const eventTypeLabelWithIcon = (eventType: EventType) => {
-  switch(eventType) {
-    case EventType.START:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-play' };
-    case EventType.PAUSE:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-pause' };
-    case EventType.RESUME:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-forward' };
-    case EventType.END:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-stop' };
-    case EventType.TEXT:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-comments' };
-    case EventType.PICTURE:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-camera' };
-    case EventType.AUDIO:
-      return { label: eventTypeLabel(eventType), icon: 'fas fa-microphone', style: 'width: 16px' };
-    default:
-      return { label: eventTypeLabel(eventType), icon: 'pi pi-cog' };
   }
 }

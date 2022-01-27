@@ -18,7 +18,7 @@ export class LogTypesComponent implements OnInit {
   logTypes$ = this.store.pipe(select(logTypesSelector), map(logTypes => [ ...logTypes ]));
   logTypesLoading$ = this.store.pipe(select(logTypesProcessingSelector));
 
-  newLogTypeForm = this.fb.group({
+  createLogTypeForm = this.fb.group({
     title: ['', Validators.required],
     desc: ''
   });
@@ -38,10 +38,10 @@ export class LogTypesComponent implements OnInit {
     this.store.dispatch(loadLogTypes());
   }
 
-  submitNewLogType() {
-    this.store.dispatch(createLogType(this.newLogTypeForm.value));
+  submitLogType() {
+    this.store.dispatch(createLogType(this.createLogTypeForm.value));
     this.displayNewLogTypeDialog = false;
-    this.newLogTypeForm.reset();
+    this.createLogTypeForm.reset();
   }
 
 }

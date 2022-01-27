@@ -14,6 +14,14 @@ body {
     }
 }
 
+i.el-invisible {
+    opacity: 0;
+}
+
+i.el-icon-w16 {
+    width: 16px;
+}
+
 .p-float-label {
     margin-top: 2rem;
 }

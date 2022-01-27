@@ -1,3 +1,5 @@
+import { SelectItem } from "primeng/api";
+
 export enum EventType {
     DEFAULT, START, PAUSE, RESUME, END, TEXT, PICTURE, AUDIO
 }
@@ -5,13 +7,13 @@ export enum EventType {
 export interface EventTemplate {
     name: string,
     eventType: EventType,
-    icon: string
+    icon: SelectItem
 }
 
 export class EventLog implements EventTemplate {
     name: string;
     eventType: EventType;
-    icon: string;
+    icon: SelectItem;
     text?: string;
     date: Date;
 

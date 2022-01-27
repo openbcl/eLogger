@@ -1,4 +1,4 @@
-<p-panel header="Log Types">
+<p-panel header="Log Templates">
     <p-table
         #dt
         styleClass="p-datatable-striped"
@@ -31,15 +31,15 @@
         <ng-template pTemplate="emptymessage" let-columns>
             <tr>
                 <td style="text-align: center;" [attr.colspan]="cols.length">
-                    No Log Types found.
+                    No Log Templates found.
                 </td>
             </tr>
         </ng-template>
     </p-table>
 </p-panel>
 
-<p-dialog header="Add new Log Type" [maximizable]="true" [(visible)]="displayNewLogTypeDialog">
-    <form [formGroup]="newLogTypeForm">
+<p-dialog header="Add new Log Template" [maximizable]="true" [(visible)]="displayNewLogTypeDialog">
+    <form [formGroup]="createLogTypeForm">
         <span class="p-float-label field">
             <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
             <label for="float-input">Title</label>
@@ -51,8 +51,8 @@
     </form>
     
     <ng-template pTemplate="footer">
-        <form [formGroup]="newLogTypeForm" (ngSubmit)="submitNewLogType()">
-            <button pButton  pRipple  type="submit" [disabled]="newLogTypeForm.invalid" icon="pi pi-plus" label="Add" class="p-button-success  p-button-text"></button>
+        <form [formGroup]="createLogTypeForm" (ngSubmit)="submitLogType()">
+            <button pButton  pRipple  type="submit" [disabled]="createLogTypeForm.invalid" icon="pi pi-plus" label="Add" class="p-button-success p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>

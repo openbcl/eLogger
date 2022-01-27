@@ -10,12 +10,12 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { EventTypeTextPipe, EventTypeIconTextPipe, EventTypesIconTextPipe } from './pipes/event.pipe';
+import { EventLabelPipe, EventLabelWithIconPipe } from './pipes/event.pipe';
+import { FieldsetModule } from 'primeng/fieldset';
 
 const pipes = [
-  EventTypeTextPipe,
-  EventTypeIconTextPipe,
-  EventTypesIconTextPipe
+  EventLabelPipe,
+  EventLabelWithIconPipe
 ]
 
 const modules = [
@@ -29,7 +29,8 @@ const modules = [
   PanelModule,
   ScrollPanelModule,
   DialogModule,
-  SelectButtonModule
+  SelectButtonModule,
+  FieldsetModule
 ]
 
 @NgModule({
@@ -37,6 +38,7 @@ const modules = [
     ...pipes
   ],
   imports: [ ...modules ],
-  exports: [ ...modules, ...pipes ]
+  exports: [ ...modules, ...pipes ],
+  providers: [ ...pipes ]
 })
 export class UiModule { }

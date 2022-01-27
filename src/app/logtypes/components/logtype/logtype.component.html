@@ -1,9 +1,23 @@
 <div class="grid" *ngIf="logType$ | async as logType">
-    <p-panel class="col-12" [header]="logType.title">
+    <p-panel class="col-12">
+        <ng-template pTemplate="header">
+            <div class="grid mr-2">
+                <div class="p-inputgroup mb-2 mt-2">
+                    <span class="p-inputgroup-addon">Title</span>
+                    <input type="text" pInputText [disabled]="true" [value]="logType.title" />
+                </div>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">Description</span>
+                    <input type="text" pInputText [disabled]="true" [value]="logType.desc || 'no description set'" />
+                </div>
+            </div>
+        </ng-template>
         <ng-template pTemplate="icons">
             <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning" iconPos="right" (click)="updateLogType(logType)"></button>
         </ng-template>
-        <span class="el-subtitle">{{ logType.desc || 'no description set' }}</span>
+        <span style="text-align: center;" class="flex justify-content-center font-light">
+            In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
+        </span>
     </p-panel>
     <p-panel class="col-12" header="Event Templates">
         <p-table
@@ -30,9 +44,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-eventTemplate>
                 <tr style="cursor: pointer;">
-                    <td>{{ eventTemplate.icon }}</td>
+                    <td><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
                     <td>{{ eventTemplate.name }}</td>
-                    <td>{{ eventTemplate.eventType }}</td>
+                    <td>{{ eventTemplate.eventType | eventLabelPipe}}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage" let-columns>
@@ -44,40 +58,8 @@
             </ng-template>
         </p-table>
     </p-panel>
-<div>
 
-<p-dialog *ngIf="logType$ | async as logType" header="Update Log Type" [maximizable]="true" [(visible)]="displayUpdateLogTypeDialog">
-    <form [formGroup]="updateLogTypeForm">
-        <span class="p-float-label field">
-            <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
-            <label for="float-input">Title</label>
-        </span>
-        <span class="p-float-label field">
-            <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
-            <label for="float-input">Description</label>
-        </span>
-    </form>
-    
-    <ng-template pTemplate="footer">
-        <form [formGroup]="updateLogTypeForm" (ngSubmit)="submitUpdatedLogType(logType)">
-            <button pButton  pRipple  type="submit" [disabled]="updateLogTypeForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
-        </form>
-    </ng-template>
-</p-dialog>
-
-<p-dialog *ngIf="logType$ | async as logType" header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog">
-    <p-selectButton class="el-icon-selector" [options]="eventTypes | eventTypesIconText">
-        <ng-template let-eventType>
-            <span>{{ eventType.label }}</span>
-            <i [class]="eventType.icon" [style]="eventType.style"></i>
-        </ng-template>
-    </p-selectButton>
-    <p-selectButton class="el-icon-selector" [options]="icons" optionLabel="icon">
-        <ng-template let-icon>
-            <i [class]="icon.class" [style]="icon.style"></i>
-        </ng-template>
-    </p-selectButton>
-    <!--
+    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTypeDialog">
         <form [formGroup]="updateLogTypeForm">
             <span class="p-float-label field">
                 <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
@@ -90,9 +72,44 @@
         </form>
         
         <ng-template pTemplate="footer">
-            <form [formGroup]="updateLogTypeForm" (ngSubmit)="submitUpdatedLogType(logType)">
-                <button pButton  pRipple  type="submit" [disabled]="updateLogTypeForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
+            <form [formGroup]="updateLogTypeForm" (ngSubmit)="submitLogType(logType)">
+                <button pButton pRipple type="submit" [disabled]="updateLogTypeForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
             </form>
         </ng-template>
-    -->
-</p-dialog>
+    </p-dialog>
+    
+    <p-dialog header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog">
+        <form [formGroup]="createEventTemplateForm">
+            <p-fieldset legend="Event Type">
+                <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setEventTemplateName()">
+                    <ng-template let-eventType>
+                        <div *ngIf="(eventType | eventLabelWithIconPipe) as item" class="grid w-8rem">
+                            <i style="font-size: 2rem" class="col {{ item.value }} {{ item.styleClass }}"></i>
+                            <span class="col-12">{{ item.label }}</span>
+                        </div>
+                    </ng-template>
+                </p-selectButton>
+            </p-fieldset>
+            
+            <span class="p-float-label field">
+                <input formControlName="name" pInputText type="text" class="inputfield w-full"> 
+                <label for="float-input">Name</label>
+            </span>
+    
+            <p-fieldset legend="Event Icon" *ngIf="createEventTemplateForm.value.eventType === 0">
+                <p-selectButton formControlName="icon" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventIcons" optionLabel="icon">
+                    <ng-template let-item>
+                        <i class="{{ item.value }} {{ item.styleClass }}"></i>
+                    </ng-template>
+                </p-selectButton>
+            </p-fieldset>
+            
+        </form>
+        <ng-template pTemplate="footer">
+            <form [formGroup]="createEventTemplateForm" (ngSubmit)="submitEventTemplate(logType)">
+                <button pButton pRipple type="submit" [disabled]="createEventTemplateForm.invalid" icon="pi pi-check" label="Add" class="p-button-success  p-button-text"></button>
+            </form>
+        </ng-template>
+    </p-dialog>
+<div>
+        

@@ -1,8 +1,8 @@
-import { EventTypeTextPipe } from './event.pipe';
+import { EventLabelPipe } from './event.pipe';
 
-describe('EventTypeTextPipe', () => {
+describe('eventLabelPipePipe', () => {
   it('create an instance', () => {
-    const pipe = new EventTypeTextPipe();
+    const pipe = new EventLabelPipe();
     expect(pipe).toBeTruthy();
   });
 });

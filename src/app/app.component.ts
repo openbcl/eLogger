@@ -21,7 +21,7 @@ export class AppComponent {
     label: 'Settings',
     icon: PrimeIcons.COG,
     items: [
-      { label: 'Manage Log Types', icon: PrimeIcons.LIST, routerLink: ['/logtypes'] },
+      { label: 'Manage Log Templates', icon: PrimeIcons.LIST, routerLink: ['/logtypes'] },
       { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] }
     ]
   }];
