@@ -1,12 +1,15 @@
 :host ::ng-deep {
     .el-icon-selector .p-selectbutton {
         text-align: center;
-        max-width: 35rem;
-        .p-button {
-            border-radius: 0 !important;
+        @media (orientation: portrait) {
+            max-width: 35rem;
         }
-        .p-button:last-of-type {
-            border-right: 0;
+        @media (orientation: landscape) {
+            max-width: 75rem;
+        }
+        .p-button {
+            border-radius: 4px !important;
+            margin: 0.25em;
         }
     }
 }

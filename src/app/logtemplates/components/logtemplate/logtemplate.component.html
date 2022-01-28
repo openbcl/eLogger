@@ -59,7 +59,7 @@
         </p-table>
     </p-panel>
 
-    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog">
+    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog" [modal]="true" >
         <form [formGroup]="updateLogTemplateForm">
             <span class="p-float-label field">
                 <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
@@ -78,7 +78,7 @@
         </ng-template>
     </p-dialog>
     
-    <p-dialog header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog">
+    <p-dialog header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog" [modal]="true" >
         <form [formGroup]="createEventTemplateForm">
             <p-fieldset legend="Event Type">
                 <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setEventTemplateName()">

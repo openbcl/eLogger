@@ -38,7 +38,7 @@
     </p-table>
 </p-panel>
 
-<p-dialog header="Add new Log Template" [maximizable]="true" [(visible)]="displayNewLogTemplateDialog">
+<p-dialog header="Add new Log Template" [maximizable]="true" [(visible)]="displayNewLogTemplateDialog" [modal]="true" >
     <form [formGroup]="createLogTemplateForm">
         <span class="p-float-label field">
             <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
