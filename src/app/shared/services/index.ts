@@ -1,2 +1,2 @@
 export * from './log.service';
-export * from './logtype.service';
+export * from './logtemplate.service';

@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { NgxIndexedDBServiceMock } from '../testing/mocks';
-import { LogTypeService } from './logtype.service';
+import { LogTemplateService } from './logtemplate.service';
 
-describe('LogTypeService', () => {
-  let service: LogTypeService;
+describe('LogTemplateService', () => {
+  let service: LogTemplateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe('LogTypeService', () => {
         useValue: NgxIndexedDBServiceMock
       }]
     });
-    service = TestBed.inject(LogTypeService);
+    service = TestBed.inject(LogTemplateService);
   });
 
   it('should be created', () => {

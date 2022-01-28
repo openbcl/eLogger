@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node ./build && ng serve --hmr --host 0.0.0.0 --open",
+    "start": "node ./build && ng serve --hmr --host 0.0.0.0",
     "build": "node ./build && ng build",
     "watch": "node ./build && ng build --watch --configuration development",
     "test": "node ./build && ng test"

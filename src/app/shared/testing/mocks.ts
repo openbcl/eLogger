@@ -9,12 +9,12 @@ export const NgxIndexedDBServiceMock = {
     deleteByKey: (_storeName : string, key: string) => of({ key })
 }
 
-export const LogTypeServiceMock = {
-    createLogType: (value: any) => of(value),
-    updateLogType: (value: any) => of(value),
-    loadLogTypes: () => of([]),
-    loadLogType: (id: string) => of({ id }),
-    deleteLogType: (value: any) => of(value)
+export const LogTemplateServiceMock = {
+    createLogTemplate: (value: any) => of(value),
+    updateLogTemplate: (value: any) => of(value),
+    loadLogTemplates: () => of([]),
+    loadLogTemplate: (id: string) => of({ id }),
+    deleteLogTemplate: (value: any) => of(value)
 }
 
 export const LogServiceMock = {

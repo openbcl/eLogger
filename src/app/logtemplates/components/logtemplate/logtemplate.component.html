@@ -1,19 +1,19 @@
-<div class="grid" *ngIf="logType$ | async as logType">
+<div class="grid" *ngIf="logTemplate$ | async as logTemplate">
     <p-panel class="col-12">
         <ng-template pTemplate="header">
             <div class="grid mr-2">
                 <div class="p-inputgroup mb-2 mt-2">
                     <span class="p-inputgroup-addon">Title</span>
-                    <input type="text" pInputText [disabled]="true" [value]="logType.title" />
+                    <input type="text" pInputText [disabled]="true" [value]="logTemplate.title" />
                 </div>
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon">Description</span>
-                    <input type="text" pInputText [disabled]="true" [value]="logType.desc || 'no description set'" />
+                    <input type="text" pInputText [disabled]="true" [value]="logTemplate.desc || 'no description set'" />
                 </div>
             </div>
         </ng-template>
         <ng-template pTemplate="icons">
-            <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning" iconPos="right" (click)="updateLogType(logType)"></button>
+            <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
         </ng-template>
         <span style="text-align: center;" class="flex justify-content-center font-light">
             In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
@@ -26,8 +26,8 @@
             dataKey="name"
             [rowHover]="true"
             [columns]="cols"
-            [value]="logType.eventTemplates"
-            [loading]="logTypeLoading$ | async">
+            [value]="logTemplate.eventTemplates"
+            [loading]="logTemplateLoading$ | async">
             <ng-template pTemplate="caption">
                 <div class="flex flex-wrap table-header justify-content-between">
                     <span class="p-input-icon-left">
@@ -59,8 +59,8 @@
         </p-table>
     </p-panel>
 
-    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTypeDialog">
-        <form [formGroup]="updateLogTypeForm">
+    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog">
+        <form [formGroup]="updateLogTemplateForm">
             <span class="p-float-label field">
                 <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
                 <label for="float-input">Title</label>
@@ -72,8 +72,8 @@
         </form>
         
         <ng-template pTemplate="footer">
-            <form [formGroup]="updateLogTypeForm" (ngSubmit)="submitLogType(logType)">
-                <button pButton pRipple type="submit" [disabled]="updateLogTypeForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
+            <form [formGroup]="updateLogTemplateForm" (ngSubmit)="submitLogTemplate(logTemplate)">
+                <button pButton pRipple type="submit" [disabled]="updateLogTemplateForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
             </form>
         </ng-template>
     </p-dialog>
@@ -106,7 +106,7 @@
             
         </form>
         <ng-template pTemplate="footer">
-            <form [formGroup]="createEventTemplateForm" (ngSubmit)="submitEventTemplate(logType)">
+            <form [formGroup]="createEventTemplateForm" (ngSubmit)="submitEventTemplate(logTemplate)">
                 <button pButton pRipple type="submit" [disabled]="createEventTemplateForm.invalid" icon="pi pi-check" label="Add" class="p-button-success  p-button-text"></button>
             </form>
         </ng-template>

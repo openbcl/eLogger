@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./logs/logs.module').then(m => m.LogsModule)
   },
   {
-    path: 'logtypes',
-    loadChildren: () => import('./logtypes/logtypes.module').then(m => m.LogTypesModule)
+    path: 'templates',
+    loadChildren: () => import('./logtemplates/logtemplates.module').then(m => m.LogTemplatesModule)
   },
   {
     path: 'settings',

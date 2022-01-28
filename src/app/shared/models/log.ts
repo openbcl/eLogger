@@ -9,10 +9,10 @@ export class Log {
     title = '';
     desc = '';
     prev: string = null;
-    logTypeId: string;
+    logTemplateId: string;
     eventLogs: EventLog[] = [];
 
-    constructor(logTypeId: string) {
-        this.logTypeId = logTypeId;
+    constructor(logTemplateId: string) {
+        this.logTemplateId = logTemplateId;
     }
 }

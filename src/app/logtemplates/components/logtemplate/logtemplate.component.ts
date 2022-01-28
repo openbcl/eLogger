@@ -3,29 +3,29 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
-import { EventTemplate, EventType, LogType } from '../../../shared/models';
-import { loadLogType, updateLogType } from '../../store/logtype.actions';
-import { logTypeProcessingSelector, logTypeSelector } from '../../store/logtype.selectors';
+import { EventTemplate, EventType, LogTemplate } from '../../../shared/models';
+import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
+import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
 import { eventIcons, eventTypes } from '../../../shared/utils/helper';
 import { EventLabelWithIconPipe, EventLabelPipe } from '../../../ui/pipes/event.pipe';
 
 @Component({
-  selector: 'el-logtype',
-  templateUrl: './logtype.component.html',
-  styleUrls: ['./logtype.component.scss']
+  selector: 'el-logtemplate',
+  templateUrl: './logtemplate.component.html',
+  styleUrls: ['./logtemplate.component.scss']
 })
-export class LogTypeComponent implements OnInit {
+export class LogTemplateComponent implements OnInit {
 
   eventIcons = eventIcons;
   eventTypes = eventTypes;
   searchTerm = '';
   displayNewEventTemplateDialog = false;
-  displayUpdateLogTypeDialog = false;
+  displayUpdateLogTemplateDialog = false;
 
-  logType$ = this.store.pipe(select(logTypeSelector), filter(logType => !!logType), map(logType => ({ ...logType, eventTemplates: [ ...logType.eventTemplates ] })));
-  logTypeLoading$ = this.store.pipe(select(logTypeProcessingSelector));
+  logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
+  logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector));
 
-  updateLogTypeForm = this.fb.group({
+  updateLogTemplateForm = this.fb.group({
     title: ['', Validators.required],
     desc: ''
   });
@@ -51,15 +51,15 @@ export class LogTypeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadLogType({ id: this.route.snapshot.paramMap.get('id') }));
+    this.store.dispatch(loadLogTemplate({ id: this.route.snapshot.paramMap.get('id') }));
   }
 
-  updateLogType(logType: LogType) {
-    this.updateLogTypeForm.setValue({
-      title: logType.title,
-      desc: logType.desc
+  updateLogTemplate(logTemplate: LogTemplate) {
+    this.updateLogTemplateForm.setValue({
+      title: logTemplate.title,
+      desc: logTemplate.desc
     });
-    this.displayUpdateLogTypeDialog = true;
+    this.displayUpdateLogTemplateDialog = true;
   }
 
   setEventTemplateName() {
@@ -72,25 +72,25 @@ export class LogTypeComponent implements OnInit {
     }
   }
 
-  submitLogType(logType: LogType) {
-    this.store.dispatch(updateLogType({
-      logType: {
-        ...logType,
-        ...this.updateLogTypeForm.value
+  submitLogTemplate(logTemplate: LogTemplate) {
+    this.store.dispatch(updateLogTemplate({
+      logTemplate: {
+        ...logTemplate,
+        ...this.updateLogTemplateForm.value
       }
     }));
-    this.displayUpdateLogTypeDialog = false;
-    this.updateLogTypeForm.reset();
+    this.displayUpdateLogTemplateDialog = false;
+    this.updateLogTemplateForm.reset();
   }
 
-  submitEventTemplate(logType: LogType) {
+  submitEventTemplate(logTemplate: LogTemplate) {
     const eventTemplate: EventTemplate = this.createEventTemplateForm.value;
     const { value, styleClass } = eventTemplate.eventType !== 0 ? this.eventLabelWithIconPipePipe.transform(eventTemplate.eventType) : eventTemplate.icon;
     eventTemplate.icon = { value, styleClass };
-    this.store.dispatch(updateLogType({
-      logType: {
-        ...logType,
-        eventTemplates: [ ...logType.eventTemplates, eventTemplate ]
+    this.store.dispatch(updateLogTemplate({
+      logTemplate: {
+        ...logTemplate,
+        eventTemplates: [ ...logTemplate.eventTemplates, eventTemplate ]
       }
     }));
     this.displayNewEventTemplateDialog = false;

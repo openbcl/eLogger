@@ -1,9 +1,9 @@
 import { v4 as uuid } from 'uuid';
 import { EventTemplate } from '.';
 
-export const LOGTYPES = 'logtypes';
+export const LOGTEMPLATES = 'logtemplates';
 
-export class LogType {
+export class LogTemplate {
     readonly id = uuid();
     readonly key?: number;
     title: string;
