@@ -7,13 +7,15 @@ export enum EventType {
 export interface EventTemplate {
     name: string,
     eventType: EventType,
-    icon: SelectItem
+    icon: SelectItem,
+    color: string
 }
 
 export class EventLog implements EventTemplate {
     name: string;
     eventType: EventType;
     icon: SelectItem;
+    color: string;
     text?: string;
     date: Date;
 
@@ -21,6 +23,7 @@ export class EventLog implements EventTemplate {
         this.name = template.name;
         this.eventType = template.eventType;
         this.icon = template.icon;
+        this.color = template.color;
         this.date = new Date();
     }
 }

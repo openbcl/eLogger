@@ -48,7 +48,7 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
-                <tr [pReorderableRow]="index">
+                <tr [pReorderableRow]="index" [class]="eventTemplate.color">
                     <td>
                         <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                     </td>
@@ -110,6 +110,18 @@
                         <i class="{{ item.value }} {{ item.styleClass }}"></i>
                     </ng-template>
                 </p-selectButton>
+            </p-fieldset>
+            
+            <br>
+
+            <p-fieldset legend="Event Color">
+                <div class="flex flex-wrap justify-content-center">
+                    <div #asd *ngFor="let color of colorsDefs"
+                    [ngClass]="{ 'border-primary border-2': color.value === createEventTemplateForm.value.color }"
+                    class="border-round m-1 p-3 cursor-pointer {{ color.value }}"
+                    (click)="createEventTemplateForm.patchValue({ color: color.value })"
+                    ></div>
+                </div>
             </p-fieldset>
             
         </form>

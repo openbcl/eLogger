@@ -83,3 +83,16 @@ export const eventIcons: SelectItem[] = [
     { value: PrimeIcons.VOLUME_DOWN },
     { value: PrimeIcons.VOLUME_UP }
 ]
+
+export const colorsDefs: SelectItem[] = [
+    { value: "" },
+    { value: "bg-yellow-500 hover:bg-yellow-600" },
+    { value: "bg-orange-500 hover:bg-orange-600" },
+    { value: "bg-pink-500 hover:bg-pink-600" },
+    { value: "bg-purple-500 hover:bg-purple-600" },
+    { value: "bg-indigo-500 hover:bg-indigo-600" },
+    { value: "bg-blue-500 hover:bg-blue-600" },
+    { value: "bg-cyan-500 hover:bg-cyan-600" },
+    { value: "bg-teal-500 hover:bg-teal-600" },
+    { value: "bg-green-500 hover:bg-green-600" },
+]

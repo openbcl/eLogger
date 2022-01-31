@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs';
 import { EventTemplate, EventType, LogTemplate } from '../../../shared/models';
 import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
-import { eventIcons, eventTypes } from '../../../shared/utils/helper';
+import { eventIcons, eventTypes, colorsDefs } from '../../../shared/utils/helper';
 import { EventLabelWithIconPipe, EventLabelPipe } from '../../../ui/pipes/event.pipe';
 
 @Component({
@@ -18,6 +18,7 @@ export class LogTemplateComponent implements OnInit {
 
   eventIcons = eventIcons;
   eventTypes = eventTypes;
+  colorsDefs = colorsDefs;
   searchTerm = '';
   displayNewEventTemplateDialog = false;
   displayUpdateLogTemplateDialog = false;
@@ -33,7 +34,8 @@ export class LogTemplateComponent implements OnInit {
   createEventTemplateForm = this.fb.group({
     name: ['', Validators.required],
     eventType: [EventType.DEFAULT, Validators.required],
-    icon: eventIcons[0]
+    icon: eventIcons[0],
+    color: ''
   });
 
   cols: any[] = [
@@ -106,7 +108,8 @@ export class LogTemplateComponent implements OnInit {
     this.createEventTemplateForm.reset({
       name: '',
       eventType: EventType.DEFAULT,
-      icon: eventIcons[0]
+      icon: eventIcons[0],
+      color: ''
     });
   }
 }

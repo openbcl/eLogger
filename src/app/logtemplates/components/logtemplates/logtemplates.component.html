@@ -22,7 +22,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-logtemplate>
-            <tr [routerLink]="[logtemplate.id]" style="cursor: pointer;">
+            <tr class="cursor-pointer" [routerLink]="[logtemplate.id]">
                 <td>{{ logtemplate.title }}</td>
                 <td>{{ logtemplate.desc }}</td>
                 <td>{{ logtemplate.revision | date : 'medium' }}</td>
