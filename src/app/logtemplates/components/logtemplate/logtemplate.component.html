@@ -116,11 +116,11 @@
 
             <p-fieldset legend="Event Color">
                 <div class="flex flex-wrap justify-content-center">
-                    <div #asd *ngFor="let color of colorsDefs"
-                    [ngClass]="{ 'border-primary border-2': color.value === createEventTemplateForm.value.color }"
-                    class="border-round m-1 p-3 cursor-pointer {{ color.value }}"
-                    (click)="createEventTemplateForm.patchValue({ color: color.value })"
-                    ></div>
+                    <div pRipple *ngFor="let color of colorsDefs"
+                        [ngClass]="{ 'border-primary border-2': color.value === createEventTemplateForm.value.color }"
+                        class="border-round m-1 p-3 cursor-pointer {{ color.value }}"
+                        (click)="createEventTemplateForm.patchValue({ color: color.value })">
+                    </div>
                 </div>
             </p-fieldset>
             
