@@ -15,7 +15,7 @@
         <ng-template pTemplate="icons">
             <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
         </ng-template>
-        <span style="text-align: center;" class="flex justify-content-center font-light">
+        <span class="flex text-center justify-content-center font-light">
             In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
         </span>
     </p-panel>
@@ -24,8 +24,10 @@
             #dt
             styleClass="p-datatable-striped"
             dataKey="name"
-            [rowHover]="true"
             [columns]="cols"
+            [rowHover]="true"
+            [reorderableColumns]="true"
+            (onRowReorder)="onRowReorder(dt.value, logTemplate)"
             [value]="logTemplate.eventTemplates"
             [loading]="logTemplateLoading$ | async">
             <ng-template pTemplate="caption">
@@ -37,21 +39,27 @@
                     <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayNewEventTemplateDialog = true"></button>
                 </div>
             </ng-template>
-            <ng-template pTemplate="header" let-columns>
+            <ng-template pTemplate="header">
                 <tr>
-                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">{{ col.header }} <p-sortIcon [field]="col.field"></p-sortIcon></th>
+                    <th style="width:3rem"></th>
+                    <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
+                        {{col.header}}
+                    </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-eventTemplate>
-                <tr style="cursor: pointer;">
-                    <td><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
-                    <td>{{ eventTemplate.name }}</td>
-                    <td>{{ eventTemplate.eventType | eventLabelPipe}}</td>
+            <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
+                <tr [pReorderableRow]="index">
+                    <td>
+                        <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+                    </td>
+                    <td class="text-center" >{{ eventTemplate.name }}</td>
+                    <td class="text-center" >{{ eventTemplate.eventType | eventLabelPipe}}</td>
+                    <td class="text-center" style="width:3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="emptymessage" let-columns>
+            <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td style="text-align: center;" [attr.colspan]="cols.length">
+                    <td class="text-center" [attr.colspan]="cols.length">
                         No Event Templates found.
                     </td>
                 </tr>

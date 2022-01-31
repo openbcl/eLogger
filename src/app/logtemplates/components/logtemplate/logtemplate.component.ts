@@ -37,9 +37,9 @@ export class LogTemplateComponent implements OnInit {
   });
 
   cols: any[] = [
-    { field: 'icon', header: 'Icon' },
     { field: 'name', header: 'Name' },
-    { field: 'eventType', header: 'Type' }
+    { field: 'eventType', header: 'Type' },
+    { field: 'icon', header: 'Icon' }
   ];
 
   constructor(
@@ -60,6 +60,15 @@ export class LogTemplateComponent implements OnInit {
       desc: logTemplate.desc
     });
     this.displayUpdateLogTemplateDialog = true;
+  }
+
+  onRowReorder(eventTemplates: EventTemplate[], logTemplate: LogTemplate) {
+    this.store.dispatch(updateLogTemplate({
+      logTemplate: {
+        ...logTemplate,
+        eventTemplates
+      }
+    }));
   }
 
   setEventTemplateName() {
