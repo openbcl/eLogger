@@ -26,9 +26,21 @@ i.el-icon-w16 {
 .p-panel-content {
     .p-datatable .p-datatable-header {
         border: unset;
-        padding: 0 !important;
-        button {
-            margin-bottom: 1rem;
-        }
+        margin-top: -1.25rem;
+        padding: 1rem 0 0 0;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .sm\:col {
+        flex-grow: 1;
+        flex-basis: 0;
+        padding: 0.5rem;
+        width: unset;
+    }
+    .sm\:col-fixed {
+        flex: 0 0 auto;
+        padding: 0.5rem;
+        width: unset;
     }
 }

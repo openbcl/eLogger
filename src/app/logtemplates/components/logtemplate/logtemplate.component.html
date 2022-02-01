@@ -1,20 +1,28 @@
 <div class="grid" *ngIf="logTemplate$ | async as logTemplate">
     <p-panel class="col-12">
         <ng-template pTemplate="header">
-            <div class="grid mr-4">
-                <div class="p-inputgroup mb-2 mt-2">
-                    <span class="p-inputgroup-addon">Title</span>
-                    <input type="text" pInputText [disabled]="true" [value]="logTemplate.title" />
+            <div class="grid m-0 w-full pt-1">
+                <div class="grid col-12 sm:col p-0 pb-1 sm:mr-3">
+                    <div class="p-inputgroup col-12 pr-0">
+                        <span class="p-inputgroup-addon">Title</span>
+                        <input type="text" pInputText [disabled]="true" [value]="logTemplate.title" />
+                    </div>
+                    <div class="p-inputgroup col-12 pb-0 pr-0">
+                        <span class="p-inputgroup-addon">Description</span>
+                        <input type="text" pInputText [disabled]="true" [value]="logTemplate.desc || 'no description set'" />
+                    </div>
                 </div>
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon">Description</span>
-                    <input type="text" pInputText [disabled]="true" [value]="logTemplate.desc || 'no description set'" />
+                <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
+                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right"></button>
                 </div>
             </div>
         </ng-template>
-        <ng-template pTemplate="icons">
-            <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
-        </ng-template>
+        <!--
+            <ng-template pTemplate="icons">
+                <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning m-2" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
+            </ng-template>
+        -->
         <span class="flex text-center justify-content-center font-light">
             In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
         </span>
