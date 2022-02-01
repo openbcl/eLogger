@@ -1,7 +1,7 @@
 <div class="grid" *ngIf="logTemplate$ | async as logTemplate">
     <p-panel class="col-12">
         <ng-template pTemplate="header">
-            <div class="grid mr-2">
+            <div class="grid mr-4">
                 <div class="p-inputgroup mb-2 mt-2">
                     <span class="p-inputgroup-addon">Title</span>
                     <input type="text" pInputText [disabled]="true" [value]="logTemplate.title" />
@@ -32,16 +32,16 @@
             [loading]="logTemplateLoading$ | async">
             <ng-template pTemplate="caption">
                 <div class="flex flex-wrap table-header justify-content-between">
-                    <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
+                    <div class="p-inputgroup w-auto mb-3">
+                        <i class="p-inputgroup-addon pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
-                    </span>
+                    </div>
                     <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayNewEventTemplateDialog = true"></button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width:3rem"></th>
+                    <th class="w-3rem"></th>
                     <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
                         {{col.header}}
                     </th>
@@ -54,7 +54,7 @@
                     </td>
                     <td class="text-center" >{{ eventTemplate.name }}</td>
                     <td class="text-center" >{{ eventTemplate.eventType | eventLabelPipe}}</td>
-                    <td class="text-center" style="width:3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
+                    <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
@@ -69,11 +69,11 @@
 
     <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog" [modal]="true" >
         <form [formGroup]="updateLogTemplateForm">
-            <span class="p-float-label field">
+            <span class="p-float-label mt-5 field">
                 <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
                 <label for="float-input">Title</label>
             </span>
-            <span class="p-float-label field">
+            <span class="p-float-label mt-5 field">
                 <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
                 <label for="float-input">Description</label>
             </span>
@@ -91,15 +91,15 @@
             <p-fieldset legend="Event Type">
                 <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setEventTemplateName()">
                     <ng-template let-eventType>
-                        <div *ngIf="(eventType | eventLabelWithIconPipe) as item" class="grid w-8rem">
-                            <i style="font-size: 2rem" class="col {{ item.value }} {{ item.styleClass }}"></i>
+                        <div *ngIf="(eventType | eventLabelWithIconPipe) as item" class="grid w-7rem">
+                            <i class="text-3xl mt-2 col {{ item.value }} {{ item.styleClass }}"></i>
                             <span class="col-12">{{ item.label }}</span>
                         </div>
                     </ng-template>
                 </p-selectButton>
             </p-fieldset>
             
-            <span class="p-float-label field">
+            <span class="p-float-label mt-5 field">
                 <input formControlName="name" pInputText type="text" class="inputfield w-full"> 
                 <label for="float-input">Name</label>
             </span>
@@ -117,8 +117,8 @@
             <p-fieldset legend="Event Color">
                 <div class="flex flex-wrap justify-content-center">
                     <div pRipple *ngFor="let color of colorsDefs"
-                        [ngClass]="{ 'border-primary border-2': color.value === createEventTemplateForm.value.color }"
-                        class="border-round m-1 p-3 cursor-pointer {{ color.value }}"
+                        [ngClass]="{ 'border-primary': color.value === createEventTemplateForm.value.color }"
+                        class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color.value }}"
                         (click)="createEventTemplateForm.patchValue({ color: color.value })">
                     </div>
                 </div>

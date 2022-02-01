@@ -20,7 +20,7 @@ export class LogTemplateComponent implements OnInit {
   eventTypes = eventTypes;
   colorsDefs = colorsDefs;
   searchTerm = '';
-  displayNewEventTemplateDialog = false;
+  displayNewEventTemplateDialog = true;
   displayUpdateLogTemplateDialog = false;
 
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));

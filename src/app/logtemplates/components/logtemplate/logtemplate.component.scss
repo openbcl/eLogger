@@ -5,11 +5,17 @@
             max-width: 35rem;
         }
         @media (orientation: landscape) {
-            max-width: 75rem;
+            max-width: 66rem;
         }
         .p-button {
             border-radius: 4px !important;
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent;
             margin: 0.25em;
+        }
+        .p-highlight {
+            border-color: var(--primary-color) !important;
         }
     }
 }
