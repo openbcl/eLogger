@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { EventType } from '../../shared/models';
 
 @Pipe({
-  name: 'eventLabelPipe'
+  name: 'eventLabel'
 })
 export class EventLabelPipe implements PipeTransform {
 
@@ -13,7 +13,7 @@ export class EventLabelPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'eventLabelWithIconPipe'
+  name: 'eventLabelWithIcon'
 })
 export class EventLabelWithIconPipe implements PipeTransform {
 

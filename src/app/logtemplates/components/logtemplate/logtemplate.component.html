@@ -48,12 +48,12 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
-                <tr [pReorderableRow]="index" [class]="eventTemplate.color">
+                <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
                     <td>
                         <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                     </td>
                     <td class="text-center" >{{ eventTemplate.name }}</td>
-                    <td class="text-center" >{{ eventTemplate.eventType | eventLabelPipe}}</td>
+                    <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
                     <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
                 </tr>
             </ng-template>
@@ -91,7 +91,7 @@
             <p-fieldset legend="Event Type">
                 <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setEventTemplateName()">
                     <ng-template let-eventType>
-                        <div *ngIf="(eventType | eventLabelWithIconPipe) as item" class="grid w-7rem">
+                        <div *ngIf="(eventType | eventLabelWithIcon) as item" class="grid w-7rem">
                             <i class="text-3xl mt-2 col {{ item.value }} {{ item.styleClass }}"></i>
                             <span class="col-12">{{ item.label }}</span>
                         </div>
@@ -116,10 +116,10 @@
 
             <p-fieldset legend="Event Color">
                 <div class="flex flex-wrap justify-content-center">
-                    <div pRipple *ngFor="let color of colorsDefs"
-                        [ngClass]="{ 'border-primary': color.value === createEventTemplateForm.value.color }"
-                        class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color.value }}"
-                        (click)="createEventTemplateForm.patchValue({ color: color.value })">
+                    <div pRipple *ngFor="let color of colors"
+                        [ngClass]="{ 'border-primary': color === createEventTemplateForm.value.color }"
+                        class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
+                        (click)="createEventTemplateForm.patchValue({ color })">
                     </div>
                 </div>
             </p-fieldset>

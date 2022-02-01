@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs';
 import { EventTemplate, EventType, LogTemplate } from '../../../shared/models';
 import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
-import { eventIcons, eventTypes, colorsDefs } from '../../../shared/utils/helper';
+import { eventIcons, eventTypes } from '../../../shared/utils/helper';
 import { EventLabelWithIconPipe, EventLabelPipe } from '../../../ui/pipes/event.pipe';
 
 @Component({
@@ -18,26 +18,26 @@ export class LogTemplateComponent implements OnInit {
 
   eventIcons = eventIcons;
   eventTypes = eventTypes;
-  colorsDefs = colorsDefs;
   searchTerm = '';
-  displayNewEventTemplateDialog = true;
+  displayNewEventTemplateDialog = false;
   displayUpdateLogTemplateDialog = false;
-
+  
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector));
-
+  
   updateLogTemplateForm = this.fb.group({
     title: ['', Validators.required],
     desc: ''
   });
-
+  
   createEventTemplateForm = this.fb.group({
     name: ['', Validators.required],
     eventType: [EventType.DEFAULT, Validators.required],
     icon: eventIcons[0],
     color: ''
   });
-
+  
+  colors = ['', 'yellow', 'orange', 'pink', 'purple', 'indigo', 'blue', 'cyan', 'teal', 'green'];
   cols: any[] = [
     { field: 'name', header: 'Name' },
     { field: 'eventType', header: 'Type' },

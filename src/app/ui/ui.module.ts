@@ -12,10 +12,12 @@ import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { EventLabelPipe, EventLabelWithIconPipe } from './pipes/event.pipe';
 import { FieldsetModule } from 'primeng/fieldset';
+import { ColorPipe } from './pipes/color.pipe';
 
 const pipes = [
   EventLabelPipe,
-  EventLabelWithIconPipe
+  EventLabelWithIconPipe,
+  ColorPipe
 ]
 
 const modules = [
@@ -35,7 +37,8 @@ const modules = [
 
 @NgModule({
   declarations: [
-    ...pipes
+    ...pipes,
+    ColorPipe
   ],
   imports: [ ...modules ],
   exports: [ ...modules, ...pipes ],
