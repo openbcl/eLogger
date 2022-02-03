@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
 import { EventTemplate, EventType, LogTemplate } from '../../../shared/models';
-import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
+import { deleteLogTemplate, loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
 import { eventIcons, eventTypes } from '../../../shared/utils/helper';
 import { EventLabelWithIconPipe, EventLabelPipe } from '../../../ui/pipes/event.pipe';
@@ -21,6 +21,7 @@ export class LogTemplateComponent implements OnInit {
   searchTerm = '';
   displayNewEventTemplateDialog = false;
   displayUpdateLogTemplateDialog = false;
+  displayDeleteLogTemplateDialog = false;
   
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector));
@@ -49,11 +50,11 @@ export class LogTemplateComponent implements OnInit {
     private fb: FormBuilder,
     private eventLabelPipePipe: EventLabelPipe,
     private eventLabelWithIconPipePipe: EventLabelWithIconPipe,
-    private route: ActivatedRoute
+    private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadLogTemplate({ id: this.route.snapshot.paramMap.get('id') }));
+    this.store.dispatch(loadLogTemplate({ id: this.activeRoute.snapshot.paramMap.get('id') }));
   }
 
   updateLogTemplate(logTemplate: LogTemplate) {
@@ -111,5 +112,10 @@ export class LogTemplateComponent implements OnInit {
       icon: eventIcons[0],
       color: ''
     });
+  }
+
+  deleteLogTemplate(logTemplate: LogTemplate) {
+    this.store.dispatch(deleteLogTemplate({ logTemplate }));
+    this.displayDeleteLogTemplateDialog = false;
   }
 }

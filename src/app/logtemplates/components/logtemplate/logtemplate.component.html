@@ -14,15 +14,10 @@
                 </div>
                 <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
                     <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogTemplateDialog = true"></button>
                 </div>
             </div>
         </ng-template>
-        <!--
-            <ng-template pTemplate="icons">
-                <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning m-2" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
-            </ng-template>
-        -->
         <span class="flex text-center justify-content-center font-light">
             In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
         </span>
@@ -139,5 +134,13 @@
             </form>
         </ng-template>
     </p-dialog>
+
+    <p-dialog header="Delete Log Template" [maximizable]="true" [(visible)]="displayDeleteLogTemplateDialog" [modal]="true" >
+        Are you sure you want to delete this template?
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger p-button-text" (click)="deleteLogTemplate(logTemplate)"></button>
+        </ng-template>
+    </p-dialog>
+
 <div>
         

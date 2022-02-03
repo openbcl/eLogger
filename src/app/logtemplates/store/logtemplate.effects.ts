@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../../shared/services';
 import * as LogTemplateActions from './logtemplate.actions';
@@ -49,9 +50,15 @@ export class LogTemplateEffects {
     ))
   ));
 
+  deleteLogTemplateSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(LogTemplateActions.deleteLogTemplateSuccess),
+    tap(() => this.router.navigate(['templates']))
+  ), { dispatch: false });
+
   constructor(
     private logTemplateService: LogTemplateService,
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router
   ) {}
 
 }
