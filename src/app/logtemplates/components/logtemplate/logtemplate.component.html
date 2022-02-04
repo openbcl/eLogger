@@ -62,7 +62,7 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td class="text-center" [attr.colspan]="cols.length">
+                    <td class="text-center" [attr.colspan]="cols.length + 1">
                         No Event Templates found.
                     </td>
                 </tr>
@@ -104,7 +104,7 @@
             
             <span class="p-float-label mt-5 field">
                 <input formControlName="name" pInputText type="text" class="inputfield w-full"> 
-                <label for="float-input">Name</label>
+                <label for="float-input">Event Name</label>
             </span>
     
             <p-fieldset legend="Event Icon" *ngIf="createEventTemplateForm.value.eventType === 0">

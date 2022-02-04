@@ -57,6 +57,6 @@ const eventLabel = (eventType: EventType): string => {
     case EventType.AUDIO:
       return 'Audio';
     default:
-      return 'Default'
+      return 'Custom'
   }
 }

@@ -22,6 +22,9 @@ i.el-icon-w16 {
     width: 16px;
 }
 
+.p-component-overlay {
+    backdrop-filter: blur(0.5rem);
+}
 
 .p-panel-content {
     .p-datatable .p-datatable-header {
