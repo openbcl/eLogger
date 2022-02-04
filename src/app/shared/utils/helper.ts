@@ -1,5 +1,5 @@
 import { SelectItem, PrimeIcons } from "primeng/api";
-import { EventType, Log } from "../models";
+import { EventTemplate, EventType, Log } from "../models";
 
 export const reorderLogs = (values: Log[]) => values.map<Log>((value, index, array) => ({
     ...value,
@@ -18,6 +18,13 @@ export const orderedLogs = (values: Log[]) => {
         return reorderLogs(values);
     }
 }
+
+export const compareEventTemplates = (a: EventTemplate, b: EventTemplate) => (
+    a.name === b.name &&
+    a.eventType === b.eventType &&
+    a.icon.value === b.icon.value &&
+    a.color === b.color
+)
 
 export const eventTypes = Object.getOwnPropertyNames(EventType).filter(value => !value.match(/\d+/)).map<EventType>(value => (<any>EventType)[value]);
 

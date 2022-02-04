@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { compareEventTemplates } from '../../shared/utils/helper';
 import * as fromLogTemplate from './logtemplate.reducer';
 
 export const logTemplatesStateSelector = createFeatureSelector<fromLogTemplate.LogTemplatesState>(
@@ -27,4 +28,15 @@ export const logTemplateSelector = createSelector(
 export const logTemplateProcessingSelector = createSelector(
   logTemplateStateSelector,
   logTemplateState => logTemplateState.processing
+)
+
+export const eventTemplatesSelector = createSelector(
+  logTemplatesStateSelector,
+  logTemplateStateSelector,
+  (logTemplatesState, logTemplateState) => logTemplatesState.logTemplates
+    .flatMap(logTemplate => logTemplate.eventTemplates)
+    .filter((eventTemplate, i, allEventTemplates) => (
+      i === allEventTemplates.findIndex(item => compareEventTemplates(item, eventTemplate)) &&
+      !logTemplateState.logTemplate.eventTemplates.find(item => compareEventTemplates(item, eventTemplate))
+    ))
 )

@@ -10,8 +10,9 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { FieldsetModule } from 'primeng/fieldset'; 
+import { DropdownModule } from 'primeng/dropdown';
 import { EventLabelPipe, EventLabelWithIconPipe } from './pipes/event.pipe';
-import { FieldsetModule } from 'primeng/fieldset';
 import { ColorPipe } from './pipes/color.pipe';
 
 const pipes = [
@@ -32,7 +33,8 @@ const modules = [
   ScrollPanelModule,
   DialogModule,
   SelectButtonModule,
-  FieldsetModule
+  FieldsetModule,
+  DropdownModule
 ]
 
 @NgModule({

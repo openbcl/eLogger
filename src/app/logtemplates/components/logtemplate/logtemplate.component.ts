@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
 import { EventTemplate, EventType, LogTemplate } from '../../../shared/models';
-import { deleteLogTemplate, loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
-import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
+import { deleteLogTemplate, loadLogTemplate, loadLogTemplates, updateLogTemplate } from '../../store/logtemplate.actions';
+import { eventTemplatesSelector, logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
 import { eventIcons, eventTypes } from '../../../shared/utils/helper';
 import { EventLabelWithIconPipe, EventLabelPipe } from '../../../ui/pipes/event.pipe';
 
@@ -25,6 +25,7 @@ export class LogTemplateComponent implements OnInit {
   
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector));
+  eventTemplates$ = this.store.pipe(select(eventTemplatesSelector));
   
   updateLogTemplateForm = this.fb.group({
     title: ['', Validators.required],
@@ -32,6 +33,7 @@ export class LogTemplateComponent implements OnInit {
   });
   
   createEventTemplateForm = this.fb.group({
+    selectedTemplate: undefined,
     name: ['', Validators.required],
     eventType: [EventType.DEFAULT, Validators.required],
     icon: eventIcons[0],
@@ -54,7 +56,13 @@ export class LogTemplateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadLogTemplates());
     this.store.dispatch(loadLogTemplate({ id: this.activeRoute.snapshot.paramMap.get('id') }));
+  }
+
+  showNewEventTemplateDialog() {
+    this.resetCreateEventTemplateForm();
+    this.displayNewEventTemplateDialog = true;
   }
 
   updateLogTemplate(logTemplate: LogTemplate) {
@@ -74,13 +82,26 @@ export class LogTemplateComponent implements OnInit {
     }));
   }
 
+  eventTemplateChanged(event: any ) {
+    const eventTemplate = { ...event.value, icon: eventIcons.find(icon => icon.value ===  event.value.icon.value) }
+    delete eventTemplate.selectedTemplate;
+    this.createEventTemplateForm.patchValue(eventTemplate);
+    Object.keys(eventTemplate).forEach(key => this.createEventTemplateForm.controls[key].disable())
+  }
+
+  eventTemplateCleared() {
+    this.resetCreateEventTemplateForm();
+  }
+
   setEventTemplateName() {
-    switch(this.createEventTemplateForm.value.eventType) {
-      case EventType.DEFAULT:
-        this.createEventTemplateForm.patchValue({ name: ''});
-        break;
-      default:
-        this.createEventTemplateForm.patchValue({ name: this.eventLabelPipePipe.transform(this.createEventTemplateForm.value.eventType) });
+    if (this.createEventTemplateForm.value.eventType !== undefined) {
+      switch(this.createEventTemplateForm.value.eventType) {
+        case EventType.DEFAULT:
+          this.createEventTemplateForm.patchValue({ name: ''});
+          break;
+        default:
+          this.createEventTemplateForm.patchValue({ name: this.eventLabelPipePipe.transform(this.createEventTemplateForm.value.eventType) });
+      }
     }
   }
 
@@ -96,7 +117,7 @@ export class LogTemplateComponent implements OnInit {
   }
 
   submitEventTemplate(logTemplate: LogTemplate) {
-    const eventTemplate: EventTemplate = this.createEventTemplateForm.value;
+    const eventTemplate: EventTemplate = this.createEventTemplateForm.getRawValue();
     const { value, styleClass } = eventTemplate.eventType !== 0 ? this.eventLabelWithIconPipePipe.transform(eventTemplate.eventType) : eventTemplate.icon;
     eventTemplate.icon = { value, styleClass };
     this.store.dispatch(updateLogTemplate({
@@ -106,12 +127,18 @@ export class LogTemplateComponent implements OnInit {
       }
     }));
     this.displayNewEventTemplateDialog = false;
+    this.resetCreateEventTemplateForm();
+  }
+
+  resetCreateEventTemplateForm() {
     this.createEventTemplateForm.reset({
+      selectedTemplate: undefined,
       name: '',
       eventType: EventType.DEFAULT,
       icon: eventIcons[0],
       color: ''
     });
+    this.createEventTemplateForm.enable();
   }
 
   deleteLogTemplate(logTemplate: LogTemplate) {

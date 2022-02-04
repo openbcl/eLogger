@@ -39,7 +39,7 @@
                         <i class="p-inputgroup-addon pi pi-search"></i>
                         <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
                     </div>
-                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayNewEventTemplateDialog = true"></button>
+                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="showNewEventTemplateDialog()"></button>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
@@ -70,7 +70,7 @@
         </p-table>
     </p-panel>
 
-    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog" [modal]="true" >
+    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog" [modal]="true">
         <form [formGroup]="updateLogTemplateForm">
             <span class="p-float-label mt-5 field">
                 <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
@@ -89,45 +89,71 @@
         </ng-template>
     </p-dialog>
     
-    <p-dialog header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog" [modal]="true" >
-        <form [formGroup]="createEventTemplateForm">
-            <p-fieldset legend="Event Type">
-                <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setEventTemplateName()">
-                    <ng-template let-eventType>
-                        <div *ngIf="(eventType | eventLabelWithIcon) as item" class="grid w-7rem">
-                            <i class="text-3xl mt-2 col {{ item.value }} {{ item.styleClass }}"></i>
-                            <span class="col-12">{{ item.label }}</span>
+    <p-dialog header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog" [modal]="true">
+        <div *ngIf="eventTemplates$ | async as eventTemplates">
+            <form [formGroup]="createEventTemplateForm">
+                <div *ngIf="eventTemplates.length">
+                    <p-fieldset legend="Known Event Templates">
+                        <div class="grid">
+                            <p-dropdown class="col-12 el-dropdown-items-p-0" [options]="eventTemplates" formControlName="selectedTemplate" [showClear]="true" (onChange)="eventTemplateChanged($event)" (onClear)="eventTemplateCleared()" placeholder="Choose a known template ...">
+                                <ng-template let-eventTemplate pTemplate="selectedItem">
+                                    <div class="flex flex-wrap align-items-center pl-2 pt-2 pb-2  {{ eventTemplate.color | colorClass }}" *ngIf="createEventTemplateForm.value.selectedTemplate">
+                                        <i class="pl-2 {{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i>
+                                        <span class="pl-2 text-overflow-anywhere">{{ eventTemplate.name }}</span>
+                                        <span class="pl-2 text-overflow-anywhere font-light text-500">({{ eventTemplate.eventType | eventLabel}})</span>
+                                    </div>
+                                </ng-template>
+                                <ng-template let-eventTemplate pTemplate="item">
+                                    <div class="flex flex-wrap align-items-center pl-3 pr-4 py-2 {{ eventTemplate.color | colorClass }}">
+                                        <i class="pl-2 {{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i>
+                                        <span class="pl-2 text-overflow-anywhere">{{ eventTemplate.name }}</span>
+                                        <span class="pl-2 text-overflow-anywhere font-light text-500">({{ eventTemplate.eventType | eventLabel}})</span>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                            <span class="col-12 flex text-center justify-content-center font-light">
+                                You can either choose an event template from the known templates or create a completely new event template.
+                            </span>
                         </div>
-                    </ng-template>
-                </p-selectButton>
-            </p-fieldset>
-            
-            <span class="p-float-label mt-5 field">
-                <input formControlName="name" pInputText type="text" class="inputfield w-full"> 
-                <label for="float-input">Event Name</label>
-            </span>
-    
-            <p-fieldset legend="Event Icon" *ngIf="createEventTemplateForm.value.eventType === 0">
-                <p-selectButton formControlName="icon" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventIcons" optionLabel="icon">
-                    <ng-template let-item>
-                        <i class="{{ item.value }} {{ item.styleClass }}"></i>
-                    </ng-template>
-                </p-selectButton>
-            </p-fieldset>
-            
-            <br>
-
-            <p-fieldset legend="Event Color">
-                <div class="flex flex-wrap justify-content-center">
-                    <div pRipple *ngFor="let color of colors"
-                        [ngClass]="{ 'border-primary': color === createEventTemplateForm.value.color }"
-                        class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
-                        (click)="createEventTemplateForm.patchValue({ color })">
-                    </div>
+                    </p-fieldset>
+                    <br>
                 </div>
-            </p-fieldset>
-            
-        </form>
+                <p-fieldset legend="Event Type">
+                    <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setEventTemplateName()">
+                        <ng-template let-eventType>
+                            <div *ngIf="(eventType | eventLabelWithIcon) as item" class="grid w-7rem">
+                                <i class="text-3xl mt-2 col {{ item.value }} {{ item.styleClass }}"></i>
+                                <span class="col-12">{{ item.label }}</span>
+                            </div>
+                        </ng-template>
+                    </p-selectButton>
+                </p-fieldset>
+                <span class="p-float-label mt-5 field">
+                    <input formControlName="name" pInputText type="text" class="inputfield w-full"> 
+                    <label for="float-input">Event Name</label>
+                </span>
+                <p-fieldset legend="Event Icon" *ngIf="createEventTemplateForm.value.eventType === 0">
+                    <p-selectButton formControlName="icon" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventIcons" optionLabel="icon">
+                        <ng-template let-item>
+                            <i class="{{ item.value }} {{ item.styleClass }}"></i>
+                        </ng-template>
+                    </p-selectButton>
+                </p-fieldset>
+                <br>
+                <p-fieldset legend="Event Color">
+                    <div class="flex flex-wrap justify-content-center">
+                        <div pRipple *ngFor="let color of colors"
+                            class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
+                            (click)="createEventTemplateForm.value.color !== undefined && createEventTemplateForm.patchValue({ color })"
+                            [ngClass]="{
+                                'border-primary': color === createEventTemplateForm.getRawValue().color,
+                                'pointer-events-none': createEventTemplateForm.value.color === undefined
+                            }">
+                        </div>
+                    </div>
+                </p-fieldset>            
+            </form>
+        </div>
         <ng-template pTemplate="footer">
             <form [formGroup]="createEventTemplateForm" (ngSubmit)="submitEventTemplate(logTemplate)">
                 <button pButton pRipple type="submit" [disabled]="createEventTemplateForm.invalid" icon="pi pi-check" label="Add" class="p-button-success  p-button-text"></button>
@@ -135,7 +161,7 @@
         </ng-template>
     </p-dialog>
 
-    <p-dialog header="Delete Log Template" [maximizable]="true" [(visible)]="displayDeleteLogTemplateDialog" [modal]="true" >
+    <p-dialog header="Delete Log Template" [maximizable]="true" [(visible)]="displayDeleteLogTemplateDialog" [modal]="true">
         Are you sure you want to delete this template?
         <ng-template pTemplate="footer">
             <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger p-button-text" (click)="deleteLogTemplate(logTemplate)"></button>

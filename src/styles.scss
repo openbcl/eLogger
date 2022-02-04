@@ -22,6 +22,12 @@ i.el-icon-w16 {
     width: 16px;
 }
 
+.text-overflow-anywhere {
+    overflow-wrap: anywhere;
+    word-wrap: anywhere;
+    word-break: break-all;
+}
+
 .p-component-overlay {
     backdrop-filter: blur(0.5rem);
 }

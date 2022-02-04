@@ -1,4 +1,5 @@
 :host ::ng-deep {
+
     .el-icon-selector .p-selectbutton {
         text-align: center;
         @media (orientation: portrait) {
@@ -16,6 +17,24 @@
         }
         .p-highlight {
             border-color: var(--primary-color) !important;
+        }
+    }
+
+    p-dialog .p-dropdown {
+        width: 100% ;
+        .p-dropdown-label {
+            white-space: unset;
+        }
+        .p-element.p-dropdown-label {
+            padding-top: 0rem;
+            padding-left: 0rem;
+            padding-bottom: 0rem;
+        }
+    }
+
+    .el-dropdown-items-p-0 {
+        li {
+            padding: 0 !important;
         }
     }
 }
