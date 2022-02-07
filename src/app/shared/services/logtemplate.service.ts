@@ -19,7 +19,8 @@ export class LogTemplateService {
     return (!value.key ?
       this.loadLogTemplate(value.id).pipe(concatMap(result => 
         this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: new Date(), key: result.key })
-      )) : this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: new Date() })).pipe(map(result => result[0]))
+      )) : this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: new Date() }))
+      .pipe(map(data => data.find(item => !value.key ? item.id === value.id : item.key === value.key)))
   }
 
   loadLogTemplates() {

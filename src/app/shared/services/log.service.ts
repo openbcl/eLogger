@@ -21,7 +21,8 @@ export class LogService {
       return (!value.key ?
         this.loadLog(value.id).pipe(concatMap(result => 
           this.db.update<Log>(LOGS, { ...value, key: result.key})
-        )) : this.db.update<Log>(LOGS, value)).pipe(map(result => result[0]))
+        )) : this.db.update<Log>(LOGS, value))
+      .pipe(map(data => data.find(item => !value.key ? item.id === value.id : item.key === value.key)))
   }
 
   loadLogs() {
