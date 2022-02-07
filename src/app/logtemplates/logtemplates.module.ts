@@ -9,12 +9,14 @@ import * as fromLogTemplate from './store/logtemplate.reducer';
 import { UiModule } from '../ui/ui.module';
 import { LogTemplatesComponent } from './components/logtemplates/logtemplates.component';
 import { LogTemplateComponent } from './components/logtemplate/logtemplate.component';
+import { UpdateLogTemplateDialogComponent } from './components/dialogs/updatelogtemplatedialog/updatelogtemplatedialog.component';
 
 
 @NgModule({
   declarations: [
     LogTemplatesComponent,
-    LogTemplateComponent
+    LogTemplateComponent,
+    UpdateLogTemplateDialogComponent
   ],
   imports: [
     CommonModule,

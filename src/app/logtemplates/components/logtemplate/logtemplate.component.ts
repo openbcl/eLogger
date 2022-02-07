@@ -27,11 +27,6 @@ export class LogTemplateComponent implements OnInit {
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector));
   eventTemplates$ = this.store.pipe(select(eventTemplatesSelector));
   
-  updateLogTemplateForm = this.fb.group({
-    title: ['', Validators.required],
-    desc: ''
-  });
-  
   createEventTemplateForm = this.fb.group({
     selectedTemplate: undefined,
     name: ['', Validators.required],
@@ -65,14 +60,6 @@ export class LogTemplateComponent implements OnInit {
     this.displayNewEventTemplateDialog = true;
   }
 
-  updateLogTemplate(logTemplate: LogTemplate) {
-    this.updateLogTemplateForm.setValue({
-      title: logTemplate.title,
-      desc: logTemplate.desc
-    });
-    this.displayUpdateLogTemplateDialog = true;
-  }
-
   onRowReorder(eventTemplates: EventTemplate[], logTemplate: LogTemplate) {
     this.store.dispatch(updateLogTemplate({
       logTemplate: {
@@ -103,17 +90,6 @@ export class LogTemplateComponent implements OnInit {
           this.createEventTemplateForm.patchValue({ name: this.eventLabelPipePipe.transform(this.createEventTemplateForm.value.eventType) });
       }
     }
-  }
-
-  submitLogTemplate(logTemplate: LogTemplate) {
-    this.store.dispatch(updateLogTemplate({
-      logTemplate: {
-        ...logTemplate,
-        ...this.updateLogTemplateForm.value
-      }
-    }));
-    this.displayUpdateLogTemplateDialog = false;
-    this.updateLogTemplateForm.reset();
   }
 
   submitEventTemplate(logTemplate: LogTemplate) {

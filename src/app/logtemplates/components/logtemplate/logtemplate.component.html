@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
-                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="updateLogTemplate(logTemplate)"></button>
+                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogTemplateDialog = true"></button>
                     <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogTemplateDialog = true"></button>
                 </div>
             </div>
@@ -70,24 +70,6 @@
         </p-table>
     </p-panel>
 
-    <p-dialog header="Update Log Template" [maximizable]="true" [(visible)]="displayUpdateLogTemplateDialog" [modal]="true">
-        <form [formGroup]="updateLogTemplateForm">
-            <span class="p-float-label mt-5 field">
-                <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
-                <label for="float-input">Title</label>
-            </span>
-            <span class="p-float-label mt-5 field">
-                <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
-                <label for="float-input">Description</label>
-            </span>
-        </form>
-        
-        <ng-template pTemplate="footer">
-            <form [formGroup]="updateLogTemplateForm" (ngSubmit)="submitLogTemplate(logTemplate)">
-                <button pButton pRipple type="submit" [disabled]="updateLogTemplateForm.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
-            </form>
-        </ng-template>
-    </p-dialog>
     
     <p-dialog header="Add Event Template" [maximizable]="true" [(visible)]="displayNewEventTemplateDialog" [modal]="true">
         <div *ngIf="eventTemplates$ | async as eventTemplates">
@@ -143,15 +125,15 @@
                 <p-fieldset legend="Event Color">
                     <div class="flex flex-wrap justify-content-center">
                         <div pRipple *ngFor="let color of colors"
-                            class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
-                            (click)="createEventTemplateForm.value.color !== undefined && createEventTemplateForm.patchValue({ color })"
-                            [ngClass]="{
-                                'border-primary': color === createEventTemplateForm.getRawValue().color,
-                                'pointer-events-none': createEventTemplateForm.value.color === undefined
-                            }">
-                        </div>
+                        class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
+                        (click)="createEventTemplateForm.value.color !== undefined && createEventTemplateForm.patchValue({ color })"
+                        [ngClass]="{
+                            'border-primary': color === createEventTemplateForm.getRawValue().color,
+                            'pointer-events-none': createEventTemplateForm.value.color === undefined
+                        }">
                     </div>
-                </p-fieldset>            
+                </div>
+            </p-fieldset>            
             </form>
         </div>
         <ng-template pTemplate="footer">
@@ -160,7 +142,7 @@
             </form>
         </ng-template>
     </p-dialog>
-
+    
     <p-dialog header="Delete Log Template" [maximizable]="true" [(visible)]="displayDeleteLogTemplateDialog" [modal]="true">
         Are you sure you want to delete this template?
         <ng-template pTemplate="footer">
@@ -170,3 +152,4 @@
 
 <div>
         
+<el-update-logtemplate-dialog [(visible)]="displayUpdateLogTemplateDialog"></el-update-logtemplate-dialog>
