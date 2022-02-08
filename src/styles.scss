@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~primeicons/primeicons.css';
-//@import '~primeng/resources/themes/lara-light-teal/theme.css';
 @import '~primeng/resources/themes/mdc-dark-indigo/theme.css';
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
+
 body {
-    background: linear-gradient(0, var(--surface-ground), var(--primary-color));
+    background: linear-gradient(180deg, var(--primary-color), var(--surface-ground));
     background-attachment: fixed;
     color: var(--text-color);
     
@@ -15,6 +15,17 @@ body {
         display: grid;
     }
 }
+
+.p-dialog {
+    border-width: 1px;
+    border-color: var(--primary-color);
+    border-style: solid;
+    margin: 0.75rem;
+    .p-dialog-header, .p-dialog-footer {
+        background: var(--surface-b) !important;
+    }
+}
+
 
 i.el-invisible {
     opacity: 0;
@@ -32,6 +43,10 @@ i.el-icon-w16 {
 
 .p-component-overlay {
     backdrop-filter: blur(0.5rem);
+}
+
+.p-panel-header {
+    background: var(--surface-f) !important;
 }
 
 .p-panel-content {
