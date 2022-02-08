@@ -1,12 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~primeicons/primeicons.css';
-@import '~primeng/resources/themes/bootstrap4-dark-blue/theme.css';
+@import '~primeng/resources/themes/mdc-dark-indigo/theme.css';
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 body {
-    background-color: var(--surface-b);
+    background: linear-gradient(0, var(--surface-ground), var(--primary-color));
+    background-attachment: fixed;
     color: var(--text-color);
     
     el-root {
@@ -34,8 +35,6 @@ i.el-icon-w16 {
 
 .p-panel-content {
     .p-datatable .p-datatable-header {
-        border: unset;
-        margin-top: -1.25rem;
         padding: 1rem 0 0 0;
     }
 }

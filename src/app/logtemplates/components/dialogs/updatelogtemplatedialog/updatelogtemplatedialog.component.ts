@@ -14,7 +14,7 @@ import { logTemplateSelector } from '../../../store/logtemplate.selectors';
 export class UpdateLogTemplateDialogComponent {
 
   @Input()
-  visible = false;
+  visible: boolean;
 
   @Output()
   visibleChange = new EventEmitter<boolean>();

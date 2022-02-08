@@ -12,7 +12,7 @@ import { LogTemplate } from '../../../../shared/models';
 export class DeleteLogTemplateDialogComponent {
 
   @Input()
-  visible = false;
+  visible: boolean;
 
   @Output()
   visibleChange = new EventEmitter<boolean>();

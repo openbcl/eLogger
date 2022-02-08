@@ -19,7 +19,7 @@ export class CreateEventTemplateDialogComponent {
   colors = ['', 'yellow', 'orange', 'pink', 'purple', 'indigo', 'blue', 'cyan', 'teal', 'green'];
 
   @Input()
-  visible = false;
+  visible: boolean;
   
   @Output()
   visibleChange = new EventEmitter<boolean>();

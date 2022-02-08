@@ -7,14 +7,14 @@
                         <p-dropdown class="col-12 el-dropdown-items-p-0" [options]="eventTemplates" formControlName="selectedTemplate" [showClear]="true" (onChange)="dropdownChanged($event)" (onClear)="reset()" placeholder="Choose a known template ...">
                             <ng-template let-eventTemplate pTemplate="selectedItem">
                                 <div class="flex flex-wrap align-items-center pl-2 pt-2 pb-2  {{ eventTemplate.color | colorClass }}" *ngIf="form.value.selectedTemplate">
-                                    <i class="pl-2 {{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i>
+                                    <i class="pl-2 {{ eventTemplate.icon.value }}"></i>
                                     <span class="pl-2 text-overflow-anywhere">{{ eventTemplate.name }}</span>
                                     <span class="pl-2 text-overflow-anywhere font-light text-500">({{ eventTemplate.eventType | eventLabel}})</span>
                                 </div>
                             </ng-template>
                             <ng-template let-eventTemplate pTemplate="item">
                                 <div class="flex flex-wrap align-items-center pl-3 pr-4 py-2 {{ eventTemplate.color | colorClass }}">
-                                    <i class="pl-2 {{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i>
+                                    <i class="pl-2 {{ eventTemplate.icon.value }}"></i>
                                     <span class="pl-2 text-overflow-anywhere">{{ eventTemplate.name }}</span>
                                     <span class="pl-2 text-overflow-anywhere font-light text-500">({{ eventTemplate.eventType | eventLabel}})</span>
                                 </div>
@@ -31,7 +31,7 @@
                 <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setName()">
                     <ng-template let-eventType>
                         <div *ngIf="(eventType | eventLabelWithIcon) as item" class="grid w-7rem">
-                            <i class="text-3xl mt-2 col {{ item.value }} {{ item.styleClass }}"></i>
+                            <i class="text-3xl mt-2 col {{ item.value }}"></i>
                             <span class="col-12">{{ item.label }}</span>
                         </div>
                     </ng-template>
@@ -44,7 +44,7 @@
             <p-fieldset legend="Event Icon" *ngIf="form.value.eventType === 0">
                 <p-selectButton formControlName="icon" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventIcons" optionLabel="icon">
                     <ng-template let-item>
-                        <i class="{{ item.value }} {{ item.styleClass }}"></i>
+                        <i class="{{ item.value }}"></i>
                     </ng-template>
                 </p-selectButton>
             </p-fieldset>
