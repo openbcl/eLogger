@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-import { LogTemplateServiceMock } from '../../shared/testing/mocks';
+import { LogTemplateServiceMock, RouterMock } from '../../shared/testing/mocks';
 import { LogTemplateService } from '../../shared/services';
 
 import { LogTemplateEffects } from './logtemplate.effects';
+import { Router } from '@angular/router';
 
 describe('LogTemplateEffects', () => {
   let actions$: Observable<any>;
@@ -17,6 +18,9 @@ describe('LogTemplateEffects', () => {
         provideMockActions(() => actions$), {
           provide: LogTemplateService,
           useValue: LogTemplateServiceMock
+        }, {
+          provide: Router,
+          useValue: RouterMock
         }
       ]
     });

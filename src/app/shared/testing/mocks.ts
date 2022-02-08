@@ -24,3 +24,7 @@ export const LogServiceMock = {
     loadLog: (id: string) => of({ id }),
     deleteLog: (value: any) => of(value)
 }
+
+export const RouterMock = {
+    navigate: (value: any) => new Promise(value)
+}

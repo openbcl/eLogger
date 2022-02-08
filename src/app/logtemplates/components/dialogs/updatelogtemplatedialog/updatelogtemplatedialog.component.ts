@@ -23,14 +23,14 @@ export class UpdateLogTemplateDialogComponent {
     select(logTemplateSelector),
     filter(logTemplate => !!logTemplate),
     tap(logTemplate => {
-      this.updateLogTemplateForm.setValue({
+      this.form.setValue({
         title: logTemplate.title,
         desc: logTemplate.desc
       });
     })
   );
 
-  updateLogTemplateForm = this.fb.group({
+  form = this.fb.group({
     title: ['', Validators.required],
     desc: ''
   });
@@ -43,17 +43,17 @@ export class UpdateLogTemplateDialogComponent {
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
+    this.form.reset();
   }
 
-  submitLogTemplate(logTemplate: LogTemplate) {
+  submit(logTemplate: LogTemplate) {
     this.store.dispatch(updateLogTemplate({
       logTemplate: {
         ...logTemplate,
-        ...this.updateLogTemplateForm.value
+        ...this.form.value
       }
     }));
     this.close();
-    this.updateLogTemplateForm.reset();
   }
 
 }

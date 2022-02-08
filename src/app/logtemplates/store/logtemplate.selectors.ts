@@ -37,6 +37,6 @@ export const eventTemplatesSelector = createSelector(
     .flatMap(logTemplate => logTemplate.eventTemplates)
     .filter((eventTemplate, i, allEventTemplates) => (
       i === allEventTemplates.findIndex(item => compareEventTemplates(item, eventTemplate)) &&
-      !logTemplateState.logTemplate.eventTemplates.find(item => compareEventTemplates(item, eventTemplate))
+      (!logTemplateState.logTemplate?.eventTemplates?.length || !logTemplateState.logTemplate.eventTemplates.find(item => compareEventTemplates(item, eventTemplate)))
     ))
 )

@@ -10,13 +10,19 @@ import { UiModule } from '../ui/ui.module';
 import { LogTemplatesComponent } from './components/logtemplates/logtemplates.component';
 import { LogTemplateComponent } from './components/logtemplate/logtemplate.component';
 import { UpdateLogTemplateDialogComponent } from './components/dialogs/updatelogtemplatedialog/updatelogtemplatedialog.component';
+import { DeleteLogTemplateDialogComponent } from './components/dialogs/deletelogtemplatedialog/deletelogtemplatedialog.component';
+import { CreateEventTemplateDialogComponent } from './components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component';
+import { CreateLogTemplateDialogComponent } from './components/dialogs/createlogtemplatedialog/createlogtemplatedialog.component';
 
 
 @NgModule({
   declarations: [
     LogTemplatesComponent,
     LogTemplateComponent,
-    UpdateLogTemplateDialogComponent
+    UpdateLogTemplateDialogComponent,
+    DeleteLogTemplateDialogComponent,
+    CreateEventTemplateDialogComponent,
+    CreateLogTemplateDialogComponent
   ],
   imports: [
     CommonModule,

@@ -13,15 +13,10 @@ import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../stor
 export class LogTemplatesComponent implements OnInit {
 
   searchTerm = '';
-  displayNewLogTemplateDialog = false;
+  displayCreateLogTemplateDialog = false;
 
   logTemplates$ = this.store.pipe(select(logTemplatesSelector), map(logTemplates => [ ...logTemplates ]));
   logTemplatesLoading$ = this.store.pipe(select(logTemplatesProcessingSelector));
-
-  createLogTemplateForm = this.fb.group({
-    title: ['', Validators.required],
-    desc: ''
-  });
 
   cols: any[] = [
     { field: 'title', header: 'Title' },
@@ -29,19 +24,10 @@ export class LogTemplatesComponent implements OnInit {
     { field: 'revision', header: 'Created/Modified' }
   ];
 
-  constructor(
-    private store: Store,
-    private fb: FormBuilder
-  ) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadLogTemplates());
-  }
-
-  submitLogTemplate() {
-    this.store.dispatch(createLogTemplate(this.createLogTemplateForm.value));
-    this.displayNewLogTemplateDialog = false;
-    this.createLogTemplateForm.reset();
   }
 
 }

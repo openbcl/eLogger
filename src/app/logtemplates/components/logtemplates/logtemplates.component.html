@@ -13,7 +13,7 @@
                     <i class="p-inputgroup-addon pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
                 </div>
-                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayNewLogTemplateDialog = true"></button>
+                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayCreateLogTemplateDialog = true"></button>
             </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
@@ -37,22 +37,4 @@
         </ng-template>
     </p-table>
 </p-panel>
-
-<p-dialog header="Add new Log Template" [maximizable]="true" [(visible)]="displayNewLogTemplateDialog" [modal]="true">
-    <form [formGroup]="createLogTemplateForm">
-        <span class="p-float-label mt-5 field">
-            <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
-            <label for="float-input">Title</label>
-        </span>
-        <span class="p-float-label mt-5 field">
-            <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
-            <label for="float-input">Description</label>
-        </span>
-    </form>
-    
-    <ng-template pTemplate="footer">
-        <form [formGroup]="createLogTemplateForm" (ngSubmit)="submitLogTemplate()">
-            <button pButton  pRipple  type="submit" [disabled]="createLogTemplateForm.invalid" icon="pi pi-plus" label="Add" class="p-button-success p-button-text"></button>
-        </form>
-    </ng-template>
-</p-dialog>
+<el-create-logtemplate-dialog [(visible)]="displayCreateLogTemplateDialog"></el-create-logtemplate-dialog>

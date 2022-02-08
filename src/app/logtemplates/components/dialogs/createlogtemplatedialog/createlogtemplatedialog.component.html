@@ -1,4 +1,4 @@
-<p-dialog *ngIf="logTemplate$ | async as logTemplate" header="Update Log Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog header="Add new Log Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <form [formGroup]="form">
         <span class="p-float-label mt-5 field">
             <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
@@ -9,9 +9,10 @@
             <label for="float-input">Description</label>
         </span>
     </form>
+    
     <ng-template pTemplate="footer">
-        <form [formGroup]="form" (ngSubmit)="submit(logTemplate)">
-            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-check" label="Update" class="p-button-success  p-button-text"></button>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <button pButton  pRipple  type="submit" [disabled]="form.invalid" icon="pi pi-plus" label="Add" class="p-button-success p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>
