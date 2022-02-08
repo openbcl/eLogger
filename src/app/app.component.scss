@@ -1,6 +1,7 @@
 :host ::ng-deep {
-    .p-menubar {
-        border-radius: 0;
+    .el-main-menu .p-menubar {
+        border-radius: 0 !important;
+        border: 0 !important;
     }
 }
 

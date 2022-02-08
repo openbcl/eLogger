@@ -57,7 +57,7 @@
                     </td>
                     <td class="text-center" >{{ eventTemplate.name }}</td>
                     <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
-                    <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }}"></i></td>
+                    <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">

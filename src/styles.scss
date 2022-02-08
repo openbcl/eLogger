@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~primeicons/primeicons.css';
+//@import '~primeng/resources/themes/lara-light-teal/theme.css';
 @import '~primeng/resources/themes/mdc-dark-indigo/theme.css';
 @import '~primeng/resources/primeng.min.css';
 @import '~primeflex/primeflex.css';
@@ -34,8 +35,9 @@ i.el-icon-w16 {
 }
 
 .p-panel-content {
+    padding: 0.75rem !important;
     .p-datatable .p-datatable-header {
-        padding: 1rem 0 0 0;
+        padding: 1rem 0.5rem 0 0.5rem;
     }
 }
 
