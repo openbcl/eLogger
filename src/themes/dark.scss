@@ -1,0 +1,13 @@
+@import '~primeng/resources/themes/mdc-dark-indigo/theme.css';
+
+body {
+    background: linear-gradient(180deg, var(--gray-400), var(--surface-ground));
+}
+
+p-menubar {
+    box-shadow: 0 -0.25rem 0.5rem 0.5rem var(--gray-400);
+}
+
+router-outlet {
+    margin-top: 4.75rem;
+}

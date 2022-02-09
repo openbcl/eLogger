@@ -12,9 +12,4 @@ p-menubar {
     display: block;
     position: fixed;
     z-index: 1000;
-    box-shadow: 0 -0.25rem 0.5rem 0.5rem var(--primary-color);
-}
-
-router-outlet {
-    margin-top: 4.75rem;
 }

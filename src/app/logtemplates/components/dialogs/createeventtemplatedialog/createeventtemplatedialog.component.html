@@ -52,10 +52,12 @@
             <p-fieldset legend="Event Color">
                 <div class="flex flex-wrap justify-content-center">
                     <div pRipple *ngFor="let color of colors"
-                    class="border-2 border-0 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
+                    class="border-2 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
                     (click)="form.value.color !== undefined && form.patchValue({ color })"
                     [ngClass]="{
                         'border-primary': color === form.getRawValue().color,
+                        'border-black-alpha-50': color !== form.getRawValue().color && color === '',
+                        'border-black-alpha-10': color !== form.getRawValue().color && color !== '',
                         'pointer-events-none': form.value.color === undefined
                     }">
                 </div>
