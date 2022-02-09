@@ -11,7 +11,16 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'eLogger';
-  themeID = 'app-theme';
+  keys = {
+    themeID: 'app-theme',
+    settingsItemID: 'settingsItem',
+    themesItemID: 'themesItem',
+    themes : {
+      lightID: 'light',
+      mediumID: 'medium',
+      darkID: 'dark'
+    }
+  }
 
   navitems: MenuItem[] = [{
     label: 'Logs',
@@ -20,15 +29,16 @@ export class AppComponent {
       { label: 'New Log',  icon: PrimeIcons.PLUS }
     ]
   }, {
+    id: this.keys.settingsItemID,
     label: 'Settings',
     icon: PrimeIcons.COG,
     items: [
       { label: 'Manage Log Templates', icon: PrimeIcons.LIST, routerLink: ['/templates'] },
       { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
-      { label: 'Themes', icon: 'fas fa-palette', items: [
-        { label: 'Light', icon: 'far fa-circle', command: () => this.switchTheme('light') },
-        { label: 'Medium', icon: 'fas fa-adjust', command: () => this.switchTheme('medium') },
-        { label: 'Dark', icon: 'fas fa-circle', command: () => this.switchTheme('dark') }
+      { id: this.keys.themesItemID, label: 'Themes', icon: 'fas fa-palette', items: [
+        { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.switchTheme(event.item.id) },
+        { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.switchTheme(event.item.id) },
+        { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.switchTheme(event.item.id) }
       ]}
     ]
   }];
@@ -49,9 +59,25 @@ export class AppComponent {
     }
   }
 
-  switchTheme(theme = localStorage.getItem(this.themeID) || 'light') {
-    localStorage.setItem(this.themeID, theme);
-    (this.document.getElementById(this.themeID) as HTMLLinkElement).href = `${theme}.css`
+  switchTheme(theme = localStorage.getItem(this.keys.themeID) || this.keys.themes.lightID) {
+    localStorage.setItem(this.keys.themeID, theme);
+    const htmlLinkTheme = this.document.getElementById(this.keys.themeID) as HTMLLinkElement;
+    const htmlMetaTheme = this.document.getElementsByName('theme-color')?.[0] as HTMLMetaElement;
+    htmlLinkTheme.href = `${theme}.css`;
+    this.navitems.find(item => item.id === this.keys.settingsItemID).items.find(item => item.id === this.keys.themesItemID).items.forEach(item => {
+      item.styleClass = item.id === theme ? 'bg-primary' : undefined
+    });
+    switch(theme) {
+      case this.keys.themes.lightID:
+        htmlMetaTheme.content = '#f8f9fa';
+        break;
+      case this.keys.themes.mediumID:
+        htmlMetaTheme.content = '#343e4d';
+        break;
+      case this.keys.themes.darkID:
+        htmlMetaTheme.content = '#1e1e1e';
+        break;
+    }
   }
 
 }
