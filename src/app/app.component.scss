@@ -1,5 +1,5 @@
 :host ::ng-deep {
-    .el-main-menu .p-menubar {
+    .fixed .p-menubar {
         border-radius: 0 !important;
         border: 0 !important;
         padding: 0.5rem 1rem;
@@ -8,16 +8,6 @@
         }
     }
 }
-
-p-menubar {
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: block;
-    position: fixed;
-    z-index: 1000;
-}
-
 
 router-outlet {
     margin-top: 4.25rem;
