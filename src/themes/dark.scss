@@ -7,3 +7,8 @@ body {
 p-menubar {
     box-shadow: 0 -0.25rem 0.5rem 0.5rem var(--gray-400);
 }
+
+.p-panel-header {
+    background: var(--surface-f) !important;
+    padding: 1rem 1.25rem !important;
+}

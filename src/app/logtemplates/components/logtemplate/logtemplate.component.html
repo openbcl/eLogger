@@ -31,8 +31,7 @@
             [rowHover]="true"
             [reorderableColumns]="true"
             (onRowReorder)="onRowReorder(dt.value, logTemplate)"
-            [value]="logTemplate.eventTemplates"
-            [loading]="logTemplateLoading$ | async">
+            [value]="logTemplate.eventTemplates">
             <ng-template pTemplate="caption">
                 <div class="flex flex-wrap table-header justify-content-between">
                     <div class="p-inputgroup w-auto mb-3">
@@ -52,8 +51,16 @@
             </ng-template>
             <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
                 <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
-                    <td>
+                    <td *ngIf="!isMobileLayout">
                         <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+                    </td>
+                    <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
+                        <div>
+                            <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="moveUp(index, logTemplate)"></button>
+                            <button [disabled]="index === logTemplate.eventTemplates.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="moveDown(index, logTemplate)"></button>
+                        </div>
+                        <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right"></button>
+
                     </td>
                     <td class="text-center" >{{ eventTemplate.name }}</td>
                     <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
