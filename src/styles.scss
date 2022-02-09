@@ -20,6 +20,10 @@ body {
     margin: 0.75rem;
 }
 
+.p-dialog-maximized .p-dialog-header, .p-dialog-footer {
+    border-radius: 0;
+}
+
 .p-dialog-header, .p-dialog-footer {
     background: var(--surface-b) !important;
 }

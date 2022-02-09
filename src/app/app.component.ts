@@ -22,25 +22,20 @@ export class AppComponent {
     }
   }
 
-  navitems: MenuItem[] = [{
-    label: 'Logs',
-    items: [
-      { label: 'List Logs', icon: PrimeIcons.LIST, routerLink: ['/logs'] },
-      { label: 'New Log',  icon: PrimeIcons.PLUS }
-    ]
-  }, {
-    id: this.keys.settingsItemID,
-    label: 'Settings',
-    icon: PrimeIcons.COG,
-    items: [
-      { label: 'Manage Log Templates', icon: PrimeIcons.LIST, routerLink: ['/templates'] },
-      { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
-      { id: this.keys.themesItemID, label: 'Themes', icon: 'fas fa-palette', items: [
-        { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.switchTheme(event.item.id) },
-        { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.switchTheme(event.item.id) },
-        { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.switchTheme(event.item.id) }
-      ]}
-    ]
+  navitems: MenuItem[] = [
+    { label: 'Logs', icon: PrimeIcons.FILE, routerLink: ['/logs'] },
+    { label: 'Templates', icon: PrimeIcons.LIST, routerLink: ['/templates'] },
+    { label: 'Settings',
+      id: this.keys.settingsItemID,
+      icon: PrimeIcons.COG,
+      items: [
+        { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
+        { id: this.keys.themesItemID, label: 'Themes', icon: PrimeIcons.PALETTE, items: [
+          { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.switchTheme(event.item.id) },
+          { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.switchTheme(event.item.id) },
+          { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.switchTheme(event.item.id) }
+        ]}
+      ]
   }];
 
   constructor(
