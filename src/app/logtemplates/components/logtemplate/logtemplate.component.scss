@@ -1,0 +1,10 @@
+:host ::ng-deep {
+    @media screen and (max-width: 960px) {
+        .p-datatable .p-datatable-tbody > tr > td:first-child {
+            padding: 0.5rem !important;
+        }
+        .p-datatable .p-datatable-tbody > tr > td:not(:first-child) {
+            justify-content: center !important;
+        }
+    }
+}
