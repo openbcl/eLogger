@@ -8,12 +8,12 @@
         [value]="logTemplates$ | async"
         [loading]="logTemplatesLoading$ | async">
         <ng-template pTemplate="caption">
-            <div class="flex flex-wrap table-header justify-content-between">
-                <div class="p-inputgroup w-auto mb-3">
+            <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
+                <div class="p-inputgroup max-w-full sm:w-auto m-1">
                     <i class="p-inputgroup-addon pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
                 </div>
-                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayCreateLogTemplateDialog = true"></button>
+                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateLogTemplateDialog = true"></button>
             </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
