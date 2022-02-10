@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { updateLogTemplate } from '../../../store/logtemplate.actions';
 import { eventTemplatesSelector, logTemplateSelector } from '../../../store/logtemplate.selectors';
 import { EventTemplate, EventType, LogTemplate } from '../../../../shared/models';
-import { eventIcons, eventTypes } from '../../../../shared/utils/helper';
+import { eventIcons, eventTypes, eventTypeNotExistsValidator } from '../../../../shared/utils/helper';
 import { EventLabelPipe, EventLabelWithIconPipe } from '../../../../ui/pipes/event.pipe';
 
 @Component({
@@ -33,7 +33,7 @@ export class CreateEventTemplateDialogComponent {
     eventType: [EventType.DEFAULT, Validators.required],
     icon: eventIcons[0],
     color: ''
-  });
+  }, { asyncValidators: [eventTypeNotExistsValidator(this.logTemplate$)] });
 
   constructor(
     private store: Store,
@@ -45,7 +45,7 @@ export class CreateEventTemplateDialogComponent {
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
-    this.reset()
+    this.reset();
   }
 
   dropdownChanged(event: any ) {

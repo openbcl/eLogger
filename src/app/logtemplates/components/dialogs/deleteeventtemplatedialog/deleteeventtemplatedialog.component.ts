@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { updateLogTemplate } from '../../../store/logtemplate.actions';
 import { EventTemplate, LogTemplate } from '../../../../shared/models';
-import { compareEventTemplates } from '../../../../shared/utils/helper';
+import { deepCompareEventTemplates } from '../../../../shared/utils/helper';
 import { logTemplateSelector } from '../../../store/logtemplate.selectors';
 
 @Component({
@@ -31,7 +31,7 @@ export class DeleteEventTemplateDialogComponent {
     this.store.dispatch(updateLogTemplate({
       logTemplate: {
         ...logTemplate,
-        eventTemplates: logTemplate.eventTemplates.filter(eventTemplate => !compareEventTemplates(eventTemplate, this.eventTemplate))
+        eventTemplates: logTemplate.eventTemplates.filter(eventTemplate => !deepCompareEventTemplates(eventTemplate, this.eventTemplate))
       }
     }));
     this.close();
