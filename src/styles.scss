@@ -7,7 +7,6 @@
 body {
     background-attachment: fixed;
     color: var(--text-color);
-    
     el-root {
         display: grid;
     }
@@ -24,11 +23,16 @@ body {
     border-radius: 0;
 }
 
-.p-dialog-header, .p-dialog-footer {
-    background: var(--surface-b) !important;
-}
-.p-dialog-footer {
-    padding: 0.75rem 1.25rem !important;
+.p-dialog {
+    .p-dialog-header, .p-dialog-footer {
+        background: var(--surface-b);
+    }
+    .p-dialog-content {
+        padding: 1rem;
+    }
+    .p-dialog-footer {
+        padding: 0.75rem 1.25rem;
+    }
 }
 
 i.el-invisible {
@@ -49,9 +53,8 @@ i.el-icon-w16 {
     backdrop-filter: blur(0.5rem);
 }
 
-
-.p-panel-content {
-    padding: 0.75rem !important;
+.p-panel .p-panel-content {
+    padding: 0.75rem;
     .p-datatable .p-datatable-header {
         padding: 1rem 0.5rem 0 0.5rem;
     }

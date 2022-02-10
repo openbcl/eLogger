@@ -1,4 +1,4 @@
-<p-dialog *ngIf="logTemplate$ | async as logTemplate" header="Delete Log Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog *ngrxLet="logTemplate$ as logTemplate" header="Delete Log Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     Are you sure you want to delete this template?
     <ng-template pTemplate="footer">
         <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger p-button-text" (click)="delete(logTemplate)"></button>

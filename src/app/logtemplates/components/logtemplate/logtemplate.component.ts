@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { filter, map } from 'rxjs';
+import { filter, map, take } from 'rxjs';
 import { EventTemplate, LogTemplate } from '../../../shared/models';
 import { loadLogTemplate, loadLogTemplates, updateLogTemplate } from '../../store/logtemplate.actions';
-import { logTemplateSelector } from '../../store/logtemplate.selectors';
+import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
 
 @Component({
   selector: 'el-logtemplate',
@@ -20,7 +20,8 @@ export class LogTemplateComponent implements OnInit {
   isMobileLayout = false;
   
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
-  
+  logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector), take(2));
+
   cols: any[] = [
     { field: 'name', header: 'Name' },
     { field: 'eventType', header: 'Type' },
@@ -49,7 +50,7 @@ export class LogTemplateComponent implements OnInit {
     }));
   }
 
-  private move(index: number, logTemplate: LogTemplate, ranking: number) {
+  move(index: number, logTemplate: LogTemplate, ranking: number) {
     if ((index + ranking) >= 0 && (index + ranking) < logTemplate.eventTemplates.length) {
       const eventTemplate = logTemplate.eventTemplates[index];
       const eventTemplates = [ ...logTemplate.eventTemplates ];
@@ -57,14 +58,6 @@ export class LogTemplateComponent implements OnInit {
       eventTemplates.splice(index+ranking, 0, eventTemplate);
       this.onRowReorder(eventTemplates, logTemplate)
     }
-  }
-
-  moveUp(index: number, logTemplate: LogTemplate) {
-    this.move(index, logTemplate, -1);
-  }
-
-  moveDown(index: number, logTemplate: LogTemplate) {
-    this.move(index, logTemplate, 1);
   }
 
 }

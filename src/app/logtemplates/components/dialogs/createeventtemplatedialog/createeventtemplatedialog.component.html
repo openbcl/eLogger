@@ -1,5 +1,5 @@
-<p-dialog *ngIf="logTemplate$ | async as logTemplate" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <div *ngIf="eventTemplates$ | async as eventTemplates" class="pt-2">
+<p-dialog *ngrxLet="logTemplate$ as logTemplate" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <div *ngrxLet="eventTemplates$ as eventTemplates">
         <form [formGroup]="form">
             <div *ngIf="eventTemplates.length">
                 <p-fieldset legend="Known Event Templates">

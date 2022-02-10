@@ -1,13 +1,7 @@
 :host ::ng-deep {
-
     .el-icon-selector .p-selectbutton {
         text-align: center;
-        @media (orientation: portrait) {
-            max-width: 35rem;
-        }
-        @media (orientation: landscape) {
-            max-width: 66rem;
-        }
+        max-width: 66rem;
         .p-button {
             display: inline-block;
             padding: 0.5rem;
@@ -18,7 +12,7 @@
             margin: 0.25em;
         }
         .p-highlight {
-            border-color: var(--primary-color) !important;
+            border-color: var(--primary-color);
         }
     }
 
@@ -33,10 +27,8 @@
             padding-bottom: 0rem;
         }
     }
-
-    .el-dropdown-items-p-0 {
-        li {
-            padding: 0 !important;
-        }
+    
+    .el-dropdown-items-p-0 .p-dropdown-panel .p-dropdown-items li.p-dropdown-item  {
+        padding: 0;
     }
 }

@@ -1,82 +1,86 @@
-<div class="grid" *ngIf="logTemplate$ | async as logTemplate">
-    <p-panel class="col-12">
-        <ng-template pTemplate="header">
-            <div class="grid m-0 w-full pt-1">
-                <div class="grid col-12 sm:col p-0 pb-1 sm:mr-3">
-                    <div class="p-inputgroup col-12 pr-0">
-                        <span class="p-inputgroup-addon">Title</span>
-                        <input type="text" pInputText [disabled]="true" [value]="logTemplate.title" />
-                    </div>
-                    <div class="p-inputgroup col-12 pb-0 pr-0">
-                        <span class="p-inputgroup-addon">Description</span>
-                        <input type="text" pInputText [disabled]="true" [value]="logTemplate.desc || 'no description set'" />
-                    </div>
-                </div>
-                <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
-                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogTemplateDialog = true"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogTemplateDialog = true"></button>
-                </div>
-            </div>
-        </ng-template>
-        <span class="flex text-center justify-content-center font-light">
-            In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
-        </span>
-    </p-panel>
-    <p-panel class="col-12" header="Event Templates">
-        <p-table
-            #dt
-            styleClass="p-datatable-striped"
-            dataKey="name"
-            [columns]="cols"
-            [rowHover]="true"
-            [reorderableColumns]="true"
-            (onRowReorder)="onRowReorder(dt.value, logTemplate)"
-            [value]="logTemplate.eventTemplates">
-            <ng-template pTemplate="caption">
-                <div class="flex flex-wrap table-header justify-content-between">
-                    <div class="p-inputgroup w-auto mb-3">
-                        <i class="p-inputgroup-addon pi pi-search"></i>
-                        <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
-                    </div>
-                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayCreateEventTemplateDialog = true"></button>
-                </div>
-            </ng-template>
+<div class="grid" *ngrxLet="logTemplateLoading$ as loading">
+    <ng-container *ngrxLet="logTemplate$ as logTemplate">
+        <p-panel class="col-12">
             <ng-template pTemplate="header">
-                <tr>
-                    <th class="w-3rem"></th>
-                    <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
-                        {{col.header}}
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
-                <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
-                    <td *ngIf="!isMobileLayout">
-                        <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
-                    </td>
-                    <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
-                        <div>
-                            <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="moveUp(index, logTemplate)"></button>
-                            <button [disabled]="index === logTemplate.eventTemplates.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="moveDown(index, logTemplate)"></button>
+                <div class="grid m-0 w-full pt-1">
+                    <div class="grid col-12 sm:col p-0 pb-1 sm:mr-3">
+                        <div class="p-inputgroup col-12 pr-0">
+                            <span class="p-inputgroup-addon">Title</span>
+                            <input type="text" pInputText [disabled]="true" [value]="logTemplate.title" />
                         </div>
-                        <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right"></button>
+                        <div class="p-inputgroup col-12 pb-0 pr-0">
+                            <span class="p-inputgroup-addon">Description</span>
+                            <input type="text" pInputText [disabled]="true" [value]="logTemplate.desc || 'no description set'" />
+                        </div>
+                    </div>
+                    <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
+                        <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogTemplateDialog = true"></button>
+                        <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogTemplateDialog = true"></button>
+                    </div>
+                </div>
+            </ng-template>
+            <span class="flex text-center justify-content-center font-light">
+                In this view you can customize the title and description of the log template. Furthermore you have the possibility to specify events that might occur during the logging process.
+            </span>
+        </p-panel>
+        <p-panel class="col-12" header="Event Templates">
+            <p-table
+                #dt
+                styleClass="p-datatable-striped"
+                dataKey="name"
+                [columns]="cols"
+                [rowHover]="true"
+                [reorderableColumns]="true"
+                (onRowReorder)="onRowReorder(dt.value, logTemplate)"
+                [value]="logTemplate.eventTemplates"
+                [loading]="loading">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-wrap table-header justify-content-between">
+                        <div class="p-inputgroup w-auto mb-3">
+                            <i class="p-inputgroup-addon pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                        </div>
+                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success" (click)="displayCreateEventTemplateDialog = true"></button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="w-3rem"></th>
+                        <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
+                            {{col.header}}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
+                    <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
+                        <td *ngIf="!isMobileLayout">
+                            <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+                        </td>
+                        <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
+                            <div>
+                                <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, logTemplate, -1)"></button>
+                                <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, logTemplate, 1)"></button>
+                            </div>
+                            <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right"></button>
 
-                    </td>
-                    <td class="text-center" >{{ eventTemplate.name }}</td>
-                    <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
-                    <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td class="text-center" [attr.colspan]="cols.length + 1">
-                        No Event Templates found.
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </p-panel>
+                        </td>
+                        <td class="text-center" >{{ eventTemplate.name }}</td>
+                        <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
+                        <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" [attr.colspan]="cols.length + 1">
+                            No Event Templates found.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-panel>
+    </ng-container>
 <div>
+
 <el-update-logtemplate-dialog [(visible)]="displayUpdateLogTemplateDialog"></el-update-logtemplate-dialog>
 <el-delete-logtemplate-dialog [(visible)]="displayDeleteLogTemplateDialog"></el-delete-logtemplate-dialog>
 <el-create-eventtemplate-dialog [(visible)]="displayCreateEventTemplateDialog"></el-create-eventtemplate-dialog>

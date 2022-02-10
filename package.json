@@ -21,6 +21,7 @@
     "@angular/router": "^13.1.1",
     "@angular/service-worker": "^13.1.1",
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "@ngrx/component": "^13.0.2",
     "@ngrx/effects": "^13.0.2",
     "@ngrx/router-store": "^13.0.2",
     "@ngrx/store": "^13.0.2",

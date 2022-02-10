@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveComponentModule } from '@ngrx/component';
 import { MenubarModule } from 'primeng/menubar';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
@@ -23,6 +24,7 @@ const pipes = [
 
 const modules = [
   ReactiveFormsModule,
+  ReactiveComponentModule,
   RippleModule,
   TabViewModule,
   MenubarModule,

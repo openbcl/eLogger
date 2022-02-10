@@ -1,7 +1,7 @@
 :host ::ng-deep {
     .fixed .p-menubar {
-        border-radius: 0 !important;
-        border: 0 !important;
+        border-radius: 0;
+        border: 0;
         padding: 0.5rem 1rem;
         .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
             padding: 0.75rem;
