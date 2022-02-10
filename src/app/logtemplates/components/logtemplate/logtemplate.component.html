@@ -49,6 +49,7 @@
                         <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
                             {{col.header}}
                         </th>
+                        <th *ngIf="!isMobileLayout" class="w-3rem"></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
@@ -61,12 +62,14 @@
                                 <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, logTemplate, -1)"></button>
                                 <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, logTemplate, 1)"></button>
                             </div>
-                            <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right"></button>
-
+                            <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
                         <td class="text-center" >{{ eventTemplate.name }}</td>
                         <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
                         <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
+                        <td *ngIf="!isMobileLayout" class="pr-2">
+                            <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
+                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
@@ -84,3 +87,4 @@
 <el-update-logtemplate-dialog [(visible)]="displayUpdateLogTemplateDialog"></el-update-logtemplate-dialog>
 <el-delete-logtemplate-dialog [(visible)]="displayDeleteLogTemplateDialog"></el-delete-logtemplate-dialog>
 <el-create-eventtemplate-dialog [(visible)]="displayCreateEventTemplateDialog"></el-create-eventtemplate-dialog>
+<el-delete-eventtemplate-dialog [(eventTemplate)]="deletableEventTemplate"></el-delete-eventtemplate-dialog>

@@ -19,9 +19,7 @@ export class DeleteLogTemplateDialogComponent {
 
   logTemplate$ = this.store.pipe(select(logTemplateSelector));
 
-  constructor(
-    private store: Store
-  ) { }
+  constructor(private store: Store) { }
 
   close() {
     this.visible = false;

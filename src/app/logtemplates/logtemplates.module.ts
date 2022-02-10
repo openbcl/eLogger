@@ -12,6 +12,7 @@ import { UpdateLogTemplateDialogComponent } from './components/dialogs/updatelog
 import { DeleteLogTemplateDialogComponent } from './components/dialogs/deletelogtemplatedialog/deletelogtemplatedialog.component';
 import { CreateEventTemplateDialogComponent } from './components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component';
 import { CreateLogTemplateDialogComponent } from './components/dialogs/createlogtemplatedialog/createlogtemplatedialog.component';
+import { DeleteEventTemplateDialogComponent } from './components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component';
 import * as fromLogTemplate from './store/logtemplate.reducer';
 
 
@@ -22,7 +23,8 @@ import * as fromLogTemplate from './store/logtemplate.reducer';
     UpdateLogTemplateDialogComponent,
     DeleteLogTemplateDialogComponent,
     CreateEventTemplateDialogComponent,
-    CreateLogTemplateDialogComponent
+    CreateLogTemplateDialogComponent,
+    DeleteEventTemplateDialogComponent
   ],
   imports: [
     CommonModule,

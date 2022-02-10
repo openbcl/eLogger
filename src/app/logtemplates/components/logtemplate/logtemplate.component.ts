@@ -19,6 +19,7 @@ export class LogTemplateComponent implements OnInit {
   displayCreateEventTemplateDialog = false;
   displayUpdateLogTemplateDialog = false;
   displayDeleteLogTemplateDialog = false;
+  deletableEventTemplate: EventTemplate;
   isMobileLayout = false;
   
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
