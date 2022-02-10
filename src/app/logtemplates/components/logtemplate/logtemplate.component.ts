@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map, take } from 'rxjs';
+import { loadLogs } from '../../../logs/store/log.actions';
+import { logsSelector } from '../../../logs/store/log.selectors';
 import { EventTemplate, LogTemplate } from '../../../shared/models';
 import { loadLogTemplate, loadLogTemplates, updateLogTemplate } from '../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
@@ -21,6 +23,7 @@ export class LogTemplateComponent implements OnInit {
   
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector), take(2));
+  logTemplateNotDeletable$ = this.store.pipe(select(logsSelector), map(logs => logs?.find(log => log.logTemplateId === this.activeRoute.snapshot.paramMap.get('id'))));
 
   cols: any[] = [
     { field: 'name', header: 'Name' },
@@ -34,6 +37,7 @@ export class LogTemplateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadLogs());
     this.store.dispatch(loadLogTemplates());
     this.store.dispatch(loadLogTemplate({ id: this.activeRoute.snapshot.paramMap.get('id') }));
     this.isMobileLayout = window.innerWidth < 961;

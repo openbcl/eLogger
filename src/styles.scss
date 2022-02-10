@@ -60,6 +60,16 @@ i.el-icon-w16 {
     }
 }
 
+@media screen and (max-width: 960px) {
+    .p-datatable-tbody > tr > td.justify-content-between {
+        padding: 0.5rem;
+        justify-content: space-between !important;
+    }
+    .p-datatable-tbody > tr > td {
+        justify-content: center !important;
+    }
+}
+
 @media screen and (min-width: 576px) {
     .sm\:col {
         flex-grow: 1;

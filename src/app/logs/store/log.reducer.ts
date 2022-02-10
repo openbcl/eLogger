@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { reorderLogs } from '../../shared/utils/helper';
 import { Log } from '../../shared/models';
 import * as LogActions from './log.actions';
 
@@ -36,7 +35,7 @@ export const logsReducer = createReducer(
     ...state, logs: state.logs.map(oldLog => oldLog.id === action.log.id ? action.log : oldLog ), processing: false
   })),
   on(LogActions.deleteLogSuccess, (state, action) => ({
-    ...state, logs: reorderLogs(state.logs.filter(oldLog => oldLog.id !== action.log.id)), processing: false
+    ...state, logs: state.logs.filter(oldLog => oldLog.id !== action.log.id), processing: false
   })),
 );
 
