@@ -7,13 +7,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { LogEffects } from './store/log.effects';
 import { UiModule } from '../ui/ui.module';
 import { LogsComponent } from './components/logs/logs.component';
+import { CreateLogDialogComponent } from './components/dialogs/createlogdialog/createlogdialog.component';
 import * as fromLog from './store/log.reducer';
 
 
 
 @NgModule({
   declarations: [
-    LogsComponent
+    LogsComponent,
+    CreateLogDialogComponent
   ],
   imports: [
     CommonModule,

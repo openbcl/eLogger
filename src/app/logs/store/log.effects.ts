@@ -28,7 +28,7 @@ export class LogEffects {
 
   createLog$ = createEffect(() => this.actions$.pipe( 
     ofType(LogActions.createLog),
-    switchMap(createLog => this.logService.createLog(createLog.log).pipe(
+    switchMap(createLog => this.logService.createLog(createLog.logTemplateId, createLog.title, createLog.desc).pipe(
       map(log => LogActions.createLogSuccess({ log })),
       catchError(error => of(LogActions.createLogFailure({ error })))
     ))

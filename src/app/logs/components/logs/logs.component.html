@@ -1,1 +1,41 @@
-<p>logs works!</p>
+<p-panel header="Log Templates" *ngrxLet="logTemplates$ as logTemplates">
+    <p-table
+        #dt
+        styleClass="p-datatable-striped"
+        dataKey="id"
+        [rowHover]="true"
+        [columns]="cols"
+        [value]="logs$ | async"
+        [loading]="logsLoading$ | async">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
+                <div class="p-inputgroup max-w-full sm:w-auto m-1">
+                    <i class="p-inputgroup-addon pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                </div>
+                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateLogDialog = true"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">{{ col.header }}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-log>
+            <tr class="cursor-pointer" [routerLink]="[log.id]">
+                <td>{{ log.title }}</td>
+                <td>{{ log.desc }}</td>
+                <td>{{ log.logTemplateId | logTemplateTitle: logTemplates }}</td>
+                <td>{{ log.eventLogs.length }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td class="text-center" [attr.colspan]="cols.length">
+                    No Logs found.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+<el-create-log-dialog [(visible)]="displayCreateLogDialog"></el-create-log-dialog>

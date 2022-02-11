@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { loadLogTemplates, createLogTemplate } from '../../store/logtemplate.actions';
+import { loadLogTemplates } from '../../store/logtemplate.actions';
 import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../store/logtemplate.selectors';
 
 @Component({

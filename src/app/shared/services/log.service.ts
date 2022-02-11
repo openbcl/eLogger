@@ -11,7 +11,10 @@ export class LogService {
 
   constructor(private db: NgxIndexedDBService) { }
   
-  createLog(value: Log) {
+  createLog(logTemplateId: string, title: string, desc?: string) {
+    const value = new Log(logTemplateId);
+    value.title = title;
+    value.desc = desc;
     return this.db.add(LOGS, value);
   }
 

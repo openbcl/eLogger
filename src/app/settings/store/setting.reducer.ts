@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as SettingActions from './setting.actions';
 
-export const settingFeatureKey = 'setting';
+export const settingFeatureKey = 'settings';
 
 export interface State {
 

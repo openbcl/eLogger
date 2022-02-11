@@ -15,11 +15,13 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownModule } from 'primeng/dropdown';
 import { EventLabelPipe, EventLabelWithIconPipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
+import { LogTemplateTitlePipe } from './pipes/log.pipe';
 
 const pipes = [
   EventLabelPipe,
   EventLabelWithIconPipe,
-  ColorPipe
+  ColorPipe,
+  LogTemplateTitlePipe
 ]
 
 const modules = [

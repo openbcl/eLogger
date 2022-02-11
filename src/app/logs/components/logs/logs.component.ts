@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { map } from 'rxjs';
+import { logTemplatesSelector } from '../../../logtemplates/store/logtemplate.selectors';
+import { loadLogTemplates } from '../../../logtemplates/store/logtemplate.actions';
+import { loadLogs } from '../../store/log.actions';
+import { logsProcessingSelector, logsSelector } from '../../store/log.selectors';
 
 @Component({
   selector: 'el-logs',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogsComponent implements OnInit {
 
-  constructor() { }
+  searchTerm = '';
+  displayCreateLogDialog = false;
+
+  logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
+  logsLoading$ = this.store.pipe(select(logsProcessingSelector));
+  logTemplates$ = this.store.pipe(select(logTemplatesSelector));
+
+  cols: any[] = [
+    { field: 'title', header: 'Title' },
+    { field: 'desc', header: 'Description' },
+    { field: 'type', header: 'Type' },
+    { field: 'eventLogs', header: 'Count Of Logs' }
+  ];
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    this.store.dispatch(loadLogs());
+    this.store.dispatch(loadLogTemplates());
   }
 
 }
