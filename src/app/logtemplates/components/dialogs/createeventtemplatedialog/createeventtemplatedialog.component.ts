@@ -4,7 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { updateLogTemplate } from '../../../store/logtemplate.actions';
 import { eventTemplatesSelector, logTemplateSelector } from '../../../store/logtemplate.selectors';
 import { EventTemplate, EventType, LogTemplate } from '../../../../shared/models';
-import { eventIcons, eventTypes, eventTypeNotExistsValidator } from '../../../../shared/utils/helper';
+import { eventIcons, eventTypes } from '../../../../shared/utils/helper';
+import { AppValidators, EventTypeIsUnique } from '../../../../shared/utils/validators';
 import { EventLabelPipe, EventLabelWithIconPipe } from '../../../../ui/pipes/event.pipe';
 
 @Component({
@@ -14,6 +15,7 @@ import { EventLabelPipe, EventLabelWithIconPipe } from '../../../../ui/pipes/eve
 })
 export class CreateEventTemplateDialogComponent {
 
+  eventTypeIsUniqueKey = EventTypeIsUnique.key;
   eventIcons = eventIcons;
   eventTypes = eventTypes;
   colors = ['', 'yellow', 'orange', 'pink', 'purple', 'indigo', 'blue', 'cyan', 'teal', 'green'];
@@ -33,7 +35,9 @@ export class CreateEventTemplateDialogComponent {
     eventType: [EventType.DEFAULT, Validators.required],
     icon: eventIcons[0],
     color: ''
-  }, { asyncValidators: [eventTypeNotExistsValidator(this.logTemplate$)] });
+  }, {
+    asyncValidators: AppValidators.eventTypeIsUnique(this.logTemplate$)
+  });
 
   constructor(
     private store: Store,

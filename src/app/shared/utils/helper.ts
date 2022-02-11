@@ -1,15 +1,5 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { SelectItem, PrimeIcons } from "primeng/api";
-import { map, Observable } from "rxjs";
-import { EventTemplate, EventType, LogTemplate } from "../models";
-
-export const eventTypeNotExistsValidator = (logTemplate$: Observable<LogTemplate>): AsyncValidatorFn => {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => logTemplate$.pipe(
-        map(logTemplate => !logTemplate.eventTemplates.find(eventTemplate => 
-            compareEventTemplates(eventTemplate, control.value)) ? null : {eventTypeExists: true}
-        )
-    )
-}
+import { EventTemplate, EventType } from "../models";
 
 export const compareEventTemplates = (a: EventTemplate, b: EventTemplate) => (
     a.name === b.name &&
