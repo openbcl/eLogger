@@ -28,7 +28,7 @@ export class LogsComponent implements OnInit {
     { field: 'title', header: 'Title' },
     { field: 'desc', header: 'Description' },
     { field: 'type', header: 'Type' },
-    { field: 'eventLogs', header: 'Count Of Logs' }
+    { field: 'records', header: 'Records' }
   ];
 
   constructor(private store: Store) { }

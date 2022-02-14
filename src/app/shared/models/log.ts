@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { EventLog } from '.';
+import { Record } from '.';
 
 export const LOGS = 'logs';
 
@@ -9,7 +9,7 @@ export class Log {
     title = '';
     desc = '';
     logTemplateId: string;
-    eventLogs: EventLog[] = [];
+    records: Record[] = [];
 
     constructor(logTemplateId: string) {
         this.logTemplateId = logTemplateId;

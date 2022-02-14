@@ -11,7 +11,7 @@ export interface EventTemplate {
     color: string
 }
 
-export class EventLog implements EventTemplate {
+export class Record implements EventTemplate {
     name: string;
     eventType: EventType;
     icon: SelectItem;
