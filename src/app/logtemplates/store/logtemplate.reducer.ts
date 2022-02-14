@@ -1,43 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { LogTemplate } from '../../shared/models';
-import * as LogTemplateActions from './logtemplate.actions';
-
-export const logTemplatesFeatureKey = 'logTemplates';
-
-export interface LogTemplatesState {
-  logTemplates: LogTemplate[];
-  processing: boolean;
-  error: any;
-}
-
-export const initialLogTemplatesState: LogTemplatesState = {
-  logTemplates: [],
-  processing: false,
-  error: null
-};
-
-export const logTemplatesReducer = createReducer(
-  initialLogTemplatesState,
-
-  on(LogTemplateActions.loadLogTemplates, state => ({
-    ...state, processing: true
-  })),
-  on(LogTemplateActions.loadLogTemplatesSuccess, (state, action) => ({
-    ...state, logTemplates: action.logTemplates, processing: false
-  })),
-  on(LogTemplateActions.loadLogTemplatesFailure, (state, action) => ({
-    ...state, error: action.error, processing: false
-  })),
-  on(LogTemplateActions.createLogTemplateSuccess, (state, action) => ({
-    ...state, logTemplates: [ ...state.logTemplates, action.logTemplate ], processing: false
-  })),
-  on(LogTemplateActions.updateLogTemplateSuccess, (state, action) => ({
-    ...state, logTemplates: state.logTemplates.map(oldLogTemplate => oldLogTemplate.id === action.logTemplate.id ? action.logTemplate : oldLogTemplate ), processing: false
-  })),
-  on(LogTemplateActions.deleteLogTemplateSuccess, (state, action) => ({
-    ...state, logTemplates: state.logTemplates.filter(oldLogTemplate => oldLogTemplate.id !== action.logTemplate.id), processing: false
-  })),
-);
+import * as LazyLogTemplateActions from './logtemplate.actions';
+import * as LogTemplateActions from '../../store/logtemplate.actions';
 
 export const logTemplateFeatureKey = 'logTemplate';
 
@@ -56,40 +20,40 @@ export const initialLogTemplateState: LogTemplateState = {
 export const logTemplateReducer = createReducer(
   initialLogTemplateState,
 
-  on(LogTemplateActions.loadLogTemplate, state => ({
+  on(LazyLogTemplateActions.loadLogTemplate, state => ({
     ...state, processing: true
   })),
-  on(LogTemplateActions.loadLogTemplateSuccess, (state, action) => ({
+  on(LazyLogTemplateActions.loadLogTemplateSuccess, (state, action) => ({
     ...state, logTemplate: action.logTemplate, processing: false
   })),
-  on(LogTemplateActions.loadLogTemplateFailure, (state, action) => ({
+  on(LazyLogTemplateActions.loadLogTemplateFailure, (state, action) => ({
     ...state, error: action.error, processing: false
   })),
-  on(LogTemplateActions.createLogTemplate, (state, _action) => ({
+  on(LazyLogTemplateActions.createLogTemplate, (state, _action) => ({
     ...state, processing: true
   })),
   on(LogTemplateActions.createLogTemplateSuccess, (state, action) => ({
     ...state, logTemplate: action.logTemplate, processing: false
   })),
-  on(LogTemplateActions.createLogTemplateFailure, (state, action) => ({
+  on(LazyLogTemplateActions.createLogTemplateFailure, (state, action) => ({
     ...state, error: action.error, processing: false
   })),
-  on(LogTemplateActions.updateLogTemplate, (state, _action) => ({
+  on(LazyLogTemplateActions.updateLogTemplate, (state, _action) => ({
     ...state, processing: true
   })),
   on(LogTemplateActions.updateLogTemplateSuccess, (state, action) => ({
     ...state, logTemplate: action.logTemplate, processing: false
   })),
-  on(LogTemplateActions.updateLogTemplateFailure, (state, action) => ({
+  on(LazyLogTemplateActions.updateLogTemplateFailure, (state, action) => ({
     ...state, error: action.error, processing: false
   })),
-  on(LogTemplateActions.deleteLogTemplate, (state, _action) => ({
+  on(LazyLogTemplateActions.deleteLogTemplate, (state, _action) => ({
     ...state, processing: true
   })),
   on(LogTemplateActions.deleteLogTemplateSuccess, (_state, _action) => ({
     ...initialLogTemplateState
   })),
-  on(LogTemplateActions.deleteLogTemplateFailure, (state, action) => ({
+  on(LazyLogTemplateActions.deleteLogTemplateFailure, (state, action) => ({
     ...state, error: action.error, processing: false
   })),
 );

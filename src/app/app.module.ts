@@ -12,6 +12,10 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
 import { LOGS, Log, LOGTEMPLATES, LogTemplate } from './shared/models';
 import { UiModule } from './ui/ui.module';
+import { LogTemplateEffects } from './store/logtemplate.effects';
+import { LogEffects } from './store/log.effects';
+import * as fromLogTemplate from './store/logtemplate.reducer';
+import * as fromLog from './store/log.reducer';
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
   return Object.getOwnPropertyNames(obj).map(property => ({
@@ -42,13 +46,14 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({
+      [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.logTemplatesReducer,
+      [fromLog.logsFeatureKey]: fromLog.logsReducer
+    }, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([LogTemplateEffects, LogEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgxIndexedDBModule.forRoot({
       name: 'eLoggerDB',

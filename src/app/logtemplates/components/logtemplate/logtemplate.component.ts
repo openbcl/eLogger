@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, map, take } from 'rxjs';
-import { loadLogs } from '../../../logs/store/log.actions';
-import { logsSelector } from '../../../logs/store/log.selectors';
+import { loadLogs } from '../../../store/log.actions';
+import { logsSelector } from '../../../store/log.selectors';
 import { EventTemplate, LogTemplate } from '../../../shared/models';
-import { loadLogTemplate, loadLogTemplates, updateLogTemplate } from '../../store/logtemplate.actions';
+import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
+import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
 
 @Component({

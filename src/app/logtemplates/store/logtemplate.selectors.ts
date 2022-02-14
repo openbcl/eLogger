@@ -1,20 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { logTemplatesStateSelector } from '../../store/logtemplate.selectors';
 import { deepCompareEventTemplates } from '../../shared/utils/helper';
 import * as fromLogTemplate from './logtemplate.reducer';
-
-export const logTemplatesStateSelector = createFeatureSelector<fromLogTemplate.LogTemplatesState>(
-  fromLogTemplate.logTemplatesFeatureKey
-);
-
-export const logTemplatesSelector = createSelector(
-  logTemplatesStateSelector,
-  logTemplatesState => logTemplatesState.logTemplates
-)
-
-export const logTemplatesProcessingSelector = createSelector(
-  logTemplatesStateSelector,
-  logTemplatesState => logTemplatesState.processing
-)
 
 export const logTemplateStateSelector = createFeatureSelector<fromLogTemplate.LogTemplateState>(
   fromLogTemplate.logTemplateFeatureKey

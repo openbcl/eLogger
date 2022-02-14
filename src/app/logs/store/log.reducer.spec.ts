@@ -1,51 +1,11 @@
 import { v4 as uuid } from 'uuid';
-import { createLog, deleteLog, loadLog, loadLogs, loadLogSuccess, loadLogFailure, updateLog, loadLogsSuccess, loadLogsFailure, updateLogSuccess, createLogSuccess, deleteLogSuccess, updateLogFailure, createLogFailure, deleteLogFailure } from './log.actions';
-import { logsReducer, logReducer, initialLogsState, initialLogState } from './log.reducer';
+import { createLog, deleteLog, loadLog, loadLogSuccess, loadLogFailure, updateLog, updateLogFailure, createLogFailure, deleteLogFailure } from './log.actions';
+import { updateLogSuccess, createLogSuccess, deleteLogSuccess } from '../../store/log.actions';
+import { logReducer, initialLogState } from './log.reducer';
 import { Log } from '../../shared/models';
 
 const log: Log = new Log(uuid());
 const errorTemplate = {}
-
-describe('Logs Reducer', () => {
-  describe('Load Logs action', () => {
-    it('should enable the processing flag', () => {
-      const newState = logsReducer(initialLogsState, loadLogs());
-      expect(newState.processing).toBe(true);
-    });
-
-    it('should return the logs', () => {
-      const newState = logsReducer(initialLogsState, loadLogsSuccess({ logs : [ log ] }));
-      expect(newState.logs.length).toBe(1);
-    });
-
-    it('should return the error', () => {
-      const newState = logsReducer(initialLogsState, loadLogsFailure({ error : errorTemplate }));
-      expect(newState.error).toBe(errorTemplate);
-    });
-  });
-
-  describe('Update Log action', () => {
-    it('should return the logs', () => {
-      const newState = logsReducer({ ...initialLogsState, logs: [ log ] }, updateLogSuccess({ log : log }));
-      expect(newState.logs.length).toBe(1);
-    });
-  });
-
-  describe('Create Log action', () => {
-    it('should return the logs', () => {
-      const newState = logsReducer(initialLogsState, createLogSuccess({ log : log }));
-      expect(newState.logs.length).toBe(1);
-    });
-  });
-
-  describe('Delete Log action', () => {
-    it('should return the logs', () => {
-      const newState = logsReducer({ ...initialLogsState, logs: [ log ] }, deleteLogSuccess({ log : log }));
-      expect(newState.logs.length).toBe(0);
-    });
-  });
-});
-
 
 describe('Log Reducer', () => {
   describe('Load Log action', () => {

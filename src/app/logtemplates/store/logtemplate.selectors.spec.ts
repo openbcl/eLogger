@@ -1,28 +1,6 @@
 import * as fromLogTemplate from './logtemplate.reducer';
-import { logTemplatesStateSelector, logTemplatesSelector, logTemplatesProcessingSelector, logTemplateStateSelector, logTemplateSelector, logTemplateProcessingSelector } from './logtemplate.selectors';
-
-describe('LogTemplates Selectors', () => {
-  it('should select the initial logTemplates state', () => {
-    const result = logTemplatesStateSelector({
-      [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.initialLogTemplatesState
-    });
-    expect(result).toEqual(fromLogTemplate.initialLogTemplatesState);
-  });
-
-  it('should select the initial logTemplates', () => {
-    const result = logTemplatesSelector({
-      [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.initialLogTemplatesState
-    });
-    expect(result).toEqual([]);
-  });
-
-  it('should select the initial processing status', () => {
-    const result = logTemplatesProcessingSelector({
-      [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.initialLogTemplatesState
-    });
-    expect(result).toEqual(false);
-  });
-});
+import * as fromLogTemplates from '../../store/logtemplate.reducer';
+import { logTemplateStateSelector, logTemplateSelector, logTemplateProcessingSelector, eventTemplatesSelector } from './logtemplate.selectors';
 
 describe('LogTemplate Selectors', () => {
   it('should select the initial logTemplate state', () => {
@@ -44,5 +22,13 @@ describe('LogTemplate Selectors', () => {
       [fromLogTemplate.logTemplateFeatureKey]: fromLogTemplate.initialLogTemplateState
     });
     expect(result).toEqual(false);
+  });
+
+  it('should select selectable event templates', () => {
+    const result = eventTemplatesSelector({
+      [fromLogTemplates.logTemplatesFeatureKey]: fromLogTemplates.initialLogTemplatesState,
+      [fromLogTemplate.logTemplateFeatureKey]: fromLogTemplate.initialLogTemplateState
+    });
+    expect(result).toEqual([]);
   });
 });

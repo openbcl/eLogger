@@ -30,7 +30,6 @@ import * as fromLogTemplate from './store/logtemplate.reducer';
     CommonModule,
     LogTemplatesRoutingModule,
     UiModule,
-    StoreModule.forFeature(fromLogTemplate.logTemplatesFeatureKey, fromLogTemplate.logTemplatesReducer),
     StoreModule.forFeature(fromLogTemplate.logTemplateFeatureKey, fromLogTemplate.logTemplateReducer),
     EffectsModule.forFeature([LogTemplateEffects])
   ]

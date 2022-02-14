@@ -1,20 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { LogTemplate } from '../../shared/models';
 
-export const loadLogTemplates = createAction(
-  '[LogTemplate] Load LogTemplates'
-);
-
-export const loadLogTemplatesSuccess = createAction(
-  '[LogTemplate] Load LogTemplates Success',
-  props<{ logTemplates: LogTemplate[] }>()
-);
-
-export const loadLogTemplatesFailure = createAction(
-  '[LogTemplate] Load LogTemplates Failure',
-  props<{ error: any }>()
-);
-
 export const loadLogTemplate = createAction(
   '[LogTemplate] Load LogTemplate',
   props<{ id: string }>()
@@ -35,11 +21,6 @@ export const createLogTemplate = createAction(
   props<{ title: string, desc?: string }>()
 );
 
-export const createLogTemplateSuccess = createAction(
-  '[LogTemplate] Create LogTemplate Success',
-  props<{ logTemplate: LogTemplate }>()
-);
-
 export const createLogTemplateFailure = createAction(
   '[LogTemplate] Create LogTemplate Failure',
   props<{ error: any }>()
@@ -50,11 +31,6 @@ export const updateLogTemplate = createAction(
   props<{ logTemplate: LogTemplate }>()
 );
 
-export const updateLogTemplateSuccess = createAction(
-  '[LogTemplate] Update LogTemplate Success',
-  props<{ logTemplate: LogTemplate }>()
-);
-
 export const updateLogTemplateFailure = createAction(
   '[LogTemplate] Update LogTemplate Failure',
   props<{ error: any }>()
@@ -62,11 +38,6 @@ export const updateLogTemplateFailure = createAction(
 
 export const deleteLogTemplate = createAction(
   '[LogTemplate] Delete LogTemplate',
-  props<{ logTemplate: LogTemplate }>()
-);
-
-export const deleteLogTemplateSuccess = createAction(
-  '[LogTemplate] Delete LogTemplate Success',
   props<{ logTemplate: LogTemplate }>()
 );
 

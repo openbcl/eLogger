@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { loadLogTemplates } from '../../store/logtemplate.actions';
-import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../store/logtemplate.selectors';
+import { loadLogTemplates } from '../../../store/logtemplate.actions';
+import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../../store/logtemplate.selectors';
 
 @Component({
   selector: 'el-logtemplates',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { logTemplatesSelector } from '../../../logtemplates/store/logtemplate.selectors';
-import { loadLogTemplates } from '../../../logtemplates/store/logtemplate.actions';
-import { loadLogs } from '../../store/log.actions';
-import { logsProcessingSelector, logsSelector } from '../../store/log.selectors';
+import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
+import { loadLogTemplates } from '../../../store/logtemplate.actions';
+import { loadLogs } from '../../../store/log.actions';
+import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
 
 @Component({
   selector: 'el-logs',

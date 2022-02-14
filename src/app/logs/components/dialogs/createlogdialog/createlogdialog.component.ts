@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { logTemplatesSelector } from '../../../../logtemplates/store/logtemplate.selectors';
+import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
 import { createLog } from '../../../store/log.actions';
 
 @Component({

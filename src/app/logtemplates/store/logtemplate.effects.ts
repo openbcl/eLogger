@@ -1,64 +1,49 @@
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../../shared/services';
-import * as LogTemplateActions from './logtemplate.actions';
-
+import * as LazyLogTemplateActions from './logtemplate.actions';
+import * as LogTemplateActions from '../../store/logtemplate.actions';
 
 @Injectable()
 export class LogTemplateEffects {
 
-  loadLogTemplates$ = createEffect(() => this.actions$.pipe( 
-    ofType(LogTemplateActions.loadLogTemplates),
-    switchMap(() => this.logTemplateService.loadLogTemplates().pipe(
-      map(logTemplates => LogTemplateActions.loadLogTemplatesSuccess({ logTemplates })),
-      catchError(error => of(LogTemplateActions.loadLogTemplatesFailure({ error })))
-    ))
-  ));
-
   loadLogTemplate$ = createEffect(() => this.actions$.pipe( 
-    ofType(LogTemplateActions.loadLogTemplate),
+    ofType(LazyLogTemplateActions.loadLogTemplate),
     switchMap(loadLogTemplate => this.logTemplateService.loadLogTemplate(loadLogTemplate.id).pipe(
-      map(logTemplate => LogTemplateActions.loadLogTemplateSuccess({ logTemplate })),
-      catchError(error => of(LogTemplateActions.loadLogTemplateFailure({ error })))
+      map(logTemplate => LazyLogTemplateActions.loadLogTemplateSuccess({ logTemplate })),
+      catchError(error => of(LazyLogTemplateActions.loadLogTemplateFailure({ error })))
     ))
   ));
 
   createLogTemplate$ = createEffect(() => this.actions$.pipe( 
-    ofType(LogTemplateActions.createLogTemplate),
+    ofType(LazyLogTemplateActions.createLogTemplate),
     switchMap(createLogTemplate => this.logTemplateService.createLogTemplate(createLogTemplate.title, createLogTemplate.desc).pipe(
       map(logTemplate => LogTemplateActions.createLogTemplateSuccess({ logTemplate })),
-      catchError(error => of(LogTemplateActions.createLogTemplateFailure({ error })))
+      catchError(error => of(LazyLogTemplateActions.createLogTemplateFailure({ error })))
     ))
   ));
 
   updateLogTemplate$ = createEffect(() => this.actions$.pipe( 
-    ofType(LogTemplateActions.updateLogTemplate),
+    ofType(LazyLogTemplateActions.updateLogTemplate),
     switchMap(updateLogTemplate => this.logTemplateService.updateLogTemplate(updateLogTemplate.logTemplate).pipe(
       map(logTemplate => LogTemplateActions.updateLogTemplateSuccess({ logTemplate })),
-      catchError(error => of(LogTemplateActions.updateLogTemplateFailure({ error })))
+      catchError(error => of(LazyLogTemplateActions.updateLogTemplateFailure({ error })))
     ))
   ));
 
   deleteLogTemplate$ = createEffect(() => this.actions$.pipe( 
-    ofType(LogTemplateActions.deleteLogTemplate),
+    ofType(LazyLogTemplateActions.deleteLogTemplate),
     switchMap(deleteLogTemplate => this.logTemplateService.deleteLogTemplate(deleteLogTemplate.logTemplate).pipe(
       map(logTemplate => LogTemplateActions.deleteLogTemplateSuccess({ logTemplate })),
-      catchError(error => of(LogTemplateActions.deleteLogTemplateFailure({ error })))
+      catchError(error => of(LazyLogTemplateActions.deleteLogTemplateFailure({ error })))
     ))
   ));
 
-  deleteLogTemplateSuccess$ = createEffect(() => this.actions$.pipe(
-    ofType(LogTemplateActions.deleteLogTemplateSuccess),
-    tap(() => this.router.navigate(['templates']))
-  ), { dispatch: false });
-
   constructor(
     private logTemplateService: LogTemplateService,
-    private actions$: Actions,
-    private router: Router
+    private actions$: Actions
   ) {}
 
 }

@@ -22,7 +22,6 @@ import * as fromLog from './store/log.reducer';
     LogsRoutingModule,
     UiModule,
     StoreModule.forFeature(fromLog.logFeatureKey, fromLog.logReducer),
-    StoreModule.forFeature(fromLog.logsFeatureKey, fromLog.logsReducer),
     EffectsModule.forFeature([LogEffects])
   ]
 })
