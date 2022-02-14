@@ -29,3 +29,18 @@ export const deleteLogSuccess = createAction(
   '[Log] Delete Log Success',
   props<{ log: Log }>()
 );
+
+export const reorderLogs = createAction(
+  '[Log] Reorder Logs',
+  props<{ logs: Log[] }>()
+);
+
+export const reorderLogsSuccess = createAction(
+  '[Log] Reorder Logs Success',
+  props<{ logs: Log[] }>()
+);
+
+export const reorderLogsFailure = createAction(
+  '[Log] Reorder Logs Failure',
+  props<{ error: any }>()
+);

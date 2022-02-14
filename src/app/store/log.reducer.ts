@@ -35,6 +35,6 @@ export const logsReducer = createReducer(
     ...state, logs: state.logs.map(oldLog => oldLog.id === action.log.id ? action.log : oldLog ), processing: false
   })),
   on(LogActions.deleteLogSuccess, (state, action) => ({
-    ...state, logs: state.logs.filter(oldLog => oldLog.id !== action.log.id), processing: false
+    ...state, logs: state.logs.filter(oldLog => oldLog.id !== action.log.id).map(log => log.prev === action.log.id ? { ...log, prev: action.log.prev } : log), processing: false
   })),
 );
