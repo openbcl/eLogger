@@ -52,7 +52,7 @@
                         <th *ngIf="!isMobileLayout" class="w-3rem"></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-eventTemplate  let-index="rowIndex">
+                <ng-template pTemplate="body" let-eventTemplate let-index="rowIndex">
                     <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
                         <td *ngIf="!isMobileLayout">
                             <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
@@ -74,7 +74,7 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td class="text-center" [attr.colspan]="cols.length + 1">
+                        <td class="text-center" [attr.colspan]="cols.length + (isMobileLayout ? 1 : 2)">
                             No Event Templates found.
                         </td>
                     </tr>

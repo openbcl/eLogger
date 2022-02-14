@@ -46,7 +46,6 @@ export class LogTemplateComponent implements OnInit {
     window.onresize = () => this.isMobileLayout = window.innerWidth < 961;
   }
 
-
   onRowReorder(eventTemplates: EventTemplate[], logTemplate: LogTemplate) {
     this.store.dispatch(updateLogTemplate({
       logTemplate: {

@@ -1,0 +1,9 @@
+<p-dialog header="Delete Log" [maximizable]="true" [visible]="log" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    Are you sure you want to delete this log?
+    <p class="mb-0 font-light">
+        If you decide to do so, this ...
+    </p>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-trash" label="Delete" class="p-button-danger p-button-text" (click)="delete()"></button>
+    </ng-template>
+</p-dialog>

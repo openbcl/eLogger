@@ -9,13 +9,15 @@ import { UiModule } from '../ui/ui.module';
 import { LogsComponent } from './components/logs/logs.component';
 import { CreateLogDialogComponent } from './components/dialogs/createlogdialog/createlogdialog.component';
 import * as fromLog from './store/log.reducer';
+import { DeleteLogDialogComponent } from './components/dialogs/deletelogdialog/deletelogdialog.component';
 
 
 
 @NgModule({
   declarations: [
     LogsComponent,
-    CreateLogDialogComponent
+    CreateLogDialogComponent,
+    DeleteLogDialogComponent
   ],
   imports: [
     CommonModule,
