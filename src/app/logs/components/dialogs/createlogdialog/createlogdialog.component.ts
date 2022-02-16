@@ -20,9 +20,9 @@ export class CreateLogDialogComponent {
   logTemplates$ = this.store.pipe(select(logTemplatesSelector));
 
   form = this.fb.group({
-    title: ['', Validators.required],
-    desc: '',
-    logTemplateId: ['', Validators.required],
+    title: [null, Validators.required],
+    desc: null,
+    logTemplateId: [null, Validators.required],
   });
 
   constructor(

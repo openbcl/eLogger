@@ -17,8 +17,8 @@ export class CreateLogTemplateDialogComponent {
   visibleChange = new EventEmitter<boolean>();
 
   form = this.fb.group({
-    title: ['', Validators.required],
-    desc: ''
+    title: [null, Validators.required],
+    desc: null
   });
 
   constructor(

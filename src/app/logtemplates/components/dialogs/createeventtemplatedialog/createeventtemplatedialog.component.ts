@@ -18,7 +18,7 @@ export class CreateEventTemplateDialogComponent {
   eventTypeIsUniqueError = eventTypeIsUniqueError;
   eventIcons = eventIcons;
   eventTypes = eventTypes;
-  colors = ['', 'yellow', 'orange', 'pink', 'purple', 'indigo', 'blue', 'cyan', 'teal', 'green'];
+  colors = [null, 'yellow', 'orange', 'pink', 'purple', 'indigo', 'blue', 'cyan', 'teal', 'green'];
 
   @Input()
   visible: boolean;
@@ -31,10 +31,10 @@ export class CreateEventTemplateDialogComponent {
   
   form = this.fb.group({
     selectedTemplate: undefined,
-    name: ['', Validators.required],
+    name: [null, Validators.required],
     eventType: [EventType.DEFAULT, Validators.required],
     icon: eventIcons[0],
-    color: ''
+    color: null
   }, {
     asyncValidators: AppValidators.eventTypeIsUnique(this.logTemplate$)
   });
@@ -76,10 +76,10 @@ export class CreateEventTemplateDialogComponent {
   reset() {
     this.form.reset({
       selectedTemplate: undefined,
-      name: '',
+      name: null,
       eventType: EventType.DEFAULT,
       icon: eventIcons[0],
-      color: ''
+      color: null
     });
     this.form.enable();
   }

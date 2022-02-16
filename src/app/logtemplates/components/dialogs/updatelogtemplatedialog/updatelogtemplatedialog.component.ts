@@ -31,8 +31,8 @@ export class UpdateLogTemplateDialogComponent {
   );
 
   form = this.fb.group({
-    title: ['', Validators.required],
-    desc: ''
+    title: [null, Validators.required],
+    desc: null
   });
 
   constructor(
