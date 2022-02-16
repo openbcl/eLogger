@@ -17,7 +17,7 @@ export class LogService {
     value.title = title;
     value.desc = desc;
     return this.loadLogs().pipe(exhaustMap(logs => {
-      if (!!logs.length) {
+      if (!!logs?.length) {
         value.prev = logs[logs.length - 1].id;
       }
       return this.db.add(LOGS, value);

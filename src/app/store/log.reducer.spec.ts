@@ -15,7 +15,7 @@ describe('Logs Reducer', () => {
 
     it('should return the logs', () => {
       const newState = logsReducer(initialLogsState, loadLogsSuccess({ logs : [ log ] }));
-      expect(newState.logs.length).toBe(1);
+      expect(newState.logs?.length).toBe(1);
     });
 
     it('should return the error', () => {

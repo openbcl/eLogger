@@ -7,3 +7,11 @@ body {
 p-menubar {
     box-shadow: 0 -0.25rem 0.5rem 0.5rem var(--primary-color);
 }
+
+.p-selectbutton .p-button {
+    background: var(--surface-c);
+}
+
+.p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover {
+    background: var(--surface-d);
+  }

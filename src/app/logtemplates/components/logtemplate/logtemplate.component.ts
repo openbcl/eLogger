@@ -56,7 +56,7 @@ export class LogTemplateComponent implements OnInit {
   }
 
   move(index: number, logTemplate: LogTemplate, ranking: number) {
-    if ((index + ranking) >= 0 && (index + ranking) < logTemplate.eventTemplates.length) {
+    if ((index + ranking) >= 0 && (index + ranking) < logTemplate.eventTemplates?.length) {
       const eventTemplate = logTemplate.eventTemplates[index];
       const eventTemplates = [ ...logTemplate.eventTemplates ];
       eventTemplates.splice(index, 1);

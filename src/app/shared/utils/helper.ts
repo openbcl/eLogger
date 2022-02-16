@@ -7,7 +7,7 @@ export const reorderLogs = (values: Log[]) => !!values.length ? values.map<Log>(
 })) : values;
 
 export const orderedLogs = (values: Log[]) => {
-    if (!values.length) return values;
+    if (!values?.length) return values;
     try {
         const orderedValeus = [ values.find(log => log.prev === null) ];
         while (orderedValeus.length < values.length) {

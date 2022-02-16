@@ -45,7 +45,7 @@ export class LogsComponent implements OnInit {
   }
 
   move(index: number, ranking: number, logs: Log[]) {
-    if ((index + ranking) >= 0 && (index + ranking) < logs.length) {
+    if ((index + ranking) >= 0 && (index + ranking) < logs?.length) {
       const log = logs[index];
       const orderedLogs = [ ...logs ];
       orderedLogs.splice(index, 1);

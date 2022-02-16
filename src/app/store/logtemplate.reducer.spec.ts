@@ -14,7 +14,7 @@ describe('LogTemplates Reducer', () => {
 
     it('should return the logTemplates', () => {
       const newState = logTemplatesReducer(initialLogTemplatesState, loadLogTemplatesSuccess({ logTemplates : [ logTemplateTemplate ] }));
-      expect(newState.logTemplates.length).toBe(1);
+      expect(newState.logTemplates?.length).toBe(1);
     });
 
     it('should return the error', () => {
