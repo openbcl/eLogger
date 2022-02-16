@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
+import { logsSelector } from '../../../../store/log.selectors';
+import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
 import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
 import { createLog } from '../../../store/log.actions';
 
@@ -10,6 +12,8 @@ import { createLog } from '../../../store/log.actions';
   styleUrls: ['./createlogdialog.component.scss']
 })
 export class CreateLogDialogComponent {
+
+  abstractLogIsUniqueError = abstractLogIsUniqueError;
 
   @Input()
   visible: boolean;
@@ -23,6 +27,8 @@ export class CreateLogDialogComponent {
     title: [null, Validators.required],
     desc: null,
     logTemplateId: [null, Validators.required],
+  }, {
+    asyncValidators: AppValidators.abstractLogIsUnique(this.store.pipe(select(logsSelector)))
   });
 
   constructor(

@@ -1,12 +1,22 @@
 <p-dialog header="Add new Log Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <form [formGroup]="form">
         <span class="p-float-label mt-5 field">
-            <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
+            <input formControlName="title" pInputText type="text" class="inputfield w-full"
+                [class.ng-invalid]="form.errors?.[abstractLogIsUniqueError] || !form.get('title').valid"
+                [class.ng-valid]="!form.errors?.[abstractLogIsUniqueError] && form.get('title').valid">
             <label for="float-input">Title</label>
+            <div *ngIf="form.errors?.[abstractLogIsUniqueError]" class="w-full mt-1 px-2">
+                <span class="p-error text-xs">A log template with this name already exists. Please choose another name.</span>
+            </div>
         </span>
         <span class="p-float-label mt-5 field">
-            <input formControlName="desc" pInputText type="text" class="inputfield w-full"> 
+            <input formControlName="desc" pInputText type="text" class="inputfield w-full"
+                [class.ng-invalid]="form.errors?.[abstractLogIsUniqueError] || !form.get('desc').valid"
+                [class.ng-valid]="!form.errors?.[abstractLogIsUniqueError] && form.get('desc').valid">
             <label for="float-input">Description</label>
+            <div *ngIf="form.errors?.[abstractLogIsUniqueError]" class="w-full mt-1 px-2">
+                <span class="p-error text-xs">A log template with this description already exists. Please choose another description.</span>
+            </div>
         </span>
     </form>
     

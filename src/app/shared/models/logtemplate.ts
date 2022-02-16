@@ -1,9 +1,9 @@
 import { v4 as uuid } from 'uuid';
-import { EventTemplate } from '.';
+import { EventTemplate, AbstractLog } from '.';
 
 export const LOGTEMPLATES = 'logtemplates';
 
-export class LogTemplate {
+export class LogTemplate implements AbstractLog {
     readonly id = uuid();
     readonly key?: number;
     title: string;

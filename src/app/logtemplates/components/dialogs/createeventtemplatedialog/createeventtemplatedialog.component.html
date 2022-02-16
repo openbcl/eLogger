@@ -39,9 +39,9 @@
             </p-fieldset>
             <span class="p-float-label mt-5 field">
                 <input formControlName="name" pInputText type="text" class="inputfield w-full"
-                [class.ng-dirty]="!form.value.selectedTemplate"
-                [class.ng-invalid]="form.errors?.[eventTypeIsUniqueError] || !form.get('name').valid"
-                [class.ng-valid]="!form.errors?.[eventTypeIsUniqueError] && form.get('name').valid"> 
+                    [class.ng-dirty]="!form.value.selectedTemplate"
+                    [class.ng-invalid]="form.errors?.[eventTypeIsUniqueError] || !form.get('name').valid"
+                    [class.ng-valid]="!form.errors?.[eventTypeIsUniqueError] && form.get('name').valid">
                 <label for="float-input">Event Name</label>
                 <div *ngIf="form.errors?.[eventTypeIsUniqueError]" class="w-full text-center justify-content-center mt-1 px-2">
                     <span class="p-error text-xs">An event template with this name already exists for the type</span>

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
+import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
 import { createLogTemplate } from '../../../store/logtemplate.actions';
 
 @Component({
@@ -9,6 +11,8 @@ import { createLogTemplate } from '../../../store/logtemplate.actions';
   styleUrls: ['./createlogtemplatedialog.component.scss']
 })
 export class CreateLogTemplateDialogComponent {
+
+  abstractLogIsUniqueError = abstractLogIsUniqueError;
 
   @Input()
   visible: boolean;
@@ -19,6 +23,8 @@ export class CreateLogTemplateDialogComponent {
   form = this.fb.group({
     title: [null, Validators.required],
     desc: null
+  }, {
+    asyncValidators: AppValidators.abstractLogIsUnique(this.store.pipe(select(logTemplatesSelector)))
   });
 
   constructor(
