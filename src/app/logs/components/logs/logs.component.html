@@ -5,6 +5,7 @@
         dataKey="id"
         [rowHover]="true"
         [reorderableColumns]="true"
+        (onRowReorder)="onRowReorder(dt.value)"
         [columns]="cols"
         [value]="logs$ | async"
         [loading]="logsLoading$ | async">
@@ -31,8 +32,8 @@
                 </td>
                 <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
                     <div>
-                        <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2"></button>
-                        <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2"></button>
+                        <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, -1, dt.value)"></button>
+                        <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, 1, dt.value)"></button>
                     </div>
                     <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deleteLog = log"></button>
                 </td>

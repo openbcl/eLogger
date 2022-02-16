@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
 import { loadLogTemplates } from '../../../store/logtemplate.actions';
-import { loadLogs } from '../../../store/log.actions';
+import { loadLogs, reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
 import { Log } from '../../../shared/models';
 
@@ -38,6 +38,20 @@ export class LogsComponent implements OnInit {
     this.store.dispatch(loadLogTemplates());
     this.isMobileLayout = window.innerWidth < 961;
     window.onresize = () => this.isMobileLayout = window.innerWidth < 961;
+  }
+
+  onRowReorder(logs: Log[]) {
+    this.store.dispatch(reorderLogs({ logs }));
+  }
+
+  move(index: number, ranking: number, logs: Log[]) {
+    if ((index + ranking) >= 0 && (index + ranking) < logs.length) {
+      const log = logs[index];
+      const orderedLogs = [ ...logs ];
+      orderedLogs.splice(index, 1);
+      orderedLogs.splice(index+ranking, 0, log);
+      this.onRowReorder(orderedLogs);
+    }
   }
 
 }
