@@ -1,10 +1,19 @@
-<p-dialog *ngrxLet="logTemplate$ as logTemplate" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog *ngrxLet="logTemplate$ as logTemplate" styleClass="w-full sm:w-8" [resizable]="false" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <div *ngrxLet="eventTemplates$ as eventTemplates">
         <form [formGroup]="form">
             <div *ngIf="eventTemplates.length">
                 <p-fieldset legend="Known Event Templates">
                     <div class="grid">
-                        <p-dropdown class="col-12 el-dropdown-items-p-0" [options]="eventTemplates" formControlName="selectedTemplate" [showClear]="true" (onChange)="dropdownChanged($event)" (onClear)="reset()" placeholder="Choose a known template ...">
+                        <p-dropdown
+                            class="col-12 el-dropdown-items-p-0"
+                            styleClass="w-full white-space-normal"
+                            panelStyleClass="white-space-normal"
+                            [options]="eventTemplates"
+                            formControlName="selectedTemplate"
+                            [showClear]="true"
+                            (onChange)="dropdownChanged($event)"
+                            (onClear)="reset()"
+                            placeholder="Choose a known template ...">
                             <ng-template let-eventTemplate pTemplate="selectedItem">
                                 <div class="flex flex-wrap align-items-center pl-2 pt-2 pb-2  {{ eventTemplate.color | colorClass }}" *ngIf="form.value.selectedTemplate">
                                     <i class="pl-2 {{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i>

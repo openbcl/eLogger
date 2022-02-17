@@ -1,11 +1,25 @@
-<p-dialog header="Add new Log" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog header="Add new Log" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <form [formGroup]="form">
         <p-dropdown
             optionLabel="title"
             optionValue="id"
             [options]="logTemplates$ | async"
             formControlName="logTemplateId"
+            styleClass="w-full white-space-normal"
+            panelStyleClass="white-space-normal"
             placeholder="Please Choose a template ...">
+            <ng-template let-logTemplate pTemplate="selectedItem">
+                <div class="flex flex-wrap align-items-center">
+                    <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
+                    <span class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
+                </div>
+            </ng-template>
+            <ng-template let-logTemplate pTemplate="item">
+                <div class="flex flex-wrap align-items-center">
+                    <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
+                    <span class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
+                </div>
+            </ng-template>
         </p-dropdown>
         <span class="p-float-label mt-5 field">
             <input formControlName="title" pInputText type="text" class="inputfield w-full"

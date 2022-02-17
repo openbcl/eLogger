@@ -1,4 +1,4 @@
-<p-dialog *ngrxLet="logTemplate$ as logTemplate" header="Update Log Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog *ngrxLet="logTemplate$ as logTemplate" header="Update Log Template" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <form [formGroup]="form">
         <span class="p-float-label mt-5 field">
             <input formControlName="title" pInputText type="text" class="inputfield w-full"
