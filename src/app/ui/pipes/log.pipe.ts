@@ -11,3 +11,15 @@ export class LogTemplateTitlePipe implements PipeTransform {
   }
 
 }
+
+@Pipe({
+  name: 'logTemplateDesc'
+})
+export class LogTemplateDescPipe implements PipeTransform {
+
+  transform(id: string, logTemplates: LogTemplate[]): string {
+    const desc = logTemplates?.find(logTemplate => logTemplate.id === id)?.desc;
+    return !!desc?.length ? desc : null;
+  }
+
+}

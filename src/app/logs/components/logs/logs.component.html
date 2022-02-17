@@ -39,7 +39,12 @@
                 </td>
                 <td [routerLink]="[log.id]">{{ log.title }}</td>
                 <td [routerLink]="[log.id]">{{ log.desc }}</td>
-                <td [routerLink]="[log.id]">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</td>
+                <td [routerLink]="[log.id]" class="flex-wrap">
+                    <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
+                    <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
+                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
+                    </ng-container>
+                </td>
                 <td [routerLink]="[log.id]">{{ log.records?.length }}</td>
                 <td *ngIf="!isMobileLayout" class="pr-2">
                     <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deleteLog = log"></button>
