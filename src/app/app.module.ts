@@ -10,7 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
-import { LOGS, Log, LOGTEMPLATES, LogTemplate } from './shared/models';
+import { LOGS, Log, LOGTEMPLATES, LogTemplate, Record, RECORDS } from './shared/models';
 import { UiModule } from './ui/ui.module';
 import { LogTemplateEffects } from './store/logtemplate.effects';
 import { LogEffects } from './store/log.effects';
@@ -60,7 +60,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       version: 1,
       objectStoresMeta: [
         generateObjectStoreMeta(LOGS, new Log(null)),
-        generateObjectStoreMeta(LOGTEMPLATES, new LogTemplate(null))
+        generateObjectStoreMeta(LOGTEMPLATES, new LogTemplate(null)),
+        generateObjectStoreMeta(RECORDS, new Record({ name: null, color: null, eventType: 0, icon: null }, null))
       ]
     })
   ],

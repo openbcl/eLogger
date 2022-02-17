@@ -2,7 +2,7 @@
     <p-panel *ngrxLet="log$ as log" class="col-12">
         <ng-template pTemplate="header">
             <div class="grid m-0 w-full">
-                <div class="col-12 p-panel-title p-0 mb-3">
+                <div class="col-12 p-panel-title p-0 mb-4">
                     <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
                     <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
                         <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})</span>

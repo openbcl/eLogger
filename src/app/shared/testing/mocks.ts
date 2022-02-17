@@ -3,10 +3,12 @@ import { of } from "rxjs"
 export const NgxIndexedDBServiceMock = {
     add: (_storeName : string, value: any) => of(value),
     getByIndex: (_storeName : string, _indexName : string, key: string) => of({ 'id': key }),
+    getAllByIndex: (_storeName : string, _indexName : string, keyRange: IDBKeyRange) => of([]),
     updateByKey: (_storeName : string, value: any, _key: any) => of(value),
     update: (_storeName : string, value: any) => of([]),
     getAll: () => of([]),
-    deleteByKey: (_storeName : string, key: string) => of({ key })
+    deleteByKey: (_storeName : string, key: string) => of({ key }),
+    bulkDelete: (_storeName : string, keys: string[]) => of(true),
 }
 
 export const LogTemplateServiceMock = {
