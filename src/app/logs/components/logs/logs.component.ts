@@ -16,8 +16,6 @@ export class LogsComponent implements OnInit {
 
   searchTerm = '';
   displayCreateLogDialog = false;
-  deleteLog: Log;
-
   isMobileLayout = false;
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
@@ -28,7 +26,7 @@ export class LogsComponent implements OnInit {
     { field: 'title', header: 'Title' },
     { field: 'desc', header: 'Description' },
     { field: 'type', header: 'Type' },
-    { field: 'records', header: 'Records' }
+    { field: 'records', header: 'Records', class: 'text-center' }
   ];
 
   constructor(private store: Store) { }

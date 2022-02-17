@@ -21,8 +21,7 @@
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th class="w-3rem"></th>
-                <th *ngFor="let col of columns">{{ col.header }}</th>
-                <th *ngIf="!isMobileLayout" class="w-3rem"></th>
+                <th *ngFor="let col of columns" [class]="col.class">{{ col.header }}</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-log let-index="rowIndex">
@@ -31,11 +30,8 @@
                     <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                 </td>
                 <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
-                    <div>
-                        <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, -1, dt.value)"></button>
-                        <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, 1, dt.value)"></button>
-                    </div>
-                    <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deleteLog = log"></button>
+                    <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, -1, dt.value)"></button>
+                    <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, 1, dt.value)"></button>
                 </td>
                 <td [routerLink]="[log.id]">{{ log.title }}</td>
                 <td [routerLink]="[log.id]">{{ log.desc }}</td>
@@ -45,15 +41,12 @@
                         <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
                     </ng-container>
                 </td>
-                <td [routerLink]="[log.id]">{{ log.records?.length }}</td>
-                <td *ngIf="!isMobileLayout" class="pr-2">
-                    <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deleteLog = log"></button>
-                </td>
+                <td class="text-center" [routerLink]="[log.id]">{{ log.records?.length }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>
             <tr>
-                <td class="text-center" [attr.colspan]="cols.length + (isMobileLayout ? 1 : 2)">
+                <td class="text-center" [attr.colspan]="cols.length + 1">
                     No Logs found.
                 </td>
             </tr>
@@ -61,4 +54,3 @@
     </p-table>
 </p-panel>
 <el-create-log-dialog [(visible)]="displayCreateLogDialog"></el-create-log-dialog>
-<el-delete-log-dialog [(log)]="deleteLog"></el-delete-log-dialog>
