@@ -1,7 +1,13 @@
-<div class="grid">
+<div *ngrxLet="logTemplates$ as logTemplates" class="grid">
     <p-panel *ngrxLet="log$ as log" class="col-12">
         <ng-template pTemplate="header">
             <div class="grid m-0 w-full">
+                <div class="col-12 p-panel-title p-0 mb-3">
+                    <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
+                    <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
+                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})</span>
+                    </ng-container>
+                </div>
                 <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
                     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
                         <span class="p-inputgroup-addon">Title</span>
@@ -13,13 +19,16 @@
                     </div>
                 </div>
                 <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
-                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right"></button>
+                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogDialog = true"></button>
                     <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right"></button>
                 </div>
             </div>
         </ng-template>
-        <div class="flex justify-content-center">
-            <button pButton icon="pi pi-th-large" class="p-button-outlined p-button-rounded p-button-success" iconPos="right" label="Start recording"></button>
+        <div class="flex flex-wrap justify-content-center">
+            <button pButton icon="pi pi-th-large" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start recording"></button>
+            <button pButton icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records"></button>
+            <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records"></button>
         </div>
     </p-panel>
 </div>
+<el-update-log-dialog [(visible)]="displayUpdateLogDialog"></el-update-log-dialog>

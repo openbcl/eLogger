@@ -21,7 +21,7 @@ export const orderedLogs = (values: Log[]) => {
 }
 
 export const compareEventTemplates = (a: EventTemplate, b: EventTemplate) => (
-    a.name === b.name &&
+    a.name.toLocaleLowerCase() === b.name.toLocaleLowerCase() &&
     a.eventType === b.eventType
 )
 
@@ -32,8 +32,8 @@ export const deepCompareEventTemplates = (a: EventTemplate, b: EventTemplate) =>
 )
 
 export const compareAbstractLog = (a: AbstractLog, b: AbstractLog) => (
-    a.title === b.title &&
-    a.desc === b.desc && (
+    a.title.toLocaleLowerCase() === b.title.toLocaleLowerCase() &&
+    a.desc.toLocaleLowerCase() === b.desc.toLocaleLowerCase() && (
         !(<Log>a).logTemplateId || !(<Log>b).logTemplateId ||
         (<Log>a).logTemplateId === (<Log>b).logTemplateId
     )
