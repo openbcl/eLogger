@@ -1,0 +1,25 @@
+<div class="grid">
+    <p-panel *ngrxLet="log$ as log" class="col-12">
+        <ng-template pTemplate="header">
+            <div class="grid m-0 w-full">
+                <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
+                    <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
+                        <span class="p-inputgroup-addon">Title</span>
+                        <input type="text" pInputText [disabled]="true" [value]="log.title" />
+                    </div>
+                    <div class="p-inputgroup col-12 pb-0 pl-0 pr-0">
+                        <span class="p-inputgroup-addon">Description</span>
+                        <input type="text" pInputText [disabled]="true" [value]="log.desc || 'no description set'" />
+                    </div>
+                </div>
+                <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
+                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right"></button>
+                </div>
+            </div>
+        </ng-template>
+        <div class="flex justify-content-center">
+            <button pButton icon="pi pi-th-large" class="p-button-outlined p-button-rounded p-button-success" iconPos="right" label="Start recording"></button>
+        </div>
+    </p-panel>
+</div>

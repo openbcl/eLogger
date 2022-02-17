@@ -10,6 +10,7 @@ import { LogsComponent } from './components/logs/logs.component';
 import { CreateLogDialogComponent } from './components/dialogs/createlogdialog/createlogdialog.component';
 import * as fromLog from './store/log.reducer';
 import { DeleteLogDialogComponent } from './components/dialogs/deletelogdialog/deletelogdialog.component';
+import { LogComponent } from './components/log/log.component';
 
 
 
@@ -17,7 +18,8 @@ import { DeleteLogDialogComponent } from './components/dialogs/deletelogdialog/d
   declarations: [
     LogsComponent,
     CreateLogDialogComponent,
-    DeleteLogDialogComponent
+    DeleteLogDialogComponent,
+    LogComponent
   ],
   imports: [
     CommonModule,
