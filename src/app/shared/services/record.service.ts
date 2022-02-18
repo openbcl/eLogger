@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Key, NgxIndexedDBService } from 'ngx-indexed-db';
-import { map, exhaustMap, of, throwError } from 'rxjs';
+import { map, exhaustMap, of, throwError, catchError } from 'rxjs';
 import { EventTemplate, EventType, Record, RECORDS } from '../models';
 
 @Injectable({
@@ -41,7 +41,8 @@ export class RecordService {
   deleteRecords(logId: string) {
     return this.loadRecords(logId).pipe(
       exhaustMap(records => this.db.bulkDelete(RECORDS, records.map<Key>(r => r.key))),
-      map(() => logId)
+      map(() => logId),
+      catchError(() => logId)
     )
   }
 

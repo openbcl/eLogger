@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LogService } from '../../shared/services';
+import { LogService, RecordService } from '../../shared/services';
 import * as LazyLogActions from './log.actions';
 import * as LogActions from '../../store/log.actions';
+import * as RecordActions from '../../store/record.actions';
+
 
 @Injectable()
 export class LogEffects {
@@ -19,7 +21,7 @@ export class LogEffects {
 
   createLog$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogActions.createLog),
-    switchMap(createLog => this.logService.createLog(createLog.logTemplateId, createLog.title, createLog.desc).pipe(
+    concatMap(createLog => this.logService.createLog(createLog.logTemplateId, createLog.title, createLog.desc).pipe(
       map(log => LogActions.createLogSuccess({ log })),
       catchError(error => of(LazyLogActions.createLogFailure({ error })))
     ))
@@ -27,7 +29,7 @@ export class LogEffects {
 
   updateLog$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogActions.updateLog),
-    switchMap(updateLog => this.logService.updateLog(updateLog.log).pipe(
+    concatMap(updateLog => this.logService.updateLog(updateLog.log).pipe(
       map(log => LogActions.updateLogSuccess({ log })),
       catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))
@@ -35,14 +37,45 @@ export class LogEffects {
 
   deleteLog$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogActions.deleteLog),
-    switchMap(deleteLog => this.logService.deleteLog(deleteLog.log).pipe(
-      map(log => LogActions.deleteLogSuccess({ log })),
-      catchError(error => of(LazyLogActions.deleteLogFailure({ error })))
+    concatMap(deleteLog => this.recordService.deleteRecords(deleteLog.log.id).pipe(
+      switchMap(() => this.logService.deleteLog(deleteLog.log).pipe(
+        map(log => LogActions.deleteLogSuccess({ log })),
+        catchError(error => of(LazyLogActions.deleteLogFailure({ error })))
+      )),
+      catchError(error => of(LazyLogActions.deleteLogFailure({ error }))),
     ))
+  ));
+
+  createRecordSuccess$ = createEffect(() => this.actions$.pipe( 
+    ofType(RecordActions.createRecordSuccess),
+    concatMap(createRecordSuccess => this.logService.loadLog(createRecordSuccess.record.logId).pipe(
+      switchMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount + 1 }).pipe(
+        map(log => LogActions.updateLogSuccess({ log })),
+        catchError(error => of(LazyLogActions.updateLogFailure({ error })))
+    ))))
+  ));
+
+  revokeRecordSuccess$ = createEffect(() => this.actions$.pipe( 
+    ofType(RecordActions.revokeRecordSuccess),
+    concatMap(revokeRecordSuccess => this.logService.loadLog(revokeRecordSuccess.logId).pipe(
+      switchMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount - 1 }).pipe(
+        map(log => LogActions.updateLogSuccess({ log })),
+        catchError(error => of(LazyLogActions.updateLogFailure({ error })))
+    ))))
+  ));
+
+  deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe( 
+    ofType(RecordActions.deleteRecordsSuccess),
+    concatMap(deleteRecordsSuccess => this.logService.loadLog(deleteRecordsSuccess.logId).pipe(
+      switchMap(log => this.logService.updateLog({ ...log, recordsCount: 0 }).pipe(
+        map(log => LogActions.updateLogSuccess({ log })),
+        catchError(error => of(LazyLogActions.updateLogFailure({ error })))
+    ))))
   ));
 
   constructor(
     private logService: LogService,
+    private recordService: RecordService,
     private actions$: Actions
   ) {}
 

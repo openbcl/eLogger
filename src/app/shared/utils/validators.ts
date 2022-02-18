@@ -18,8 +18,11 @@ export class AppValidators {
         )
     }
 
-    static isEqualString = (input: { value: string }): ValidatorFn => {
-        return(control: AbstractControl): ValidationErrors | null => input.value === control.value ? null : { [isEqualStringError]: true }
+    static isEqualString = (value$: Observable<string>): AsyncValidatorFn => {
+        return (control: AbstractControl): Observable<ValidationErrors | null> => value$.pipe(
+            take(1),
+            map(value => value === control.value ? null : { [isEqualStringError]: true })
+        )
     }
 
     static abstractLogIsUnique = (abstractLogs$: Observable<AbstractLog[]>, self$?: Observable<AbstractLog>): AsyncValidatorFn => {

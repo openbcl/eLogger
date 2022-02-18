@@ -6,11 +6,6 @@ export const groupByKey = <T>(list: any, key: string): { [key: string]: T[] } =>
     [value]: ( prev[value] || [] ).concat({ [key]: value, ...rest })
 }), {})
 
-export const countByKey = (list: any, key: string): { [key: string]: number } => list.reduce((prev: any, { [key]: value, ...rest }) => ({
-    ...prev,
-    [value]: ( prev[value] || [] ).concat({ [key]: value, ...rest }).length
-}), {})
-
 export const reorderLogs = (values: Log[]) => !!values.length ? values.map<Log>((value, index, array) => ({
     ...value,
     prev: index === 0 ? null : array[index - 1].id
@@ -21,7 +16,7 @@ export const orderedLogs = (values: Log[]) => {
     try {
         const orderedValeus = [ values.find(log => log.prev === null) ];
         while (orderedValeus.length < values.length) {
-            orderedValeus.push(values.find(value => value.prev === orderedValeus[orderedValeus.length - 1].id)!)
+            orderedValeus.push(values.find(value => value.prev === orderedValeus[orderedValeus.length - 1].id))
         }
         return orderedValeus;
     } catch (err) {
@@ -43,7 +38,7 @@ export const deepCompareEventTemplates = (a: EventTemplate, b: EventTemplate) =>
 
 export const compareAbstractLog = (a: AbstractLog, b: AbstractLog) => (
     a.title.toLocaleLowerCase() === b.title.toLocaleLowerCase() &&
-    a.desc.toLocaleLowerCase() === b.desc.toLocaleLowerCase() && (
+    a.desc?.toLocaleLowerCase() === b.desc?.toLocaleLowerCase() && (
         !(<Log>a).logTemplateId || !(<Log>b).logTemplateId ||
         (<Log>a).logTemplateId === (<Log>b).logTemplateId
     )

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../../shared/services';
 import * as LazyLogTemplateActions from './logtemplate.actions';
@@ -19,7 +19,7 @@ export class LogTemplateEffects {
 
   createLogTemplate$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogTemplateActions.createLogTemplate),
-    switchMap(createLogTemplate => this.logTemplateService.createLogTemplate(createLogTemplate.title, createLogTemplate.desc).pipe(
+    concatMap(createLogTemplate => this.logTemplateService.createLogTemplate(createLogTemplate.title, createLogTemplate.desc).pipe(
       map(logTemplate => LogTemplateActions.createLogTemplateSuccess({ logTemplate })),
       catchError(error => of(LazyLogTemplateActions.createLogTemplateFailure({ error })))
     ))
@@ -27,7 +27,7 @@ export class LogTemplateEffects {
 
   updateLogTemplate$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogTemplateActions.updateLogTemplate),
-    switchMap(updateLogTemplate => this.logTemplateService.updateLogTemplate(updateLogTemplate.logTemplate).pipe(
+    concatMap(updateLogTemplate => this.logTemplateService.updateLogTemplate(updateLogTemplate.logTemplate).pipe(
       map(logTemplate => LogTemplateActions.updateLogTemplateSuccess({ logTemplate })),
       catchError(error => of(LazyLogTemplateActions.updateLogTemplateFailure({ error })))
     ))
@@ -35,7 +35,7 @@ export class LogTemplateEffects {
 
   deleteLogTemplate$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogTemplateActions.deleteLogTemplate),
-    switchMap(deleteLogTemplate => this.logTemplateService.deleteLogTemplate(deleteLogTemplate.logTemplate).pipe(
+    concatMap(deleteLogTemplate => this.logTemplateService.deleteLogTemplate(deleteLogTemplate.logTemplate).pipe(
       map(logTemplate => LogTemplateActions.deleteLogTemplateSuccess({ logTemplate })),
       catchError(error => of(LazyLogTemplateActions.deleteLogTemplateFailure({ error })))
     ))

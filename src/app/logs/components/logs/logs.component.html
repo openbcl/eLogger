@@ -41,7 +41,7 @@
                         <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
                     </ng-container>
                 </td>
-                <td class="text-center" [routerLink]="[log.id]">{{ log.records?.length }}</td>
+                <td class="text-center" [routerLink]="[log.id]">{{ log.recordsCount }}</td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>

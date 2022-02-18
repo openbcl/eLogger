@@ -1,45 +1,42 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AppValidators } from '../../../../shared/utils/validators';
 import { Log } from '../../../../shared/models';
 import { deleteLog } from '../../../store/log.actions';
+import { logSelector } from 'src/app/logs/store/log.selectors';
+import { filter, switchMap } from 'rxjs';
 
 @Component({
   selector: 'el-delete-log-dialog',
   templateUrl: './deletelogdialog.component.html',
   styleUrls: ['./deletelogdialog.component.scss']
 })
-export class DeleteLogDialogComponent implements OnChanges {
+export class DeleteLogDialogComponent {
 
   @Input()
-  log: Log;
+  visible: boolean;
 
   @Output()
-  logChange = new EventEmitter<Log>();
+  visibleChange = new EventEmitter<boolean>();
 
-  compare = { value: '' };
-  form = this.fb.group({ title: [null, AppValidators.isEqualString(this.compare)] });
+  log$ = this.store.pipe(select(logSelector), filter(log => !!log));
+
+  form = this.fb.group({ title: [null, AppValidators.isEqualString(this.log$.pipe(switchMap(log => log.title)))] });
 
   constructor(
     private store: Store,
     private fb: FormBuilder
   ) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!!changes['log']?.['currentValue']?.title?.length) {
-      this.compare.value = this.log.title;
-    }
-  }
   
   close() {
-    this.log = undefined;
-    this.logChange.emit(this.log);
+    this.visible = false;
+    this.visibleChange.emit(this.visible);
     this.form.reset();
   }
 
-  delete() {
-    this.store.dispatch(deleteLog({ log: this.log }));
+  delete(log: Log) {
+    this.store.dispatch(deleteLog({ log }));
     this.close();
   }
 

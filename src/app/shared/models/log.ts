@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { Record, AbstractLog } from '.';
+import { AbstractLog } from '.';
 
 export const LOGS = 'logs';
 
@@ -10,7 +10,7 @@ export class Log implements AbstractLog {
     desc = '';
     prev: string = null;
     logTemplateId: string;
-    records: Record[] = [];
+    recordsCount = 0;
 
     constructor(logTemplateId: string) {
         this.logTemplateId = logTemplateId;

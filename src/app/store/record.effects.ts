@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
 import * as RecordActions from './record.actions';
@@ -34,7 +34,7 @@ export class RecordEffects {
 
   createRecord$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.createRecord),
-    switchMap(createRecord => this.recordService.createRecord(createRecord.eventTemplate, createRecord.logId, createRecord.text).pipe(
+    concatMap(createRecord => this.recordService.createRecord(createRecord.eventTemplate, createRecord.logId, createRecord.text).pipe(
       map(record => RecordActions.createRecordSuccess({ record })),
       catchError(error => of(RecordActions.createRecordFailure({ error })))
     ))
@@ -42,7 +42,7 @@ export class RecordEffects {
 
   revokeRecord$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.revokeRecord),
-    switchMap(revokeRecord => this.recordService.revokeRecord(revokeRecord.logId).pipe(
+    concatMap(revokeRecord => this.recordService.revokeRecord(revokeRecord.logId).pipe(
       map(logId => RecordActions.revokeRecordSuccess({ logId })),
       catchError(error => of(RecordActions.revokeRecordFailure({ error })))
     ))
@@ -50,7 +50,7 @@ export class RecordEffects {
 
   deleteRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.deleteRecords),
-    switchMap(deleteRecords => this.recordService.deleteRecords(deleteRecords.logId).pipe(
+    concatMap(deleteRecords => this.recordService.deleteRecords(deleteRecords.logId).pipe(
       map(logId => RecordActions.deleteRecordsSuccess({ logId })),
       catchError(error => of(RecordActions.deleteRecordsFailure({ error })))
     ))

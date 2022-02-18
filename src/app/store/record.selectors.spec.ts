@@ -1,5 +1,5 @@
 import * as fromRecord from './record.reducer';
-import { recordsStateSelector, recordsSelector, recordsProcessingSelector, recordsCountSelector, allRecordsSelector, totalRecordsSelector, allRecordsCountSelector } from './record.selectors';
+import { recordsStateSelector, recordsSelector, recordsProcessingSelector, allRecordsSelector, totalRecordsSelector } from './record.selectors';
 
 describe('Records Selectors', () => {
   it('should select the initial records state', () => {
@@ -23,22 +23,8 @@ describe('Records Selectors', () => {
     expect(result).toEqual([]);
   });
 
-  it('should select the count of records of a log', () => {
-    const result = recordsCountSelector('')({
-      [fromRecord.recordsFeatureKey]: fromRecord.initialRecordsState
-    })
-    expect(result).toEqual(0);
-  });
-
   it('should select all records', () => {
     const result = allRecordsSelector({
-      [fromRecord.recordsFeatureKey]: fromRecord.initialRecordsState
-    })
-    expect(result).toEqual({});
-  });
-
-  it('should select the count of records for each log', () => {
-    const result = allRecordsCountSelector({
       [fromRecord.recordsFeatureKey]: fromRecord.initialRecordsState
     })
     expect(result).toEqual({});

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { concatMap, from, map, exhaustMap, take, toArray, catchError } from 'rxjs';
+import { concatMap, from, map, exhaustMap, take, toArray } from 'rxjs';
 import { orderedLogs, reorderLogs } from '../utils/helper';
 import { Log, LOGS } from '../models';
 import { processResult } from '../utils/errorHandler';
@@ -47,8 +47,7 @@ export class LogService {
         )) :this.db.deleteByKey(LOGS, value.key).pipe(map(deleted => processResult(deleted, value, '')));
     return this.db.getByIndex<Log>(LOGS, 'prev', value.id).pipe(
       take(1),
-      catchError(() => result),
-      concatMap(next => this.updateLog({ ...next, prev: value.prev }).pipe(() => result))
+      concatMap(next => !!next ? this.updateLog({ ...next, prev: value.prev }).pipe(exhaustMap(() => result)) : result)
     );
   }
 

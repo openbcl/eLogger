@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
                     <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogDialog = true"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="deleteLog = log"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogDialog = true"></button>
                 </div>
             </div>
         </ng-template>
@@ -32,4 +32,4 @@
     </p-panel>
 </div>
 <el-update-log-dialog [(visible)]="displayUpdateLogDialog"></el-update-log-dialog>
-<el-delete-log-dialog [(log)]="deleteLog"></el-delete-log-dialog>
+<el-delete-log-dialog [(visible)]="displayDeleteLogDialog"></el-delete-log-dialog>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogService } from '../shared/services';
 import * as LogActions from './log.actions';
@@ -19,7 +19,7 @@ export class LogEffects {
 
   reorderLogs$ = createEffect(() => this.actions$.pipe( 
     ofType(LogActions.reorderLogs),
-    switchMap(reorderLogs => this.logService.reorderLogs(reorderLogs.logs).pipe(
+    concatMap(reorderLogs => this.logService.reorderLogs(reorderLogs.logs).pipe(
       switchMap(logs => of(LogActions.reorderLogsSuccess({ logs }), LogActions.loadLogsSuccess({ logs }))),
       catchError(error => of(LogActions.reorderLogsFailure({ error })))
     ))
