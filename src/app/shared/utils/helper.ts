@@ -1,6 +1,16 @@
 import { SelectItem, PrimeIcons } from "primeng/api";
 import { AbstractLog, EventTemplate, EventType, Log } from "../models";
 
+export const groupByKey = <T>(list: any, key: string): { [key: string]: T[] } => list.reduce((prev: any, { [key]: value, ...rest }) => ({
+    ...prev,
+    [value]: ( prev[value] || [] ).concat({ [key]: value, ...rest })
+}), {})
+
+export const countByKey = (list: any, key: string): { [key: string]: number } => list.reduce((prev: any, { [key]: value, ...rest }) => ({
+    ...prev,
+    [value]: ( prev[value] || [] ).concat({ [key]: value, ...rest }).length
+}), {})
+
 export const reorderLogs = (values: Log[]) => !!values.length ? values.map<Log>((value, index, array) => ({
     ...value,
     prev: index === 0 ? null : array[index - 1].id

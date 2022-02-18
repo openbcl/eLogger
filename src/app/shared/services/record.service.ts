@@ -22,6 +22,14 @@ export class RecordService {
     return this.db.getAllByIndex<Record>(RECORDS, 'logId', IDBKeyRange.only(logId));
   }
 
+  loadAllRecords() {
+    return this.db.getAll<Record>(RECORDS);
+  }
+
+  countTotalRecords() {
+    return this.db.count(RECORDS);
+  }
+
   revokeRecord(logId: string) {
     return this.loadRecords(logId).pipe(
       exhaustMap(records => !!records?.length ? this.db.deleteByKey(RECORDS, records[records.length - 1].key).pipe(

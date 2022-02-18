@@ -3,12 +3,13 @@ import { of } from "rxjs"
 export const NgxIndexedDBServiceMock = {
     add: (_storeName : string, value: any) => of(value),
     getByIndex: (_storeName : string, _indexName : string, key: string) => of({ 'id': key }),
-    getAllByIndex: (_storeName : string, _indexName : string, keyRange: IDBKeyRange) => of([]),
+    getAllByIndex: (_storeName : string, _indexName : string, _keyRange: IDBKeyRange) => of([]),
     updateByKey: (_storeName : string, value: any, _key: any) => of(value),
-    update: (_storeName : string, value: any) => of([]),
+    update: (_storeName : string, _value: any) => of([]),
     getAll: () => of([]),
+    count: () => 0,
     deleteByKey: (_storeName : string, key: string) => of({ key }),
-    bulkDelete: (_storeName : string, keys: string[]) => of(true),
+    bulkDelete: (_storeName : string, _keys: string[]) => of(true),
 }
 
 export const LogTemplateServiceMock = {
@@ -25,6 +26,15 @@ export const LogServiceMock = {
     loadLogs: () => of([]),
     loadLog: (id: string) => of({ id }),
     deleteLog: (value: any) => of(value)
+}
+
+export const RecordServiceMock = {
+    createRecord: (_eventTemplate: any, logId: string, text?: string) => of({ logId, text }),
+    loadRecords: (_logId: string) => of([]),
+    loadAllRecords: () => of([]),
+    countTotalRecords: () => of(0),
+    revokeRecord: (logId: string) => of(logId),
+    deleteRecords: (logId: string) => of(logId),
 }
 
 export const RouterMock = {

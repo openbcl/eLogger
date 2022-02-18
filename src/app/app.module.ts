@@ -14,8 +14,11 @@ import { LOGS, Log, LOGTEMPLATES, LogTemplate, Record, RECORDS } from './shared/
 import { UiModule } from './ui/ui.module';
 import { LogTemplateEffects } from './store/logtemplate.effects';
 import { LogEffects } from './store/log.effects';
+import { RecordEffects } from './store/record.effects';
 import * as fromLogTemplate from './store/logtemplate.reducer';
 import * as fromLog from './store/log.reducer';
+import * as fromRecord from './store/record.reducer';
+
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
   return Object.getOwnPropertyNames(obj).map(property => ({
@@ -50,10 +53,11 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     }),
     StoreModule.forRoot({
       [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.logTemplatesReducer,
-      [fromLog.logsFeatureKey]: fromLog.logsReducer
+      [fromLog.logsFeatureKey]: fromLog.logsReducer,
+      [fromRecord.recordsFeatureKey]: fromRecord.recordsReducer
     }, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
-    EffectsModule.forRoot([LogTemplateEffects, LogEffects]),
+    EffectsModule.forRoot([LogTemplateEffects, LogEffects, RecordEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgxIndexedDBModule.forRoot({
       name: 'eLoggerDB',
