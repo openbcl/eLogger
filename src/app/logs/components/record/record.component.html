@@ -1,0 +1,9 @@
+<div class="grid" *ngIf="logTemplate$ | async as logTemplate">
+    <button pButton pRipple
+    *ngFor="let eventTemplate of logTemplate.eventTemplates"
+    [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
+    class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2"
+    iconPos="right"
+    [label]="eventTemplate.name"
+    (click)="raiseEvent(eventTemplate)"></button>
+</div>

@@ -12,6 +12,7 @@ import * as fromLog from './store/log.reducer';
 import { DeleteLogDialogComponent } from './components/dialogs/deletelogdialog/deletelogdialog.component';
 import { LogComponent } from './components/log/log.component';
 import { UpdateLogDialogComponent } from './components/dialogs/updatelogdialog/updatelogdialog.component';
+import { RecordComponent } from './components/record/record.component';
 
 
 
@@ -21,7 +22,8 @@ import { UpdateLogDialogComponent } from './components/dialogs/updatelogdialog/u
     CreateLogDialogComponent,
     DeleteLogDialogComponent,
     LogComponent,
-    UpdateLogDialogComponent
+    UpdateLogDialogComponent,
+    RecordComponent
   ],
   imports: [
     CommonModule,

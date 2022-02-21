@@ -19,16 +19,48 @@
                     </div>
                 </div>
                 <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
-                    <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogDialog = true"></button>
-                    <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogDialog = true"></button>
+                    <button pButton pRipple icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogDialog = true"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogDialog = true"></button>
                 </div>
             </div>
         </ng-template>
         <div class="flex flex-wrap justify-content-center">
-            <button pButton icon="pi pi-th-large" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start recording"></button>
-            <button pButton icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records"></button>
-            <button pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records"></button>
+            <button pButton pRipple icon="pi pi-th-large" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start recording" [routerLink]="['record']"></button>
+            <button pButton pRipple icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records"></button>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records"></button>
         </div>
+    </p-panel>
+    <p-panel class="col-12" header="Event Records">
+        <p-table
+            #dt
+            styleClass="p-datatable-striped"
+            dataKey="name"
+            [columns]="cols"
+            [rowHover]="true"
+            [value]="records$ | async"
+            [loading]="recordsLoading$ | async">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th *ngFor="let col of cols">
+                        {{col.header}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-record let-index="rowIndex">
+                <tr [pReorderableRow]="index" [class]="record.color | colorClass">
+                    <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.date | date: 'medium' }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td class="text-center" [attr.colspan]="cols.length">
+                        No records found.
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </p-panel>
 </div>
 <el-update-log-dialog [(visible)]="displayUpdateLogDialog"></el-update-log-dialog>

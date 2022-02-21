@@ -85,13 +85,14 @@ export class CreateEventTemplateDialogComponent {
   }
 
   submit(logTemplate: LogTemplate) {
-    const eventTemplate: EventTemplate = this.form.getRawValue();
+    const eventTemplate = this.form.getRawValue();
+    delete eventTemplate.selectedTemplate;
     const { value, styleClass } = eventTemplate.eventType !== 0 ? this.eventLabelWithIconPipePipe.transform(eventTemplate.eventType) : eventTemplate.icon;
     eventTemplate.icon = { value, styleClass };
     this.store.dispatch(updateLogTemplate({
       logTemplate: {
         ...logTemplate,
-        eventTemplates: [ ...logTemplate.eventTemplates, eventTemplate ]
+        eventTemplates: [ ...logTemplate.eventTemplates, eventTemplate as EventTemplate ]
       }
     }));
     this.close();

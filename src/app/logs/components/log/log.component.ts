@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { filter, switchMap } from 'rxjs';
 import { loadRecords } from '../../../store/record.actions';
-import { recordsSelector } from '../../../store/record.selectors';
+import { recordsProcessingSelector, recordsSelector } from '../../../store/record.selectors';
 import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
 import { loadLog } from '../../store/log.actions';
@@ -20,8 +20,15 @@ export class LogComponent implements OnInit {
   displayDeleteLogDialog = false;
 
   log$ = this.store.pipe(select(logSelector), filter(log => !!log));
-  recordsCount$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
+  records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
   logTemplates$ = this.store.pipe(select(logTemplatesSelector));
+  recordsLoading$ = this.store.pipe(select(recordsProcessingSelector));
+
+  cols: any[] = [
+    { field: 'icon', header: 'Icon' },
+    { field: 'name', header: 'Name' },
+    { field: 'date', header: 'Timestamp' }
+  ];
 
   constructor(
     private store: Store,

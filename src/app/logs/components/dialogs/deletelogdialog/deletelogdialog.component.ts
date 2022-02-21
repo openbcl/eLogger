@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { AppValidators } from '../../../../shared/utils/validators';
 import { Log } from '../../../../shared/models';
 import { deleteLog } from '../../../store/log.actions';
-import { logSelector } from 'src/app/logs/store/log.selectors';
+import { logSelector } from '../../../store/log.selectors';
 import { filter, switchMap } from 'rxjs';
 
 @Component({

@@ -14,8 +14,8 @@
                         </div>
                     </div>
                     <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
-                        <button pButton icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogTemplateDialog = true"></button>
-                        <button [disabled]="logTemplateNotDeletable$ | async" pButton icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogTemplateDialog = true"></button>
+                        <button pButton pRipple icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogTemplateDialog = true"></button>
+                        <button pButton pRipple [disabled]="logTemplateNotDeletable$ | async" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogTemplateDialog = true"></button>
                     </div>
                 </div>
             </ng-template>
@@ -59,16 +59,16 @@
                         </td>
                         <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
                             <div>
-                                <button [disabled]="index === 0" pButton pRipple type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, logTemplate, -1)"></button>
-                                <button [disabled]="index === dt.value.length - 1" pButton pRipple type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, logTemplate, 1)"></button>
+                                <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, logTemplate, -1)"></button>
+                                <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, logTemplate, 1)"></button>
                             </div>
-                            <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
+                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
                         <td class="text-center" >{{ eventTemplate.name }}</td>
                         <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
                         <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
                         <td *ngIf="!isMobileLayout" class="pr-2">
-                            <button pButton icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
+                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
                     </tr>
                 </ng-template>
