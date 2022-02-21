@@ -5,7 +5,7 @@ import { AppValidators } from '../../../../shared/utils/validators';
 import { Log } from '../../../../shared/models';
 import { deleteLog } from '../../../store/log.actions';
 import { logSelector } from '../../../store/log.selectors';
-import { filter, switchMap } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'el-delete-log-dialog',
@@ -22,7 +22,7 @@ export class DeleteLogDialogComponent {
 
   log$ = this.store.pipe(select(logSelector), filter(log => !!log));
 
-  form = this.fb.group({ title: [null, AppValidators.isEqualString(this.log$.pipe(switchMap(log => log.title)))] });
+  form = this.fb.group({ title: [null, null, AppValidators.isEqualString(this.log$.pipe(map(log => log.title)))] });
 
   constructor(
     private store: Store,

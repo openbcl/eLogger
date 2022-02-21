@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { filter, switchMap } from 'rxjs';
+import { combineLatest, filter, map, switchMap } from 'rxjs';
 import { loadRecords } from '../../../store/record.actions';
 import { recordsProcessingSelector, recordsSelector } from '../../../store/record.selectors';
 import { loadLogTemplates } from '../../../store/logtemplate.actions';
@@ -19,15 +19,22 @@ export class LogComponent implements OnInit {
   displayUpdateLogDialog = false;
   displayDeleteLogDialog = false;
 
-  log$ = this.store.pipe(select(logSelector), filter(log => !!log));
+  logId: string;
+
+  logData = combineLatest([
+    this.store.pipe(select(logSelector), filter(log => !!log)),
+    this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates))
+  ]).pipe(filter(logData => logData?.[0]?.id === this.logId && !!logData?.[1]?.length));
+  log$ = this.logData.pipe(map(logData => logData[0]));
+  logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
-  logTemplates$ = this.store.pipe(select(logTemplatesSelector));
   recordsLoading$ = this.store.pipe(select(recordsProcessingSelector));
 
   cols: any[] = [
     { field: 'icon', header: 'Icon' },
     { field: 'name', header: 'Name' },
-    { field: 'date', header: 'Timestamp' }
+    { field: 'date', header: 'Absolute Time', styleClass: 'text-center' }
+
   ];
 
   constructor(
@@ -36,9 +43,9 @@ export class LogComponent implements OnInit {
   ) { }
   
   ngOnInit(): void {
-    const id = this.activeRoute.snapshot.paramMap.get('id');
-    this.store.dispatch(loadRecords({ logId: id }));
-    this.store.dispatch(loadLog({ id }));
+    this.logId = this.activeRoute.snapshot.paramMap.get('id');
+    this.store.dispatch(loadRecords({ logId: this.logId }));
+    this.store.dispatch(loadLog({ id: this.logId }));
     this.store.dispatch(loadLogTemplates());
   }
 

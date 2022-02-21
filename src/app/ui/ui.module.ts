@@ -13,16 +13,18 @@ import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FieldsetModule } from 'primeng/fieldset'; 
 import { DropdownModule } from 'primeng/dropdown';
-import { EventLabelPipe, EventLabelWithIconPipe } from './pipes/event.pipe';
+import { EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
-import { LogTemplateTitlePipe, LogTemplateDescPipe } from './pipes/log.pipe';
+import { LogTemplateTitlePipe, LogTemplateDescPipe, LogHasStartEvent } from './pipes/log.pipe';
 
 const pipes = [
   EventLabelPipe,
   EventLabelWithIconPipe,
   ColorPipe,
   LogTemplateTitlePipe,
-  LogTemplateDescPipe
+  LogTemplateDescPipe,
+  EventRelTimePipe,
+  LogHasStartEvent
 ]
 
 const modules = [

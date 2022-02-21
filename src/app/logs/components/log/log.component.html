@@ -1,11 +1,11 @@
-<div *ngrxLet="logTemplates$ as logTemplates" class="grid">
+<div *ngrxLet="logTemplate$ as logTemplate" class="grid">
     <p-panel *ngrxLet="log$ as log" class="col-12">
         <ng-template pTemplate="header">
             <div class="grid m-0 w-full">
                 <div class="col-12 p-panel-title p-0 mb-4">
-                    <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
-                    <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
-                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})</span>
+                    <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
+                    <ng-container *ngIf="logTemplate.desc">
+                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ logTemplate.desc }})</span>
                     </ng-container>
                 </div>
                 <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
@@ -30,32 +30,34 @@
             <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records"></button>
         </div>
     </p-panel>
-    <p-panel class="col-12" header="Event Records">
+    <p-panel class="col-12" header="Event Records" *ngrxLet="records$ as records">
         <p-table
             #dt
             styleClass="p-datatable-striped"
             dataKey="name"
             [columns]="cols"
             [rowHover]="true"
-            [value]="records$ | async"
+            [value]="records"
             [loading]="recordsLoading$ | async">
             <ng-template pTemplate="header">
                 <tr>
-                    <th *ngFor="let col of cols">
+                    <th *ngFor="let col of cols" [class]="col.styleClass">
                         {{col.header}}
                     </th>
+                    <th *ngIf="logTemplate | logHasStartEvent" class="text-center">Relative Time</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-record let-index="rowIndex">
                 <tr [pReorderableRow]="index" [class]="record.color | colorClass">
                     <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
                     <td>{{ record.name }}</td>
-                    <td>{{ record.date | date: 'medium' }}</td>
+                    <td class="text-center">{{ record.date | date: 'medium' }}</td>
+                    <td *ngIf="logTemplate | logHasStartEvent" class="text-center">{{ record | eventRelTimePipe: records }}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td class="text-center" [attr.colspan]="cols.length">
+                    <td class="text-center" [attr.colspan]="cols.length + 1">
                         No records found.
                     </td>
                 </tr>

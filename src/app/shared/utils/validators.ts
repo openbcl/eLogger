@@ -1,4 +1,4 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { map, Observable, take, combineLatest, of } from "rxjs";
 import { AbstractLog, LogTemplate } from "../models";
 import { compareAbstractLog, compareEventTemplates } from "./helper";
