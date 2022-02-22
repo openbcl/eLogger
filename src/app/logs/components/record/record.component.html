@@ -1,9 +1,14 @@
-<div class="grid" *ngIf="logTemplate$ | async as logTemplate">
-    <button pButton pRipple
-    *ngFor="let eventTemplate of logTemplate.eventTemplates"
-    [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
-    class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2"
-    iconPos="right"
-    [label]="eventTemplate.name"
-    (click)="raiseEvent(eventTemplate)"></button>
-</div>
+<ng-container *ngrxLet="records$ as records">
+    <div class="grid" *ngIf="logTemplate$ | async as logTemplate">
+        <ng-container *ngFor="let eventTemplate of logTemplate.eventTemplates">
+            <button pButton pRipple
+                iconPos="right"
+                class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2"
+                [disabled]="eventTemplate | eventButtonDisabled: records"
+                [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
+                [label]="eventTemplate.name"
+                (click)="raiseEvent(eventTemplate)">
+            </button>
+        </ng-container>
+    </div>
+</ng-container>

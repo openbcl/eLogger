@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { EventType } from '../../shared/models';
+import { EventTemplate, EventType } from '../../shared/models';
 import { Record } from '../../shared/models'
 
 @Pipe({
@@ -22,6 +22,28 @@ export class EventRelTimePipe implements PipeTransform {
         } else {
           return `-${new Date(+startEvent.date - +value.date).toISOString().split('T')?.[1]?.slice(0, -1)}`
         }
+    }
+  }
+
+}
+
+@Pipe({
+  name: 'eventButtonDisabled'
+})
+export class EventButtonDisabledPipe implements PipeTransform {
+
+  transform(eventTemplate: EventTemplate, records: Record[]) {
+    switch(eventTemplate.eventType) {
+      case EventType.START:
+        return !!records.find(r => r.eventType === EventType.START);
+      case EventType.PAUSE:
+        return !records.find(r => r.eventType === EventType.START) || !records.length || records[records.length - 1].eventType === EventType.PAUSE || !!records.find(r => r.eventType === EventType.END)
+      case EventType.RESUME:
+        return !records.length || records[records.length - 1].eventType !== EventType.PAUSE
+      case EventType.END:
+        return !records.length || records[records.length - 1].eventType === EventType.PAUSE || !records.find(r => r.eventType === EventType.START) || !!records.find(r => r.eventType === EventType.END)
+      default:
+        return !!records.length && (records[records.length - 1].eventType === EventType.PAUSE || records[records.length - 1].eventType === EventType.END)
     }
   }
 
