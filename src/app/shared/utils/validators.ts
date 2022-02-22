@@ -1,6 +1,6 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { map, Observable, take, combineLatest, of } from "rxjs";
-import { AbstractLog, LogTemplate } from "../models";
+import { AbstractLog, Log, LogTemplate } from "../models";
 import { compareAbstractLog, compareEventTemplates } from "./helper";
 
 export const eventTypeIsUniqueError = 'eventTypeIsUnique';
@@ -29,7 +29,7 @@ export class AppValidators {
         return (control: AbstractControl): Observable<ValidationErrors | null> => combineLatest([abstractLogs$, self$ || of(null)]).pipe(
             take(1),
             map(combined => !combined[0].filter(abstractLog => abstractLog.id !== combined[1]?.id).find(abstractLog =>
-                compareAbstractLog(abstractLog, control.value)) ? null : { [abstractLogIsUniqueError]: true }
+                compareAbstractLog(abstractLog, control.value, (<Log>combined[1])?.logTemplateId)) ? null : { [abstractLogIsUniqueError]: true }
             )
         )
     }
