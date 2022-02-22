@@ -1,14 +1,22 @@
-<ng-container *ngrxLet="records$ as records">
-    <div class="grid" *ngIf="logTemplate$ | async as logTemplate">
-        <ng-container *ngFor="let eventTemplate of logTemplate.eventTemplates">
-            <button pButton pRipple
-                iconPos="right"
-                class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2"
-                [disabled]="eventTemplate | eventButtonDisabled: records"
-                [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
-                [label]="eventTemplate.name"
-                (click)="raiseEvent(eventTemplate)">
-            </button>
-        </ng-container>
-    </div>
+<ng-container *ngIf="logTemplate$ | async as logTemplate">
+    <p-panel *ngrxLet="records$ as records">
+        <ng-template pTemplate="header">
+            <div class="grid m-0 w-full">
+                <h1 class="col-12">{{ absTime$ | async | date: 'HH:mm:ss' }}</h1>
+                <h1 class="col-12">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</h1>
+            </div>
+        </ng-template>
+        <div class="grid">
+            <ng-container *ngFor="let eventTemplate of logTemplate.eventTemplates">
+                <button pButton pRipple
+                    iconPos="right"
+                    class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2"
+                    [disabled]="eventTemplate | eventButtonDisabled: records"
+                    [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
+                    [label]="eventTemplate.name"
+                    (click)="raiseEvent(eventTemplate)">
+                </button>
+            </ng-container>
+        </div>
+    </p-panel>
 </ng-container>

@@ -3,7 +3,7 @@ import { EventTemplate, EventType } from '../../shared/models';
 import { Record } from '../../shared/models'
 
 @Pipe({
-  name: 'eventRelTimePipe'
+  name: 'eventRelTime'
 })
 export class EventRelTimePipe implements PipeTransform {
 
@@ -25,6 +25,23 @@ export class EventRelTimePipe implements PipeTransform {
     }
   }
 
+}
+
+@Pipe({
+  name: 'currentEventRelTime'
+})
+export class CurrentEventRelTimePipe implements PipeTransform {
+
+  transform(records: Record[]) {
+    const startEvent = records.find(r => r.eventType === EventType.START);
+    if (!startEvent) {
+      return new Date(0)
+    }
+    const record = records[records.length - 1];
+    const accPauseEvents = records.filter(r => r.key < record.key && r.eventType === EventType.PAUSE).reduce((sum, r) => sum + +r.date, 0);
+    const accResumeEvents = records.filter(r => r.eventType === EventType.RESUME).reduce((sum, r) => sum + +r.date, 0);
+    return new Date(+((record.eventType === EventType.PAUSE || record.eventType === EventType.END) ? record.date : new Date()) - +startEvent.date - (accResumeEvents - accPauseEvents));
+  }
 }
 
 @Pipe({

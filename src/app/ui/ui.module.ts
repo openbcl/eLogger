@@ -13,7 +13,7 @@ import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FieldsetModule } from 'primeng/fieldset'; 
 import { DropdownModule } from 'primeng/dropdown';
-import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe } from './pipes/event.pipe';
+import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
 import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe, ShowRecordButtonsPipe } from './pipes/log.pipe';
 
@@ -24,6 +24,7 @@ const pipes = [
   LogTemplateTitlePipe,
   LogTemplateDescPipe,
   EventRelTimePipe,
+  CurrentEventRelTimePipe,
   LogEventTemplatesPipe,
   EventButtonDisabledPipe,
   ShowRecordButtonsPipe
