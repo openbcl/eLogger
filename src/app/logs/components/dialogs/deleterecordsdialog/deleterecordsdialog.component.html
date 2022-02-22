@@ -1,0 +1,23 @@
+<p-dialog *ngIf="log$ | async as log" header="Delete Log" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    Are you sure you want to delete all event records of this log?
+    <form [formGroup]="form">
+        <br>
+        <hr>
+        <p class="mb-0 font-light">
+            <span>Please enter the title</span> 
+            <span>&nbsp;(</span>
+            <span class="p-error">{{ log.title }}</span>
+            <span>)&nbsp;</span>
+            <span>of the log to confirm the deletion of all records.</span> 
+        </p>
+        <span class="p-float-label mt-5 field">
+            <input formControlName="title" pInputText type="text" class="inputfield w-full"> 
+            <label for="float-input">Delete all records of log with title ...</label>
+        </span>
+    </form>
+    <ng-template pTemplate="footer">
+        <form [formGroup]="form" (ngSubmit)="delete(log.id)">
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-trash" label="Delete" class="p-button-danger p-button-text"></button>
+        </form>
+    </ng-template>
+</p-dialog>

@@ -1,69 +1,78 @@
 <div *ngrxLet="logTemplate$ as logTemplate" class="grid">
-    <p-panel *ngrxLet="log$ as log" class="col-12">
-        <ng-template pTemplate="header">
-            <div class="grid m-0 w-full">
-                <div class="col-12 p-panel-title p-0 mb-4">
-                    <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
-                    <ng-container *ngIf="logTemplate.desc">
-                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ logTemplate.desc }})</span>
-                    </ng-container>
-                </div>
-                <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
-                    <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-                        <span class="p-inputgroup-addon">Title</span>
-                        <input type="text" pInputText [disabled]="true" [value]="log.title" />
-                    </div>
-                    <div class="p-inputgroup col-12 pb-0 pl-0 pr-0">
-                        <span class="p-inputgroup-addon">Description</span>
-                        <input type="text" pInputText [disabled]="true" [value]="log.desc || 'no description set'" />
-                    </div>
-                </div>
-                <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
-                    <button pButton pRipple icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogDialog = true"></button>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogDialog = true"></button>
-                </div>
-            </div>
-        </ng-template>
-        <div class="flex flex-wrap justify-content-center">
-            <button pButton pRipple icon="pi pi-th-large" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start recording" [routerLink]="['record']"></button>
-            <button pButton pRipple icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records"></button>
-            <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records"></button>
-        </div>
-    </p-panel>
-    <p-panel class="col-12" header="Event Records" *ngrxLet="records$ as records">
-        <p-table
-            #dt
-            styleClass="p-datatable-striped"
-            dataKey="name"
-            [columns]="cols"
-            [rowHover]="true"
-            [value]="records"
-            [loading]="recordsLoading$ | async">
+    <ng-container *ngrxLet="records$ as records">
+        <p-panel *ngrxLet="log$ as log" class="col-12">
             <ng-template pTemplate="header">
-                <tr>
-                    <th *ngFor="let col of cols" [class]="col.styleClass">
-                        {{col.header}}
-                    </th>
-                    <th *ngIf="logTemplate | logHasStartEvent" class="text-center">Relative Time</th>
-                </tr>
+                <div class="grid m-0 w-full">
+                    <div class="col-12 p-panel-title p-0 mb-4">
+                        <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
+                        <ng-container *ngIf="logTemplate.desc">
+                            <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ logTemplate.desc }})</span>
+                        </ng-container>
+                    </div>
+                    <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
+                        <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
+                            <span class="p-inputgroup-addon">Title</span>
+                            <input type="text" pInputText [disabled]="true" [value]="log.title" />
+                        </div>
+                        <div class="p-inputgroup col-12 pb-0 pl-0 pr-0">
+                            <span class="p-inputgroup-addon">Description</span>
+                            <input type="text" pInputText [disabled]="true" [value]="log.desc || 'no description set'" />
+                        </div>
+                    </div>
+                    <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
+                        <button pButton pRipple icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateLogDialog = true"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteLogDialog = true"></button>
+                    </div>
+                </div>
             </ng-template>
-            <ng-template pTemplate="body" let-record let-index="rowIndex">
-                <tr [pReorderableRow]="index" [class]="record.color | colorClass">
-                    <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
-                    <td>{{ record.name }}</td>
-                    <td class="text-center">{{ record.date | date: 'medium' }}</td>
-                    <td *ngIf="logTemplate | logHasStartEvent" class="text-center">{{ record | eventRelTimePipe: records }}</td>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td class="text-center" [attr.colspan]="cols.length + 1">
-                        No records found.
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </p-panel>
+            <div class="flex flex-wrap justify-content-center">
+                <button pButton pRipple *ngIf="!records?.length" [icon]="PrimeIcons.PLAY" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start logging" [routerLink]="['record']"></button>
+                <button pButton pRipple *ngIf="!!records?.length" [icon]="PrimeIcons.FORWARD" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Resume logging" [routerLink]="['record']"></button>
+                <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records"></button>
+                <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records" (click)="displayDeleteRecordsDialog = true"></button>
+            </div>
+        </p-panel>
+        <p-panel class="col-12" header="Event Records">
+            <p-table
+                #dt
+                *ngrxLet="logTemplate | logEventTemplates as logEventTemplates"
+                styleClass="p-datatable-striped"
+                dataKey="name"
+                [columns]="cols"
+                [rowHover]="true"
+                [value]="records"
+                [loading]="recordsLoading$ | async">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th *ngFor="let col of cols" [class]="col.styleClass">
+                            {{col.header}}
+                        </th>
+                        <th *ngIf="logEventTemplates.containStart" class="text-center">Relative Time</th>
+                        <th *ngIf="logEventTemplates.containData" class="text-center">Data</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-record let-index="rowIndex">
+                    <tr [pReorderableRow]="index" [class]="record.color | colorClass">
+                        <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
+                        <td>{{ record.name }}</td>
+                        <td class="text-center">{{ record.date | date: 'medium' }}</td>
+                        <td *ngIf="logEventTemplates.containStart" class="text-center">{{ record | eventRelTimePipe: records }}</td>
+                        <td *ngIf="logEventTemplates.containData" class="text-center">
+                            <span *ngIf="record.text">{{ record.text }}</span>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td class="text-center" [attr.colspan]="cols.length + logEventTemplates.additionalColumns">
+                            No records found.
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-panel>
+    </ng-container>
 </div>
 <el-update-log-dialog [(visible)]="displayUpdateLogDialog"></el-update-log-dialog>
 <el-delete-log-dialog [(visible)]="displayDeleteLogDialog"></el-delete-log-dialog>
+<el-delete-records-dialog [(visible)]="displayDeleteRecordsDialog"></el-delete-records-dialog>

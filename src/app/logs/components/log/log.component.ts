@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { PrimeIcons } from 'primeng/api';
 import { combineLatest, filter, map, switchMap } from 'rxjs';
 import { loadRecords } from '../../../store/record.actions';
 import { recordsProcessingSelector, recordsSelector } from '../../../store/record.selectors';
@@ -16,8 +17,11 @@ import { logSelector } from '../../store/log.selectors';
 })
 export class LogComponent implements OnInit {
 
+  PrimeIcons = PrimeIcons;
+
   displayUpdateLogDialog = false;
   displayDeleteLogDialog = false;
+  displayDeleteRecordsDialog = false;
 
   logId: string;
 

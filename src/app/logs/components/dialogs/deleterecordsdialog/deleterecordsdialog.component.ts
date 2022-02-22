@@ -1,18 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { AppValidators } from '../../../../shared/utils/validators';
-import { Log } from '../../../../shared/models';
-import { deleteLog } from '../../../store/log.actions';
-import { logSelector } from '../../../store/log.selectors';
 import { filter, map } from 'rxjs';
+import { logSelector } from '../../../store/log.selectors';
+import { AppValidators } from '../../../../shared/utils/validators';
+import { deleteRecords } from '../../../../store/record.actions';
 
 @Component({
-  selector: 'el-delete-log-dialog',
-  templateUrl: './deletelogdialog.component.html',
-  styleUrls: ['./deletelogdialog.component.scss']
+  selector: 'el-delete-records-dialog',
+  templateUrl: './deleterecordsdialog.component.html',
+  styleUrls: ['./deleterecordsdialog.component.scss']
 })
-export class DeleteLogDialogComponent {
+export class DeleteRecordsDialogComponent {
 
   @Input()
   visible: boolean;
@@ -35,8 +34,8 @@ export class DeleteLogDialogComponent {
     this.form.reset();
   }
 
-  delete(log: Log) {
-    this.store.dispatch(deleteLog({ log }));
+  delete(logId: string) {
+    this.store.dispatch(deleteRecords({ logId }))
     this.close();
   }
 
