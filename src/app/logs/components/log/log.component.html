@@ -27,9 +27,9 @@
             </ng-template>
             <div class="flex flex-wrap justify-content-center">
                 <button pButton pRipple *ngIf="!records?.length" [icon]="PrimeIcons.PLAY" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start logging" [routerLink]="['record']"></button>
-                <button pButton pRipple *ngIf="!!records?.length && (records | showRecordButtons: logTemplate)" [icon]="PrimeIcons.FORWARD" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Resume logging" [routerLink]="['record']"></button>
+                <button pButton pRipple *ngIf="!!records?.length" [icon]="PrimeIcons.FORWARD" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Resume logging" [routerLink]="['record']"></button>
                 <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records"></button>
-                <button pButton pRipple *ngIf="!!records?.length && (records | showRecordButtons: logTemplate)" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records" (click)="displayDeleteRecordsDialog = true"></button>
+                <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records" (click)="displayDeleteRecordsDialog = true"></button>
             </div>
         </p-panel>
         <p-panel class="col-12" header="Event Records">

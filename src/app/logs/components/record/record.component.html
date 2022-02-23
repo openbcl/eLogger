@@ -2,8 +2,24 @@
     <p-panel *ngrxLet="records$ as records">
         <ng-template pTemplate="header">
             <div class="grid m-0 w-full">
-                <h1 class="col-12 el-font-monospace">{{ absTime$ | async | date: 'HH:mm:ss' }}</h1>
-                <h1 class="col-12 el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</h1>
+                <div class="col-8 md:col-5 font-light text-500 p-0" *ngrxLet="log$ as log">
+                    <span>{{ log.title }}</span>
+                    <ng-container *ngIf="logTemplate.desc">
+                        <span>&nbsp;({{ log.desc }})</span>
+                    </ng-container>
+                </div>
+                <div class="col-4 md:col-2 p-0 text-right md:text-center font-light">
+                    <span class="el-font-monospace">{{ absTime$ | async | date: 'HH:mm:ss' }}</span>
+                </div>
+                <div class="hidden md:block md:col-5 font-light text-500 p-0 text-right">
+                    <span>{{ logTemplate.title }}</span>
+                    <ng-container *ngIf="logTemplate.desc">
+                        <span>&nbsp;({{ logTemplate.desc }})</span>
+                    </ng-container>
+                </div>
+                <div *ngIf="(logTemplate | logEventTemplates | async).containStart" class="col-12 p-0 text-center pt-3">
+                    <span class="font-light text-4xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
+                </div>
             </div>
         </ng-template>
         <div class="grid">

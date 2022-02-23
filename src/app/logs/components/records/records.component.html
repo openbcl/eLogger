@@ -5,14 +5,14 @@
     [responsiveLayout]="responsiveLayout"
     [breakpoint]="breakpoint"
     [styleClass]="styleClass"
-    [columns]="cols"
     [rowHover]="true"
-    [value]="records"
-    [loading]="recordsLoading$ | async">
+    [value]="records">
     <ng-template pTemplate="header">
         <tr>
-            <th *ngFor="let col of cols" [class]="col.styleClass">
-                {{col.header}}
+            <th></th>
+            <th>Event</th>
+            <th [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                Absolute Time
             </th>
             <th *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
             <th *ngIf="logEventTemplates.containData && showDataColumn">Data</th>
@@ -22,7 +22,9 @@
         <tr [pReorderableRow]="index" [class]="record.color | colorClass">
             <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
             <td>{{ record.name }}</td>
-            <td class="text-center ">{{ record.date | date: 'medium' }}</td>
+            <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                {{ record.date | date: 'medium' }}
+            </td>
             <td *ngIf="logEventTemplates.containStart" class="text-right">
                 <ng-container *ngIf="record | eventRelTime: records as rel">
                     <span class="el-font-monospace">
@@ -37,7 +39,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
-            <td class="text-center" [attr.colspan]="cols.length + logEventTemplates.additionalColumns">
+            <td class="text-center" [attr.colspan]="3 + logEventTemplates.additionalColumns">
                 No records found.
             </td>
         </tr>

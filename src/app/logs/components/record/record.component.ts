@@ -22,7 +22,7 @@ export class RecordComponent implements OnInit {
   PrimeIcons = PrimeIcons;
 
   logId: string;
-
+  refreshRate = 1000/144;
 
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
@@ -31,13 +31,12 @@ export class RecordComponent implements OnInit {
   log$ = this.logData.pipe(map(logData => logData[0]));
   logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
-
-  absTime$ = interval(1000/144).pipe(map(() => new Date()));
+  absTime$ = interval(this.refreshRate).pipe(map(() => new Date()));
   relTime$ = this.records$.pipe(switchMap(records => {
       if(!records.find(r => r.eventType === EventType.START) || records.find(r => r.eventType === EventType.END || !!records.length && records[records.length - 1].eventType === EventType.PAUSE)) {
         return of(this.currentEventRelTime.transform(records));
       }
-      return interval(1000/144).pipe(map(() => this.currentEventRelTime.transform(records)));
+      return interval(this.refreshRate).pipe(map(() => this.currentEventRelTime.transform(records)));
   }));
 
   constructor(
