@@ -13,6 +13,7 @@ import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FieldsetModule } from 'primeng/fieldset'; 
 import { DropdownModule } from 'primeng/dropdown';
+import { AccordionModule } from 'primeng/accordion';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
 import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe, ShowRecordButtonsPipe } from './pipes/log.pipe';
@@ -44,7 +45,8 @@ const modules = [
   DialogModule,
   SelectButtonModule,
   FieldsetModule,
-  DropdownModule
+  DropdownModule,
+  AccordionModule
 ]
 
 @NgModule({

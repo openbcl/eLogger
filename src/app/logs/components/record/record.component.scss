@@ -1,0 +1,26 @@
+:host ::ng-deep {
+    .el-record-event-button.p-button {
+        border-color: transparent;
+        .p-button-icon-left {
+            font-size: 2rem;
+            margin-right: 0;
+        }
+        .p-button-label {
+            font-weight: unset;
+        }
+    }
+
+    .p-0 .p-panel-content,.p-accordion-content {
+        padding: 0;
+    }
+
+    .py-2 .p-panel-content,.p-accordion-content {
+        padding: 0.5rem 0 0.5rem 0;
+    }
+}
+
+.el-record-event-button {
+    display: inline-grid;
+    width: 8rem;
+    min-height: 6.25rem;
+}

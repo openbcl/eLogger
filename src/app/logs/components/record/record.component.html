@@ -23,19 +23,25 @@
             </div>
         </ng-template>
         <div class="grid">
-            <div class="col-12">
+            <p-panel header="Record Event" class="col-12 md:col-5 text-center py-2">
                 <ng-container *ngFor="let eventTemplate of logTemplate.eventTemplates">
                     <button pButton pRipple
-                        iconPos="right"
-                        class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2"
-                        [disabled]="eventTemplate | eventButtonDisabled: records"
+                        class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2 el-record-event-button"
                         [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
                         [label]="eventTemplate.name"
+                        [disabled]="eventTemplate | eventButtonDisabled: records"
                         (click)="raiseEvent(eventTemplate)">
                     </button>
                 </ng-container>
-            </div>
-            <el-records class="col-12" [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+            </p-panel>
+            <p-accordion class="col-12 md:hidden">
+                <p-accordionTab header="Recorded Events" [selected]="false" styleClass="p-0">
+                   <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                </p-accordionTab>
+            </p-accordion>
+            <p-panel header="Recorded Events" class="hidden col-7 md:block" styleClass="p-0">
+                <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+            </p-panel>
         </div>
     </p-panel>
 </ng-container>
