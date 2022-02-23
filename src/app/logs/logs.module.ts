@@ -14,6 +14,7 @@ import { LogComponent } from './components/log/log.component';
 import { UpdateLogDialogComponent } from './components/dialogs/updatelogdialog/updatelogdialog.component';
 import { RecordComponent } from './components/record/record.component';
 import { DeleteRecordsDialogComponent } from './components/dialogs/deleterecordsdialog/deleterecordsdialog.component';
+import { RecordsComponent } from './components/records/records.component';
 
 
 
@@ -25,7 +26,8 @@ import { DeleteRecordsDialogComponent } from './components/dialogs/deleterecords
     LogComponent,
     UpdateLogDialogComponent,
     RecordComponent,
-    DeleteRecordsDialogComponent
+    DeleteRecordsDialogComponent,
+    RecordsComponent
   ],
   imports: [
     CommonModule,

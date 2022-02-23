@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { combineLatest, filter, map, switchMap } from 'rxjs';
 import { loadRecords } from '../../../store/record.actions';
-import { recordsProcessingSelector, recordsSelector } from '../../../store/record.selectors';
+import { recordsSelector } from '../../../store/record.selectors';
 import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
 import { loadLog } from '../../store/log.actions';
@@ -32,14 +32,6 @@ export class LogComponent implements OnInit {
   log$ = this.logData.pipe(map(logData => logData[0]));
   logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
-  recordsLoading$ = this.store.pipe(select(recordsProcessingSelector));
-
-  cols: any[] = [
-    { field: 'icon', header: 'Icon' },
-    { field: 'name', header: 'Name' },
-    { field: 'date', header: 'Absolute Time', styleClass: 'text-center' }
-
-  ];
 
   constructor(
     private store: Store,

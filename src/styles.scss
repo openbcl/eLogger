@@ -12,6 +12,10 @@ body {
     }
 }
 
+.el-font-monospace {
+    font-family: monospace;
+}
+
 .p-dialog:not(.p-dialog-maximized) {
     border-width: 1px;
     border-color: var(--primary-color);

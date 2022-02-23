@@ -17,6 +17,7 @@ export class LogsComponent implements OnInit {
   searchTerm = '';
   displayCreateLogDialog = false;
   isMobileLayout = false;
+  breakpoint = 500;
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   logsLoading$ = this.store.pipe(select(logsProcessingSelector));
@@ -34,8 +35,8 @@ export class LogsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadLogs());
     this.store.dispatch(loadLogTemplates());
-    this.isMobileLayout = window.innerWidth < 961;
-    window.onresize = () => this.isMobileLayout = window.innerWidth < 961;
+    this.isMobileLayout = window.innerWidth <= this.breakpoint;
+    window.onresize = () => this.isMobileLayout = window.innerWidth <= this.breakpoint;
   }
 
   onRowReorder(logs: Log[]) {

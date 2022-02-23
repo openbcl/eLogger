@@ -1,0 +1,45 @@
+<p-table
+    #dt
+    *ngrxLet="logTemplate | logEventTemplates as logEventTemplates"
+    dataKey="name"
+    [responsiveLayout]="responsiveLayout"
+    [breakpoint]="breakpoint"
+    [styleClass]="styleClass"
+    [columns]="cols"
+    [rowHover]="true"
+    [value]="records"
+    [loading]="recordsLoading$ | async">
+    <ng-template pTemplate="header">
+        <tr>
+            <th *ngFor="let col of cols" [class]="col.styleClass">
+                {{col.header}}
+            </th>
+            <th *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
+            <th *ngIf="logEventTemplates.containData && showDataColumn">Data</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-record let-index="rowIndex">
+        <tr [pReorderableRow]="index" [class]="record.color | colorClass">
+            <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
+            <td>{{ record.name }}</td>
+            <td class="text-center ">{{ record.date | date: 'medium' }}</td>
+            <td *ngIf="logEventTemplates.containStart" class="text-right">
+                <ng-container *ngIf="record | eventRelTime: records as rel">
+                    <span class="el-font-monospace">
+                        {{ rel.prefix }} {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
+                    </span>
+                </ng-container>
+            </td>
+            <td *ngIf="logEventTemplates.containData && showDataColumn">
+                <span *ngIf="record.text">{{ record.text }}</span>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td class="text-center" [attr.colspan]="cols.length + logEventTemplates.additionalColumns">
+                No records found.
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
