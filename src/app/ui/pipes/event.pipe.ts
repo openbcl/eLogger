@@ -7,20 +7,22 @@ import { Record } from '../../shared/models'
 })
 export class EventRelTimePipe implements PipeTransform {
 
-  transform(value: Record, records: Record[]): string {
+  transform(value: Record, records: Record[]) {
+    const prefixPositiv = '';
+    const prefixNegativ = '-';
     switch(value.eventType) {
       case EventType.START:
-        return '00:00:00.000'
+        return { prefix: prefixPositiv, time: new Date(0) };
       default:
         const startEvent = records.find(r => r.eventType === EventType.START);
         if (!startEvent) {
-          return '-'
+          return { prefix: prefixNegativ, time: null };
         } else if (startEvent.key < value.key) {
           const accPauseEvents = records.filter(r => r.key < value.key && r.eventType === EventType.PAUSE).reduce((sum, r) => sum + +r.date, 0);
           const accResumeEvents = records.filter(r => r.key <= value.key && r.eventType === EventType.RESUME).reduce((sum, r) => sum + +r.date, 0);
-          return new Date(+value.date - +startEvent.date - (accResumeEvents - accPauseEvents)).toISOString().split('T')?.[1]?.slice(0, -1)
+          return { prefix: prefixPositiv, time: new Date(+value.date - +startEvent.date - (accResumeEvents - accPauseEvents)) }
         } else {
-          return `-${new Date(+startEvent.date - +value.date).toISOString().split('T')?.[1]?.slice(0, -1)}`
+          return { prefix: prefixNegativ, time: new Date(+startEvent.date - +value.date) }
         }
     }
   }

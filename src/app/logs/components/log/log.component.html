@@ -47,8 +47,8 @@
                         <th *ngFor="let col of cols" [class]="col.styleClass">
                             {{col.header}}
                         </th>
-                        <th *ngIf="logEventTemplates.containStart" class="text-center">Relative Time</th>
-                        <th *ngIf="logEventTemplates.containData" class="text-center">Data</th>
+                        <th *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
+                        <th *ngIf="logEventTemplates.containData">Data</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-record let-index="rowIndex">
@@ -56,8 +56,13 @@
                         <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
                         <td>{{ record.name }}</td>
                         <td class="text-center">{{ record.date | date: 'medium' }}</td>
-                        <td *ngIf="logEventTemplates.containStart" class="text-center">{{ record | eventRelTime: records }}</td>
-                        <td *ngIf="logEventTemplates.containData" class="text-center">
+                        <td *ngIf="logEventTemplates.containStart" class="text-right">
+                            <ng-container *ngIf="record | eventRelTime: records as rel">
+                                {{ rel.prefix }}
+                                {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
+                            </ng-container>
+                        </td>
+                        <td *ngIf="logEventTemplates.containData">
                             <span *ngIf="record.text">{{ record.text }}</span>
                         </td>
                     </tr>
