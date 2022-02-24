@@ -1,0 +1,14 @@
+<p-dialog header="Text Event" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    Please enter a suitable text for the event.
+    <form [formGroup]="form">
+        <span class="p-float-label mt-5 field">
+            <input formControlName="text" pInputText type="text" class="inputfield w-full">
+            <label for="float-input">Text</label>
+        </span>
+    </form>
+    <ng-template pTemplate="footer">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-plus" label="Create Record" class="p-button-success p-button-text"></button>
+        </form>
+    </ng-template>
+</p-dialog>

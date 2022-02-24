@@ -15,6 +15,7 @@ import { UpdateLogDialogComponent } from './components/dialogs/updatelogdialog/u
 import { RecordComponent } from './components/record/record.component';
 import { DeleteRecordsDialogComponent } from './components/dialogs/deleterecordsdialog/deleterecordsdialog.component';
 import { RecordsComponent } from './components/records/records.component';
+import { TextRecordDialogComponent } from './components/dialogs/textrecorddialog/textrecorddialog.component';
 
 
 
@@ -27,7 +28,8 @@ import { RecordsComponent } from './components/records/records.component';
     UpdateLogDialogComponent,
     RecordComponent,
     DeleteRecordsDialogComponent,
-    RecordsComponent
+    RecordsComponent,
+    TextRecordDialogComponent
   ],
   imports: [
     CommonModule,

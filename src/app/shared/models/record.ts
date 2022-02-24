@@ -13,12 +13,12 @@ export class Record implements EventTemplate {
     text?: string;
     date: Date;
 
-    constructor(template: EventTemplate, logId: string) {
+    constructor(template: EventTemplate, logId: string, date: Date) {
         this.logId = logId;
         this.name = template.name;
         this.eventType = template.eventType;
         this.icon = template.icon;
         this.color = template.color;
-        this.date = new Date();
+        this.date = date;
     }
 }

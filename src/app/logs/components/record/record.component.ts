@@ -23,6 +23,9 @@ export class RecordComponent implements OnInit {
 
   logId: string;
   refreshRate = 1000/144;
+  displayTextRecordDialog = false;
+  timestamp: Date;
+  textEventTemplate: EventTemplate;
 
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
@@ -53,10 +56,17 @@ export class RecordComponent implements OnInit {
   }
 
   raiseEvent(eventTemplate: EventTemplate) {
-    this.store.dispatch(createRecord({
-      eventTemplate,
-      logId: this.logId
-    }));
+    if (eventTemplate.eventType !== EventType.TEXT) {
+      this.store.dispatch(createRecord({
+        eventTemplate,
+        logId: this.logId,
+        date: new Date()
+      }));
+    } else {
+      this.timestamp = new Date();
+      this.textEventTemplate = eventTemplate;
+      this.displayTextRecordDialog = true;
+    }
   }
 
 }

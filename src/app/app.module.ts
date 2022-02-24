@@ -65,7 +65,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       objectStoresMeta: [
         generateObjectStoreMeta(LOGS, new Log(null)),
         generateObjectStoreMeta(LOGTEMPLATES, new LogTemplate(null)),
-        generateObjectStoreMeta(RECORDS, new Record({ name: null, color: null, eventType: 0, icon: null }, null))
+        generateObjectStoreMeta(RECORDS, new Record({ name: null, color: null, eventType: 0, icon: null }, null, null))
       ]
     })
   ],
