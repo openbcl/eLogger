@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core'
 import { EventLabelPipe, EventRelTimePipe } from '../../ui/pipes/event.pipe'
 import { EventType, Log, Record } from '../models'
+import * as JSZip from 'jszip'
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,20 @@ export class ExportService {
     ) { }
 
     exportCSV (records: Record[], log: Log) {
+        const blob = this.recordsToCSV(records, log);
+        blob && this.downloadFile(blob, `${this.recordsFilename(log)}.csv`)
+    }
+
+    private recordsFilename(log: Log) {
+        const acceptableTitleLength = 40;
+        const acceptableMaxLength = 60;
+        const filename = !!log.desc?.length ?
+            `${log.title.length > acceptableTitleLength ? log.title.substring(0, acceptableTitleLength - 1) : log.title} - ${log.desc}` :
+            log.title.length > acceptableMaxLength ? log.title.substring(0, acceptableMaxLength - 1) : log.title;
+        return filename.length > acceptableMaxLength ? `${filename.substring(0, acceptableMaxLength - 9)} ${log.id.substring(0, 6)}` : filename;
+    }
+
+    private recordsToCSV(records: Record[], log: Log) {
         if (!!records?.length && !!log) {
             const delimiter = ';';
             const csv: string[][] = [];
@@ -42,18 +57,27 @@ export class ExportService {
                 csv.push(row);
             });
             const csvData = csv.map(row => row.map(value => `"${value}"`).join(delimiter)).join('\r\n');
-            this.provideFileDownload(csvData, 'text/csv', `${log.title.replace(/ /g, '_')}-${log.id.split('-')[0]}.csv`)
+            return new Blob(['\ufeff', csvData], { type: 'text/csv' });
         }
+        return null;
     }
 
-    private provideFileDownload(data: string, type: string, filename: string = 'test.csv') {
-        const blob = new Blob(['\ufeff', data], { type });
+    private downloadFile(blob: Blob, filename: string) {
         const element = window.document.createElement('a');
         element.href = window.URL.createObjectURL(blob);
-        element.download = filename;        
-        element.click();        
+        element.download = filename;
+        element.click();
         window.URL.revokeObjectURL(element.href);
         element.remove();
     }
+
+    private async downloadZipFile(files: {blob: Blob, filename: string}[], filename: string) {
+        const zip = new JSZip();
+        files.forEach(file => zip.file(file.filename, file.blob))
+        await zip.generateAsync({type: 'blob'}).then(zipFile => {
+            this.downloadFile(zipFile, filename)
+        });
+    }
+
 
 }
