@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { MenubarModule } from 'primeng/menubar';
 import { TabViewModule } from 'primeng/tabview';
@@ -56,6 +57,6 @@ const modules = [
   ],
   imports: [ ...modules ],
   exports: [ ...modules, ...pipes ],
-  providers: [ ...pipes ]
+  providers: [ ...pipes, DatePipe ]
 })
 export class UiModule { }

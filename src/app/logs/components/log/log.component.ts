@@ -9,6 +9,8 @@ import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
 import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';
+import { Log, Record } from '../../../shared/models';
+import { ExportService } from '../../../shared/services/export.service';
 
 @Component({
   selector: 'el-log',
@@ -35,7 +37,8 @@ export class LogComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private exportService: ExportService
   ) { }
   
   ngOnInit(): void {
@@ -43,6 +46,10 @@ export class LogComponent implements OnInit {
     this.store.dispatch(loadRecords({ logId: this.logId }));
     this.store.dispatch(loadLog({ id: this.logId }));
     this.store.dispatch(loadLogTemplates());
+  }
+
+  shareRecords(records: Record[], log: Log) {
+    this.exportService.exportCSV(records, log);
   }
 
 }

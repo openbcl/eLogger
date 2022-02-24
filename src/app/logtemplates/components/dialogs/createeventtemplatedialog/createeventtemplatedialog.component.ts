@@ -42,8 +42,8 @@ export class CreateEventTemplateDialogComponent {
   constructor(
     private store: Store,
     private fb: FormBuilder,
-    private eventLabelPipePipe: EventLabelPipe,
-    private eventLabelWithIconPipePipe: EventLabelWithIconPipe
+    private eventLabel: EventLabelPipe,
+    private eventLabelWithIcon: EventLabelWithIconPipe
   ) { }
 
   close() {
@@ -68,7 +68,7 @@ export class CreateEventTemplateDialogComponent {
           this.form.patchValue({ name: ''});
           break;
         default:
-          this.form.patchValue({ name: this.eventLabelPipePipe.transform(this.form.value.eventType) });
+          this.form.patchValue({ name: this.eventLabel.transform(this.form.value.eventType) });
       }
     }
   }
@@ -87,7 +87,7 @@ export class CreateEventTemplateDialogComponent {
   submit(logTemplate: LogTemplate) {
     const eventTemplate = this.form.getRawValue();
     delete eventTemplate.selectedTemplate;
-    const { value, styleClass } = eventTemplate.eventType !== 0 ? this.eventLabelWithIconPipePipe.transform(eventTemplate.eventType) : eventTemplate.icon;
+    const { value, styleClass } = eventTemplate.eventType !== 0 ? this.eventLabelWithIcon.transform(eventTemplate.eventType) : eventTemplate.icon;
     eventTemplate.icon = { value, styleClass };
     this.store.dispatch(updateLogTemplate({
       logTemplate: {

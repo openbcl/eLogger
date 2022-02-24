@@ -18,8 +18,8 @@
             <th *ngIf="logEventTemplates.containData && showDataColumn">Data</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-record let-index="rowIndex">
-        <tr [pReorderableRow]="index" [class]="record.color | colorClass">
+    <ng-template pTemplate="body" let-record>
+        <tr [class]="record.color | colorClass">
             <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
             <td>{{ record.name }}</td>
             <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
