@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { revokeRecord } from 'src/app/store/record.actions';
+import { revokeRecord } from '../../../store/record.actions';
 import { LogTemplate, Record } from '../../../shared/models';
 
 @Component({

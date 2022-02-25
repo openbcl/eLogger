@@ -17,7 +17,7 @@
                     <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
                 </div>
                 <div class="flex flex-wrap">
-                    <button pButton pRipple [disabled]="!dt.value?.length" type="button" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-1" (click)="shareLogs(dt.value, logTemplates)"></button>
+                    <button pButton pRipple [disabled]="!dt.value?.length" type="button" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-1" (click)="displayShareLogsDialog = true"></button>
                     <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateLogDialog = true"></button>
                 </div>
             </div>
@@ -58,3 +58,4 @@
     </p-table>
 </p-panel>
 <el-create-log-dialog [(visible)]="displayCreateLogDialog"></el-create-log-dialog>
+<el-share-logs-dialog [(visible)]="displayShareLogsDialog"></el-share-logs-dialog>

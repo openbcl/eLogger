@@ -6,7 +6,7 @@ import { LogTemplateDescPipe, LogTemplateTitlePipe } from '../../ui/pipes/log.pi
 import { EventType, Log, LogTemplate, Record } from '../models'
 import { allRecordsSelector } from '../../store/record.selectors';
 import * as JSZip from 'jszip'
-import { loadAllRecords } from 'src/app/store/record.actions';
+import { loadAllRecords } from '../../store/record.actions';
 import { filter, take } from 'rxjs';
 
 @Injectable({
@@ -39,23 +39,16 @@ export class ExportService {
                 this.store.dispatch(loadAllRecords());
                 this.store.pipe(
                     select(allRecordsSelector),
-                    filter(allRecords => {
-                        if (!allRecords) {
-                            return false;
-                        }
-                        const keys = Object.keys(allRecords).sort();
-                        const ids = logs.filter(log => !!log.recordsCount).map(log => log.id).sort();
-                        return keys.length === ids.length && keys.every((key, i) => key === ids[i]);
-                    }),
-                    take(1)).subscribe(async allRecords => {
-                        const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
-                            blob: this.recordsToCSV(allRecords[log.id], log),
-                            filename: `${this.recordsFilename(log)}.csv`
-                        }));
-                        files.push(logsSummaryFile);
-                        await this.downloadZipFile(files, `${filename}.zip`)
-                    }
-                );
+                    filter(allRecords => !!allRecords && logs.filter(log => !!log.recordsCount).map(log => log.id).every(id => !!Object.keys(allRecords).find(key => key === id))),
+                    take(1)
+                ).subscribe(async allRecords => {
+                    const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
+                        blob: this.recordsToCSV(allRecords[log.id], log),
+                        filename: `${this.recordsFilename(log)}.csv`
+                    }));
+                    files.push(logsSummaryFile);
+                    await this.downloadZipFile(files, `${filename}.zip`)
+                });
             } else {
                 this.downloadFile(logsSummaryFile.blob, logsSummaryFile.filename)
             }
