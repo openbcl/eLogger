@@ -16,7 +16,10 @@
                     <i class="p-inputgroup-addon pi pi-search"></i>
                     <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
                 </div>
-                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateLogDialog = true"></button>
+                <div class="flex flex-wrap">
+                    <button pButton pRipple [disabled]="!dt.value?.length" type="button" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-1" (click)="shareLogs(dt.value, logTemplates)"></button>
+                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateLogDialog = true"></button>
+                </div>
             </div>
         </ng-template>
         <ng-template pTemplate="header" let-columns>

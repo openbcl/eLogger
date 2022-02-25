@@ -5,7 +5,8 @@ import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
 import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { loadLogs, reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
-import { Log } from '../../../shared/models';
+import { Log, LogTemplate } from '../../../shared/models';
+import { ExportService } from '../../../shared/services/export.service';
 
 @Component({
   selector: 'el-logs',
@@ -30,7 +31,10 @@ export class LogsComponent implements OnInit {
     { field: 'records', header: 'Records', class: 'text-center' }
   ];
 
-  constructor(private store: Store) { }
+  constructor(
+    private store: Store,
+    private exportService: ExportService
+  ) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadLogs());
@@ -51,6 +55,10 @@ export class LogsComponent implements OnInit {
       orderedLogs.splice(index+ranking, 0, log);
       this.onRowReorder(orderedLogs);
     }
+  }
+
+  shareLogs(logs: Log[], logTemplates: LogTemplate[]) {
+    this.exportService.exportLogs(logs, logTemplates);
   }
 
 }

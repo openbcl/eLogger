@@ -49,7 +49,7 @@ export class LogComponent implements OnInit {
   }
 
   shareRecords(records: Record[], log: Log) {
-    this.exportService.exportCSV(records, log);
+    this.exportService.exportRecords(records, log);
   }
 
 }
