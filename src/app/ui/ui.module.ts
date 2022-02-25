@@ -17,7 +17,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
-import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe, ShowRecordButtonsPipe } from './pipes/log.pipe';
+import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe } from './pipes/log.pipe';
 
 const pipes = [
   EventLabelPipe,
@@ -28,8 +28,7 @@ const pipes = [
   EventRelTimePipe,
   CurrentEventRelTimePipe,
   LogEventTemplatesPipe,
-  EventButtonDisabledPipe,
-  ShowRecordButtonsPipe
+  EventButtonDisabledPipe
 ]
 
 const modules = [

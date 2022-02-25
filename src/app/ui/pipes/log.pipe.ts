@@ -41,14 +41,3 @@ export class LogEventTemplatesPipe implements PipeTransform {
   }
 
 }
-
-@Pipe({
-  name: 'showRecordButtons'
-})
-export class ShowRecordButtonsPipe implements PipeTransform {
-
-  transform(records: Record[], logTemplate: LogTemplate) {
-    return !logTemplate.eventTemplates.find(eT => eT.eventType === EventType.END) || !records.find(r => r.eventType === EventType.END);
-  }
-
-}

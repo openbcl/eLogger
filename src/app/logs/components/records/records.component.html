@@ -7,6 +7,11 @@
     [styleClass]="styleClass"
     [rowHover]="true"
     [value]="records">
+    <ng-template *ngIf="showRevokeButton"pTemplate="caption">
+        <div class="p-2">
+            <button pButton pRipple [disabled]="!records?.length" icon="pi pi-replay" class="p-button-outlined p-button-rounded p-button-danger w-full" iconPos="right" label="Revoke last record" (click)="revokeRecord()"></button>
+        </div>
+    </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th></th>

@@ -61,7 +61,7 @@ export const recordsReducer = createReducer(
     ...state, processing: true
   })),
   on(RecordActions.revokeRecordSuccess, (state, action) => ({
-    ...state, records: state.records?.[0]?.logId === action.logId ? state.records.slice(0, -2) : state.records, total: state.total - 1, processing: false
+    ...state, records: state.records?.[0]?.logId === action.logId ? state.records.slice(0, -1) : state.records, total: state.total - 1, processing: false
   })),
   on(RecordActions.revokeRecordFailure, (state, action) => ({
     ...state, error: action.error, processing: false

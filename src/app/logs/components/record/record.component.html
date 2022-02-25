@@ -36,11 +36,11 @@
             </p-panel>
             <p-accordion class="col-12 md:hidden">
                 <p-accordionTab header="Recorded Events" [selected]="false" styleClass="p-0">
-                    <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                    <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
                 </p-accordionTab>
             </p-accordion>
             <p-panel header="Recorded Events" class="hidden col-7 md:block" styleClass="p-0">
-                <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
             </p-panel>
         </div>
     </p-panel>
