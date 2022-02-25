@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
 import * as RecordActions from './record.actions';
@@ -55,6 +55,11 @@ export class RecordEffects {
       catchError(error => of(RecordActions.deleteRecordsFailure({ error })))
     ))
   ));
+
+  createRecordSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.createRecordSuccess),
+    tap(() => !!window?.navigator && window.navigator.vibrate(100))
+  ), { dispatch: false });
 
   constructor(
     private recordService: RecordService,
