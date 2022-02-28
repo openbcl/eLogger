@@ -3,7 +3,7 @@ import { EventTemplate, Record } from '../shared/models';
 
 export const loadRecords = createAction(
   '[Record] Load Records',
-  props<{ logId: string }>()
+  props<{ logId?: string }>()
 );
 
 export const loadRecordsFailure = createAction(
@@ -61,7 +61,7 @@ export const createRecordSuccess = createAction(
 
 export const revokeRecord = createAction(
   '[Record] Revoke Record',
-  props<{ logId: string }>()
+  props<{ logId?: string }>()
 );
 
 export const revokeRecordFailure = createAction(
@@ -76,7 +76,7 @@ export const revokeRecordSuccess = createAction(
 
 export const deleteRecords = createAction(
   '[Record] Delete Records',
-  props<{ logId: string }>()
+  props<{ logId?: string }>()
 );
 
 export const deleteRecordsFailure = createAction(

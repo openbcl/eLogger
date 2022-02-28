@@ -3,7 +3,7 @@ import { LogTemplate } from '../../shared/models';
 
 export const loadLogTemplate = createAction(
   '[LogTemplate] Load LogTemplate',
-  props<{ id: string }>()
+  props<{ id?: string }>()
 );
 
 export const loadLogTemplateSuccess = createAction(

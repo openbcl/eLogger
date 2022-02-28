@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { logTemplateIdSelector } from '../../store/router.selector';
 import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../../shared/services';
@@ -11,10 +13,15 @@ export class LogTemplateEffects {
 
   loadLogTemplate$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogTemplateActions.loadLogTemplate),
-    switchMap(loadLogTemplate => this.logTemplateService.loadLogTemplate(loadLogTemplate.id).pipe(
-      map(logTemplate => LazyLogTemplateActions.loadLogTemplateSuccess({ logTemplate })),
-      catchError(error => of(LazyLogTemplateActions.loadLogTemplateFailure({ error })))
-    ))
+    switchMap(loadLogTemplate => 
+      this.store.pipe(
+        select(logTemplateIdSelector),
+        switchMap(logTemplateId => this.logTemplateService.loadLogTemplate(logTemplateId || loadLogTemplate.id).pipe(
+          map(logTemplate => LazyLogTemplateActions.loadLogTemplateSuccess({ logTemplate })),
+          catchError(error => of(LazyLogTemplateActions.loadLogTemplateFailure({ error })))
+        ))
+      )
+    )
   ));
 
   createLogTemplate$ = createEffect(() => this.actions$.pipe( 
@@ -42,6 +49,7 @@ export class LogTemplateEffects {
   ));
 
   constructor(
+    private store: Store,
     private logTemplateService: LogTemplateService,
     private actions$: Actions
   ) {}

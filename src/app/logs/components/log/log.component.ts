@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { PrimeIcons } from 'primeng/api';
 import { combineLatest, filter, map, switchMap } from 'rxjs';
@@ -11,6 +10,7 @@ import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';
 import { Log, Record } from '../../../shared/models';
 import { ExportService } from '../../../shared/services/export.service';
+import { logIdSelector } from '../../../store/router.selector';
 
 @Component({
   selector: 'el-log',
@@ -25,26 +25,23 @@ export class LogComponent implements OnInit {
   displayDeleteLogDialog = false;
   displayDeleteRecordsDialog = false;
 
-  logId: string;
-
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
-    this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates))
-  ]).pipe(filter(logData => logData?.[0]?.id === this.logId && !!logData?.[1]?.length));
+    this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates)),
+    this.store.pipe(select(logIdSelector))
+  ]).pipe(filter(logData => logData?.[0]?.id === logData?.[2] && !!logData?.[1]?.length));
   log$ = this.logData.pipe(map(logData => logData[0]));
   logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
 
   constructor(
     private store: Store,
-    private activeRoute: ActivatedRoute,
     private exportService: ExportService
   ) { }
   
   ngOnInit(): void {
-    this.logId = this.activeRoute.snapshot.paramMap.get('id');
-    this.store.dispatch(loadRecords({ logId: this.logId }));
-    this.store.dispatch(loadLog({ id: this.logId }));
+    this.store.dispatch(loadRecords({}));
+    this.store.dispatch(loadLog({}));
     this.store.dispatch(loadLogTemplates());
   }
 

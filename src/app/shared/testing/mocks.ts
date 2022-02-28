@@ -1,4 +1,4 @@
-import { of } from "rxjs"
+import { of, OperatorFunction } from "rxjs"
 
 export const NgxIndexedDBServiceMock = {
     add: (_storeName : string, value: any) => of(value),
@@ -29,7 +29,7 @@ export const LogServiceMock = {
 }
 
 export const RecordServiceMock = {
-    createRecord: (_eventTemplate: any, logId: string, text?: string) => of({ logId, text }),
+    createRecord: (_eventTemplate: any, logId: string, date: Date, text?: string) => of({ logId, text }),
     loadRecords: (_logId: string) => of([]),
     loadAllRecords: () => of([]),
     countTotalRecords: () => of(0),
@@ -39,4 +39,9 @@ export const RecordServiceMock = {
 
 export const RouterMock = {
     navigate: (value: any) => new Promise(value)
+}
+
+export const StoreMock = {
+    pipe: (..._operations: OperatorFunction<any, any>[]) => of<any>({}),
+    dispatch: (_action: any): void => null
 }

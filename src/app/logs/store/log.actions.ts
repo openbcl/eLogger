@@ -3,7 +3,7 @@ import { Log } from '../../shared/models';
 
 export const loadLog = createAction(
   '[Log] Load Log',
-  props<{ id: string }>()
+  props<{ id?: string }>()
 );
 
 export const loadLogSuccess = createAction(

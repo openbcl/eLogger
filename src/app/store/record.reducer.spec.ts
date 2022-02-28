@@ -2,7 +2,7 @@ import { loadRecords, loadRecordsSuccess, loadRecordsFailure, createRecord, crea
 import { recordsReducer, initialRecordsState } from './record.reducer';
 import { Record } from '../shared/models';
 
-const record: Record = new Record({ name: null, color: null, eventType: 0, icon: null }, null);
+const record: Record = new Record({ name: null, color: null, eventType: 0, icon: null }, null, null);
 const errorTemplate = {}
 
 describe('Records Reducer', () => {
@@ -59,7 +59,7 @@ describe('Records Reducer', () => {
 
   describe('Create Record action', () => {
     it('should enable the processing flag', () => {
-      const newState = recordsReducer(initialRecordsState, createRecord({ eventTemplate : null, logId: null }));
+      const newState = recordsReducer(initialRecordsState, createRecord({ eventTemplate : null, logId: null, date: null }));
       expect(newState.processing).toBe(true);
     });
 

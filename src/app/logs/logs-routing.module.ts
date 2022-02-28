@@ -10,7 +10,7 @@ const routes: Routes = [
     component: LogsComponent
   },
   {
-    path: ':id',
+    path: ':logId',
     children: [{
       path: '',
       component: LogComponent,

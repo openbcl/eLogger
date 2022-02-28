@@ -8,13 +8,14 @@ import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
 import { LOGS, Log, LOGTEMPLATES, LogTemplate, Record, RECORDS } from './shared/models';
 import { UiModule } from './ui/ui.module';
 import { LogTemplateEffects } from './store/logtemplate.effects';
 import { LogEffects } from './store/log.effects';
 import { RecordEffects } from './store/record.effects';
+import { routerFeatureKey } from './store/router.selector';
 import * as fromLogTemplate from './store/logtemplate.reducer';
 import * as fromLog from './store/log.reducer';
 import * as fromRecord from './store/record.reducer';
@@ -54,7 +55,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     StoreModule.forRoot({
       [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.logTemplatesReducer,
       [fromLog.logsFeatureKey]: fromLog.logsReducer,
-      [fromRecord.recordsFeatureKey]: fromRecord.recordsReducer
+      [fromRecord.recordsFeatureKey]: fromRecord.recordsReducer,
+      [routerFeatureKey]: routerReducer
     }, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
     EffectsModule.forRoot([LogTemplateEffects, LogEffects, RecordEffects]),

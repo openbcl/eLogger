@@ -1,8 +1,8 @@
 <ng-container *ngIf="logTemplate$ | async as logTemplate">
-    <p-panel *ngrxLet="records$ as records">
+    <p-panel *ngrxLet="log$ as log">
         <ng-template pTemplate="header">
             <div class="grid m-0 w-full">
-                <div class="col-8 md:col-5 font-light text-500 p-0" *ngrxLet="log$ as log">
+                <div class="col-8 md:col-5 font-light text-500 p-0">
                     <span>{{ log.title }}</span>
                     <ng-container *ngIf="logTemplate.desc">
                         <span>&nbsp;({{ log.desc }})</span>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </ng-template>
-        <div class="grid">
+        <div class="grid" *ngrxLet="records$ as records">
             <p-panel header="Record Event" class="col-12 md:col-5 text-center py-2">
                 <ng-container *ngFor="let eventTemplate of logTemplate.eventTemplates">
                     <button pButton pRipple
@@ -30,7 +30,7 @@
                         [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
                         [label]="eventTemplate.name"
                         [disabled]="eventTemplate | eventButtonDisabled: records"
-                        (click)="raiseEvent(eventTemplate)">
+                        (click)="raiseEvent(eventTemplate, log.id)">
                     </button>
                 </ng-container>
             </p-panel>
@@ -45,4 +45,4 @@
         </div>
     </p-panel>
 </ng-container>
-<el-text-record-dialog [(visible)]="displayTextRecordDialog" [textEventTemplate]="textEventTemplate" [logId]="logId" [timestamp]="timestamp"></el-text-record-dialog>
+<el-text-record-dialog [(visible)]="displayTextRecordDialog" [textEventTemplate]="textEventTemplate" [timestamp]="timestamp"></el-text-record-dialog>

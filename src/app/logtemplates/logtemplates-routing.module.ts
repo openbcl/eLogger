@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LogTemplatesComponent
   },
   {
-    path: ':id',
+    path: ':logTemplateId',
     component: LogTemplateComponent
   }
 ];

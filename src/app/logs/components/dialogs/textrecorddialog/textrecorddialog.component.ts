@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { createRecord } from '../../../../store/record.actions';
 import { EventTemplate } from '../../../../shared/models';
+import { logIdSelector } from '../../../../store/router.selector';
 
 @Component({
   selector: 'el-text-record-dialog',
@@ -18,13 +19,12 @@ export class TextRecordDialogComponent {
   visibleChange = new EventEmitter<boolean>();
 
   @Input()
-  logId: string;
-
-  @Input()
   textEventTemplate: EventTemplate;
 
   @Input()
   timestamp: Date;
+
+  logId$ = this.store.pipe(select(logIdSelector));
 
   form = this.fb.group({ text: [null, Validators.required] });
 
@@ -33,10 +33,10 @@ export class TextRecordDialogComponent {
     private fb: FormBuilder
   ) { }
 
-  submit() {
+  submit(logId: string) {
     this.store.dispatch(createRecord({
       eventTemplate: this.textEventTemplate,
-      logId: this.logId,
+      logId,
       date: this.timestamp,
       text: this.form.value.text
     }));

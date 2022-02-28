@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
+import { logIdSelector } from './router.selector';
 import * as RecordActions from './record.actions';
 
 @Injectable()
@@ -10,10 +12,15 @@ export class RecordEffects {
 
   loadRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.loadRecords),
-    switchMap(loadRecords => this.recordService.loadRecords(loadRecords.logId).pipe(
-      map(records => RecordActions.loadRecordsSuccess({ records })),
-      catchError(error => of(RecordActions.loadRecordsFailure({ error })))
-    ))
+    switchMap(loadRecords => 
+      this.store.pipe(
+        select(logIdSelector),
+        switchMap(logId => this.recordService.loadRecords(logId || loadRecords.logId).pipe(
+          map(records => RecordActions.loadRecordsSuccess({ records })),
+          catchError(error => of(RecordActions.loadRecordsFailure({ error })))
+        ))
+      )
+    )
   ));
 
   loadAllRecords$ = createEffect(() => this.actions$.pipe( 
@@ -42,18 +49,28 @@ export class RecordEffects {
 
   revokeRecord$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.revokeRecord),
-    concatMap(revokeRecord => this.recordService.revokeRecord(revokeRecord.logId).pipe(
-      map(logId => RecordActions.revokeRecordSuccess({ logId })),
-      catchError(error => of(RecordActions.revokeRecordFailure({ error })))
-    ))
+    concatMap(revokeRecord => 
+      this.store.pipe(
+        select(logIdSelector),
+        concatMap(logId => this.recordService.revokeRecord(logId || revokeRecord.logId).pipe(
+          map(logId => RecordActions.revokeRecordSuccess({ logId })),
+          catchError(error => of(RecordActions.revokeRecordFailure({ error })))
+        ))
+      )
+    )
   ));
 
   deleteRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.deleteRecords),
-    concatMap(deleteRecords => this.recordService.deleteRecords(deleteRecords.logId).pipe(
-      map(logId => RecordActions.deleteRecordsSuccess({ logId })),
-      catchError(error => of(RecordActions.deleteRecordsFailure({ error })))
-    ))
+    concatMap(deleteRecords => 
+      this.store.pipe(
+        select(logIdSelector),
+        concatMap(logId => this.recordService.deleteRecords(logId || deleteRecords.logId).pipe(
+          map(logId => RecordActions.deleteRecordsSuccess({ logId })),
+          catchError(error => of(RecordActions.deleteRecordsFailure({ error })))
+        ))
+      )
+    )
   ));
 
   createRecordSuccess$ = createEffect(() => this.actions$.pipe(
@@ -62,6 +79,7 @@ export class RecordEffects {
   ), { dispatch: false });
 
   constructor(
+    private store: Store,
     private recordService: RecordService,
     private actions$: Actions
   ) {}

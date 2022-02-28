@@ -6,8 +6,8 @@
             <label for="float-input">Text</label>
         </span>
     </form>
-    <ng-template pTemplate="footer">
-        <form [formGroup]="form" (ngSubmit)="submit()">
+    <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
+        <form [formGroup]="form" (ngSubmit)="submit(logId)">
             <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-plus" label="Create Record" class="p-button-success p-button-text"></button>
         </form>
     </ng-template>

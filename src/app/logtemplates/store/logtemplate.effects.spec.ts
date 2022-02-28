@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LogTemplateServiceMock } from '../../shared/testing/mocks';
+import { LogTemplateServiceMock, StoreMock } from '../../shared/testing/mocks';
 import { LogTemplateService } from '../../shared/services';
 import { LogTemplateEffects } from './logtemplate.effects';
 
@@ -16,6 +17,10 @@ describe('LogTemplateEffects', () => {
         provideMockActions(() => actions$), {
           provide: LogTemplateService,
           useValue: LogTemplateServiceMock
+        },
+        {
+          provide: Store,
+          useValue: StoreMock
         }
       ]
     });

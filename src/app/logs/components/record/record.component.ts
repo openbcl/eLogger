@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, filter, map, switchMap, interval, of } from 'rxjs';
 import { PrimeIcons } from 'primeng/api';
@@ -11,6 +10,7 @@ import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';
 import { recordsSelector } from '../../../store/record.selectors';
 import { CurrentEventRelTimePipe } from '../../../ui/pipes/event.pipe';
+import { logIdSelector } from '../../../store/router.selector';
 
 @Component({
   selector: 'el-record',
@@ -21,7 +21,6 @@ export class RecordComponent implements OnInit {
 
   PrimeIcons = PrimeIcons;
 
-  logId: string;
   refreshRate = 1000/144;
   displayTextRecordDialog = false;
   timestamp: Date;
@@ -29,8 +28,9 @@ export class RecordComponent implements OnInit {
 
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
-    this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates))
-  ]).pipe(filter(logData => logData?.[0]?.id === this.logId && !!logData?.[1]?.length));
+    this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates)),
+    this.store.pipe(select(logIdSelector))
+  ]).pipe(filter(logData => logData?.[0]?.id === logData?.[2] && !!logData?.[1]?.length));
   log$ = this.logData.pipe(map(logData => logData[0]));
   logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
@@ -44,22 +44,20 @@ export class RecordComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private activeRoute: ActivatedRoute,
     private currentEventRelTime: CurrentEventRelTimePipe
   ) { }
 
   ngOnInit(): void {
-    this.logId = this.activeRoute.snapshot.paramMap.get('id');
-    this.store.dispatch(loadRecords({ logId: this.logId }));
-    this.store.dispatch(loadLog({ id: this.logId }));
+    this.store.dispatch(loadRecords({}));
+    this.store.dispatch(loadLog({}));
     this.store.dispatch(loadLogTemplates())
   }
 
-  raiseEvent(eventTemplate: EventTemplate) {
+  raiseEvent(eventTemplate: EventTemplate, logId: string) {
     if (eventTemplate.eventType !== EventType.TEXT) {
       this.store.dispatch(createRecord({
         eventTemplate,
-        logId: this.logId,
+        logId,
         date: new Date()
       }));
     } else {

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { filter, map, take } from 'rxjs';
+import { filter, map, switchMap, take } from 'rxjs';
 import { loadLogs } from '../../../store/log.actions';
 import { logsSelector } from '../../../store/log.selectors';
 import { EventTemplate, LogTemplate } from '../../../shared/models';
 import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
 import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
+import { logTemplateIdSelector } from '../../../store/router.selector';
 
 @Component({
   selector: 'el-logtemplate',
@@ -25,7 +25,15 @@ export class LogTemplateComponent implements OnInit {
   
   logTemplate$ = this.store.pipe(select(logTemplateSelector), filter(logTemplate => !!logTemplate), map(logTemplate => ({ ...logTemplate, eventTemplates: [ ...logTemplate.eventTemplates ] })));
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector), take(2));
-  logTemplateNotDeletable$ = this.store.pipe(select(logsSelector), map(logs => logs?.find(log => log.logTemplateId === this.activeRoute.snapshot.paramMap.get('id'))));
+  logTemplateNotDeletable$ = this.store.pipe(
+    select(logTemplateIdSelector),
+    switchMap(logTemplateId => 
+      this.store.pipe(
+        select(logsSelector),
+        map(logs => logs?.find(log => log.logTemplateId === logTemplateId))
+      )
+    )
+  );
 
   cols: any[] = [
     { field: 'name', header: 'Name' },
@@ -33,15 +41,12 @@ export class LogTemplateComponent implements OnInit {
     { field: 'icon', header: 'Icon' }
   ];
 
-  constructor(
-    private store: Store,
-    private activeRoute: ActivatedRoute
-  ) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadLogs());
     this.store.dispatch(loadLogTemplates());
-    this.store.dispatch(loadLogTemplate({ id: this.activeRoute.snapshot.paramMap.get('id') }));
+    this.store.dispatch(loadLogTemplate({}));
     this.isMobileLayout = window.innerWidth < 961;
     window.onresize = () => this.isMobileLayout = window.innerWidth < 961;
   }

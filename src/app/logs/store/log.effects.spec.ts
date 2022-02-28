@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { LogServiceMock } from '../../shared/testing/mocks';
-import { LogService } from '../../shared/services';
-
+import { LogServiceMock, RecordServiceMock, StoreMock } from '../../shared/testing/mocks';
+import { LogService, RecordService } from '../../shared/services';
 import { LogEffects } from './log.effects';
 
 describe('LogEffects', () => {
@@ -17,6 +17,13 @@ describe('LogEffects', () => {
         provideMockActions(() => actions$), {
           provide: LogService,
           useValue: LogServiceMock
+        }, {
+          provide: RecordService,
+          useValue: RecordServiceMock
+        },
+        {
+          provide: Store,
+          useValue: StoreMock
         }
       ]
     });
