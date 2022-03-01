@@ -50,7 +50,7 @@ export class RecordEffects {
 
   revokeRecord$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.revokeRecord),
-    concatMap(revokeRecord => 
+    switchMap(revokeRecord => 
       this.store.pipe(
         select(logIdSelector),
         filter(logId => !!(logId ||revokeRecord.logId)),
@@ -64,7 +64,7 @@ export class RecordEffects {
 
   deleteRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.deleteRecords),
-    concatMap(deleteRecords => 
+    switchMap(deleteRecords => 
       this.store.pipe(
         select(logIdSelector),
         filter(logId => !!(logId ||deleteRecords.logId)),
