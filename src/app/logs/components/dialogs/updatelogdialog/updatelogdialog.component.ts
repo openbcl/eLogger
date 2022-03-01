@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { filter, take, tap } from 'rxjs';
 import { logSelector } from '../../../store/log.selectors';
 import { logsSelector } from '../../../../store/log.selectors';
 import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
-import { loadLogs } from '../../../../store/log.actions';
 import { Log } from '../../../../shared/models';
 import { updateLog } from '../../../store/log.actions';
 
@@ -14,7 +13,7 @@ import { updateLog } from '../../../store/log.actions';
   templateUrl: './updatelogdialog.component.html',
   styleUrls: ['./updatelogdialog.component.scss']
 })
-export class UpdateLogDialogComponent implements OnInit {
+export class UpdateLogDialogComponent {
 
   abstractLogIsUniqueError = abstractLogIsUniqueError;
 
@@ -45,10 +44,6 @@ export class UpdateLogDialogComponent implements OnInit {
     private store: Store,
     private fb: FormBuilder
   ) { }
-
-  ngOnInit(): void {
-    this.store.dispatch(loadLogs())
-  }
 
   close() {
     this.visible = false;

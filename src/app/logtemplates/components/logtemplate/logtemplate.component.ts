@@ -45,8 +45,6 @@ export class LogTemplateComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(loadLogs());
-    this.store.dispatch(loadLogTemplates());
     this.store.dispatch(loadLogTemplate({}));
     this.isMobileLayout = window.innerWidth < 961;
     window.onresize = () => this.isMobileLayout = window.innerWidth < 961;

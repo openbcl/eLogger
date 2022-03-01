@@ -50,7 +50,6 @@ export class RecordComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadRecords({}));
     this.store.dispatch(loadLog({}));
-    this.store.dispatch(loadLogTemplates())
   }
 
   raiseEvent(eventTemplate: EventTemplate, logId: string) {

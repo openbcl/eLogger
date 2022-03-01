@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../../store/logtemplate.selectors';
 
 @Component({
@@ -9,7 +8,7 @@ import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../../s
   templateUrl: './logtemplates.component.html',
   styleUrls: ['./logtemplates.component.scss']
 })
-export class LogTemplatesComponent implements OnInit {
+export class LogTemplatesComponent {
 
   searchTerm = '';
   displayCreateLogTemplateDialog = false;
@@ -24,9 +23,5 @@ export class LogTemplatesComponent implements OnInit {
   ];
 
   constructor(private store: Store) { }
-
-  ngOnInit(): void {
-    this.store.dispatch(loadLogTemplates());
-  }
 
 }
