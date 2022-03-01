@@ -16,3 +16,8 @@ export class LogTemplate implements AbstractLog {
         this.desc = desc;
     }
 }
+
+export interface SharedLogTemplates {
+    version: string,
+    logTemplates: LogTemplate[]
+}
