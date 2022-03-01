@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { logTemplatesProcessingSelector, logTemplatesSelector } from '../../../store/logtemplate.selectors';

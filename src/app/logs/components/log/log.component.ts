@@ -4,7 +4,6 @@ import { PrimeIcons } from 'primeng/api';
 import { combineLatest, filter, map, switchMap } from 'rxjs';
 import { loadRecords } from '../../../store/record.actions';
 import { recordsSelector } from '../../../store/record.selectors';
-import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
 import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';

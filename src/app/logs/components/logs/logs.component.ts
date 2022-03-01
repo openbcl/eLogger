@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
-import { loadLogTemplates } from '../../../store/logtemplate.actions';
-import { loadLogs, reorderLogs } from '../../../store/log.actions';
+import { reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
 import { Log } from '../../../shared/models';
 

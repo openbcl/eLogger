@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter, map, switchMap, take } from 'rxjs';
-import { loadLogs } from '../../../store/log.actions';
 import { logsSelector } from '../../../store/log.selectors';
 import { EventTemplate, LogTemplate } from '../../../shared/models';
 import { loadLogTemplate, updateLogTemplate } from '../../store/logtemplate.actions';
-import { loadLogTemplates } from '../../../store/logtemplate.actions';
 import { logTemplateProcessingSelector, logTemplateSelector } from '../../store/logtemplate.selectors';
 import { logTemplateIdSelector } from '../../../store/router.selector';
 
