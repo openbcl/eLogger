@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ExportService } from '../../shared/services/export.service';
 import { Log } from '../../shared/models';
 
 @Component({
@@ -17,11 +18,15 @@ export class ExportLogsDialogComponent {
   @Input()
   logs: Log[];
 
-  constructor() { }
+  constructor(private exportService: ExportService) { }
 
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
+  }
+
+  download() {
+    this.exportService.exportLogs(this.logs)
   }
 
 }

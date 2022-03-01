@@ -1,13 +1,16 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store';
+import { filter, take } from 'rxjs';
 import { EventLabelPipe, EventRelTimePipe } from '../../ui/pipes/event.pipe'
 import { LogTemplateDescPipe, LogTemplateTitlePipe } from '../../ui/pipes/log.pipe'
-import { EventType, Log, LogTemplate, Record } from '../models'
+import { EventType, Log, LogTemplate, Record, SharedLogTemplates } from '../models'
 import { allRecordsSelector } from '../../store/record.selectors';
-import * as JSZip from 'jszip'
 import { loadAllRecords } from '../../store/record.actions';
-import { filter, take } from 'rxjs';
+import { version } from '../../../environments/build'
+import { sha1 } from 'object-hash'
+import * as JSZip from 'jszip'
+
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +30,7 @@ export class ExportService {
         private store: Store
     ) { }
 
-    exportLogs (logs: Log[], logTemplates: LogTemplate[]) {
+    shareLogs (logs: Log[], logTemplates: LogTemplate[]) {
         const blob = this.logsToCSV(logs, logTemplates);
         if (blob) {
             const filename = `eLogger_export_${this.date.transform(new Date(), 'yyyy-MM-dd_HH-mm-ss')}`
@@ -55,7 +58,7 @@ export class ExportService {
         }
     }
 
-    exportRecords (records: Record[], log: Log) {
+    shareRecords (records: Record[], log: Log) {
         const blob = this.recordsToCSV(records, log);
         blob && this.downloadFile(blob, `${this.recordsFilename(log)}.csv`)
     }
@@ -139,5 +142,43 @@ export class ExportService {
         });
     }
 
+    exportLogTemplates(logTemplates: LogTemplate[]) {
+        const filename = 'logtemplates';
+        this.downloadJSON(logTemplates, 'logTemplates', filename);
+    }
+
+    exportLogs(logs: Log[]) {
+        const filename = 'logs';
+        this.downloadJSON(logs, 'logs', filename);
+    }
+
+    private downloadJSON(values: any[], key: string, part: string) {
+        const data = this.toJSON(values, key, true);
+        const blob = new Blob([data], { type: 'text/json' });
+        const filename = `${part}_${sha1(data).substring(0,6)}_${this.date.transform(new Date(), 'yyyy-MM-dd')}.json`;
+        this.downloadFile(blob, filename);
+    }
+
+    private toJSON(values: any[], key: string, pretify = false) {
+        return JSON.stringify({ version, [key]: this.lighten(values) }, pretify && null, pretify && 2);
+    }
+
+    private lighten(value: any): any {
+        if (Array.isArray(value)) {
+            return (<any[]>value).map(obj => this.lighten(obj))
+        }
+        const lightened: { [key: string]: any } = {};
+        for (const key in value) {
+            if (Array.isArray(value[key])) {
+                lightened[key] = (<any[]>value[key]).map(obj => this.lighten(obj))
+            }
+            else if (typeof value[key] === "object") {
+                lightened[key] = this.lighten(value[key]);
+            } else if (key !== 'key' ) {
+                lightened[key] = value[key];
+            }
+        }
+        return lightened;
+    }
 
 }

@@ -44,7 +44,7 @@ export class LogComponent implements OnInit {
   }
 
   shareRecords(records: Record[], log: Log) {
-    this.exportService.exportRecords(records, log);
+    this.exportService.shareRecords(records, log);
   }
 
 }

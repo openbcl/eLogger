@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { Log, LogTemplate } from '../../../../shared/models';
+import { LogTemplate } from '../../../../shared/models';
 import { ExportService } from '../../../../shared/services/export.service';
 import { logsSelector } from '../../../../store/log.selectors';
 import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
@@ -41,7 +41,7 @@ export class ShareLogsDialogComponent {
   ) { }
 
   submit(logTemplates: LogTemplate[]) {
-    this.exportService.exportLogs(this.form.value.logs, logTemplates);
+    this.exportService.shareLogs(this.form.value.logs, logTemplates);
     this.close();
   }
 

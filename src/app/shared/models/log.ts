@@ -16,3 +16,8 @@ export class Log implements AbstractLog {
         this.logTemplateId = logTemplateId;
     }
 }
+
+export interface SharedLogs {
+    version: string,
+    logs: Log[]
+}
