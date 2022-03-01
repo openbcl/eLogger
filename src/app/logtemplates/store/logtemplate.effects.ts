@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { logTemplateIdSelector } from '../../store/router.selector';
-import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, filter, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../../shared/services';
 import * as LazyLogTemplateActions from './logtemplate.actions';
@@ -16,6 +16,7 @@ export class LogTemplateEffects {
     switchMap(loadLogTemplate => 
       this.store.pipe(
         select(logTemplateIdSelector),
+        filter(logTemplateId => !!(logTemplateId || loadLogTemplate.id)),
         switchMap(logTemplateId => this.logTemplateService.loadLogTemplate(logTemplateId || loadLogTemplate.id).pipe(
           map(logTemplate => LazyLogTemplateActions.loadLogTemplateSuccess({ logTemplate })),
           catchError(error => of(LazyLogTemplateActions.loadLogTemplateFailure({ error })))

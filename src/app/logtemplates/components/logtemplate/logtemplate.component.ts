@@ -27,6 +27,7 @@ export class LogTemplateComponent implements OnInit {
   logTemplateLoading$ = this.store.pipe(select(logTemplateProcessingSelector), take(2));
   logTemplateNotDeletable$ = this.store.pipe(
     select(logTemplateIdSelector),
+    filter(logTemplateId => !!logTemplateId),
     switchMap(logTemplateId => 
       this.store.pipe(
         select(logsSelector),

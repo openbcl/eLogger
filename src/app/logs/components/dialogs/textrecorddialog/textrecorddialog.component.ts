@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { createRecord } from '../../../../store/record.actions';
 import { EventTemplate } from '../../../../shared/models';
 import { logIdSelector } from '../../../../store/router.selector';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'el-text-record-dialog',
@@ -24,7 +25,7 @@ export class TextRecordDialogComponent {
   @Input()
   timestamp: Date;
 
-  logId$ = this.store.pipe(select(logIdSelector));
+  logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
 
   form = this.fb.group({ text: [null, Validators.required] });
 

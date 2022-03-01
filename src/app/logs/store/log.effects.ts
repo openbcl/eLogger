@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, concatMap } from 'rxjs/operators';
+import { catchError, map, switchMap, concatMap, take, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogService, RecordService } from '../../shared/services';
 import { logIdSelector } from '../../store/router.selector';
@@ -18,6 +18,7 @@ export class LogEffects {
     switchMap(loadLog => 
       this.store.pipe(
         select(logIdSelector),
+        filter(logId => !!(logId ||loadLog.id)),
         switchMap(logId => 
           this.logService.loadLog(logId || loadLog.id).pipe(
             map(log => LazyLogActions.loadLogSuccess({ log })),

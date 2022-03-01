@@ -29,7 +29,7 @@ export class RecordComponent implements OnInit {
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
     this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates)),
-    this.store.pipe(select(logIdSelector))
+    this.store.pipe(select(logIdSelector), filter(logId => !!logId))
   ]).pipe(filter(logData => logData?.[0]?.id === logData?.[2] && !!logData?.[1]?.length));
   log$ = this.logData.pipe(map(logData => logData[0]));
   logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));

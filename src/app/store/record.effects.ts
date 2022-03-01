@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, filter, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
 import { logIdSelector } from './router.selector';
@@ -15,6 +15,7 @@ export class RecordEffects {
     switchMap(loadRecords => 
       this.store.pipe(
         select(logIdSelector),
+        filter(logId => !!(logId || loadRecords.logId)),
         switchMap(logId => this.recordService.loadRecords(logId || loadRecords.logId).pipe(
           map(records => RecordActions.loadRecordsSuccess({ records })),
           catchError(error => of(RecordActions.loadRecordsFailure({ error })))
@@ -52,6 +53,7 @@ export class RecordEffects {
     concatMap(revokeRecord => 
       this.store.pipe(
         select(logIdSelector),
+        filter(logId => !!(logId ||revokeRecord.logId)),
         concatMap(logId => this.recordService.revokeRecord(logId || revokeRecord.logId).pipe(
           map(logId => RecordActions.revokeRecordSuccess({ logId })),
           catchError(error => of(RecordActions.revokeRecordFailure({ error })))
@@ -65,6 +67,7 @@ export class RecordEffects {
     concatMap(deleteRecords => 
       this.store.pipe(
         select(logIdSelector),
+        filter(logId => !!(logId ||deleteRecords.logId)),
         concatMap(logId => this.recordService.deleteRecords(logId || deleteRecords.logId).pipe(
           map(logId => RecordActions.deleteRecordsSuccess({ logId })),
           catchError(error => of(RecordActions.deleteRecordsFailure({ error })))
