@@ -13,7 +13,7 @@ export class AppValidators {
         return (control: AbstractControl): Observable<ValidationErrors | null> => logTemplate$.pipe(
             take(1),
             map(logTemplate => !logTemplate.eventTemplates?.find(eventTemplate =>
-                compareEventTemplates(eventTemplate, control.value)) ? null : { [eventTypeIsUniqueError]: true }
+                compareEventTemplates(eventTemplate, !!control.value.name ? control.value : control.value.selectedTemplate)) ? null : { [eventTypeIsUniqueError]: true }
             )
         )
     }
