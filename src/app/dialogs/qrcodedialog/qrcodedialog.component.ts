@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { toJSON } from '../../shared/utils/helper';
 
 @Component({
   selector: 'el-qrcode-dialog',
@@ -20,14 +21,23 @@ export class QRcodeDialogComponent implements OnChanges {
   header: string;
 
   @Input()
+  type: string;
+
+  @Input()
   filename: string;
+
+  qrCode: any;
 
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!!changes?.['data']?.currentValue) {
-      console.log(changes['data'].currentValue);
+      this.qrCode = toJSON(changes['data'].currentValue, this.type, true, false);
     }
+  }
+
+  download() {
+    // TODO
   }
 
   close() {

@@ -1,0 +1,8 @@
+:host ::ng-deep {
+    .qrcode {
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+}
