@@ -6,7 +6,9 @@
   </ng-template>
 </p-menubar>
 <router-outlet></router-outlet>
-<el-export-logtemplates-dialog [(visible)]="displayExportLogTemplatesDialog" [logTemplates]="logTemplates$ | async"></el-export-logtemplates-dialog>
-<el-export-logs-dialog [(visible)]="displayExportLogsDialog" [logs]="logs$ | async"></el-export-logs-dialog>
-<el-import-logtemplates-dialog [(visible)]="displayImportLogTemplatesDialog"></el-import-logtemplates-dialog>
-<el-import-logs-dialog [(visible)]="displayImportLogsDialog"></el-import-logs-dialog>
+<ng-container *ngrxLet="logTemplates$ as logTemplates">
+  <el-export-logtemplates-dialog [(visible)]="displayExportLogTemplatesDialog" [logTemplates]="logTemplates"></el-export-logtemplates-dialog>
+  <el-export-logs-dialog [(visible)]="displayExportLogsDialog" [logs]="logs$ | async" [logTemplates]="logTemplates"></el-export-logs-dialog>
+  <el-import-logtemplates-dialog [(visible)]="displayImportLogTemplatesDialog"></el-import-logtemplates-dialog>
+  <el-import-logs-dialog [(visible)]="displayImportLogsDialog"></el-import-logs-dialog>
+</ng-container>

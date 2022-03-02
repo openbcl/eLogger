@@ -4,11 +4,11 @@ import { select, Store } from '@ngrx/store';
 import { filter, take } from 'rxjs';
 import { EventLabelPipe, EventRelTimePipe } from '../../ui/pipes/event.pipe'
 import { LogTemplateDescPipe, LogTemplateTitlePipe } from '../../ui/pipes/log.pipe'
-import { EventType, Log, LogTemplate, Record, SharedLogTemplates } from '../models'
+import { EventType, Log, LogTemplate, Record } from '../models'
 import { allRecordsSelector } from '../../store/record.selectors';
 import { loadAllRecords } from '../../store/record.actions';
-import { version } from '../../../environments/build'
 import { sha1 } from 'object-hash'
+import { toJSON } from '../utils/helper';
 import * as JSZip from 'jszip'
 
 
@@ -153,31 +153,10 @@ export class ExportService {
     }
 
     private downloadJSON(values: any[], key: string, part: string) {
-        const data = this.toJSON(values, key, true);
+        const data = toJSON(values, key, true, true);
         const blob = new Blob([data], { type: 'text/json' });
         const filename = `${part}_${sha1(data).substring(0,6)}_${this.date.transform(new Date(), 'yyyy-MM-dd')}.json`;
         this.downloadFile(blob, filename);
-    }
-
-    private toJSON(values: any[], key: string, pretify = false) {
-        return JSON.stringify({ version, [key]: this.lighten(values) }, pretify && null, pretify && 2);
-    }
-
-    private lighten(value: any): any {
-        if (Array.isArray(value)) {
-            return (<any[]>value).map(obj => this.lighten(obj))
-        }
-        const lightened: any = {};
-        Object.keys(value).map(key => {
-            if (Array.isArray(value[key]) && !!value[key].length) {
-                lightened[key] = (<any[]>value[key]).map(obj => this.lighten(obj))
-            } else if (typeof value[key] === "object" && value[key] !== null && !!Object.keys(value[key]).length) {
-                lightened[key] = this.lighten(value[key]);
-            } else if (key !== 'key' && !!value[key]) {
-                lightened[key] = value[key];
-            }
-        });
-        return lightened;
     }
 
 }

@@ -23,6 +23,7 @@ import { ExportLogsDialogComponent } from './dialogs/exportlogsdialog/exportlogs
 import * as fromLogTemplate from './store/logtemplate.reducer';
 import * as fromLog from './store/log.reducer';
 import * as fromRecord from './store/record.reducer';
+import { QRcodeDialogComponent } from './dialogs/qrcodedialog/qrcodedialog.component';
 
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
@@ -49,7 +50,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     ImportLogTemplatesDialogComponent,
     ImportLogsDialogComponent,
     ExportLogTemplatesDialogComponent,
-    ExportLogsDialogComponent
+    ExportLogsDialogComponent,
+    QRcodeDialogComponent
   ],
   imports: [
     BrowserModule,

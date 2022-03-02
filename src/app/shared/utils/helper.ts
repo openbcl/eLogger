@@ -1,5 +1,26 @@
 import { SelectItem, PrimeIcons } from "primeng/api";
 import { AbstractLog, EventTemplate, EventType, Log } from "../models";
+import { version } from '../../../environments/build'
+
+export const toJSON = (values: any[], key: string, light: boolean, pretify: boolean) => {
+    const lighten = (value: any): any => {
+        if (Array.isArray(value)) {
+            return (<any[]>value).map(obj => lighten(obj))
+        }
+        const lightened: any = {};
+        Object.keys(value).map(key => {
+            if (Array.isArray(value[key]) && !!value[key].length) {
+                lightened[key] = (<any[]>value[key]).map(obj => lighten(obj))
+            } else if (typeof value[key] === "object" && value[key] !== null && !!Object.keys(value[key]).length) {
+                lightened[key] = lighten(value[key]);
+            } else if (key !== 'key' && !!value[key]) {
+                lightened[key] = value[key];
+            }
+        });
+        return lightened;
+    }
+    return JSON.stringify({ version, [key]: light ? lighten(values) : values }, pretify && null, pretify && 2);
+}
 
 export const groupByKey = <T>(list: any, key: string): { [key: string]: T[] } => list.reduce((prev: any, { [key]: value, ...rest }) => ({
     ...prev,

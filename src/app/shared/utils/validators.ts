@@ -1,12 +1,12 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { map, Observable, take, combineLatest, of } from "rxjs";
 import { AbstractLog, Log, LogTemplate } from "../models";
-import { compareAbstractLog, compareEventTemplates } from "./helper";
+import { compareAbstractLog, compareEventTemplates, toJSON } from "./helper";
 
 export const eventTypeIsUniqueError = 'eventTypeIsUnique';
 export const isEqualStringError = 'isEqualString';
 export const abstractLogIsUniqueError = 'eventTypeIsUnique';
-
+export const isQRcodeCompatibleError = 'isQRcodeCompatible';
 
 export class AppValidators {
     static eventTypeIsUnique = (logTemplate$: Observable<LogTemplate>): AsyncValidatorFn => {
@@ -32,5 +32,10 @@ export class AppValidators {
                 compareAbstractLog(abstractLog, control.value, (<Log>combined[1])?.logTemplateId)) ? null : { [abstractLogIsUniqueError]: true }
             )
         )
+    }
+
+    static isQRcodeCompatible = (key: string): ValidatorFn => (control: AbstractControl): (ValidationErrors | null) => {
+        const size = new Blob([toJSON(control.value[Object.keys(control.value)[0]], key, true, false)], { type: 'text/json' }).size;
+        return size <= 2953 ? null : { [abstractLogIsUniqueError]: true }
     }
 }
