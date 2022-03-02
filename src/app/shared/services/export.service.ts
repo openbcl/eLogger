@@ -167,17 +167,16 @@ export class ExportService {
         if (Array.isArray(value)) {
             return (<any[]>value).map(obj => this.lighten(obj))
         }
-        const lightened: { [key: string]: any } = {};
-        for (const key in value) {
-            if (Array.isArray(value[key])) {
+        const lightened: any = {};
+        Object.keys(value).map(key => {
+            if (Array.isArray(value[key]) && !!value[key].length) {
                 lightened[key] = (<any[]>value[key]).map(obj => this.lighten(obj))
-            }
-            else if (typeof value[key] === "object") {
+            } else if (typeof value[key] === "object" && value[key] !== null && !!Object.keys(value[key]).length) {
                 lightened[key] = this.lighten(value[key]);
-            } else if (key !== 'key' ) {
+            } else if (key !== 'key' && !!value[key]) {
                 lightened[key] = value[key];
             }
-        }
+        });
         return lightened;
     }
 
