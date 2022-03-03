@@ -53,9 +53,7 @@
                     [class.ng-valid]="!form.errors?.[eventTypeIsUniqueError] && form.get('name').valid">
                 <label for="float-input">Event Name</label>
                 <div *ngIf="form.errors?.[eventTypeIsUniqueError]" class="w-full text-center justify-content-center mt-1 px-2">
-                    <span class="p-error text-xs">An event template with this name already exists for the type</span>
-                    <span class="p-error text-xs">&nbsp;"{{ (form.value.eventType | eventLabelWithIcon).label }}".&nbsp;</span>
-                    <span class="p-error text-xs">Please choose another name or type.</span>
+                    <span class="p-error text-xs">An event template with this name already exists. Please choose another name.</span>
                 </div>
             </span>
             <p-fieldset legend="Event Icon" *ngIf="form.getRawValue().eventType === 0">

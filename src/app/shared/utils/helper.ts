@@ -47,15 +47,13 @@ export const orderedLogs = (values: Log[]) => {
 }
 
 export const compareEventTemplates = (a: EventTemplate, b: EventTemplate) => (
-    !!a && !!b && (
-        a.name.toLocaleLowerCase() === b.name.toLocaleLowerCase() &&
-        a.eventType === b.eventType
-    )
+    !!a && !!b && a.name.toLocaleLowerCase() === b.name.toLocaleLowerCase()
 )
 
 
 export const deepCompareEventTemplates = (a: EventTemplate, b: EventTemplate) => (
     compareEventTemplates(a, b) &&
+    a.eventType === b.eventType &&
     a.icon.value === b.icon.value &&
     a.color === b.color
 )
