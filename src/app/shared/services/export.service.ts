@@ -155,7 +155,7 @@ export class ExportService {
     private downloadJSON(values: any[], key: string, part: string) {
         const data = toJSON(values, key, true, true);
         const blob = new Blob([data], { type: 'text/json' });
-        const filename = `${part}_${sha1(data).substring(0,6)}_${this.date.transform(new Date(), 'yyyy-MM-dd')}.json`;
+        const filename = `${part}_${this.date.transform(new Date(), 'yyyy-MM-dd')}_${sha1(data).substring(0,6)}.json`;
         this.downloadFile(blob, filename);
     }
 

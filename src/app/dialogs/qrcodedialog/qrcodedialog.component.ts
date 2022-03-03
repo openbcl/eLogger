@@ -46,7 +46,7 @@ export class QRcodeDialogComponent implements OnChanges {
     const hash = sha1(toJSON(this.data, this.type, true, true)).substring(0,6);
     const element = window.document.createElement('a');
     element.href = this.qrcode.qrcElement.nativeElement.firstChild.currentSrc;
-    element.download = `${this.filename}_${hash}_${this.date.transform(new Date(), 'yyyy-MM-dd')}.png`;
+    element.download = `${this.filename}_${this.date.transform(new Date(), 'yyyy-MM-dd')}_${hash}.png`;
     element.click();
     window.URL.revokeObjectURL(element.href);
     element.remove();
