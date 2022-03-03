@@ -1,8 +1,5 @@
 :host ::ng-deep {
-    .qrcode {
-        overflow: hidden;
-        img {
-            width: 100%;
-        }
+    .qrcode svg {
+        width: 100%;
     }
 }

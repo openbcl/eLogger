@@ -21,6 +21,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "@cordobo/qrcode"
+            ],
             "outputPath": "dist/elogger",
             "index": "src/index.html",
             "main": "src/main.ts",
