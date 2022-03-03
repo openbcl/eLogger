@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { DatePipe  } from '@angular/common';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { MenubarModule } from 'primeng/menubar';
 import { TabViewModule } from 'primeng/tabview';
@@ -16,6 +17,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
 import { QRCodeModule } from 'angularx-qrcode';
+import { FileUploadModule } from 'primeng/fileupload';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
 import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe } from './pipes/log.pipe';
@@ -35,6 +37,7 @@ const pipes = [
 const modules = [
   ReactiveFormsModule,
   ReactiveComponentModule,
+  HttpClientModule,
   RippleModule,
   TabViewModule,
   MenubarModule,
@@ -48,6 +51,7 @@ const modules = [
   FieldsetModule,
   DropdownModule,
   AccordionModule,
+  FileUploadModule,
   QRCodeModule
 ]
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { concatMap, map } from 'rxjs';
+import { concatMap, map, switchMap } from 'rxjs';
 import { LogTemplate, LOGTEMPLATES } from '../models';
 import { processResult } from '../utils/errorHandler';
 
@@ -23,6 +23,12 @@ export class LogTemplateService {
       .pipe(map(data => data.find(item => !value.key ? item.id === value.id : item.key === value.key)))
   }
 
+  patchLogTemplate(value: Partial<LogTemplate>) {
+    return this.loadLogTemplate(value.id).pipe(switchMap(result => 
+      !!result ? this.updateLogTemplate(value as LogTemplate) : this.db.add(LOGTEMPLATES, value as LogTemplate)
+    ))
+  }
+
   loadLogTemplates() {
     return this.db.getAll<LogTemplate>(LOGTEMPLATES);
   }
@@ -32,10 +38,9 @@ export class LogTemplateService {
   }
 
   deleteLogTemplate(value: LogTemplate) {
-    return !value.key ?
-        this.loadLogTemplate(value.id).pipe(concatMap(result => 
-          this.db.deleteByKey(LOGTEMPLATES, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
-        )) : this.db.deleteByKey(LOGTEMPLATES, value.key).pipe(map(deleted => processResult(deleted, value, '')))
+    return !value.key ? this.loadLogTemplate(value.id).pipe(concatMap(result => 
+      this.db.deleteByKey(LOGTEMPLATES, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
+    )) : this.db.deleteByKey(LOGTEMPLATES, value.key).pipe(map(deleted => processResult(deleted, value, '')))
   }
 
 }

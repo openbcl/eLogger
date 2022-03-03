@@ -19,5 +19,5 @@ export class LogTemplate implements AbstractLog {
 
 export interface SharedLogTemplates {
     version: string,
-    logTemplates: LogTemplate[]
+    logTemplates: Partial<LogTemplate>[]
 }

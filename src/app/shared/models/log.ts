@@ -19,5 +19,5 @@ export class Log implements AbstractLog {
 
 export interface SharedLogs {
     version: string,
-    logs: Log[]
+    logs: Partial<Log>[]
 }

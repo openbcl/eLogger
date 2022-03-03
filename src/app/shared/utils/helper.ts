@@ -11,7 +11,7 @@ export const toJSON = (value: any, key: string, light: boolean, pretify: boolean
         Object.keys(obj).map(key => {
             if (Array.isArray(obj[key]) && !!obj[key].length) {
                 lightened[key] = (<any[]>obj[key]).map(obj => lighten(obj))
-            } else if (typeof obj[key] === "object" && obj[key] !== null && !!Object.keys(obj[key]).length) {
+            } else if (typeof obj[key] === 'object' && obj[key] !== null && !!Object.keys(obj[key]).length) {
                 lightened[key] = lighten(obj[key]);
             } else if (key !== 'key' && !!obj[key]) {
                 lightened[key] = obj[key];
