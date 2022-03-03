@@ -21,9 +21,9 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-log>
-                <tr>
+                <tr [pSelectableRow]="log">
                     <td>
-                        <p-tableCheckbox [value]="log"></p-tableCheckbox>
+                        <p-tableCheckbox [pSelectableRow]="log" [value]="log"></p-tableCheckbox>
                     </td>
                     <td>{{ log.title }}</td>
                     <td>{{ log.desc }}</td>

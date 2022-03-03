@@ -47,6 +47,7 @@ export class ExportLogsDialogComponent {
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
+    this.form.patchValue({logs: []});
   }
 
   download() {

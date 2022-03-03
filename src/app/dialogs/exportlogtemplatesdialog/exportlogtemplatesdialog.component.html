@@ -20,9 +20,9 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-logtemplate>
-            <tr>
+            <tr [pSelectableRow]="logtemplate">
                 <td>
-                    <p-tableCheckbox [value]="logtemplate"></p-tableCheckbox>
+                    <p-tableCheckbox [pSelectableRow]="logtemplate" [value]="logtemplate"></p-tableCheckbox>
                 </td>
                 <td>{{ logtemplate.title }}</td>
                 <td>{{ logtemplate.desc }}</td>

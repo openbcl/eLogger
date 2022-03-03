@@ -43,6 +43,7 @@ export class ExportLogTemplatesDialogComponent {
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
+    this.form.patchValue({logTemplates: []});
   }
 
   download() {

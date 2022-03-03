@@ -47,12 +47,12 @@ export class AppComponent {
     items: [
       { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
       { label: 'Import Configuration', icon: 'fas fa-file-import', items: [
-        { label: 'Log Templates', icon: 'fas fa-file-download', command: () => this.displayImportLogTemplatesDialog = true },
         { label: 'Logs', icon: 'fas fa-file-download', command: () => this.displayImportLogsDialog = true },
+        { label: 'Log Templates', icon: 'fas fa-file-download', command: () => this.displayImportLogTemplatesDialog = true },
       ]},
       { id: this.keys.exportID, label: 'Export Configuration', icon: 'fas fa-file-export', disabled: true, items: [
-        { id: this.keys.exports.logTemplatesID, label: 'Log Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogTemplatesDialog = true },
         { id: this.keys.exports.logsID, label: 'Logs', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogsDialog = true },
+        { id: this.keys.exports.logTemplatesID, label: 'Log Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogTemplatesDialog = true },
       ]},
       { id: this.keys.themesID, label: 'Themes', icon: PrimeIcons.PALETTE, items: [
         { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.switchTheme(event.item.id) },
