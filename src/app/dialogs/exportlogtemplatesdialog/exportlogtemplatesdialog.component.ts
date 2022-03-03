@@ -1,26 +1,21 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ExportService } from '../../shared/services/export.service';
 import { LogTemplate } from '../../shared/models';
 import { AppValidators, isQRcodeCompatibleError } from '../../shared/utils/validators';
+import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
 
 @Component({
   selector: 'el-export-logtemplates-dialog',
   templateUrl: './exportlogtemplatesdialog.component.html',
   styleUrls: ['./exportlogtemplatesdialog.component.scss']
 })
-export class ExportLogTemplatesDialogComponent {
+export class ExportLogTemplatesDialogComponent extends BasicDialogComponent {
 
   isQRcodeCompatibleError = isQRcodeCompatibleError;
   displayQRcodeDialog = false;
 
   breakpoint = 500;
-
-  @Input()
-  visible: boolean;
-  
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
 
   @Input()
   logTemplates: LogTemplate[];
@@ -38,11 +33,12 @@ export class ExportLogTemplatesDialogComponent {
   constructor(
     private fb: FormBuilder,
     private exportService: ExportService
-  ) { }
+  ) {
+    super();
+  }
 
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.form.patchValue({logTemplates: []});
   }
 

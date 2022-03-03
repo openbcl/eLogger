@@ -1,21 +1,15 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
-import { sha1 } from 'object-hash'
 import { toJSON } from '../../shared/utils/helper';
+import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
+import { ExportService } from '../../shared/services/export.service';
 
 @Component({
   selector: 'el-qrcode-dialog',
   templateUrl: './qrcodedialog.component.html',
   styleUrls: ['./qrcodedialog.component.scss']
 })
-export class QRcodeDialogComponent implements OnChanges {
-
-  @Input()
-  visible: boolean;
-  
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
+export class QRcodeDialogComponent extends BasicDialogComponent implements OnChanges {
 
   @Input()
   data: any;
@@ -34,7 +28,9 @@ export class QRcodeDialogComponent implements OnChanges {
 
   qrdata: any;
 
-  constructor(private date: DatePipe) { }
+  constructor(private exportService: ExportService) {
+    super();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!!changes?.['data']?.currentValue) {
@@ -43,18 +39,12 @@ export class QRcodeDialogComponent implements OnChanges {
   }
 
   download() {
-    const hash = sha1(toJSON(this.data, this.type, true, true)).substring(0,6);
     const element = window.document.createElement('a');
     element.href = this.qrcode.qrcElement.nativeElement.firstChild.currentSrc;
-    element.download = `${this.filename}_${this.date.transform(new Date(), 'yyyy-MM-dd')}_${hash}.png`;
+    element.download = this.exportService.uniqueFilename(this.filename, this.data, 'png');
     element.click();
     window.URL.revokeObjectURL(element.href);
     element.remove();
-  }
-
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
   }
 
 }

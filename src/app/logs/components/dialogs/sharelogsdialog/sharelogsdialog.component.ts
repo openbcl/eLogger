@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
+import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
 import { LogTemplate } from '../../../../shared/models';
 import { ExportService } from '../../../../shared/services/export.service';
 import { logsSelector } from '../../../../store/log.selectors';
@@ -12,15 +13,9 @@ import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
   templateUrl: './sharelogsdialog.component.html',
   styleUrls: ['./sharelogsdialog.component.scss']
 })
-export class ShareLogsDialogComponent {
+export class ShareLogsDialogComponent extends BasicDialogComponent {
 
   breakpoint = 500;
-
-  @Input()
-  visible: boolean;
-
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   logTemplates$ = this.store.pipe(select(logTemplatesSelector));
@@ -38,16 +33,17 @@ export class ShareLogsDialogComponent {
     private store: Store,
     private fb: FormBuilder,
     private exportService: ExportService
-  ) { }
+  ) {
+    super();
+  }
 
   submit(logTemplates: LogTemplate[]) {
     this.exportService.shareLogs(this.form.value.logs, logTemplates);
     this.close();
   }
 
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.form.patchValue({ logs: [] });
   }
 

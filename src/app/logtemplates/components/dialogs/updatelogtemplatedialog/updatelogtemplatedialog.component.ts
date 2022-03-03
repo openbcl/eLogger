@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { filter, take, tap } from 'rxjs';
@@ -7,21 +7,16 @@ import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/util
 import { LogTemplate } from '../../../../shared/models';
 import { logTemplateSelector } from '../../../store/logtemplate.selectors';
 import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
+import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
 
 @Component({
   selector: 'el-update-logtemplate-dialog',
   templateUrl: './updatelogtemplatedialog.component.html',
   styleUrls: ['./updatelogtemplatedialog.component.scss']
 })
-export class UpdateLogTemplateDialogComponent {
+export class UpdateLogTemplateDialogComponent extends BasicDialogComponent {
 
   abstractLogIsUniqueError = abstractLogIsUniqueError;
-
-  @Input()
-  visible: boolean;
-
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
 
   form = this.fb.group({
     title: [null, Validators.required],
@@ -43,11 +38,12 @@ export class UpdateLogTemplateDialogComponent {
   constructor(
     private store: Store,
     private fb: FormBuilder
-  ) { }
+  ) {
+    super();
+  }
 
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.logTemplate$.pipe(take(1)).subscribe();
   }
 

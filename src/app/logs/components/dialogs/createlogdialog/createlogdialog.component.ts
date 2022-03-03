@@ -1,25 +1,20 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { logsSelector } from '../../../../store/log.selectors';
 import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
 import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
 import { createLog } from '../../../store/log.actions';
+import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
 
 @Component({
   selector: 'el-create-log-dialog',
   templateUrl: './createlogdialog.component.html',
   styleUrls: ['./createlogdialog.component.scss']
 })
-export class CreateLogDialogComponent {
+export class CreateLogDialogComponent extends BasicDialogComponent {
 
   abstractLogIsUniqueError = abstractLogIsUniqueError;
-
-  @Input()
-  visible: boolean;
-
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
 
   logTemplates$ = this.store.pipe(select(logTemplatesSelector));
 
@@ -34,11 +29,12 @@ export class CreateLogDialogComponent {
   constructor(
     private store: Store,
     private fb: FormBuilder
-  ) { }
+  ) {
+    super();
+  }
 
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.form.reset();
   }
 

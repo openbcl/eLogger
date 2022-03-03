@@ -1,23 +1,18 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
 import { logSelector } from '../../../store/log.selectors';
 import { AppValidators } from '../../../../shared/utils/validators';
 import { deleteRecords } from '../../../../store/record.actions';
+import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
 
 @Component({
   selector: 'el-delete-records-dialog',
   templateUrl: './deleterecordsdialog.component.html',
   styleUrls: ['./deleterecordsdialog.component.scss']
 })
-export class DeleteRecordsDialogComponent {
-
-  @Input()
-  visible: boolean;
-
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
+export class DeleteRecordsDialogComponent extends BasicDialogComponent {
 
   log$ = this.store.pipe(select(logSelector), filter(log => !!log));
 
@@ -26,11 +21,12 @@ export class DeleteRecordsDialogComponent {
   constructor(
     private store: Store,
     private fb: FormBuilder
-  ) { }
+  ) {
+    super();
+  }
   
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.form.reset();
   }
 

@@ -1,23 +1,18 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { createRecord } from '../../../../store/record.actions';
 import { EventTemplate } from '../../../../shared/models';
 import { logIdSelector } from '../../../../store/router.selector';
 import { filter } from 'rxjs';
+import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
 
 @Component({
   selector: 'el-text-record-dialog',
   templateUrl: './textrecorddialog.component.html',
   styleUrls: ['./textrecorddialog.component.scss']
 })
-export class TextRecordDialogComponent {
-
-  @Input()
-  visible: boolean;
-
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
+export class TextRecordDialogComponent extends BasicDialogComponent {
 
   @Input()
   textEventTemplate: EventTemplate;
@@ -32,7 +27,9 @@ export class TextRecordDialogComponent {
   constructor(
     private store: Store,
     private fb: FormBuilder
-  ) { }
+  ) {
+    super();
+  }
 
   submit(logId: string) {
     this.store.dispatch(createRecord({
@@ -44,9 +41,8 @@ export class TextRecordDialogComponent {
     this.close();
   }
 
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.form.reset();
   }
 

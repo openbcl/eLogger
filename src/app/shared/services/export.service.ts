@@ -33,10 +33,10 @@ export class ExportService {
     shareLogs (logs: Log[], logTemplates: LogTemplate[]) {
         const blob = this.logsToCSV(logs, logTemplates);
         if (blob) {
-            const filename = `eLogger_export_${this.date.transform(new Date(), 'yyyy-MM-dd_HH-mm-ss')}`
+            const filename = this.uniqueFilename('eLogger_export', blob, '')
             const logsSummaryFile = {
                 blob,
-                filename: `${filename}.csv`
+                filename: `${filename}csv`
             }
             if (!!logs.find(log => !!log.recordsCount)) {
                 this.store.dispatch(loadAllRecords());
@@ -47,10 +47,10 @@ export class ExportService {
                 ).subscribe(async allRecords => {
                     const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
                         blob: this.recordsToCSV(allRecords[log.id], log),
-                        filename: `${this.recordsFilename(log)}.csv`
+                        filename: this.recordsFilename(log, allRecords[log.id])
                     }));
                     files.push(logsSummaryFile);
-                    await this.downloadZipFile(files, `${filename}.zip`)
+                    await this.downloadZipFile(files, `${filename}zip`)
                 });
             } else {
                 this.downloadFile(logsSummaryFile.blob, logsSummaryFile.filename)
@@ -60,14 +60,30 @@ export class ExportService {
 
     shareRecords (records: Record[], log: Log) {
         const blob = this.recordsToCSV(records, log);
-        blob && this.downloadFile(blob, `${this.recordsFilename(log)}.csv`)
+        blob && this.downloadFile(blob, this.recordsFilename(log, records))
     }
 
-    private recordsFilename(log: Log) {
-        const filename = !!log.desc?.length ?
-            `${log.title.length > this.acceptableTitleLength ? log.title.substring(0, this.acceptableTitleLength - 1) : log.title} - ${log.desc}` :
-            log.title.length > this.acceptableMaxLength ? log.title.substring(0, this.acceptableMaxLength - 1) : log.title;
-        return filename.length > this.acceptableMaxLength ? `${filename.substring(0, this.acceptableMaxLength - 9)} ${log.id.substring(0, 6)}` : filename;
+    exportLogTemplates(logTemplates: LogTemplate[]) {
+        this.downloadJSON(logTemplates, 'logTemplates', 'logtemplates');
+    }
+
+    exportLogs(logs: Log[]) {
+        this.downloadJSON(logs, 'logs', 'logs');
+    }
+
+    uniqueFilename (part: string, data: any, extension: string) {
+        return `${part}_${this.date.transform(new Date(), 'yyyy-MM-dd')}_${sha1(JSON.stringify(data)).substring(0,7)}.${extension}`;
+    }
+
+    private recordsFilename(log: Log, records: Record[]) {
+        const part = !!log.desc?.length ?
+            `${log.title.length > this.acceptableTitleLength ? log.title.substring(0, this.acceptableTitleLength) : log.title} - ${log.desc}` :
+            log.title.length > this.acceptableMaxLength ? log.title.substring(0, this.acceptableMaxLength) : log.title;
+        return this.uniqueFilename(
+            `${(part.length > this.acceptableMaxLength ? `${part.substring(0, this.acceptableMaxLength)}` : part)}_${log.id.substring(0, 6)}`.replace(/ /g, '_'),
+            records,
+            'csv'
+        );
     }
 
     private recordsToCSV(records: Record[], log: Log) {
@@ -104,14 +120,15 @@ export class ExportService {
 
     private logsToCSV(logs: Log[], logTemplates: LogTemplate[]) {
         if (!!logs?.length && !!logTemplates?.length) {
-            const csv: (string|number)[][] = [[ 'Title', 'Description', 'Type', 'Records' ]];
+            const csv: (string|number)[][] = [[ 'Title', 'Description', 'ID', 'Type', 'Records' ]];
             logs.forEach(log => {
-                const title = this.logTemplateTitle.transform(log.logTemplateId, logTemplates);
-                const desc = this.logTemplateDesc.transform(log.logTemplateId, logTemplates);
+                const logTemplateTitle = this.logTemplateTitle.transform(log.logTemplateId, logTemplates);
+                const logTemplateDesc = this.logTemplateDesc.transform(log.logTemplateId, logTemplates);
                 csv.push([
                     log.title,
                     log.desc,
-                    !!desc?.length ? `${title} (${desc})` : title,
+                    log.id.substring(0, 6),
+                    !!logTemplateDesc?.length ? `${logTemplateTitle} (${logTemplateDesc})` : logTemplateTitle,
                     log.recordsCount
                 ])
             });
@@ -142,20 +159,10 @@ export class ExportService {
         });
     }
 
-    exportLogTemplates(logTemplates: LogTemplate[]) {
-        const filename = 'logtemplates';
-        this.downloadJSON(logTemplates, 'logTemplates', filename);
-    }
-
-    exportLogs(logs: Log[]) {
-        const filename = 'logs';
-        this.downloadJSON(logs, 'logs', filename);
-    }
-
     private downloadJSON(values: any[], key: string, part: string) {
         const data = toJSON(values, key, true, true);
         const blob = new Blob([data], { type: 'text/json' });
-        const filename = `${part}_${this.date.transform(new Date(), 'yyyy-MM-dd')}_${sha1(data).substring(0,6)}.json`;
+        const filename =  this.uniqueFilename(part, values, 'json');
         this.downloadFile(blob, filename);
     }
 

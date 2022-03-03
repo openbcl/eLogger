@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { updateLogTemplate } from '../../../store/logtemplate.actions';
@@ -7,24 +7,19 @@ import { EventTemplate, EventType, LogTemplate } from '../../../../shared/models
 import { eventIcons, eventTypes } from '../../../../shared/utils/helper';
 import { AppValidators, eventTypeIsUniqueError } from '../../../../shared/utils/validators';
 import { EventLabelPipe, EventLabelWithIconPipe } from '../../../../ui/pipes/event.pipe';
+import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
 
 @Component({
   selector: 'el-create-eventtemplate-dialog',
   templateUrl: './createeventtemplatedialog.component.html',
   styleUrls: ['./createeventtemplatedialog.component.scss']
 })
-export class CreateEventTemplateDialogComponent {
+export class CreateEventTemplateDialogComponent extends BasicDialogComponent {
 
   eventTypeIsUniqueError = eventTypeIsUniqueError;
   eventIcons = eventIcons;
   eventTypes = eventTypes;
   colors = [null, 'yellow', 'orange', 'pink', 'purple', 'indigo', 'blue', 'cyan', 'teal', 'green'];
-
-  @Input()
-  visible: boolean;
-  
-  @Output()
-  visibleChange = new EventEmitter<boolean>();
 
   eventTemplates$ = this.store.pipe(select(eventTemplatesSelector));
   logTemplate$ = this.store.pipe(select(logTemplateSelector));
@@ -44,11 +39,12 @@ export class CreateEventTemplateDialogComponent {
     private fb: FormBuilder,
     private eventLabel: EventLabelPipe,
     private eventLabelWithIcon: EventLabelWithIconPipe
-  ) { }
+  ) {
+    super();
+  }
 
-  close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
+  override close() {
+    super.close();
     this.reset();
   }
 
