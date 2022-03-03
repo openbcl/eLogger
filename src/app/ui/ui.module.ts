@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
 import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe } from './pipes/log.pipe';
@@ -52,7 +53,8 @@ const modules = [
   DropdownModule,
   AccordionModule,
   FileUploadModule,
-  QRCodeModule
+  QRCodeModule,
+  ZXingScannerModule
 ]
 
 @NgModule({

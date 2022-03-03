@@ -1,3 +1,9 @@
 <p-dialog header="Import configuration of log templates" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <p-fileUpload #fileUpload [customUpload]="true" [auto]="true" mode="basic" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)"></p-fileUpload>
+    <zxing-scanner 
+        [enable]="visible"
+        [formats]="[11]"
+        (scanSuccess)="patchLogTemplates($event)"
+        (scanError)="raiseError('An error occured during the scan process.')">
+    </zxing-scanner>
 </p-dialog>

@@ -13,7 +13,7 @@ import { SharedLogTemplates } from '../../shared/models';
 export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
 
   @ViewChild('fileUpload')
-  fileUpload: FileUpload
+  fileUpload: FileUpload;
 
   constructor(private store: Store) {
     super();
@@ -42,7 +42,12 @@ export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
         return this.close();
       }
     }
-    // TODO: error message
+    this.raiseError('The input file has an incompatible format.')
+  }
+
+  raiseError(msg: string) {
+    // TODO: UI error message
+    console.error(msg)
   }
 
 }
