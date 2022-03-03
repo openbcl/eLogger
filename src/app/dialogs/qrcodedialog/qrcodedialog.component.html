@@ -1,5 +1,5 @@
 <p-dialog [header]="header" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <qrcode [width]="-1" [scale]="1" [qrdata]="qrdata" [margin]="2" elementType="svg" errorCorrectionLevel="L"></qrcode>
+    <qrcode [width]="750" [qrdata]="qrdata" [margin]="2" elementType="svg" errorCorrectionLevel="L"></qrcode>
     <qrcode #qrcode class="hidden" [qrdata]="qrdata" [width]="1080" elementType="img" errorCorrectionLevel="L"></qrcode>
     <ng-template pTemplate="footer">
         <button pButton pRipple icon="fas fa-file-download" label="Download PNG" class="p-button-info p-button-text" (click)="download()"></button>
