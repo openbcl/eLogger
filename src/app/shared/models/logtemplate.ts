@@ -1,17 +1,14 @@
-import { v4 as uuid } from 'uuid';
-import { EventTemplate, AbstractLog } from '.';
+import { AbstractLog } from './abstract'
+import { EventTemplate } from './event';
 
 export const LOGTEMPLATES = 'logtemplates';
 
-export class LogTemplate implements AbstractLog {
-    readonly id = uuid();
-    readonly key?: number;
-    title: string;
-    desc: string;
+export class LogTemplate extends AbstractLog {
     revision = new Date();
     eventTemplates: EventTemplate[] = [];
 
-    constructor(title: string, desc = '') {
+    constructor(title: string, desc: string) {
+        super();
         this.title = title;
         this.desc = desc;
     }

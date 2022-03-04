@@ -75,8 +75,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       name: 'eLoggerDB',
       version: 1,
       objectStoresMeta: [
-        generateObjectStoreMeta(LOGS, new Log(null)),
-        generateObjectStoreMeta(LOGTEMPLATES, new LogTemplate(null)),
+        generateObjectStoreMeta(LOGS, new Log(null, null, null)),
+        generateObjectStoreMeta(LOGTEMPLATES, new LogTemplate(null, null)),
         generateObjectStoreMeta(RECORDS, new Record({ name: null, color: null, eventType: 0, icon: null }, null, null))
       ]
     })

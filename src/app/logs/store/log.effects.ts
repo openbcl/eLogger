@@ -18,7 +18,8 @@ export class LogEffects {
     switchMap(loadLog => 
       this.store.pipe(
         select(logIdSelector),
-        filter(logId => !!(logId ||loadLog.id)),
+        take(1),
+        filter(logId => !!(logId || loadLog.id)),
         switchMap(logId => 
           this.logService.loadLog(logId || loadLog.id).pipe(
             map(log => LazyLogActions.loadLogSuccess({ log })),
@@ -47,7 +48,7 @@ export class LogEffects {
   deleteLog$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogActions.deleteLog),
     concatMap(deleteLog => this.recordService.deleteRecords(deleteLog.log.id).pipe(
-      switchMap(() => this.logService.deleteLog(deleteLog.log).pipe(
+      concatMap(() => this.logService.deleteLog(deleteLog.log).pipe(
         map(log => LogActions.deleteLogSuccess({ log })),
         catchError(error => of(LazyLogActions.deleteLogFailure({ error })))
       )),
@@ -58,7 +59,7 @@ export class LogEffects {
   createRecordSuccess$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.createRecordSuccess),
     concatMap(createRecordSuccess => this.logService.loadLog(createRecordSuccess.record.logId).pipe(
-      switchMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount + 1 }).pipe(
+      concatMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount + 1 }).pipe(
         map(log => LogActions.updateLogSuccess({ log })),
         catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))))
@@ -67,7 +68,7 @@ export class LogEffects {
   revokeRecordSuccess$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.revokeRecordSuccess),
     concatMap(revokeRecordSuccess => this.logService.loadLog(revokeRecordSuccess.logId).pipe(
-      switchMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount - 1 }).pipe(
+      concatMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount - 1 }).pipe(
         map(log => LogActions.updateLogSuccess({ log })),
         catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))))
@@ -76,7 +77,7 @@ export class LogEffects {
   deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.deleteRecordsSuccess),
     concatMap(deleteRecordsSuccess => this.logService.loadLog(deleteRecordsSuccess.logId).pipe(
-      switchMap(log => this.logService.updateLog({ ...log, recordsCount: 0 }).pipe(
+      concatMap(log => this.logService.updateLog({ ...log, recordsCount: 0 }).pipe(
         map(log => LogActions.updateLogSuccess({ log })),
         catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))))

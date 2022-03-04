@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, concatMap, filter, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
 import { logIdSelector } from './router.selector';
@@ -15,6 +15,7 @@ export class RecordEffects {
     switchMap(loadRecords => 
       this.store.pipe(
         select(logIdSelector),
+        take(1),
         filter(logId => !!(logId || loadRecords.logId)),
         switchMap(logId => this.recordService.loadRecords(logId || loadRecords.logId).pipe(
           map(records => RecordActions.loadRecordsSuccess({ records })),
@@ -50,10 +51,11 @@ export class RecordEffects {
 
   revokeRecord$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.revokeRecord),
-    switchMap(revokeRecord => 
+    concatMap(revokeRecord => 
       this.store.pipe(
         select(logIdSelector),
-        filter(logId => !!(logId ||revokeRecord.logId)),
+        take(1),
+        filter(logId => !!(logId || revokeRecord.logId)),
         concatMap(logId => this.recordService.revokeRecord(logId || revokeRecord.logId).pipe(
           map(logId => RecordActions.revokeRecordSuccess({ logId })),
           catchError(error => of(RecordActions.revokeRecordFailure({ error })))
@@ -64,10 +66,11 @@ export class RecordEffects {
 
   deleteRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.deleteRecords),
-    switchMap(deleteRecords => 
+    concatMap(deleteRecords => 
       this.store.pipe(
         select(logIdSelector),
-        filter(logId => !!(logId ||deleteRecords.logId)),
+        take(1),
+        filter(logId => !!(logId || deleteRecords.logId)),
         concatMap(logId => this.recordService.deleteRecords(logId || deleteRecords.logId).pipe(
           map(logId => RecordActions.deleteRecordsSuccess({ logId })),
           catchError(error => of(RecordActions.deleteRecordsFailure({ error })))

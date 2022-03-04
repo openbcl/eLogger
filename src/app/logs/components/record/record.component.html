@@ -4,7 +4,7 @@
             <div class="grid m-0 w-full">
                 <div class="col-8 md:col-5 font-light text-500 p-0">
                     <span>{{ log.title }}</span>
-                    <ng-container *ngIf="logTemplate.desc">
+                    <ng-container *ngIf="!!log.desc?.length">
                         <span>&nbsp;({{ log.desc }})</span>
                     </ng-container>
                 </div>
@@ -13,7 +13,7 @@
                 </div>
                 <div class="hidden md:block md:col-5 font-light text-500 p-0 text-right">
                     <span>{{ logTemplate.title }}</span>
-                    <ng-container *ngIf="logTemplate.desc">
+                    <ng-container *ngIf="!!logTemplate.desc?.length">
                         <span>&nbsp;({{ logTemplate.desc }})</span>
                     </ng-container>
                 </div>

@@ -1,19 +1,17 @@
-import { v4 as uuid } from 'uuid';
-import { AbstractLog } from '.';
+import { AbstractLog } from './abstract';
 
 export const LOGS = 'logs';
 
-export class Log implements AbstractLog {
-    readonly id = uuid();
-    readonly key?: number;
-    title = '';
-    desc = '';
+export class Log extends AbstractLog {
     prev: string = null;
     logTemplateId: string;
     recordsCount = 0;
 
-    constructor(logTemplateId: string) {
+    constructor(logTemplateId: string, title: string, desc: string) {
+        super();
         this.logTemplateId = logTemplateId;
+        this.title = title;
+        this.desc = desc;
     }
 }
 

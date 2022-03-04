@@ -11,13 +11,13 @@
             <ng-template let-logTemplate pTemplate="selectedItem">
                 <div class="flex flex-wrap align-items-center">
                     <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
-                    <span class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
+                    <span *ngIf="!!logTemplate.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
                 </div>
             </ng-template>
             <ng-template let-logTemplate pTemplate="item">
                 <div class="flex flex-wrap align-items-center">
                     <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
-                    <span class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
+                    <span *ngIf="!!logTemplate.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
                 </div>
             </ng-template>
         </p-dropdown>

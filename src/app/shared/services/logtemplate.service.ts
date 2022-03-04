@@ -11,7 +11,7 @@ export class LogTemplateService {
 
   constructor(private db: NgxIndexedDBService) { }
 
-  createLogTemplate(title: string, desc?: string) {
+  createLogTemplate(title: string, desc: string) {
     return this.db.add(LOGTEMPLATES, new LogTemplate(title, desc));
   }
 
@@ -24,7 +24,7 @@ export class LogTemplateService {
   }
 
   patchLogTemplates(values: Partial<LogTemplate>[]) {
-    const uniqueLogTemplate = (value: Partial<LogTemplate>, logTemplates: LogTemplate[]) => {
+    const uniqueLogTemplate = (value: LogTemplate, logTemplates: LogTemplate[]) => {
       const count = logTemplates.filter(logTemplate =>
         logTemplate.id !== value.id && logTemplate.desc === value.desc && isTitleEqual(logTemplate.title, value.title)
       ).map(logTemplate => {
@@ -43,15 +43,20 @@ export class LogTemplateService {
         existingTitle.startsWith(importedTitle) &&
         existingTitle.split(importedTitle)[1].match(/\s\[\d+\]/)
     }
-    return this.loadLogTemplates().pipe(switchMap(logTemplates => forkJoin(values.map(value => {
+    return this.loadLogTemplates().pipe(switchMap(logTemplates => forkJoin(values.map(partialValue => {
+      const value: LogTemplate = {
+        ...partialValue,
+        eventTemplates: partialValue.eventTemplates?.map(eventTemplate => ({ ...eventTemplate, color: eventTemplate.color || null })) || [],
+        desc: partialValue.desc || null
+      } as LogTemplate;
       const metaEqual = !!logTemplates.find(logTemplate => logTemplate.id !== value.id && logTemplate.desc === value.desc && isTitleEqual(logTemplate.title, value.title));
       const idEqual = !!logTemplates.find(logTemplate => logTemplate.id === value.id);
       return metaEqual ? (idEqual ?
-          this.updateLogTemplate(uniqueLogTemplate(value, logTemplates) as LogTemplate, false) :
-          this.db.add(LOGTEMPLATES, uniqueLogTemplate(value, logTemplates) as LogTemplate)
+          this.updateLogTemplate(uniqueLogTemplate(value, logTemplates), false) :
+          this.db.add(LOGTEMPLATES, uniqueLogTemplate(value, logTemplates))
       ) : (idEqual ?
-        this.updateLogTemplate(value as LogTemplate, false) :
-        this.db.add(LOGTEMPLATES, value as LogTemplate)
+        this.updateLogTemplate(value, false) :
+        this.db.add(LOGTEMPLATES, value)
       )
     }))));
   }

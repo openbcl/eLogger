@@ -5,7 +5,7 @@
                 <div class="grid m-0 w-full">
                     <div class="col-12 p-panel-title p-0 mb-4">
                         <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
-                        <ng-container *ngIf="logTemplate.desc">
+                        <ng-container *ngIf="!!logTemplate.desc?.length">
                             <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ logTemplate.desc }})</span>
                         </ng-container>
                     </div>

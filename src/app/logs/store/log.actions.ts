@@ -18,7 +18,7 @@ export const loadLogFailure = createAction(
 
 export const createLog = createAction(
   '[Log] Create Log',
-  props<{ logTemplateId: string, title: string, desc?: string }>()
+  props<{ logTemplateId: string, title: string, desc: string }>()
 );
 
 export const createLogFailure = createAction(

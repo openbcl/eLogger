@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../shared/services';
 import * as LogTemplateActions from './logtemplate.actions';
@@ -19,7 +19,7 @@ export class LogTemplateEffects {
 
   patchLogTemplates$ = createEffect(() => this.actions$.pipe( 
     ofType(LogTemplateActions.patchLogTemplates),
-    switchMap(patchLogTemplates => this.logTemplateService.patchLogTemplates(patchLogTemplates.logTemplates).pipe(
+    concatMap(patchLogTemplates => this.logTemplateService.patchLogTemplates(patchLogTemplates.logTemplates).pipe(
       map(logTemplates => LogTemplateActions.patchLogTemplatesSuccess({ logTemplates })),
       catchError(error => of(LogTemplateActions.patchLogTemplatesFailure({ error })))
     ))

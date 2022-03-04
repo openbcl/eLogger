@@ -1,5 +1,5 @@
 import { SelectItem } from "primeng/api";
-import { EventTemplate, EventType } from ".";
+import { EventTemplate, EventType } from "./event";
 
 export const RECORDS = 'records';
 

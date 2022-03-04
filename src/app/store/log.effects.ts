@@ -20,7 +20,7 @@ export class LogEffects {
   reorderLogs$ = createEffect(() => this.actions$.pipe( 
     ofType(LogActions.reorderLogs),
     concatMap(reorderLogs => this.logService.reorderLogs(reorderLogs.logs).pipe(
-      switchMap(logs => of(LogActions.reorderLogsSuccess({ logs }), LogActions.loadLogsSuccess({ logs }))),
+      concatMap(logs => of(LogActions.reorderLogsSuccess({ logs }), LogActions.loadLogsSuccess({ logs }))),
       catchError(error => of(LogActions.reorderLogsFailure({ error })))
     ))
   ));
