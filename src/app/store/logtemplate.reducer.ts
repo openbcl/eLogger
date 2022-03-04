@@ -37,7 +37,7 @@ export const logTemplatesReducer = createReducer(
   on(LogTemplateActions.deleteLogTemplateSuccess, (state, action) => ({
     ...state, logTemplates: state.logTemplates.filter(oldLogTemplate => oldLogTemplate.id !== action.logTemplate.id), processing: false
   })),
-  on(LogTemplateActions.patchLogTemplateSuccess, (state, action) => ({
-    ...state, logTemplates: [ ...state.logTemplates.filter(oldLogTemplate => oldLogTemplate.id !== action.logTemplate.id), action.logTemplate ], processing: false
+  on(LogTemplateActions.patchLogTemplatesSuccess, (state, action) => ({
+    ...state, logTemplates: [ ...state.logTemplates.filter(oldLogTemplate => !action.logTemplates.map(logTemplate => logTemplate.id).includes(oldLogTemplate.id)), ...action.logTemplates ], processing: false
   })),
 );

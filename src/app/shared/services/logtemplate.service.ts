@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { concatMap, map, switchMap } from 'rxjs';
+import { concatMap, forkJoin, map, switchMap } from 'rxjs';
 import { LogTemplate, LOGTEMPLATES } from '../models';
 import { processResult } from '../utils/errorHandler';
 
@@ -15,18 +15,45 @@ export class LogTemplateService {
     return this.db.add(LOGTEMPLATES, new LogTemplate(title, desc));
   }
 
-  updateLogTemplate(value: LogTemplate) {
+  updateLogTemplate(value: LogTemplate, newRevision = false) {
     return (!value.key ?
       this.loadLogTemplate(value.id).pipe(concatMap(result => 
-        this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: new Date(), key: result.key })
-      )) : this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: new Date() }))
+        this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: newRevision ? new Date() : value.revision, key: result.key })
+      )) : this.db.update<LogTemplate>(LOGTEMPLATES, { ...value, revision: newRevision ? new Date() : value.revision }))
       .pipe(map(data => data.find(item => !value.key ? item.id === value.id : item.key === value.key)))
   }
 
-  patchLogTemplate(value: Partial<LogTemplate>) {
-    return this.loadLogTemplate(value.id).pipe(switchMap(result => 
-      !!result ? this.updateLogTemplate(value as LogTemplate) : this.db.add(LOGTEMPLATES, value as LogTemplate)
-    ))
+  patchLogTemplates(values: Partial<LogTemplate>[]) {
+    const uniqueLogTemplate = (value: Partial<LogTemplate>, logTemplates: LogTemplate[]) => {
+      const count = logTemplates.filter(logTemplate =>
+        logTemplate.id !== value.id && logTemplate.desc === value.desc && isTitleEqual(logTemplate.title, value.title)
+      ).map(logTemplate => {
+        if (logTemplate.title === value.title) {
+          return 0;
+        }
+        const match = logTemplate.title.split(value.title)[1].match(/\s\[(\d+)\]/);
+        return match ? parseInt(match[1]) + 1 : 0
+      }).reduce((prev, current) => current > prev ? current : prev, 2)
+      return {
+        ...value, title: `${value.title} [${count}]`
+      }
+    };
+    const isTitleEqual = (existingTitle: string, importedTitle: string) => {
+      return existingTitle === importedTitle ||
+        existingTitle.startsWith(importedTitle) &&
+        existingTitle.split(importedTitle)[1].match(/\s\[\d+\]/)
+    }
+    return this.loadLogTemplates().pipe(switchMap(logTemplates => forkJoin(values.map(value => {
+      const metaEqual = !!logTemplates.find(logTemplate => logTemplate.id !== value.id && logTemplate.desc === value.desc && isTitleEqual(logTemplate.title, value.title));
+      const idEqual = !!logTemplates.find(logTemplate => logTemplate.id === value.id);
+      return metaEqual ? (idEqual ?
+          this.updateLogTemplate(uniqueLogTemplate(value, logTemplates) as LogTemplate, false) :
+          this.db.add(LOGTEMPLATES, uniqueLogTemplate(value, logTemplates) as LogTemplate)
+      ) : (idEqual ?
+        this.updateLogTemplate(value as LogTemplate, false) :
+        this.db.add(LOGTEMPLATES, value as LogTemplate)
+      )
+    }))));
   }
 
   loadLogTemplates() {

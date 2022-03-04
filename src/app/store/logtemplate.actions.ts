@@ -31,17 +31,17 @@ export const deleteLogTemplateSuccess = createAction(
   props<{ logTemplate: LogTemplate }>()
 );
 
-export const patchLogTemplate = createAction(
-  '[LogTemplate] Patch LogTemplate',
-  props<{ logTemplate: Partial<LogTemplate> }>()
+export const patchLogTemplates = createAction(
+  '[LogTemplate] Patch LogTemplates',
+  props<{ logTemplates: Partial<LogTemplate>[] }>()
 );
 
-export const patchLogTemplateFailure = createAction(
-  '[LogTemplate] Patch LogTemplate Failure',
+export const patchLogTemplatesFailure = createAction(
+  '[LogTemplate] Patch LogTemplates Failure',
   props<{ error: any }>()
 );
   
-export const patchLogTemplateSuccess = createAction(
-  '[LogTemplate] Patch LogTemplate Success',
-  props<{ logTemplate: LogTemplate }>()
+export const patchLogTemplatesSuccess = createAction(
+  '[LogTemplate] Patch LogTemplates Success',
+  props<{ logTemplates: LogTemplate[] }>()
 );

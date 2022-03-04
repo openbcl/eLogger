@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FileUpload } from 'primeng/fileupload';
-import { patchLogTemplate } from '../../store/logtemplate.actions';
+import { patchLogTemplates } from '../../store/logtemplate.actions';
 import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
 import { SharedLogTemplates } from '../../shared/models';
 
@@ -34,9 +34,7 @@ export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
         const partialLogTemplates: SharedLogTemplates = obj;
         switch (partialLogTemplates.version) {
           default:
-            partialLogTemplates.logTemplates.forEach(logTemplate => {
-              this.store.dispatch(patchLogTemplate({ logTemplate }));
-            });
+            this.store.dispatch(patchLogTemplates({ logTemplates: partialLogTemplates.logTemplates }));
         }
         this.fileUpload.clear();
         return this.close();
