@@ -50,7 +50,7 @@ export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
           default:
             this.store.dispatch(patchLogTemplates({ logTemplates: partialLogTemplates.logTemplates }));
         }
-        this.fileUpload.clear();
+        this.fileUpload?.clear();
         return this.close();
       }
     }
