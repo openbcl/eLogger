@@ -1,9 +1,18 @@
-<p-dialog header="Import configuration of log templates" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <p-fileUpload #fileUpload [customUpload]="true" [auto]="true" mode="basic" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)"></p-fileUpload>
-    <zxing-scanner 
-        [enable]="visible"
-        [formats]="[11]"
-        (scanSuccess)="patchLogTemplates($event)"
-        (scanError)="raiseError('An error occured during the scan process.')">
-    </zxing-scanner>
+<p-dialog header="Import configuration of log templates" styleClass="w-full sm:w-11 md:w-10 lg:w-9 xl:w-8" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <form [formGroup]="form">
+        <div class="grid">
+            <p-selectButton class="col-12" [options]="importOptions" formControlName="importOption"></p-selectButton>
+            <div class="col-12" *ngIf="!form.value.importOption">
+                <p-fileUpload #fileUpload [customUpload]="true" [auto]="true" mode="basic" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)"></p-fileUpload>
+            </div>
+            <div class="col-12" *ngIf="form.value.importOption">
+                <zxing-scanner
+                    [enable]="visible && form.value.importOption"
+                    [formats]="[11]"
+                    (scanSuccess)="patchLogTemplates($event)"
+                    (scanError)="raiseError('An error occured during the scan process.')">
+                </zxing-scanner>
+            </div>
+        </div>
+    </form>
 </p-dialog>

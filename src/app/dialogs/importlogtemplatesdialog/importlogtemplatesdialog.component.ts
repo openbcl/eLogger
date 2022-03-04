@@ -4,6 +4,7 @@ import { FileUpload } from 'primeng/fileupload';
 import { patchLogTemplates } from '../../store/logtemplate.actions';
 import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
 import { SharedLogTemplates } from '../../shared/models';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'el-import-logtemplates-dialog',
@@ -15,7 +16,20 @@ export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
   @ViewChild('fileUpload')
   fileUpload: FileUpload;
 
-  constructor(private store: Store) {
+  importOptions = [{
+    label: 'File Upload',
+    value: false
+  }, {
+    label: 'QR code',
+    value: true
+  }];
+
+  form = this.fb.group({ importOption: false });
+
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+  ) {
     super();
   }
 
