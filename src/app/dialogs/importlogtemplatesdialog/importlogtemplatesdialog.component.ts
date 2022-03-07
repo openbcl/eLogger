@@ -5,6 +5,8 @@ import { patchLogTemplates } from '../../store/logtemplate.actions';
 import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
 import { SharedLogTemplates } from '../../shared/models';
 import { FormBuilder } from '@angular/forms';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+import { BarcodeFormat } from '@zxing/library';
 
 @Component({
   selector: 'el-import-logtemplates-dialog',
@@ -15,6 +17,11 @@ export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
 
   @ViewChild('fileUpload')
   fileUpload: FileUpload;
+
+  @ViewChild('scanner')
+  scanner: ZXingScannerComponent;
+
+  formats = [ BarcodeFormat.QR_CODE ];
 
   importOptions = [{
     label: 'File Upload',
@@ -43,18 +50,23 @@ export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
 
   patchLogTemplates(data: any) {
     if (typeof data === 'string') {
-      const obj = JSON.parse(data);
-      if (!!obj?.version?.length && !!obj?.logTemplates?.length) {
-        const partialLogTemplates: SharedLogTemplates = obj;
+      const partialLogTemplates = JSON.parse(data) as SharedLogTemplates;
+      if (!!partialLogTemplates?.version?.length && !!partialLogTemplates?.logTemplates?.length) {
         switch (partialLogTemplates.version) {
           default:
             this.store.dispatch(patchLogTemplates({ logTemplates: partialLogTemplates.logTemplates }));
         }
-        this.fileUpload?.clear();
         return this.close();
       }
     }
     this.raiseError('The input file has an incompatible format.')
+  }
+
+  override close() {
+    this.fileUpload?.clear();
+    this.scanner?.reset();
+    this.form.patchValue({ importOption: false });
+    super.close();
   }
 
   raiseError(msg: string) {

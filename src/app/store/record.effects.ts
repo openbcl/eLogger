@@ -81,7 +81,7 @@ export class RecordEffects {
 
   createRecordSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.createRecordSuccess),
-    tap(() => !!window?.navigator && window.navigator.vibrate(100))
+    tap(() => window.navigator.vibrate && window.navigator.vibrate(100))
   ), { dispatch: false });
 
   constructor(

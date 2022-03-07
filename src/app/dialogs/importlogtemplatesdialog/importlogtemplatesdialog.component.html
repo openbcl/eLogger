@@ -7,8 +7,9 @@
             </div>
             <div class="col-12" *ngIf="form.value.importOption">
                 <zxing-scanner
+                    #scanner
                     [enable]="visible && form.value.importOption"
-                    [formats]="[11]"
+                    [formats]="formats"
                     (scanSuccess)="patchLogTemplates($event)"
                     (scanError)="raiseError('An error occured during the scan process.')">
                 </zxing-scanner>
