@@ -16,6 +16,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { FieldsetModule } from 'primeng/fieldset'; 
 import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
+import { SkeletonModule } from 'primeng/skeleton';
 import { QRCodeModule } from 'angularx-qrcode';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -51,6 +52,7 @@ const modules = [
   SelectButtonModule,
   FieldsetModule,
   DropdownModule,
+  SkeletonModule,
   AccordionModule,
   FileUploadModule,
   QRCodeModule,

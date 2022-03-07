@@ -43,6 +43,37 @@ body {
     padding: 0;
 }
 
+.el-ar-4-3 {
+    position: relative;
+    width: 100%;
+    padding-top: 75%;
+    p-skeleton {
+        div {
+            width: 60% !important;
+            height: 60% !important;
+        }
+    }
+    .el-ar-container {
+        position: absolute;
+        background-color: var(--surface-c);
+        margin: 0.5rem;
+        align-items: center;
+        display: flex;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+        .p-fileupload .p-button {
+            display: grid;
+        }
+        * {
+            z-index: 1;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
 i.el-invisible {
     opacity: 0;
 }

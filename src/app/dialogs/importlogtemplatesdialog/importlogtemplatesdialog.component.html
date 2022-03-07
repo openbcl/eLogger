@@ -1,13 +1,18 @@
-<p-dialog header="Import configuration of log templates" styleClass="w-full sm:w-11 md:w-10 lg:w-9 xl:w-8" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog header="Import configuration of log templates" styleClass="w-full" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <span class="flex text-center font-light pb-3">
+        To import a configuration, please choose between the two options "File Upload" and "QR code".
+    </span>
     <form [formGroup]="form">
         <div class="grid">
             <p-selectButton class="col-12" [options]="importOptions" formControlName="importOption"></p-selectButton>
-            <div class="col-12" *ngIf="!form.value.importOption">
-                <p-fileUpload #fileUpload [customUpload]="true" [auto]="true" mode="basic" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)"></p-fileUpload>
+            <div class="col-12 el-ar-4-3" *ngIf="!form.value.importOption">
+                <p-fileUpload chooseIcon="fas fa-file-import" class="el-ar-container px-2 pt-2" #fileUpload [customUpload]="true" [auto]="true" mode="basic" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)"></p-fileUpload>
             </div>
-            <div class="col-12" *ngIf="form.value.importOption">
+            <div class="col-12 el-ar-4-3" *ngIf="form.value.importOption">
+                <p-skeleton class="el-ar-container"></p-skeleton>
                 <zxing-scanner
                     #scanner
+                    class="el-ar-container p-2"
                     [enable]="visible && form.value.importOption"
                     [formats]="formats"
                     (scanSuccess)="patchLogTemplates($event)"
