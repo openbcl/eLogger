@@ -12,3 +12,7 @@ p-menubar {
     background: var(--surface-f);
     padding: 1rem 1.25rem;
 }
+
+.el-import .p-fileupload-content {
+    top: 4.5rem !important;
+}

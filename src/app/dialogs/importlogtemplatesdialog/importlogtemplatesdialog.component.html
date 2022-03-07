@@ -1,18 +1,22 @@
 <p-dialog header="Import configuration of log templates" styleClass="w-full" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <span class="flex text-center font-light pb-3">
-        To import a configuration, please choose between the two options "File Upload" and "QR code".
+        Please choose between the two options "File Upload" and "QR code" to import a configuration.
     </span>
     <form [formGroup]="form">
         <div class="grid">
             <p-selectButton class="col-12" [options]="importOptions" formControlName="importOption"></p-selectButton>
-            <div class="col-12 el-ar-4-3" *ngIf="!form.value.importOption">
-                <p-fileUpload chooseIcon="fas fa-file-import" class="el-ar-container px-2 pt-2" #fileUpload [customUpload]="true" [auto]="true" mode="basic" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)"></p-fileUpload>
+            <div class="col-12 el-import" *ngIf="!form.value.importOption">
+                <p-fileUpload chooseIcon="fas fa-file-import" class="el-import-container m-2 p-2" #fileUpload [customUpload]="true" [auto]="true" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)">
+                    <ng-template pTemplate="content">
+                        <i class="pi pi-download"></i>
+                    </ng-template>
+                </p-fileUpload>
             </div>
-            <div class="col-12 el-ar-4-3" *ngIf="form.value.importOption">
-                <p-skeleton class="el-ar-container"></p-skeleton>
+            <div class="col-12 el-import" *ngIf="form.value.importOption">
+                <p-skeleton class="el-import-container m-2"></p-skeleton>
                 <zxing-scanner
                     #scanner
-                    class="el-ar-container p-2"
+                    class="el-import-container m-2 p-2"
                     [enable]="visible && form.value.importOption"
                     [formats]="formats"
                     (scanSuccess)="patchLogTemplates($event)"
