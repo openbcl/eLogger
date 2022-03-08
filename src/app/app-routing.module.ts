@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { LandingpageGuard } from './shared/utils/landingpage.guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: AppComponent,
+    canActivate: [LandingpageGuard]
+  },
   {
     path: 'logs',
     loadChildren: () => import('./logs/logs.module').then(m => m.LogsModule)
