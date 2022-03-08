@@ -43,44 +43,6 @@ body {
     padding: 0;
 }
 
-.el-import {
-    position: relative;
-    p-progressspinner {
-        display: grid;
-        align-content: center;
-        position: absolute;
-        top: 0rem;
-        bottom: 0rem;
-        right: 0rem;
-        left: 0rem;
-    }
-    zxing-scanner {
-        display: grid;
-        text-align: center;
-        align-content: center;
-        video {
-            z-index: 2;
-            border-radius: 6px;
-        }
-    }
-}
-
-.el-import-container {
-    border-radius: 6px;
-    background-color: var(--surface-c);
-    min-height: 25rem;
-    .p-fileupload-content {
-        min-height: 19.5rem;
-        display: grid;
-        text-align: center;
-        align-content: center;
-        i {
-            font-size: 6rem;
-            color: var(--surface-c);
-        }
-    }
-}
-
 i.el-invisible {
     opacity: 0;
 }

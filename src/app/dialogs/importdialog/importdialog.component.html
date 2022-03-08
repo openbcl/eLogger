@@ -5,23 +5,23 @@
     <form [formGroup]="form">
         <div class="grid">
             <p-selectButton class="col-12" [options]="importOptions" formControlName="importOption"></p-selectButton>
-            <div class="col-12 el-import" *ngIf="!form.value.importOption">
-                <p-fileUpload chooseIcon="fas fa-file-import" class="el-import-container" #fileUpload [customUpload]="true" [auto]="true" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)">
+            <div class="col-12" *ngIf="!form.value.importOption">
+                <p-fileUpload #fileUpload chooseIcon="fas fa-file-import" [customUpload]="true" [auto]="true" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)">
                     <ng-template pTemplate="content">
                         <i class="pi pi-download"></i>
                     </ng-template>
                 </p-fileUpload>
             </div>
-            <div class="col-12 el-import" *ngIf="form.value.importOption">
+            <div class="col-12 relative" *ngIf="form.value.importOption">
                     <zxing-scanner
                         #scanner
-                        class="el-import-container p-2"
+                        class="p-2 align-content-center text-center"
                         [enable]="visible && form.value.importOption"
                         [formats]="formats"
                         (scanSuccess)="patchLogTemplates($event)"
                         (scanError)="raiseError('An error occured during the scan process.')">
                     </zxing-scanner>
-                <p-progressSpinner></p-progressSpinner>
+                <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
             </div>
         </div>
     </form>
