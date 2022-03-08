@@ -3,7 +3,7 @@
         <p-panel *ngrxLet="log$ as log" class="col-12">
             <ng-template pTemplate="header">
                 <div class="grid m-0 w-full">
-                    <div class="col-12 p-panel-title p-0 mb-4">
+                    <div *ngIf="logTemplate" class="col-12 p-panel-title p-0 mb-4">
                         <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
                         <ng-container *ngIf="!!logTemplate.desc?.length">
                             <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ logTemplate.desc }})</span>
@@ -25,14 +25,17 @@
                     </div>
                 </div>
             </ng-template>
-            <div class="flex flex-wrap justify-content-center">
+            <div *ngIf="logTemplate" class="flex flex-wrap justify-content-center">
                 <button pButton pRipple *ngIf="!records?.length" [icon]="PrimeIcons.PLAY" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Start logging" [routerLink]="['record']"></button>
                 <button pButton pRipple *ngIf="!!records?.length" [icon]="PrimeIcons.FORWARD" class="p-button-outlined p-button-rounded p-button-success m-2 w-full md:w-13rem" iconPos="right" label="Resume logging" [routerLink]="['record']"></button>
                 <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records" (click)="shareRecords(records, log)"></button>
                 <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records" (click)="displayDeleteRecordsDialog = true"></button>
             </div>
+            <span *ngIf="!logTemplate" class="p-error flex text-center justify-content-center font-light">
+                This log is based on an unknown log template. Please import the corresponding log template first.
+            </span>
         </p-panel>
-        <p-panel class="col-12" header="Event Records">
+        <p-panel *ngIf="logTemplate" class="col-12" header="Event Records">
             <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="true" breakpoint="550px" styleClass="p-datatable-striped"></el-records>
         </p-panel> 
     </ng-container>

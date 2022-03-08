@@ -1,8 +1,8 @@
-import { AbstractLog } from './abstract';
+import { BaseLog } from './abstract';
 
 export const LOGS = 'logs';
 
-export class Log extends AbstractLog {
+export class Log extends BaseLog {
     prev: string = null;
     logTemplateId: string;
     recordsCount = 0;

@@ -1,9 +1,8 @@
-import { v4 as uuid } from 'uuid';
 import { loadLogs, loadLogsSuccess, loadLogsFailure } from './log.actions';
 import { logsReducer, initialLogsState } from './log.reducer';
 import { Log } from '../shared/models';
 
-const log: Log = new Log(uuid());
+const log: Log = new Log(null, null, null);
 const errorTemplate = {}
 
 describe('Logs Reducer', () => {

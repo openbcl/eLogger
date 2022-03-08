@@ -44,3 +44,18 @@ export const reorderLogsFailure = createAction(
   '[Log] Reorder Logs Failure',
   props<{ error: any }>()
 );
+
+export const patchLogs = createAction(
+  '[Log] Patch Logs',
+  props<{ logs: Partial<Log>[] }>()
+);
+
+export const patchLogsFailure = createAction(
+  '[Log] Patch Logs Failure',
+  props<{ error: any }>()
+);
+  
+export const patchLogsSuccess = createAction(
+  '[Log] Patch Logs Success',
+  props<{ logs: Log[] }>()
+);

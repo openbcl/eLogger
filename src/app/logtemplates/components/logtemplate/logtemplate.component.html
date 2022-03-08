@@ -54,7 +54,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-eventTemplate let-index="rowIndex">
                     <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
-                        <td *ngIf="!isMobileLayout">
+                        <td *ngIf="!isMobileLayout" class="cursor-move">
                             <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                         </td>
                         <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">

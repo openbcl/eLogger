@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FileUpload } from 'primeng/fileupload';
-import { patchLogTemplates } from '../../store/logtemplate.actions';
-import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
-import { SharedLogTemplates } from '../../shared/models';
 import { FormBuilder } from '@angular/forms';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
+import { patchLogTemplates } from '../../store/logtemplate.actions';
+import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
+import { SharedLogs, SharedLogTemplates } from '../../shared/models';
+import { patchLogs } from '../../store/log.actions';
 
 @Component({
   selector: 'el-import-dialog',
@@ -43,20 +44,33 @@ export class ImportDialogComponent extends BasicDialogComponent {
   uploadFiles(event: { files: Blob[] }) {
     if (!!event?.files?.length) {
       const fileReader = new FileReader();
-      fileReader.onload = () => this.patchLogTemplates(fileReader.result);
+      fileReader.onload = () => this.patch(fileReader.result);
       fileReader.readAsText(event.files[0]);
     }
   }
 
-  patchLogTemplates(data: any) {
+  patch(data: any) {
     if (typeof data === 'string') {
-      const partialLogTemplates = JSON.parse(data) as SharedLogTemplates;
-      if (!!partialLogTemplates?.version?.length && !!partialLogTemplates?.logTemplates?.length) {
-        switch (partialLogTemplates.version) {
-          default:
-            this.store.dispatch(patchLogTemplates({ logTemplates: partialLogTemplates.logTemplates }));
+      const parsed = JSON.parse(data);
+      if (!!parsed?.logTemplates?.length) {
+        const partialLogTemplates = parsed as SharedLogTemplates;
+        if (!!partialLogTemplates?.version?.length) {
+          switch (partialLogTemplates.version) {
+            default:
+              this.store.dispatch(patchLogTemplates({ logTemplates: partialLogTemplates.logTemplates }));
+          }
+          return this.close();
         }
-        return this.close();
+      } if (!!parsed?.logs?.length) {
+        const partialLogs = parsed as SharedLogs;
+        if (!!partialLogs?.version?.length) {
+          switch (partialLogs.version) {
+            default:
+              this.store.dispatch(patchLogs({ logs: partialLogs.logs }));
+          }
+          return this.close();
+        }
+
       }
     }
     this.raiseError('The input file has an incompatible format.')

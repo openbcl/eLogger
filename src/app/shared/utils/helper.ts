@@ -1,6 +1,27 @@
 import { SelectItem, PrimeIcons } from "primeng/api";
-import { AbstractLog, EventTemplate, EventType, Log } from "../models";
+import { BaseLog, EventTemplate, EventType, Log } from "../models";
 import { version } from '../../../environments/build'
+
+export const isBaseLogTitleEqual = (existingTitle: string, importedTitle: string) => {
+    return existingTitle === importedTitle ||
+        existingTitle.startsWith(importedTitle) &&
+        existingTitle.split(importedTitle)[1].match(/\s\[\d+\]/)
+}
+
+export const uniqueBaseLog = <T>(value: BaseLog, baseLogs: BaseLog[]): T => {
+    const count = baseLogs.filter(baseLog =>
+        baseLog.id !== value.id && baseLog.desc === value.desc && isBaseLogTitleEqual(baseLog.title, value.title)
+    ).map(baseLog => {
+        if (baseLog.title === value.title) {
+        return 0;
+        }
+        const match = baseLog.title.split(value.title)[1].match(/\s\[(\d+)\]/);
+        return match ? parseInt(match[1]) + 1 : 0
+    }).reduce((prev, current) => current > prev ? current : prev, 2)
+    return {
+        ...value, title: `${value.title} [${count}]`
+    } as unknown as T
+};
 
 export const toJSON = (value: any, key: string, light: boolean, pretify: boolean) => {
     const lighten = (obj: any): any => {
@@ -60,7 +81,7 @@ export const deepCompareEventTemplates = (a: EventTemplate, b: EventTemplate) =>
     a.color === b.color
 )
 
-export const compareAbstractLog = (a: AbstractLog, b: AbstractLog, id?: string) => (
+export const compareAbstractLog = (a: BaseLog, b: BaseLog, id?: string) => (
     a.title.toLocaleLowerCase() === b.title.toLocaleLowerCase() &&
     a.desc?.toLocaleLowerCase() === b.desc?.toLocaleLowerCase() && (
         !(<Log>a).logTemplateId || !(<Log>b).logTemplateId ||

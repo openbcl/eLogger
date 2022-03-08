@@ -1,6 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { of } from 'rxjs';
-import { EventType, LogTemplate, Record } from '../../shared/models';
+import { EventType, LogTemplate } from '../../shared/models';
+
+@Pipe({
+  name: 'logTemplateExists'
+})
+export class LogTemplateExistsPipe implements PipeTransform {
+
+  transform(id: string, logTemplates: LogTemplate[]): boolean {
+    return !!logTemplates?.find(logTemplate => logTemplate.id === id);
+  }
+
+}
 
 @Pipe({
   name: 'logTemplateTitle'
@@ -8,7 +19,7 @@ import { EventType, LogTemplate, Record } from '../../shared/models';
 export class LogTemplateTitlePipe implements PipeTransform {
 
   transform(id: string, logTemplates: LogTemplate[]): string {
-    return logTemplates?.find(logTemplate => logTemplate.id === id)?.title || id;
+    return logTemplates?.find(logTemplate => logTemplate.id === id)?.title || 'Unknown log template: Please import the corresponding log template first.';
   }
 
 }

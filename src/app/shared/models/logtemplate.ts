@@ -1,9 +1,9 @@
-import { AbstractLog } from './abstract'
+import { BaseLog } from './abstract'
 import { EventTemplate } from './event';
 
 export const LOGTEMPLATES = 'logtemplates';
 
-export class LogTemplate extends AbstractLog {
+export class LogTemplate extends BaseLog {
     revision = new Date();
     eventTemplates: EventTemplate[] = [];
 

@@ -30,7 +30,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-log let-index="rowIndex">
             <tr [pReorderableRow]="index" class="cursor-pointer">
-                <td *ngIf="!isMobileLayout">
+                <td *ngIf="!isMobileLayout" class="cursor-move">
                     <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                 </td>
                 <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
@@ -40,7 +40,9 @@
                 <td [routerLink]="[log.id]">{{ log.title }}</td>
                 <td [routerLink]="[log.id]">{{ log.desc }}</td>
                 <td [routerLink]="[log.id]" class="flex-wrap">
-                    <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
+                    <span [ngClass]="{'p-error': !(log.logTemplateId | logTemplateExists: logTemplates)}" class="text-overflow-anywhere ">
+                        {{ log.logTemplateId | logTemplateTitle: logTemplates }}
+                    </span>
                     <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
                         <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
                     </ng-container>
