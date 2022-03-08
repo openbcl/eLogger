@@ -1,4 +1,4 @@
-<p-dialog header="Import configuration of log templates" styleClass="w-full" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog header="Import configuration" styleClass="w-full" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <span class="flex text-center font-light pb-3">
         Please choose between the two options "File Upload" and "QR code" to import a configuration.
     </span>
@@ -13,15 +13,15 @@
                 </p-fileUpload>
             </div>
             <div class="col-12 el-import" *ngIf="form.value.importOption">
-                <zxing-scanner
-                    #scanner
-                    class="el-import-container p-2"
-                    [enable]="visible && form.value.importOption"
-                    [formats]="formats"
-                    (scanSuccess)="patchLogTemplates($event)"
-                    (scanError)="raiseError('An error occured during the scan process.')">
-                </zxing-scanner>
-                <p-skeleton shape="circle"></p-skeleton>
+                    <zxing-scanner
+                        #scanner
+                        class="el-import-container p-2"
+                        [enable]="visible && form.value.importOption"
+                        [formats]="formats"
+                        (scanSuccess)="patchLogTemplates($event)"
+                        (scanError)="raiseError('An error occured during the scan process.')">
+                    </zxing-scanner>
+                <p-progressSpinner></p-progressSpinner>
             </div>
         </div>
     </form>

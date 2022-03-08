@@ -35,8 +35,7 @@ export class AppComponent {
 
   displayExportLogTemplatesDialog = false;
   displayExportLogsDialog = false;
-  displayImportLogTemplatesDialog = false;
-  displayImportLogsDialog = false;
+  displayImportDialog = false;
 
   navitems: MenuItem[] = [
     { label: 'Logs', icon: PrimeIcons.FILE, routerLink: ['/logs'] },
@@ -46,10 +45,7 @@ export class AppComponent {
     icon: PrimeIcons.COG,
     items: [
       { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
-      { label: 'Import Configuration', icon: 'fas fa-file-import', items: [
-        { label: 'Logs', icon: 'fas fa-file-download', command: () => this.displayImportLogsDialog = true },
-        { label: 'Log Templates', icon: 'fas fa-file-download', command: () => this.displayImportLogTemplatesDialog = true },
-      ]},
+      { label: 'Import Configuration', icon: 'fas fa-file-import', command: () => this.displayImportDialog = true },
       { id: this.keys.exportID, label: 'Export Configuration', icon: 'fas fa-file-export', disabled: true, items: [
         { id: this.keys.exports.logsID, label: 'Logs', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogsDialog = true },
         { id: this.keys.exports.logTemplatesID, label: 'Log Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogTemplatesDialog = true },

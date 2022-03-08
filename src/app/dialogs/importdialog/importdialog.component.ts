@@ -9,11 +9,11 @@ import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
 
 @Component({
-  selector: 'el-import-logtemplates-dialog',
-  templateUrl: './importlogtemplatesdialog.component.html',
-  styleUrls: ['./importlogtemplatesdialog.component.scss']
+  selector: 'el-import-dialog',
+  templateUrl: './importdialog.component.html',
+  styleUrls: ['./importdialog.component.scss']
 })
-export class ImportLogTemplatesDialogComponent extends BasicDialogComponent {
+export class ImportDialogComponent extends BasicDialogComponent {
 
   @ViewChild('fileUpload')
   fileUpload: FileUpload;

@@ -16,8 +16,7 @@ import { LogTemplateEffects } from './store/logtemplate.effects';
 import { LogEffects } from './store/log.effects';
 import { RecordEffects } from './store/record.effects';
 import { routerFeatureKey } from './store/router.selector';
-import { ImportLogTemplatesDialogComponent } from './dialogs/importlogtemplatesdialog/importlogtemplatesdialog.component';
-import { ImportLogsDialogComponent } from './dialogs/importlogsdialog/importlogsdialog.component';
+import { ImportDialogComponent } from './dialogs/importdialog/importdialog.component';
 import { ExportLogTemplatesDialogComponent } from './dialogs/exportlogtemplatesdialog/exportlogtemplatesdialog.component';
 import { ExportLogsDialogComponent } from './dialogs/exportlogsdialog/exportlogsdialog.component';
 import * as fromLogTemplate from './store/logtemplate.reducer';
@@ -47,8 +46,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
 @NgModule({
   declarations: [
     AppComponent,
-    ImportLogTemplatesDialogComponent,
-    ImportLogsDialogComponent,
+    ImportDialogComponent,
     ExportLogTemplatesDialogComponent,
     ExportLogsDialogComponent,
     QRcodeDialogComponent

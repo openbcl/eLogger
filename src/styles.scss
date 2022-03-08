@@ -45,7 +45,7 @@ body {
 
 .el-import {
     position: relative;
-    p-skeleton {
+    p-progressspinner {
         display: grid;
         align-content: center;
         position: absolute;
@@ -53,12 +53,6 @@ body {
         bottom: 0rem;
         right: 0rem;
         left: 0rem;
-        div {
-            height: 10rem !important;
-            width: 10rem !important;
-            margin-left: auto;
-            margin-right: auto;
-        }
     }
     zxing-scanner {
         display: grid;

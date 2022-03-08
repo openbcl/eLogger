@@ -16,9 +16,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { FieldsetModule } from 'primeng/fieldset'; 
 import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
-import { SkeletonModule } from 'primeng/skeleton';
-import { QRCodeModule } from 'angularx-qrcode';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FileUploadModule } from 'primeng/fileupload';
+import { QRCodeModule } from 'angularx-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
@@ -52,8 +52,8 @@ const modules = [
   SelectButtonModule,
   FieldsetModule,
   DropdownModule,
-  SkeletonModule,
   AccordionModule,
+  ProgressSpinnerModule,
   FileUploadModule,
   QRCodeModule,
   ZXingScannerModule
