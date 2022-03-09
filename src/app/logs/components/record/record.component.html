@@ -33,7 +33,7 @@
                         (click)="raiseEvent(eventTemplate, log.id)">
                     </button>
                 </ng-container>
-                <span *ngIf="!logTemplate.eventTemplates?.length">No configured record events found. Please add some record events to your log template first.</span>
+                <span *ngIf="!logTemplate.eventTemplates?.length">No configured record events found. Please add some record events to your template first.</span>
             </p-panel>
             <p-accordion class="col-12 md:hidden">
                 <p-accordionTab header="Recorded Events" [selected]="false" styleClass="p-0">

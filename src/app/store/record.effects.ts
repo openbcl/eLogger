@@ -5,7 +5,7 @@ import { catchError, concatMap, filter, map, switchMap, take, tap } from 'rxjs/o
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
 import { logIdSelector } from './router.selector';
-import { toastSuccess } from './toast.actions';
+import { toastSuccess, toastWarn } from './toast.actions';
 import * as RecordActions from './record.actions';
 
 @Injectable()
@@ -87,7 +87,7 @@ export class RecordEffects {
 
   deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.deleteRecordsSuccess),
-    switchMap(() => of(toastSuccess({
+    switchMap(() => of(toastWarn({
       summary: 'Records deleted successfully!'
     })))
   ));

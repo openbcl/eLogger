@@ -19,8 +19,3 @@ export const toastError = createAction(
     '[ToastMessage] Toast Error Message',
     props<{ summary: string, detail?: string }>()
 );
-
-export const toastBackendError = createAction(
-    '[ToastMessage] Toast Failure Message',
-    props<{ error: any, ignoreCodes?: number[] }>()
-);

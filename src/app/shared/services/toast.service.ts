@@ -18,7 +18,7 @@ export class ToastService {
   }
 
   toastWarn(summary: string, detail?: string) {
-    this.messageService.add({severity: 'warn', summary, detail, life: 7500});
+    this.messageService.add({severity: 'warn', summary, detail});
   }
 
   toastError(summary: string, detail?: string) {

@@ -32,7 +32,7 @@
                 <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records" (click)="displayDeleteRecordsDialog = true"></button>
             </div>
             <span *ngIf="!logTemplate" class="p-error flex text-center justify-content-center font-light">
-                This log is based on an unknown log template. Please import the corresponding log template first.
+                This log is based on an unknown template. Please import the corresponding template first.
             </span>
         </p-panel>
         <p-panel *ngIf="logTemplate" class="col-12" header="Event Records">

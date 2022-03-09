@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogTemplateService } from '../shared/services';
-import { toastError, toastSuccess } from './toast.actions';
+import { toastError, toastInfo, toastSuccess, toastWarn } from './toast.actions';
 import * as LogTemplateActions from './logtemplate.actions';
 
 @Injectable()
@@ -36,15 +36,15 @@ export class LogTemplateEffects {
 
   updateLogTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogTemplateActions.updateLogTemplateSuccess),
-    switchMap(updateLogTemplateSuccess => of(toastSuccess({
-      summary: 'Template upldated successfully!',
+    switchMap(updateLogTemplateSuccess => of(toastInfo({
+      summary: 'Template updated successfully!',
       detail: updateLogTemplateSuccess.logTemplate.title
     })))
   ));
 
   deleteLogTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogTemplateActions.deleteLogTemplateSuccess),
-    switchMap(deleteLogTemplateSuccess => of(toastSuccess({
+    switchMap(deleteLogTemplateSuccess => of(toastWarn({
       summary: 'Template deleted successfully!',
       detail: deleteLogTemplateSuccess.logTemplate.title
     })))

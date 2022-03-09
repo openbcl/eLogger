@@ -19,7 +19,7 @@ export class LogTemplateExistsPipe implements PipeTransform {
 export class LogTemplateTitlePipe implements PipeTransform {
 
   transform(id: string, logTemplates: LogTemplate[]): string {
-    return logTemplates?.find(logTemplate => logTemplate.id === id)?.title || 'Unknown log template: Please import the corresponding log template first.';
+    return logTemplates?.find(logTemplate => logTemplate.id === id)?.title || 'Unknown template: Please import the corresponding template first.';
   }
 
 }
