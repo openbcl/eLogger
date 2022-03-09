@@ -3,7 +3,7 @@ import { createLogTemplateSuccess, deleteLogTemplateSuccess, updateLogTemplateSu
 import { logTemplateReducer, initialLogTemplateState } from './logtemplate.reducer';
 import { LogTemplate } from '../../shared/models';
 
-const logTemplateTemplate: LogTemplate = new LogTemplate('');
+const logTemplateTemplate: LogTemplate = new LogTemplate('', '');
 const errorTemplate = {}
 
 
@@ -44,7 +44,7 @@ describe('LogTemplate Reducer', () => {
 
   describe('Create LogTemplate action', () => {
     it('should enable the processing flag', () => {
-      const newState = logTemplateReducer(initialLogTemplateState, createLogTemplate({ title: '' }));
+      const newState = logTemplateReducer(initialLogTemplateState, createLogTemplate({ title: '', desc: '' }));
       expect(newState.processing).toBe(true);
     });
 

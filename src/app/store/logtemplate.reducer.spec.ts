@@ -2,7 +2,7 @@ import { loadLogTemplates, loadLogTemplatesSuccess, loadLogTemplatesFailure } fr
 import { logTemplatesReducer, initialLogTemplatesState } from './logtemplate.reducer';
 import { LogTemplate } from '../shared/models';
 
-const logTemplateTemplate: LogTemplate = new LogTemplate('');
+const logTemplateTemplate: LogTemplate = new LogTemplate('', '');
 const errorTemplate = {}
 
 describe('LogTemplates Reducer', () => {

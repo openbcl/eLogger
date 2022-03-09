@@ -4,7 +4,7 @@ import { updateLogSuccess, createLogSuccess, deleteLogSuccess } from '../../stor
 import { logReducer, initialLogState } from './log.reducer';
 import { Log } from '../../shared/models';
 
-const log: Log = new Log(uuid());
+const log: Log = new Log(uuid(), '', '');
 const errorTemplate = {}
 
 describe('Log Reducer', () => {
