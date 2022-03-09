@@ -26,6 +26,12 @@
                 font-size: 6rem;
                 color: var(--surface-c);
             }
+            p-progressbar {
+                display: none;
+            }
+        }
+        .p-fileupload-files {
+            display: none;
         }
     }
 }

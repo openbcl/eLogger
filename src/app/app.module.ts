@@ -16,13 +16,16 @@ import { LogTemplateEffects } from './store/logtemplate.effects';
 import { LogEffects } from './store/log.effects';
 import { RecordEffects } from './store/record.effects';
 import { routerFeatureKey } from './store/router.selector';
+import { ToastEffects } from './store/toast.effects';
 import { ImportDialogComponent } from './dialogs/importdialog/importdialog.component';
+import { QRcodeDialogComponent } from './dialogs/qrcodedialog/qrcodedialog.component';
 import { ExportLogTemplatesDialogComponent } from './dialogs/exportlogtemplatesdialog/exportlogtemplatesdialog.component';
 import { ExportLogsDialogComponent } from './dialogs/exportlogsdialog/exportlogsdialog.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 import * as fromLogTemplate from './store/logtemplate.reducer';
 import * as fromLog from './store/log.reducer';
 import * as fromRecord from './store/record.reducer';
-import { QRcodeDialogComponent } from './dialogs/qrcodedialog/qrcodedialog.component';
 
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
@@ -56,6 +59,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     BrowserAnimationsModule,
     UiModule,
     AppRoutingModule,
+    ToastModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
@@ -67,7 +71,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       [routerFeatureKey]: routerReducer
     }, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
-    EffectsModule.forRoot([LogTemplateEffects, LogEffects, RecordEffects]),
+    EffectsModule.forRoot([LogTemplateEffects, LogEffects, RecordEffects, ToastEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgxIndexedDBModule.forRoot({
       name: 'eLoggerDB',
@@ -79,7 +83,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       ]
     })
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

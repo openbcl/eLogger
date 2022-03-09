@@ -13,7 +13,7 @@ import { logTemplatesSelector } from './store/logtemplate.selectors';
 @Component({
   selector: 'el-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'eLogger';
@@ -40,10 +40,7 @@ export class AppComponent {
   navitems: MenuItem[] = [
     { label: 'Logs', icon: PrimeIcons.FILE, routerLink: ['/logs'] },
     { label: 'Templates', icon: PrimeIcons.LIST, routerLink: ['/templates'] },
-    { label: 'Settings',
-    id: this.keys.settingsID,
-    icon: PrimeIcons.COG,
-    items: [
+    { label: 'Settings', id: this.keys.settingsID, icon: PrimeIcons.COG, items: [
       { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
       { label: 'Import Configuration', icon: 'fas fa-file-import', command: () => this.displayImportDialog = true },
       { id: this.keys.exportID, label: 'Export Configuration', icon: 'fas fa-file-export', disabled: true, items: [

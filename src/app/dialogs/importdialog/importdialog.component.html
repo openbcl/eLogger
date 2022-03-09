@@ -19,7 +19,7 @@
                     [enable]="visible && form.value.importOption"
                     [formats]="formats"
                     (scanSuccess)="patch($event)"
-                    (scanError)="raiseError('An error occured during the scan process.')">
+                    (scanError)="raiseError('Error when scanning QR code!', 'An error occured during the scan process.')">
                 </zxing-scanner>
                 <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
             </div>
