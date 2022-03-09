@@ -4,14 +4,10 @@
         width: 50%;
     }
 
-    .p-dialog {
-        max-width: 690px;
-    }
-
     p-progressspinner, zxing-scanner {
         display: grid;
     }
-
+    
     zxing-scanner video {
         z-index: 2;
         border-radius: 6px;
@@ -20,9 +16,9 @@
     p-fileUpload, zxing-scanner {
         border-radius: 6px;
         background-color: var(--surface-c);
-        min-height: 25rem;
+        min-height: 20rem;
         .p-fileupload-content {
-            min-height: 19.5rem;
+            min-height: 17rem;
             display: grid;
             text-align: center;
             align-content: center;

@@ -1,18 +1,18 @@
-<p-dialog header="Import configuration" styleClass="w-full" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <span class="flex text-center font-light pb-3">
+<p-dialog header="Import configuration" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <span class="flex justify-content-center text-center font-light pb-3">
         Please choose between the two options "File Upload" and "QR code" to import a configuration.
     </span>
     <form [formGroup]="form">
         <div class="grid">
             <p-selectButton class="col-12" [options]="importOptions" formControlName="importOption"></p-selectButton>
-            <div class="col-12" *ngIf="!form.value.importOption">
+            <div class="col-12 pb-0" *ngIf="!form.value.importOption">
                 <p-fileUpload #fileUpload chooseIcon="fas fa-file-import" [customUpload]="true" [auto]="true" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)">
                     <ng-template pTemplate="content">
                         <i class="pi pi-download"></i>
                     </ng-template>
                 </p-fileUpload>
             </div>
-            <div class="col-12 relative" *ngIf="form.value.importOption">
+            <div class="col-12 pb-0 relative" *ngIf="form.value.importOption">
                 <zxing-scanner
                     #scanner
                     class="p-2 align-content-center text-center"
