@@ -5,6 +5,7 @@ import { catchError, concatMap, filter, map, switchMap, take, tap } from 'rxjs/o
 import { of } from 'rxjs';
 import { RecordService } from '../shared/services';
 import { logIdSelector } from './router.selector';
+import { toastSuccess } from './toast.actions';
 import * as RecordActions from './record.actions';
 
 @Injectable()
@@ -83,6 +84,53 @@ export class RecordEffects {
     ofType(RecordActions.createRecordSuccess),
     tap(() => window.navigator.vibrate && window.navigator.vibrate(100))
   ), { dispatch: false });
+
+  deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.deleteRecordsSuccess),
+    switchMap(() => of(toastSuccess({
+      summary: 'Records deleted successfully!'
+    })))
+  ));
+
+  loadRecordsFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.loadRecordsFailure),
+    switchMap(loadRecordsFailure => of(toastSuccess({
+      summary: 'Error while loading records!',
+      detail: loadRecordsFailure.error
+    })))
+  ));
+
+  loadAllRecordsFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.loadAllRecordsFailure),
+    switchMap(loadAllRecordsFailure => of(toastSuccess({
+      summary: 'Error while loading all records!',
+      detail: loadAllRecordsFailure.error
+    })))
+  ));
+
+  createRecordFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.createRecordFailure),
+    switchMap(createRecordFailure => of(toastSuccess({
+      summary: 'Error while creating record!',
+      detail: createRecordFailure.error
+    })))
+  ));
+
+  revokeRecordFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.revokeRecordFailure),
+    switchMap(revokeRecordFailure => of(toastSuccess({
+      summary: 'Error while revoking record!',
+      detail: revokeRecordFailure.error
+    })))
+  ));
+
+  deleteRecordsFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(RecordActions.deleteRecordsFailure),
+    switchMap(deleteRecordsFailure => of(toastSuccess({
+      summary: 'Error while deleting records!',
+      detail: deleteRecordsFailure.error
+    })))
+  ));
 
   constructor(
     private store: Store,

@@ -1,4 +1,4 @@
-<p-dialog *ngIf="log$ | async as log" header="Delete Log" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog *ngIf="log$ | async as log" header="Clear Records" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     Are you sure you want to delete all event records of this log?
     <form [formGroup]="form">
         <br>

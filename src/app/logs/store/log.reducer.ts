@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Log } from '../../shared/models';
 import * as LazyLogActions from './log.actions';
 import * as LogActions from '../../store/log.actions';
+import * as RecordActions from '../../store/record.actions';
 
 export const logFeatureKey = 'log';
 
@@ -55,5 +56,14 @@ export const logReducer = createReducer(
   })),
   on(LazyLogActions.deleteLogFailure, (state, action) => ({
     ...state, error: action.error, processing: false
+  })),
+  on(RecordActions.createRecordSuccess, (state, _action) => ({
+    ...state, log: { ...state.log, recordsCount: state.log.recordsCount + 1 }
+  })),
+  on(RecordActions.revokeRecordSuccess, (state, _action) => ({
+    ...state, log: { ...state.log, recordsCount: state.log.recordsCount - 1 }
+  })),
+  on(RecordActions.deleteRecordsSuccess, (state, _action) => ({
+    ...state, log: { ...state.log, recordsCount: 0 }
   })),
 );

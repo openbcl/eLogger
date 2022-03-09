@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Log } from '../shared/models';
 import * as LogActions from './log.actions';
+import * as RecordActions from './record.actions';
 
 export const logsFeatureKey = 'logs';
 
@@ -39,5 +40,14 @@ export const logsReducer = createReducer(
   })),
   on(LogActions.patchLogsSuccess, (state, action) => ({
     ...state, logs: [ ...state.logs.filter(oldLog => !action.logs.map(log => log.id).includes(oldLog.id)), ...action.logs ], processing: false
+  })),
+  on(RecordActions.createRecordSuccess, (state, action) => ({
+    ...state, logs: state.logs.map(oldLog => oldLog.id === action.record.logId ? { ...oldLog, recordsCount: oldLog.recordsCount + 1 } : oldLog )
+  })),
+  on(RecordActions.revokeRecordSuccess, (state, action) => ({
+    ...state, logs: state.logs.map(oldLog => oldLog.id === action.logId ? { ...oldLog, recordsCount: oldLog.recordsCount - 1 } : oldLog )
+  })),
+  on(RecordActions.deleteRecordsSuccess, (state, action) => ({
+    ...state, logs: state.logs.map(oldLog => oldLog.id === action.logId ? { ...oldLog, recordsCount: 0 } : oldLog )
   })),
 );

@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogService } from '../shared/services';
-import { toastSuccess } from './toast.actions';
+import { toastError, toastSuccess } from './toast.actions';
 import * as LogActions from './log.actions';
 
 @Injectable()
@@ -34,11 +34,59 @@ export class LogEffects {
     ))
   ));
 
+  createLogSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(LogActions.createLogSuccess),
+    switchMap(createLogSuccess => of(toastSuccess({
+      summary: 'Log created successfully!',
+      detail: createLogSuccess.log.title
+    })))
+  ));
+
+  updateLogSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(LogActions.updateLogSuccess),
+    switchMap(updateLogSuccess => of(toastSuccess({
+      summary: 'Log updated successfully!',
+      detail: updateLogSuccess.log.title
+    })))
+  ));
+
   deleteLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.deleteLogSuccess),
     switchMap(deleteLogSuccess => of(toastSuccess({
       summary: 'Log deleted successfully!',
       detail: deleteLogSuccess.log.title
+    })))
+  ));
+
+  patchLogsSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(LogActions.patchLogsSuccess),
+    switchMap(patchLogsSuccess => of(toastSuccess({
+      summary: 'Logs imported successfully!',
+      detail: patchLogsSuccess.logs.length.toString()
+    })))
+  ));
+
+  loadLogsFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LogActions.loadLogsFailure),
+    switchMap(loadLogsFailure => of(toastError({
+      summary: 'Error while loading logs!',
+      detail: loadLogsFailure.error
+    })))
+  ));
+
+  patchLogsFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LogActions.patchLogsFailure),
+    switchMap(patchLogsFailure => of(toastError({
+      summary: 'Error while patching logs!',
+      detail: patchLogsFailure.error
+    })))
+  ));
+
+  reorderLogsFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LogActions.reorderLogsFailure),
+    switchMap(reorderLogsFailure => of(toastError({
+      summary: 'Error while reordering logs!',
+      detail: reorderLogsFailure.error
     })))
   ));
 

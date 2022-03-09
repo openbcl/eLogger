@@ -5,6 +5,7 @@ import { catchError, map, switchMap, concatMap, take, filter } from 'rxjs/operat
 import { of } from 'rxjs';
 import { LogService, RecordService } from '../../shared/services';
 import { logIdSelector } from '../../store/router.selector';
+import { toastError } from '../../store/toast.actions';
 import * as LazyLogActions from './log.actions';
 import * as LogActions from '../../store/log.actions';
 import * as RecordActions from '../../store/record.actions';
@@ -60,27 +61,56 @@ export class LogEffects {
     ofType(RecordActions.createRecordSuccess),
     concatMap(createRecordSuccess => this.logService.loadLog(createRecordSuccess.record.logId).pipe(
       concatMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount + 1 }).pipe(
-        map(log => LogActions.updateLogSuccess({ log })),
         catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))))
-  ));
+  ), { dispatch: false });
 
   revokeRecordSuccess$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.revokeRecordSuccess),
     concatMap(revokeRecordSuccess => this.logService.loadLog(revokeRecordSuccess.logId).pipe(
       concatMap(log => this.logService.updateLog({ ...log, recordsCount: log.recordsCount - 1 }).pipe(
-        map(log => LogActions.updateLogSuccess({ log })),
         catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))))
-  ));
+  ), { dispatch: false });
 
   deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.deleteRecordsSuccess),
     concatMap(deleteRecordsSuccess => this.logService.loadLog(deleteRecordsSuccess.logId).pipe(
       concatMap(log => this.logService.updateLog({ ...log, recordsCount: 0 }).pipe(
-        map(log => LogActions.updateLogSuccess({ log })),
         catchError(error => of(LazyLogActions.updateLogFailure({ error })))
     ))))
+  ), { dispatch: false });
+
+  loadLogFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LazyLogActions.loadLogFailure),
+    switchMap(loadLogFailure => of(toastError({
+      summary: 'Error while loading log!',
+      detail: loadLogFailure.error
+    })))
+  ));
+
+  createLogFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LazyLogActions.createLogFailure),
+    switchMap(createLogFailure => of(toastError({
+      summary: 'Error while creating log!',
+      detail: createLogFailure.error
+    })))
+  ));
+
+  updateLogFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LazyLogActions.updateLogFailure),
+    switchMap(updateLogFailure => of(toastError({
+      summary: 'Error while updating log!',
+      detail: updateLogFailure.error
+    })))
+  ));
+
+  deleteLogFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(LazyLogActions.deleteLogFailure),
+    switchMap(deleteLogFailure => of(toastError({
+      summary: 'Error while deleting log!',
+      detail: deleteLogFailure.error
+    })))
   ));
 
   constructor(

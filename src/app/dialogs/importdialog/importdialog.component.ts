@@ -8,7 +8,7 @@ import { patchLogTemplates } from '../../store/logtemplate.actions';
 import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
 import { SharedLogs, SharedLogTemplates } from '../../shared/models';
 import { patchLogs } from '../../store/log.actions';
-import { toastError } from 'src/app/store/toast.actions';
+import { toastError } from '../../store/toast.actions';
 
 @Component({
   selector: 'el-import-dialog',
