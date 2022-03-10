@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, concatMap, take, filter } from 'rxjs/operators';
+import { catchError, map, switchMap, concatMap, take, filter, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogService, RecordService } from '../../services';
 import { logIdSelector } from '../../store/router.selector';
@@ -9,6 +9,7 @@ import { toastError } from '../../store/toast.actions';
 import * as LazyLogActions from './log.actions';
 import * as LogActions from '../../store/log.actions';
 import * as RecordActions from '../../store/record.actions';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -83,6 +84,7 @@ export class LogEffects {
 
   loadLogFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyLogActions.loadLogFailure),
+    tap(() => this.router.navigate(['logs'])),
     switchMap(loadLogFailure => of(toastError({
       summary: 'Error while loading log!',
       detail: loadLogFailure.error
@@ -117,7 +119,8 @@ export class LogEffects {
     private store: Store,
     private logService: LogService,
     private recordService: RecordService,
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router
   ) {}
 
 }

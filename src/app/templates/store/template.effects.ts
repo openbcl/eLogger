@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { templateIdSelector } from '../../store/router.selector';
-import { catchError, concatMap, filter, map, switchMap, take } from 'rxjs/operators';
+import { catchError, concatMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { TemplateService } from '../../services';
 import { toastError } from '../../store/toast.actions';
 import * as LazyTemplateActions from './template.actions';
 import * as TemplateActions from '../../store/template.actions';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TemplateEffects {
@@ -53,6 +54,7 @@ export class TemplateEffects {
 
   loadTemplateFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyTemplateActions.loadTemplateFailure),
+    tap(() => this.router.navigate(['templates'])),
     switchMap(loadTemplateFailure => of(toastError({
       summary: 'Error while loading template!',
       detail: loadTemplateFailure.error
@@ -86,7 +88,8 @@ export class TemplateEffects {
   constructor(
     private store: Store,
     private templateService: TemplateService,
-    private actions$: Actions
+    private actions$: Actions,
+    private router: Router
   ) {}
 
 }

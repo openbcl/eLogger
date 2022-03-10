@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TemplateServiceMock, StoreMock } from '../../testing/mocks';
+import { TemplateServiceMock, StoreMock, RouterMock } from '../../testing/mocks';
 import { TemplateService } from '../../services';
 import { TemplateEffects } from './template.effects';
 
@@ -17,6 +18,9 @@ describe('TemplateEffects', () => {
         provideMockActions(() => actions$), {
           provide: TemplateService,
           useValue: TemplateServiceMock
+        }, {
+          provide: Router,
+          useValue: RouterMock
         },
         {
           provide: Store,

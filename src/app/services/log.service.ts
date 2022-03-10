@@ -61,14 +61,15 @@ export class LogService {
   }
 
   loadLog(id: string) {
-    return this.db.getByIndex<Log>(LOGS, 'id', id);
+    return this.db.getByIndex<Log>(LOGS, 'id', id).pipe(map(log => processResult(!!log, log, 'Log does not exist.')));
   }
 
   deleteLog(value: Log) {
+    const errorMsg = 'Could not delete log.';
     const result = !value.key ?
         this.loadLog(value.id).pipe(concatMap(result => 
-          this.db.deleteByKey(LOGS, result.key!).pipe(map(deleted => processResult(deleted, value, '')))
-        )) :this.db.deleteByKey(LOGS, value.key).pipe(map(deleted => processResult(deleted, value, '')));
+          this.db.deleteByKey(LOGS, result.key!).pipe(map(deleted => processResult(deleted, value, errorMsg)))
+        )) :this.db.deleteByKey(LOGS, value.key).pipe(map(deleted => processResult(deleted, value, errorMsg)));
     return this.db.getByIndex<Log>(LOGS, 'prev', value.id).pipe(
       take(1),
       concatMap(next => !!next ? this.updateLog({ ...next, prev: value.prev }).pipe(exhaustMap(() => result)) : result)

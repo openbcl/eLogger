@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LogServiceMock, RecordServiceMock, StoreMock } from '../../testing/mocks';
+import { LogServiceMock, RecordServiceMock, RouterMock, StoreMock } from '../../testing/mocks';
 import { LogService, RecordService } from '../../services';
 import { LogEffects } from './log.effects';
 
@@ -17,6 +18,9 @@ describe('LogEffects', () => {
         provideMockActions(() => actions$), {
           provide: LogService,
           useValue: LogServiceMock
+        }, {
+          provide: Router,
+          useValue: RouterMock
         }, {
           provide: RecordService,
           useValue: RecordServiceMock
