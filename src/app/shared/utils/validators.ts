@@ -1,6 +1,6 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { map, Observable, take, combineLatest, of } from "rxjs";
-import { BaseLog, Log, LogTemplate } from "../models";
+import { BaseLog, Log, Template } from "../models";
 import { compareAbstractLog, compareEventTemplates, toJSON } from "./helper";
 
 export const eventTypeIsUniqueError = 'eventTypeIsUnique';
@@ -9,10 +9,10 @@ export const abstractLogIsUniqueError = 'eventTypeIsUnique';
 export const isQRcodeCompatibleError = 'isQRcodeCompatible';
 
 export class AppValidators {
-    static eventTypeIsUnique = (logTemplate$: Observable<LogTemplate>): AsyncValidatorFn => {
-        return (control: AbstractControl): Observable<ValidationErrors | null> => logTemplate$.pipe(
+    static eventTypeIsUnique = (template$: Observable<Template>): AsyncValidatorFn => {
+        return (control: AbstractControl): Observable<ValidationErrors | null> => template$.pipe(
             take(1),
-            map(logTemplate => !logTemplate.eventTemplates?.find(eventTemplate =>
+            map(template => !template.eventTemplates?.find(eventTemplate =>
                 compareEventTemplates(eventTemplate, !!control.value.name ? control.value : control.value.selectedTemplate)) ? null : { [eventTypeIsUniqueError]: true }
             )
         )
@@ -29,7 +29,7 @@ export class AppValidators {
         return (control: AbstractControl): Observable<ValidationErrors | null> => combineLatest([baseLogs$, self$ || of(null)]).pipe(
             take(1),
             map(combined => !combined[0].filter(abstractLog => abstractLog.id !== combined[1]?.id).find(abstractLog =>
-                compareAbstractLog(abstractLog, control.value, (<Log>combined[1])?.logTemplateId)) ? null : { [abstractLogIsUniqueError]: true }
+                compareAbstractLog(abstractLog, control.value, (<Log>combined[1])?.templateId)) ? null : { [abstractLogIsUniqueError]: true }
             )
         )
     }

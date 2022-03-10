@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { LogTemplateService } from '../services';
+import { TemplateService } from '../services';
 
 
 @Injectable({
@@ -12,12 +12,12 @@ export class LandingpageGuard implements CanActivate {
 
     constructor(
     private router: Router,
-    private logTemplateService: LogTemplateService
+    private templateService: TemplateService
     ) { }
 
     canActivate() {
-        return this.logTemplateService.loadLogTemplates().pipe(
-          switchMap(logTemplates => of(this.router.parseUrl(!!logTemplates?.length ? 'logs' : 'templates')))
+        return this.templateService.loadTemplates().pipe(
+          switchMap(templates => of(this.router.parseUrl(!!templates?.length ? 'logs' : 'templates')))
         );
     }
 }

@@ -1,8 +1,8 @@
-import { LogTemplateTitlePipe } from './log.pipe';
+import { TemplateTitlePipe } from './log.pipe';
 
-describe('logTemplateTitle', () => {
+describe('templateTitle', () => {
   it('create an instance', () => {
-    const pipe = new LogTemplateTitlePipe();
+    const pipe = new TemplateTitlePipe();
     expect(pipe).toBeTruthy();
   });
 });

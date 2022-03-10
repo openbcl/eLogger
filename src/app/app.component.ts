@@ -7,8 +7,8 @@ import { combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { loadLogs } from './store/log.actions';
 import { logsSelector } from './store/log.selectors';
-import { loadLogTemplates } from './store/logtemplate.actions';
-import { logTemplatesSelector } from './store/logtemplate.selectors';
+import { loadTemplates } from './store/template.actions';
+import { templatesSelector } from './store/template.selectors';
 
 @Component({
   selector: 'el-root',
@@ -22,7 +22,7 @@ export class AppComponent {
     settingsID: 'settings',
     exportID: 'export',
     exports : {
-      logTemplatesID: 'logTemplates',
+      templatesID: 'templates',
       logsID: 'logs',
     },
     themesID: 'themes',
@@ -33,7 +33,7 @@ export class AppComponent {
     }
   }
 
-  displayExportLogTemplatesDialog = false;
+  displayExportTemplatesDialog = false;
   displayExportLogsDialog = false;
   displayImportDialog = false;
 
@@ -45,7 +45,7 @@ export class AppComponent {
       { label: 'Import Configuration', icon: 'fas fa-file-import', command: () => this.displayImportDialog = true },
       { id: this.keys.exportID, label: 'Export Configuration', icon: 'fas fa-file-export', disabled: true, items: [
         { id: this.keys.exports.logsID, label: 'Logs', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogsDialog = true },
-        { id: this.keys.exports.logTemplatesID, label: 'Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogTemplatesDialog = true },
+        { id: this.keys.exports.templatesID, label: 'Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportTemplatesDialog = true },
       ]},
       { id: this.keys.themesID, label: 'Themes', icon: PrimeIcons.PALETTE, items: [
         { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.switchTheme(event.item.id) },
@@ -55,14 +55,14 @@ export class AppComponent {
     ]
   }];
 
-  logData$ = combineLatest([this.store.pipe(select(logTemplatesSelector)), this.store.pipe(select(logsSelector))]).pipe(tap(logData => {
+  logData$ = combineLatest([this.store.pipe(select(templatesSelector)), this.store.pipe(select(logsSelector))]).pipe(tap(logData => {
     const exportItem = this.navitems.find(item => item.id === this.keys.settingsID).items.find(item => item.id === this.keys.exportID);
     exportItem.disabled = !logData?.[0]?.length && !logData?.[1]?.length;
-    exportItem.items.find(item => item.id === this.keys.exports.logTemplatesID).disabled = !logData?.[0]?.length;
+    exportItem.items.find(item => item.id === this.keys.exports.templatesID).disabled = !logData?.[0]?.length;
     exportItem.items.find(item => item.id === this.keys.exports.logsID).disabled = !logData?.[1]?.length;
   }))
 
-  logTemplates$ = this.logData$.pipe(map(logData => logData[0]), filter(logTemplates => !!logTemplates));
+  templates$ = this.logData$.pipe(map(logData => logData[0]), filter(templates => !!templates));
   logs$ = this.logData$.pipe(map(logData => logData[1]), filter(logs => !!logs));
 
   constructor(
@@ -75,7 +75,7 @@ export class AppComponent {
   ngOnInit(): void {
     this.switchTheme();
     this.primengConfig.ripple = true;
-    this.store.dispatch(loadLogTemplates());
+    this.store.dispatch(loadTemplates());
     this.store.dispatch(loadLogs());
     if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.pipe(

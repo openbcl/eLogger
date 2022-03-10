@@ -44,7 +44,7 @@ describe('Log Reducer', () => {
 
   describe('Create Log action', () => {
     it('should enable the processing flag', () => {
-      const newState = logReducer(initialLogState, createLog({ logTemplateId : log.logTemplateId, title: log.title, desc: log.desc }));
+      const newState = logReducer(initialLogState, createLog({ templateId : log.templateId, title: log.title, desc: log.desc }));
       expect(newState.processing).toBe(true);
     });
 

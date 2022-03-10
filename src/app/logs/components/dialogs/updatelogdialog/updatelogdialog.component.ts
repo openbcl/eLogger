@@ -7,14 +7,14 @@ import { logsSelector } from '../../../../store/log.selectors';
 import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
 import { Log } from '../../../../shared/models';
 import { updateLog } from '../../../store/log.actions';
-import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
 
 @Component({
   selector: 'el-update-log-dialog',
   templateUrl: './updatelogdialog.component.html',
   styleUrls: ['./updatelogdialog.component.scss']
 })
-export class UpdateLogDialogComponent extends BasicDialogComponent {
+export class UpdateLogDialogComponent extends BaseDialogComponent {
 
   abstractLogIsUniqueError = abstractLogIsUniqueError;
 

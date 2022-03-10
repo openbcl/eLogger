@@ -6,14 +6,14 @@ import { Log } from '../../../../shared/models';
 import { deleteLog } from '../../../store/log.actions';
 import { logSelector } from '../../../store/log.selectors';
 import { filter, map } from 'rxjs';
-import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
 
 @Component({
   selector: 'el-delete-log-dialog',
   templateUrl: './deletelogdialog.component.html',
   styleUrls: ['./deletelogdialog.component.scss']
 })
-export class DeleteLogDialogComponent extends BasicDialogComponent {
+export class DeleteLogDialogComponent extends BaseDialogComponent {
 
   log$ = this.store.pipe(select(logSelector), filter(log => !!log));
 

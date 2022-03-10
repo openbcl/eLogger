@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
 import { toJSON } from '../../shared/utils/helper';
-import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../shared/components/basedialog.component';
 import { ExportService } from '../../shared/services/export.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ExportService } from '../../shared/services/export.service';
   templateUrl: './qrcodedialog.component.html',
   styleUrls: ['./qrcodedialog.component.scss']
 })
-export class QRcodeDialogComponent extends BasicDialogComponent implements OnChanges {
+export class QRcodeDialogComponent extends BaseDialogComponent implements OnChanges {
 
   @Input()
   data: any;

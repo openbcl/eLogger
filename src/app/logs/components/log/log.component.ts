@@ -4,7 +4,7 @@ import { PrimeIcons } from 'primeng/api';
 import { combineLatest, filter, map, switchMap } from 'rxjs';
 import { loadRecords } from '../../../store/record.actions';
 import { recordsSelector } from '../../../store/record.selectors';
-import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
+import { templatesSelector } from '../../../store/template.selectors';
 import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';
 import { Log, Record } from '../../../shared/models';
@@ -26,11 +26,11 @@ export class LogComponent implements OnInit {
 
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
-    this.store.pipe(select(logTemplatesSelector), filter(logTemplates => !!logTemplates)),
+    this.store.pipe(select(templatesSelector), filter(templates => !!templates)),
     this.store.pipe(select(logIdSelector), filter(logId => !!logId))
   ]).pipe(filter(logData => logData?.[0]?.id === logData?.[2] && !!logData?.[1]?.length));
   log$ = this.logData.pipe(map(logData => logData[0]));
-  logTemplate$ = this.logData.pipe(map(logData => logData[1].find(logTemplate => logTemplate.id === logData[0].logTemplateId)));
+  template$ = this.logData.pipe(map(logData => logData[1].find(template => template.id === logData[0].templateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
 
   constructor(

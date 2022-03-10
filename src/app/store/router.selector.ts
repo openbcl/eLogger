@@ -12,7 +12,7 @@ export const logIdSelector = createSelector(
     logId => logId
 )
 
-export const logTemplateIdSelector = createSelector(
-    selectRouteParam('logTemplateId'),
-    logTemplateId => logTemplateId
+export const templateIdSelector = createSelector(
+    selectRouteParam('templateId'),
+    templateId => templateId
 )

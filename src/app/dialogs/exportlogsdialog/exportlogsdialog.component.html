@@ -27,8 +27,8 @@
                 <td>{{ log.title }}</td>
                 <td>{{ log.desc }}</td>
                 <td class="flex-wrap">
-                    <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
-                    <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
+                    <span class="text-overflow-anywhere">{{ log.templateId | templateTitle: templates }}</span>
+                    <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
                         <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
                     </ng-container>
                 </td>

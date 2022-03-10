@@ -2,23 +2,23 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
-import { LogTemplate } from '../../../../shared/models';
+import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { Template } from '../../../../shared/models';
 import { ExportService } from '../../../../shared/services/export.service';
 import { logsSelector } from '../../../../store/log.selectors';
-import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
+import { templatesSelector } from '../../../../store/template.selectors';
 
 @Component({
   selector: 'el-share-logs-dialog',
   templateUrl: './sharelogsdialog.component.html',
   styleUrls: ['./sharelogsdialog.component.scss']
 })
-export class ShareLogsDialogComponent extends BasicDialogComponent {
+export class ShareLogsDialogComponent extends BaseDialogComponent {
 
   breakpoint = 500;
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
-  logTemplates$ = this.store.pipe(select(logTemplatesSelector));
+  templates$ = this.store.pipe(select(templatesSelector));
 
   cols: any[] = [
     { field: 'title', header: 'Title' },
@@ -37,8 +37,8 @@ export class ShareLogsDialogComponent extends BasicDialogComponent {
     super();
   }
 
-  submit(logTemplates: LogTemplate[]) {
-    this.exportService.shareLogs(this.form.value.logs, logTemplates);
+  submit(templates: Template[]) {
+    this.exportService.shareLogs(this.form.value.logs, templates);
     this.close();
   }
 

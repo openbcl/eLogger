@@ -3,21 +3,21 @@
         <p-dropdown
             optionLabel="title"
             optionValue="id"
-            [options]="logTemplates$ | async"
-            formControlName="logTemplateId"
+            [options]="templates$ | async"
+            formControlName="templateId"
             styleClass="w-full white-space-normal"
             panelStyleClass="white-space-normal"
             placeholder="Please Choose a template ...">
-            <ng-template let-logTemplate pTemplate="selectedItem">
+            <ng-template let-template pTemplate="selectedItem">
                 <div class="flex flex-wrap align-items-center">
-                    <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
-                    <span *ngIf="!!logTemplate.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
+                    <span class="text-overflow-anywhere">{{ template.title }}</span>
+                    <span *ngIf="!!template.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ template.desc }})</span>
                 </div>
             </ng-template>
-            <ng-template let-logTemplate pTemplate="item">
+            <ng-template let-template pTemplate="item">
                 <div class="flex flex-wrap align-items-center">
-                    <span class="text-overflow-anywhere">{{ logTemplate.title }}</span>
-                    <span *ngIf="!!logTemplate.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ logTemplate.desc }})</span>
+                    <span class="text-overflow-anywhere">{{ template.title }}</span>
+                    <span *ngIf="!!template.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ template.desc }})</span>
                 </div>
             </ng-template>
         </p-dropdown>

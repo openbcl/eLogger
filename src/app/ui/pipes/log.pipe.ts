@@ -1,36 +1,36 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { of } from 'rxjs';
-import { EventType, LogTemplate } from '../../shared/models';
+import { EventType, Template } from '../../shared/models';
 
 @Pipe({
-  name: 'logTemplateExists'
+  name: 'templateExists'
 })
-export class LogTemplateExistsPipe implements PipeTransform {
+export class TemplateExistsPipe implements PipeTransform {
 
-  transform(id: string, logTemplates: LogTemplate[]): boolean {
-    return !!logTemplates?.find(logTemplate => logTemplate.id === id);
+  transform(id: string, templates: Template[]): boolean {
+    return !!templates?.find(template => template.id === id);
   }
 
 }
 
 @Pipe({
-  name: 'logTemplateTitle'
+  name: 'templateTitle'
 })
-export class LogTemplateTitlePipe implements PipeTransform {
+export class TemplateTitlePipe implements PipeTransform {
 
-  transform(id: string, logTemplates: LogTemplate[]): string {
-    return logTemplates?.find(logTemplate => logTemplate.id === id)?.title || 'Unknown template: Please import the corresponding template first.';
+  transform(id: string, templates: Template[]): string {
+    return templates?.find(template => template.id === id)?.title || 'Unknown template: Please import the corresponding template first.';
   }
 
 }
 
 @Pipe({
-  name: 'logTemplateDesc'
+  name: 'templateDesc'
 })
-export class LogTemplateDescPipe implements PipeTransform {
+export class TemplateDescPipe implements PipeTransform {
 
-  transform(id: string, logTemplates: LogTemplate[]): string {
-    const desc = logTemplates?.find(logTemplate => logTemplate.id === id)?.desc;
+  transform(id: string, templates: Template[]): string {
+    const desc = templates?.find(template => template.id === id)?.desc;
     return !!desc?.length ? desc : null;
   }
 
@@ -41,11 +41,11 @@ export class LogTemplateDescPipe implements PipeTransform {
 })
 export class LogEventTemplatesPipe implements PipeTransform {
 
-  transform(logTemplate: LogTemplate) {
-    const containStart = !!logTemplate.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.START);
-    const containText = !!logTemplate.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.TEXT);
-    const containAudio = !!logTemplate.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.AUDIO);
-    const containPicture = !!logTemplate.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.PICTURE);
+  transform(template: Template) {
+    const containStart = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.START);
+    const containText = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.TEXT);
+    const containAudio = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.AUDIO);
+    const containPicture = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.PICTURE);
     const containData = containText || containAudio || containPicture;
     const additionalColumns = containStart ? (containData ? 2 : 1) : (containData ? 1 : 0)
     return of({ containStart, containText, containAudio, containPicture, containData, additionalColumns })

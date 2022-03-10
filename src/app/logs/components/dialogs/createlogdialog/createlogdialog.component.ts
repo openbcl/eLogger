@@ -3,25 +3,25 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { logsSelector } from '../../../../store/log.selectors';
 import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
-import { logTemplatesSelector } from '../../../../store/logtemplate.selectors';
+import { templatesSelector } from '../../../../store/template.selectors';
 import { createLog } from '../../../store/log.actions';
-import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
 
 @Component({
   selector: 'el-create-log-dialog',
   templateUrl: './createlogdialog.component.html',
   styleUrls: ['./createlogdialog.component.scss']
 })
-export class CreateLogDialogComponent extends BasicDialogComponent {
+export class CreateLogDialogComponent extends BaseDialogComponent {
 
   abstractLogIsUniqueError = abstractLogIsUniqueError;
 
-  logTemplates$ = this.store.pipe(select(logTemplatesSelector));
+  templates$ = this.store.pipe(select(templatesSelector));
 
   form = this.fb.group({
     title: [null, Validators.required],
     desc: null,
-    logTemplateId: [null, Validators.required],
+    templateId: [null, Validators.required],
   }, {
     asyncValidators: AppValidators.abstractLogIsUnique(this.store.pipe(select(logsSelector)))
   });

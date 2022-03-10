@@ -5,14 +5,14 @@ import { createRecord } from '../../../../store/record.actions';
 import { EventTemplate } from '../../../../shared/models';
 import { logIdSelector } from '../../../../store/router.selector';
 import { filter } from 'rxjs';
-import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
 
 @Component({
   selector: 'el-text-record-dialog',
   templateUrl: './textrecorddialog.component.html',
   styleUrls: ['./textrecorddialog.component.scss']
 })
-export class TextRecordDialogComponent extends BasicDialogComponent {
+export class TextRecordDialogComponent extends BaseDialogComponent {
 
   @Input()
   textEventTemplate: EventTemplate;

@@ -5,14 +5,14 @@ import { filter, map } from 'rxjs';
 import { logSelector } from '../../../store/log.selectors';
 import { AppValidators } from '../../../../shared/utils/validators';
 import { deleteRecords } from '../../../../store/record.actions';
-import { BasicDialogComponent } from '../../../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
 
 @Component({
   selector: 'el-delete-records-dialog',
   templateUrl: './deleterecordsdialog.component.html',
   styleUrls: ['./deleterecordsdialog.component.scss']
 })
-export class DeleteRecordsDialogComponent extends BasicDialogComponent {
+export class DeleteRecordsDialogComponent extends BaseDialogComponent {
 
   log$ = this.store.pipe(select(logSelector), filter(log => !!log));
 

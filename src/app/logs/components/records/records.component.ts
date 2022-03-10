@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { revokeRecord } from '../../../store/record.actions';
-import { LogTemplate, Record } from '../../../shared/models';
+import { Template, Record } from '../../../shared/models';
 
 @Component({
   selector: 'el-records',
@@ -14,7 +14,7 @@ export class RecordsComponent {
   records: Record[];
 
   @Input()
-  logTemplate: LogTemplate;
+  template: Template;
 
   @Input()
   styleClass: string;

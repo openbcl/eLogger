@@ -10,20 +10,20 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { NgxIndexedDBModule, ObjectStoreMeta, ObjectStoreSchema } from 'ngx-indexed-db';
-import { LOGS, Log, LOGTEMPLATES, LogTemplate, Record, RECORDS } from './shared/models';
+import { LOGS, Log, TEMPLATES, Template, Record, RECORDS } from './shared/models';
 import { UiModule } from './ui/ui.module';
-import { LogTemplateEffects } from './store/logtemplate.effects';
+import { TemplateEffects } from './store/template.effects';
 import { LogEffects } from './store/log.effects';
 import { RecordEffects } from './store/record.effects';
 import { routerFeatureKey } from './store/router.selector';
 import { ToastEffects } from './store/toast.effects';
 import { ImportDialogComponent } from './dialogs/importdialog/importdialog.component';
 import { QRcodeDialogComponent } from './dialogs/qrcodedialog/qrcodedialog.component';
-import { ExportLogTemplatesDialogComponent } from './dialogs/exportlogtemplatesdialog/exportlogtemplatesdialog.component';
+import { ExportTemplatesDialogComponent } from './dialogs/exporttemplatesdialog/exporttemplatesdialog.component';
 import { ExportLogsDialogComponent } from './dialogs/exportlogsdialog/exportlogsdialog.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import * as fromLogTemplate from './store/logtemplate.reducer';
+import * as fromTemplate from './store/template.reducer';
 import * as fromLog from './store/log.reducer';
 import * as fromRecord from './store/record.reducer';
 
@@ -50,7 +50,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
   declarations: [
     AppComponent,
     ImportDialogComponent,
-    ExportLogTemplatesDialogComponent,
+    ExportTemplatesDialogComponent,
     ExportLogsDialogComponent,
     QRcodeDialogComponent
   ],
@@ -65,20 +65,20 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       registrationStrategy: 'registerWhenStable:30000'
     }),
     StoreModule.forRoot({
-      [fromLogTemplate.logTemplatesFeatureKey]: fromLogTemplate.logTemplatesReducer,
+      [fromTemplate.templatesFeatureKey]: fromTemplate.templatesReducer,
       [fromLog.logsFeatureKey]: fromLog.logsReducer,
       [fromRecord.recordsFeatureKey]: fromRecord.recordsReducer,
       [routerFeatureKey]: routerReducer
     }, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
-    EffectsModule.forRoot([LogTemplateEffects, LogEffects, RecordEffects, ToastEffects]),
+    EffectsModule.forRoot([TemplateEffects, LogEffects, RecordEffects, ToastEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgxIndexedDBModule.forRoot({
       name: 'eLoggerDB',
       version: 1,
       objectStoresMeta: [
         generateObjectStoreMeta(LOGS, new Log(null, null, null)),
-        generateObjectStoreMeta(LOGTEMPLATES, new LogTemplate(null, null)),
+        generateObjectStoreMeta(TEMPLATES, new Template(null, null)),
         generateObjectStoreMeta(RECORDS, new Record({ name: null, color: null, eventType: 0, icon: null }, null, null))
       ]
     })

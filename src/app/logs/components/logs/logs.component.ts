@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { logTemplatesSelector } from '../../../store/logtemplate.selectors';
+import { templatesSelector } from '../../../store/template.selectors';
 import { reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
 import { Log } from '../../../shared/models';
@@ -21,7 +21,7 @@ export class LogsComponent implements OnInit {
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   logsLoading$ = this.store.pipe(select(logsProcessingSelector));
-  logTemplates$ = this.store.pipe(select(logTemplatesSelector));
+  templates$ = this.store.pipe(select(templatesSelector));
 
   cols: any[] = [
     { field: 'title', header: 'Title' },

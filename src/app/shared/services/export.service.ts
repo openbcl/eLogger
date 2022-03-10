@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store';
 import { filter, take } from 'rxjs';
 import { EventLabelPipe, EventRelTimePipe } from '../../ui/pipes/event.pipe'
-import { LogTemplateDescPipe, LogTemplateTitlePipe } from '../../ui/pipes/log.pipe'
-import { EventType, Log, LogTemplate, Record } from '../models'
+import { TemplateDescPipe, TemplateTitlePipe } from '../../ui/pipes/log.pipe'
+import { EventType, Log, Template, Record } from '../models'
 import { allRecordsSelector } from '../../store/record.selectors';
 import { loadAllRecords } from '../../store/record.actions';
 import { sha1 } from 'object-hash'
@@ -25,13 +25,13 @@ export class ExportService {
         private eventLabel: EventLabelPipe,
         private date: DatePipe,
         private eventRelTime: EventRelTimePipe,
-        private logTemplateTitle: LogTemplateTitlePipe,
-        private logTemplateDesc: LogTemplateDescPipe,
+        private templateTitle: TemplateTitlePipe,
+        private templateDesc: TemplateDescPipe,
         private store: Store
     ) { }
 
-    shareLogs (logs: Log[], logTemplates: LogTemplate[]) {
-        const blob = this.logsToCSV(logs, logTemplates);
+    shareLogs (logs: Log[], templates: Template[]) {
+        const blob = this.logsToCSV(logs, templates);
         if (blob) {
             const filename = this.uniqueFilename('eLogger_export', blob, '')
             const logsSummaryFile = {
@@ -63,8 +63,8 @@ export class ExportService {
         blob && this.downloadFile(blob, this.recordsFilename(log, records))
     }
 
-    exportLogTemplates(logTemplates: LogTemplate[]) {
-        this.downloadJSON(logTemplates, 'logTemplates', 'logtemplates');
+    exportTemplates(templates: Template[]) {
+        this.downloadJSON(templates, 'templates', 'templates');
     }
 
     exportLogs(logs: Log[]) {
@@ -118,17 +118,17 @@ export class ExportService {
         return null;
     }
 
-    private logsToCSV(logs: Log[], logTemplates: LogTemplate[]) {
-        if (!!logs?.length && !!logTemplates?.length) {
+    private logsToCSV(logs: Log[], templates: Template[]) {
+        if (!!logs?.length && !!templates?.length) {
             const csv: (string|number)[][] = [[ 'Title', 'Description', 'ID', 'Type', 'Records' ]];
             logs.forEach(log => {
-                const logTemplateTitle = this.logTemplateTitle.transform(log.logTemplateId, logTemplates);
-                const logTemplateDesc = this.logTemplateDesc.transform(log.logTemplateId, logTemplates);
+                const templateTitle = this.templateTitle.transform(log.templateId, templates);
+                const templateDesc = this.templateDesc.transform(log.templateId, templates);
                 csv.push([
                     log.title,
                     log.desc,
                     log.id.substring(0, 6),
-                    !!logTemplateDesc?.length ? `${logTemplateTitle} (${logTemplateDesc})` : logTemplateTitle,
+                    !!templateDesc?.length ? `${templateTitle} (${templateDesc})` : templateTitle,
                     log.recordsCount
                 ])
             });

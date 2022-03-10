@@ -12,12 +12,12 @@ export const NgxIndexedDBServiceMock = {
     bulkDelete: (_storeName : string, _keys: string[]) => of(true),
 }
 
-export const LogTemplateServiceMock = {
-    createLogTemplate: (value: any) => of(value),
-    updateLogTemplate: (value: any) => of(value),
-    loadLogTemplates: () => of([]),
-    loadLogTemplate: (id: string) => of({ id }),
-    deleteLogTemplate: (value: any) => of(value)
+export const TemplateServiceMock = {
+    createTemplate: (value: any) => of(value),
+    updateTemplate: (value: any) => of(value),
+    loadTemplates: () => of([]),
+    loadTemplate: (id: string) => of({ id }),
+    deleteTemplate: (value: any) => of(value)
 }
 
 export const LogServiceMock = {

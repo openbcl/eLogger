@@ -32,7 +32,7 @@ export class LogEffects {
 
   createLog$ = createEffect(() => this.actions$.pipe( 
     ofType(LazyLogActions.createLog),
-    concatMap(createLog => this.logService.createLog(createLog.logTemplateId, createLog.title, createLog.desc).pipe(
+    concatMap(createLog => this.logService.createLog(createLog.templateId, createLog.title, createLog.desc).pipe(
       map(log => LogActions.createLogSuccess({ log })),
       catchError(error => of(LazyLogActions.createLogFailure({ error })))
     ))

@@ -2,7 +2,7 @@
     <span class="flex text-center font-light">
         Please select all logs, you want to export in an overview. If recordings are also available for individual logs all download files will be provided in a common ZIP file.
     </span>
-    <ng-container *ngrxLet="logTemplates$ as logTemplates">
+    <ng-container *ngrxLet="templates$ as templates">
         <p-table
             styleClass="p-datatable-striped mt-3"
             breakpoint="{{breakpoint}}px"
@@ -28,8 +28,8 @@
                     <td>{{ log.title }}</td>
                     <td>{{ log.desc }}</td>
                     <td class="flex-wrap">
-                        <span class="text-overflow-anywhere">{{ log.logTemplateId | logTemplateTitle: logTemplates }}</span>
-                        <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
+                        <span class="text-overflow-anywhere">{{ log.templateId | templateTitle: templates }}</span>
+                        <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
                             <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
                         </ng-container>
                     </td>
@@ -38,7 +38,7 @@
             </ng-template>
         </p-table>
         <ng-template pTemplate="footer">
-            <form [formGroup]="form" (ngSubmit)="submit(logTemplates)">
+            <form [formGroup]="form" (ngSubmit)="submit(templates)">
                 <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-share-alt" label="Share" class="p-button-info p-button-text"></button>
             </form>
         </ng-template>

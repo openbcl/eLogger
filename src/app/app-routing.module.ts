@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'templates',
-    loadChildren: () => import('./logtemplates/logtemplates.module').then(m => m.LogTemplatesModule)
+    loadChildren: () => import('./templates/templates.module').then(m => m.TemplatesModule)
   },
   {
     path: 'settings',

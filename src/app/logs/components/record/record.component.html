@@ -1,4 +1,4 @@
-<ng-container *ngIf="logTemplate$ | async as logTemplate">
+<ng-container *ngIf="template$ | async as template">
     <p-panel *ngrxLet="log$ as log">
         <ng-template pTemplate="header">
             <div class="grid m-0 w-full">
@@ -12,19 +12,19 @@
                     <span class="el-font-monospace">{{ absTime$ | async | date: 'HH:mm:ss' }}</span>
                 </div>
                 <div class="hidden md:block md:col-5 font-light text-500 p-0 text-right">
-                    <span>{{ logTemplate.title }}</span>
-                    <ng-container *ngIf="!!logTemplate.desc?.length">
-                        <span>&nbsp;({{ logTemplate.desc }})</span>
+                    <span>{{ template.title }}</span>
+                    <ng-container *ngIf="!!template.desc?.length">
+                        <span>&nbsp;({{ template.desc }})</span>
                     </ng-container>
                 </div>
-                <div *ngIf="(logTemplate | logEventTemplates | async).containStart" class="col-12 p-0 text-center pt-3">
+                <div *ngIf="(template | logEventTemplates | async).containStart" class="col-12 p-0 text-center pt-3">
                     <span class="font-light text-4xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
                 </div>
             </div>
         </ng-template>
         <div class="grid" *ngrxLet="records$ as records">
             <p-panel header="Record Event" class="col-12 md:col-5 text-center py-2">
-                <ng-container *ngFor="let eventTemplate of logTemplate.eventTemplates">
+                <ng-container *ngFor="let eventTemplate of template.eventTemplates">
                     <button pButton pRipple
                         class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2 el-record-event-button"
                         [icon]="eventTemplate.icon.value !== PrimeIcons.CODE && eventTemplate.icon.value"
@@ -33,15 +33,15 @@
                         (click)="raiseEvent(eventTemplate, log.id)">
                     </button>
                 </ng-container>
-                <span *ngIf="!logTemplate.eventTemplates?.length">No configured record events found. Please add some record events to your template first.</span>
+                <span *ngIf="!template.eventTemplates?.length">No configured record events found. Please add some record events to your template first.</span>
             </p-panel>
             <p-accordion class="col-12 md:hidden">
                 <p-accordionTab header="Recorded Events" [selected]="false" styleClass="p-0">
-                    <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                    <el-records [records]="records" [template]="template" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
                 </p-accordionTab>
             </p-accordion>
             <p-panel header="Recorded Events" class="hidden col-7 md:block" styleClass="p-0">
-                <el-records [records]="records" [logTemplate]="logTemplate" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                <el-records [records]="records" [template]="template" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
             </p-panel>
         </div>
     </p-panel>

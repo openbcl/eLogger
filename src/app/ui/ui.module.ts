@@ -22,19 +22,19 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
-import { LogTemplateTitlePipe, LogTemplateDescPipe, LogEventTemplatesPipe, LogTemplateExistsPipe } from './pipes/log.pipe';
+import { TemplateTitlePipe, TemplateDescPipe, LogEventTemplatesPipe, TemplateExistsPipe } from './pipes/log.pipe';
 
 const pipes = [
   EventLabelPipe,
   EventLabelWithIconPipe,
   ColorPipe,
-  LogTemplateTitlePipe,
-  LogTemplateDescPipe,
+  TemplateTitlePipe,
+  TemplateDescPipe,
   EventRelTimePipe,
   CurrentEventRelTimePipe,
   LogEventTemplatesPipe,
   EventButtonDisabledPipe,
-  LogTemplateExistsPipe
+  TemplateExistsPipe
 ]
 
 const modules = [

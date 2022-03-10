@@ -1,15 +1,15 @@
-import { BaseLog } from './abstract';
+import { BaseLog } from './baselog';
 
 export const LOGS = 'logs';
 
 export class Log extends BaseLog {
     prev: string = null;
-    logTemplateId: string;
+    templateId: string;
     recordsCount = 0;
 
-    constructor(logTemplateId: string, title: string, desc: string) {
+    constructor(templateId: string, title: string, desc: string) {
         super();
-        this.logTemplateId = logTemplateId;
+        this.templateId = templateId;
         this.title = title;
         this.desc = desc;
     }

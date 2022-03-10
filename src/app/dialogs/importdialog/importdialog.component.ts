@@ -4,9 +4,9 @@ import { FileUpload } from 'primeng/fileupload';
 import { FormBuilder } from '@angular/forms';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
-import { patchLogTemplates } from '../../store/logtemplate.actions';
-import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
-import { SharedLogs, SharedLogTemplates } from '../../shared/models';
+import { patchTemplates } from '../../store/template.actions';
+import { BaseDialogComponent } from '../../shared/components/basedialog.component';
+import { SharedLogs, SharedTemplates } from '../../shared/models';
 import { patchLogs } from '../../store/log.actions';
 import { toastError } from '../../store/toast.actions';
 
@@ -15,7 +15,7 @@ import { toastError } from '../../store/toast.actions';
   templateUrl: './importdialog.component.html',
   styleUrls: ['./importdialog.component.scss']
 })
-export class ImportDialogComponent extends BasicDialogComponent {
+export class ImportDialogComponent extends BaseDialogComponent {
 
   @ViewChild('fileUpload')
   fileUpload: FileUpload;
@@ -54,12 +54,12 @@ export class ImportDialogComponent extends BasicDialogComponent {
     if (typeof data === 'string') {
       try {
         const parsed = JSON.parse(data);
-        if (!!parsed?.logTemplates?.length) {
-          const partialLogTemplates = parsed as SharedLogTemplates;
-          if (!!partialLogTemplates?.version?.length) {
-            switch (partialLogTemplates.version) {
+        if (!!parsed?.templates?.length) {
+          const partialTemplates = parsed as SharedTemplates;
+          if (!!partialTemplates?.version?.length) {
+            switch (partialTemplates.version) {
               default:
-                this.store.dispatch(patchLogTemplates({ logTemplates: partialLogTemplates.logTemplates }));
+                this.store.dispatch(patchTemplates({ templates: partialTemplates.templates }));
             }
             return this.close();
           }

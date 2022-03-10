@@ -12,8 +12,8 @@ export class LogService {
 
   constructor(private db: NgxIndexedDBService) { }
   
-  createLog(logTemplateId: string, title: string, desc: string) {
-    const value = new Log(logTemplateId, title, desc);
+  createLog(templateId: string, title: string, desc: string) {
+    const value = new Log(templateId, title, desc);
     return this.loadLogs().pipe(exhaustMap(logs => {
       if (!!logs?.length) {
         value.prev = logs[logs.length - 1].id;

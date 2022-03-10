@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { ExportService } from '../../shared/services/export.service';
-import { Log, LogTemplate } from '../../shared/models';
+import { Log, Template } from '../../shared/models';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AppValidators, isQRcodeCompatibleError } from '../../shared/utils/validators';
-import { BasicDialogComponent } from '../../shared/components/basicdialog.component';
+import { BaseDialogComponent } from '../../shared/components/basedialog.component';
 
 @Component({
   selector: 'el-export-logs-dialog',
   templateUrl: './exportlogsdialog.component.html',
   styleUrls: ['./exportlogsdialog.component.scss']
 })
-export class ExportLogsDialogComponent extends BasicDialogComponent {
+export class ExportLogsDialogComponent extends BaseDialogComponent {
 
   isQRcodeCompatibleError = isQRcodeCompatibleError;
   displayQRcodeDialog = false;
@@ -21,7 +21,7 @@ export class ExportLogsDialogComponent extends BasicDialogComponent {
   logs: Log[];
 
   @Input()
-  logTemplates: LogTemplate[];
+  templates: Template[];
   
   cols: any[] = [
     { field: 'title', header: 'Title' },

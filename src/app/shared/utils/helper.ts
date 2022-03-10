@@ -84,9 +84,9 @@ export const deepCompareEventTemplates = (a: EventTemplate, b: EventTemplate) =>
 export const compareAbstractLog = (a: BaseLog, b: BaseLog, id?: string) => (
     a.title.toLocaleLowerCase() === b.title.toLocaleLowerCase() &&
     a.desc?.toLocaleLowerCase() === b.desc?.toLocaleLowerCase() && (
-        !(<Log>a).logTemplateId || !(<Log>b).logTemplateId ||
-        (<Log>a).logTemplateId === (<Log>b).logTemplateId
-    ) && (!id ||  (<Log>a).logTemplateId && (<Log>a).logTemplateId === id)
+        !(<Log>a).templateId || !(<Log>b).templateId ||
+        (<Log>a).templateId === (<Log>b).templateId
+    ) && (!id ||  (<Log>a).templateId && (<Log>a).templateId === id)
 )
 
 export const eventTypes = Object.getOwnPropertyNames(EventType).filter(value => !value.match(/\d+/)).map<EventType>(value => (<any>EventType)[value]);

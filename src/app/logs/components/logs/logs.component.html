@@ -1,4 +1,4 @@
-<p-panel header="Logs" *ngrxLet="logTemplates$ as logTemplates">
+<p-panel header="Logs" *ngrxLet="templates$ as templates">
     <p-table
         #dt
         styleClass="p-datatable-striped"
@@ -40,10 +40,10 @@
                 <td [routerLink]="[log.id]">{{ log.title }}</td>
                 <td [routerLink]="[log.id]">{{ log.desc }}</td>
                 <td [routerLink]="[log.id]" class="flex-wrap">
-                    <span [ngClass]="{'p-error': !(log.logTemplateId | logTemplateExists: logTemplates)}" class="text-overflow-anywhere ">
-                        {{ log.logTemplateId | logTemplateTitle: logTemplates }}
+                    <span [ngClass]="{'p-error': !(log.templateId | templateExists: templates)}" class="text-overflow-anywhere ">
+                        {{ log.templateId | templateTitle: templates }}
                     </span>
-                    <ng-container *ngIf="log.logTemplateId | logTemplateDesc: logTemplates as desc">
+                    <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
                         <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
                     </ng-container>
                 </td>
