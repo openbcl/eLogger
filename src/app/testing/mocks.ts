@@ -29,7 +29,7 @@ export const LogServiceMock = {
 }
 
 export const RecordServiceMock = {
-    createRecord: (_eventTemplate: any, logId: string, date: Date, text?: string) => of({ logId, text }),
+    createRecord: (_eventTemplate: any, logId: string, _date: Date, text?: string) => of({ logId, text }),
     loadRecords: (_logId: string) => of([]),
     loadAllRecords: () => of([]),
     countTotalRecords: () => of(0),
@@ -44,4 +44,12 @@ export const RouterMock = {
 export const StoreMock = {
     pipe: (..._operations: OperatorFunction<any, any>[]) => of<any>({}),
     dispatch: (_action: any): void => null
+}
+
+export const MessageServiceMock = {
+    add: (_value: any): void => null
+}
+
+export const PipeMock = {
+    transform: (..._values: any[]) => {}
 }
