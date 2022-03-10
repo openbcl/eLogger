@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { updateTemplate } from '../../../store/template.actions';
 import { EventTemplate, Template } from '../../../../models';
-import { deepCompareEventTemplates } from '../../../../utils/helper';
+import { deepCompareEventTemplates } from '../../../../utils/lib';
 import { templateSelector } from '../../../store/template.selectors';
 
 @Component({

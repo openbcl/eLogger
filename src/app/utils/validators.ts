@@ -1,7 +1,7 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { map, Observable, take, combineLatest, of } from "rxjs";
 import { BaseLog, Log, Template } from "../models";
-import { compareAbstractLog, compareEventTemplates, toJSON } from "./helper";
+import { compareAbstractLog, compareEventTemplates, toJSON } from "./lib";
 
 export const eventTypeIsUniqueError = 'eventTypeIsUnique';
 export const isEqualStringError = 'isEqualString';

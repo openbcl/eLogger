@@ -8,7 +8,7 @@ import { EventType, Log, Template, Record } from '../models'
 import { allRecordsSelector } from '../store/record.selectors';
 import { loadAllRecords } from '../store/record.actions';
 import { sha1 } from 'object-hash'
-import { toJSON } from '../utils/helper';
+import { toJSON } from '../utils/lib';
 import * as JSZip from 'jszip'
 
 

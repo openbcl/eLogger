@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { concatMap, from, map, exhaustMap, take, toArray, switchMap, forkJoin } from 'rxjs';
-import { isBaseLogTitleEqual, orderedLogs, reorderLogs, uniqueBaseLog } from '../utils/helper';
+import { isBaseLogTitleEqual, orderedLogs, reorderLogs, uniqueBaseLog } from '../utils/lib';
 import { Log, LOGS } from '../models';
 import { processResult } from '../utils/errorHandler';
 

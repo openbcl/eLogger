@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { groupByKey } from '../utils/helper';
+import { groupByKey } from '../utils/lib';
 import { Record } from '../models'
 import * as fromRecord from './record.reducer';
 

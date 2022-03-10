@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
-import { LandingpageGuard } from './utils/landingpage.guard';
+import { LandingpageGuard } from './guards/landingpage.guard';
 
 const routes: Routes = [
   {

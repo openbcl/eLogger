@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
-import { toJSON } from '../../../utils/helper';
+import { toJSON } from '../../../utils/lib';
 import { BaseDialogComponent } from '../../basedialog/basedialog.component';
 import { ExportService } from '../../../services/export.service';
 

@@ -3,7 +3,7 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { concatMap, forkJoin, map, switchMap } from 'rxjs';
 import { Template, TEMPLATES } from '../models';
 import { processResult } from '../utils/errorHandler';
-import { isBaseLogTitleEqual, uniqueBaseLog } from '../utils/helper';
+import { isBaseLogTitleEqual, uniqueBaseLog } from '../utils/lib';
 
 @Injectable({
   providedIn: 'root'
