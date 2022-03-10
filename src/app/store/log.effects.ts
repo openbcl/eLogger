@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LogService } from '../shared/services';
+import { LogService } from '../services';
 import { toastError, toastInfo, toastSuccess, toastWarn } from './toast.actions';
 import * as LogActions from './log.actions';
 

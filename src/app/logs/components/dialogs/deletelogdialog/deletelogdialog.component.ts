@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { AppValidators } from '../../../../shared/utils/validators';
-import { Log } from '../../../../shared/models';
+import { AppValidators } from '../../../../utils/validators';
+import { Log } from '../../../../models';
 import { deleteLog } from '../../../store/log.actions';
 import { logSelector } from '../../../store/log.selectors';
 import { filter, map } from 'rxjs';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-delete-log-dialog',

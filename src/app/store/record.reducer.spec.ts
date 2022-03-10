@@ -1,6 +1,6 @@
 import { loadRecords, loadRecordsSuccess, loadRecordsFailure, createRecord, createRecordSuccess, createRecordFailure, revokeRecord, revokeRecordSuccess, revokeRecordFailure, deleteRecords, deleteRecordsSuccess, deleteRecordsFailure, loadAllRecords, loadAllRecordsSuccess, loadAllRecordsFailure, countTotalRecords, countTotalRecordsSuccess, countTotalRecordsFailure } from './record.actions';
 import { recordsReducer, initialRecordsState } from './record.reducer';
-import { Record } from '../shared/models';
+import { Record } from '../models';
 
 const record: Record = new Record({ name: null, color: null, eventType: 0, icon: null }, null, null);
 const errorTemplate = {}

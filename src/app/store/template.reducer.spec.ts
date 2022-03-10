@@ -1,6 +1,6 @@
 import { loadTemplates, loadTemplatesSuccess, loadTemplatesFailure } from './template.actions';
 import { templatesReducer, initialTemplatesState } from './template.reducer';
-import { Template } from '../shared/models';
+import { Template } from '../models';
 
 const templateTemplate: Template = new Template('', '');
 const errorTemplate = {}

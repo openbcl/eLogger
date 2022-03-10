@@ -5,10 +5,10 @@ import { select, Store } from '@ngrx/store';
 import { MenuItem, PrimeIcons, PrimeNGConfig } from 'primeng/api';
 import { combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { loadLogs } from './store/log.actions';
-import { logsSelector } from './store/log.selectors';
-import { loadTemplates } from './store/template.actions';
-import { templatesSelector } from './store/template.selectors';
+import { loadLogs } from '../../store/log.actions';
+import { logsSelector } from '../../store/log.selectors';
+import { loadTemplates } from '../../store/template.actions';
+import { templatesSelector } from '../../store/template.selectors';
 
 @Component({
   selector: 'el-root',

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { deleteTemplate } from '../../../store/template.actions';
 import { templateSelector } from '../../../store/template.selectors';
-import { Template } from '../../../../shared/models';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { Template } from '../../../../models';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-delete-template-dialog',

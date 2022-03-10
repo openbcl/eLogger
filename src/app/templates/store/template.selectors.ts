@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { templatesStateSelector } from '../../store/template.selectors';
-import { deepCompareEventTemplates } from '../../shared/utils/helper';
+import { deepCompareEventTemplates } from '../../utils/helper';
 import * as fromTemplate from './template.reducer';
 
 export const templateStateSelector = createFeatureSelector<fromTemplate.TemplateState>(

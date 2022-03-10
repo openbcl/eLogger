@@ -4,10 +4,10 @@ import { select, Store } from '@ngrx/store';
 import { filter, take, tap } from 'rxjs';
 import { logSelector } from '../../../store/log.selectors';
 import { logsSelector } from '../../../../store/log.selectors';
-import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
-import { Log } from '../../../../shared/models';
+import { AppValidators, abstractLogIsUniqueError } from '../../../../utils/validators';
+import { Log } from '../../../../models';
 import { updateLog } from '../../../store/log.actions';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-update-log-dialog',

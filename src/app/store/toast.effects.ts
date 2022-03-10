@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs/operators';
-import { ToastService } from '../shared/services/toast.service';
+import { ToastService } from '../services/toast.service';
 import * as ToastActions from './toast.actions';
 
 @Injectable()

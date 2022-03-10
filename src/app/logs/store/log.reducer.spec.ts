@@ -2,7 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { createLog, deleteLog, loadLog, loadLogSuccess, loadLogFailure, updateLog, updateLogFailure, createLogFailure, deleteLogFailure } from './log.actions';
 import { updateLogSuccess, createLogSuccess, deleteLogSuccess } from '../../store/log.actions';
 import { logReducer, initialLogState } from './log.reducer';
-import { Log } from '../../shared/models';
+import { Log } from '../../models';
 
 const log: Log = new Log(uuid(), '', '');
 const errorTemplate = {}

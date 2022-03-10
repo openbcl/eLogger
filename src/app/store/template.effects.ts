@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TemplateService } from '../shared/services';
+import { TemplateService } from '../services';
 import { toastError, toastInfo, toastSuccess, toastWarn } from './toast.actions';
 import * as TemplateActions from './template.actions';
 

@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { templateIdSelector } from '../../store/router.selector';
 import { catchError, concatMap, filter, map, switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TemplateService } from '../../shared/services';
+import { TemplateService } from '../../services';
 import { toastError } from '../../store/toast.actions';
 import * as LazyTemplateActions from './template.actions';
 import * as TemplateActions from '../../store/template.actions';

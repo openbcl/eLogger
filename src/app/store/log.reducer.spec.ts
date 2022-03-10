@@ -1,6 +1,6 @@
 import { loadLogs, loadLogsSuccess, loadLogsFailure } from './log.actions';
 import { logsReducer, initialLogsState } from './log.reducer';
-import { Log } from '../shared/models';
+import { Log } from '../models';
 
 const log: Log = new Log(null, null, null);
 const errorTemplate = {}

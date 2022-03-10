@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { updateTemplate } from '../../../store/template.actions';
 import { eventTemplatesSelector, templateSelector } from '../../../store/template.selectors';
-import { EventTemplate, EventType, Template } from '../../../../shared/models';
-import { eventIcons, eventTypes } from '../../../../shared/utils/helper';
-import { AppValidators, eventTypeIsUniqueError } from '../../../../shared/utils/validators';
+import { EventTemplate, EventType, Template } from '../../../../models';
+import { eventIcons, eventTypes } from '../../../../utils/helper';
+import { AppValidators, eventTypeIsUniqueError } from '../../../../utils/validators';
 import { EventLabelPipe, EventLabelWithIconPipe } from '../../../../ui/pipes/event.pipe';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-create-eventtemplate-dialog',

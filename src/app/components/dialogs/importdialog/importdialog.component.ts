@@ -4,11 +4,11 @@ import { FileUpload } from 'primeng/fileupload';
 import { FormBuilder } from '@angular/forms';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { BarcodeFormat } from '@zxing/library';
-import { patchTemplates } from '../../store/template.actions';
-import { BaseDialogComponent } from '../../shared/components/basedialog.component';
-import { SharedLogs, SharedTemplates } from '../../shared/models';
-import { patchLogs } from '../../store/log.actions';
-import { toastError } from '../../store/toast.actions';
+import { patchTemplates } from '../../../store/template.actions';
+import { BaseDialogComponent } from '../../basedialog/basedialog.component';
+import { SharedLogs, SharedTemplates } from '../../../models';
+import { patchLogs } from '../../../store/log.actions';
+import { toastError } from '../../../store/toast.actions';
 
 @Component({
   selector: 'el-import-dialog',

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { EventTemplate, EventType } from '../../shared/models';
-import { Record } from '../../shared/models'
+import { EventTemplate, EventType } from '../../models';
+import { Record } from '../../models'
 
 @Pipe({
   name: 'eventRelTime'

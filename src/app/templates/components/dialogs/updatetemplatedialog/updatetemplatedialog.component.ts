@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { filter, take, tap } from 'rxjs';
 import { updateTemplate } from '../../../store/template.actions';
-import { AppValidators, abstractLogIsUniqueError } from '../../../../shared/utils/validators';
-import { Template } from '../../../../shared/models';
+import { AppValidators, abstractLogIsUniqueError } from '../../../../utils/validators';
+import { Template } from '../../../../models';
 import { templateSelector } from '../../../store/template.selectors';
 import { templatesSelector } from '../../../../store/template.selectors';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-update-template-dialog',

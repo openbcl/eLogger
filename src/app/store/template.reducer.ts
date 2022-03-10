@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Template } from '../shared/models';
+import { Template } from '../models';
 import * as TemplateActions from './template.actions';
 
 export const templatesFeatureKey = 'templates';

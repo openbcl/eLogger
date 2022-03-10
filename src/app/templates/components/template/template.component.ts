@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter, map, switchMap, take } from 'rxjs';
 import { logsSelector } from '../../../store/log.selectors';
-import { EventTemplate, Template } from '../../../shared/models';
+import { EventTemplate, Template } from '../../../models';
 import { loadTemplate, updateTemplate } from '../../store/template.actions';
 import { templateProcessingSelector, templateSelector } from '../../store/template.selectors';
 import { templateIdSelector } from '../../../store/router.selector';

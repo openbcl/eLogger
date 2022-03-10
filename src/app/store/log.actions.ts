@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Log } from '../shared/models';
+import { Log } from '../models';
 
 export const loadLogs = createAction(
   '[Log] Load Logs'

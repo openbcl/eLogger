@@ -1,6 +1,6 @@
 import { SelectItem, PrimeIcons } from "primeng/api";
 import { BaseLog, EventTemplate, EventType, Log } from "../models";
-import { version } from '../../../environments/build'
+import { version } from '../../environments/build'
 
 export const isBaseLogTitleEqual = (existingTitle: string, importedTitle: string) => {
     return existingTitle === importedTitle ||

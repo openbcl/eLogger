@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Log } from '../../shared/models';
+import { Log } from '../../models';
 import * as LazyLogActions from './log.actions';
 import * as LogActions from '../../store/log.actions';
 import * as RecordActions from '../../store/record.actions';

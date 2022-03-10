@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Template } from '../shared/models';
+import { Template } from '../models';
 
 export const loadTemplates = createAction(
   '[Template] Load Templates'

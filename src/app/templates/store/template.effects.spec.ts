@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { TemplateServiceMock, StoreMock } from '../../shared/testing/mocks';
-import { TemplateService } from '../../shared/services';
+import { TemplateServiceMock, StoreMock } from '../../testing/mocks';
+import { TemplateService } from '../../services';
 import { TemplateEffects } from './template.effects';
 
 describe('TemplateEffects', () => {

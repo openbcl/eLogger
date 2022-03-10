@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-import { TemplateServiceMock, RouterMock } from '../shared/testing/mocks';
-import { TemplateService } from '../shared/services';
+import { TemplateServiceMock, RouterMock } from '../testing/mocks';
+import { TemplateService } from '../services';
 
 import { TemplateEffects } from './template.effects';
 import { Router } from '@angular/router';

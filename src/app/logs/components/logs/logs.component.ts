@@ -4,7 +4,7 @@ import { map } from 'rxjs';
 import { templatesSelector } from '../../../store/template.selectors';
 import { reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
-import { Log } from '../../../shared/models';
+import { Log } from '../../../models';
 
 @Component({
   selector: 'el-logs',

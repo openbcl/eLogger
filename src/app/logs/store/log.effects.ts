@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap, concatMap, take, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LogService, RecordService } from '../../shared/services';
+import { LogService, RecordService } from '../../services';
 import { logIdSelector } from '../../store/router.selector';
 import { toastError } from '../../store/toast.actions';
 import * as LazyLogActions from './log.actions';

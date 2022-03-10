@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { revokeRecord } from '../../../store/record.actions';
-import { Template, Record } from '../../../shared/models';
+import { Template, Record } from '../../../models';
 
 @Component({
   selector: 'el-records',

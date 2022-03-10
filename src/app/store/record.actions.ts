@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { EventTemplate, Record } from '../shared/models';
+import { EventTemplate, Record } from '../models';
 
 export const loadRecords = createAction(
   '[Record] Load Records',

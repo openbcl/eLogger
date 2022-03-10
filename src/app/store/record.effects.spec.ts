@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-import { RecordServiceMock, StoreMock } from '../shared/testing/mocks';
-import { RecordService } from '../shared/services';
+import { RecordServiceMock, StoreMock } from '../testing/mocks';
+import { RecordService } from '../services';
 import { RecordEffects } from './record.effects';
 
 describe('RecordEffects', () => {

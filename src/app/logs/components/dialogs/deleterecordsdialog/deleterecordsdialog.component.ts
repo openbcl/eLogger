@@ -3,9 +3,9 @@ import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { filter, map } from 'rxjs';
 import { logSelector } from '../../../store/log.selectors';
-import { AppValidators } from '../../../../shared/utils/validators';
+import { AppValidators } from '../../../../utils/validators';
 import { deleteRecords } from '../../../../store/record.actions';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-delete-records-dialog',

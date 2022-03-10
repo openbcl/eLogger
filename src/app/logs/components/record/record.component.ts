@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, filter, map, switchMap, interval, of } from 'rxjs';
 import { PrimeIcons } from 'primeng/api';
-import { EventTemplate, EventType } from '../../../shared/models';
+import { EventTemplate, EventType } from '../../../models';
 import { createRecord, loadRecords } from '../../../store/record.actions';
 import { templatesSelector } from '../../../store/template.selectors';
 import { loadLog } from '../../store/log.actions';

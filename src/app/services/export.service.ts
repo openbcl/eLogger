@@ -2,11 +2,11 @@ import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store';
 import { filter, take } from 'rxjs';
-import { EventLabelPipe, EventRelTimePipe } from '../../ui/pipes/event.pipe'
-import { TemplateDescPipe, TemplateTitlePipe } from '../../ui/pipes/log.pipe'
+import { EventLabelPipe, EventRelTimePipe } from '../ui/pipes/event.pipe'
+import { TemplateDescPipe, TemplateTitlePipe } from '../ui/pipes/log.pipe'
 import { EventType, Log, Template, Record } from '../models'
-import { allRecordsSelector } from '../../store/record.selectors';
-import { loadAllRecords } from '../../store/record.actions';
+import { allRecordsSelector } from '../store/record.selectors';
+import { loadAllRecords } from '../store/record.actions';
 import { sha1 } from 'object-hash'
 import { toJSON } from '../utils/helper';
 import * as JSZip from 'jszip'

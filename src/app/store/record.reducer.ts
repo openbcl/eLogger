@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { Record } from '../shared/models';
+import { Record } from '../models';
 import * as RecordActions from './record.actions';
 
 export const recordsFeatureKey = 'records';

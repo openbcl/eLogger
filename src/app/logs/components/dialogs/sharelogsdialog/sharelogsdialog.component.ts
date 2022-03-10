@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
-import { Template } from '../../../../shared/models';
-import { ExportService } from '../../../../shared/services/export.service';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
+import { Template } from '../../../../models';
+import { ExportService } from '../../../../services/export.service';
 import { logsSelector } from '../../../../store/log.selectors';
 import { templatesSelector } from '../../../../store/template.selectors';
 

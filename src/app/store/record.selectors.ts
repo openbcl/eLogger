@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { groupByKey } from '../shared/utils/helper';
-import { Record } from '../shared/models'
+import { groupByKey } from '../utils/helper';
+import { Record } from '../models'
 import * as fromRecord from './record.reducer';
 
 export const recordsStateSelector = createFeatureSelector<fromRecord.RecordsState>(

@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ExportService } from '../../shared/services/export.service';
-import { Template } from '../../shared/models';
-import { AppValidators, isQRcodeCompatibleError } from '../../shared/utils/validators';
-import { BaseDialogComponent } from '../../shared/components/basedialog.component';
+import { ExportService } from '../../../services/export.service';
+import { Template } from '../../../models';
+import { AppValidators, isQRcodeCompatibleError } from '../../../utils/validators';
+import { BaseDialogComponent } from '../../basedialog/basedialog.component';
 
 @Component({
   selector: 'el-export-templates-dialog',

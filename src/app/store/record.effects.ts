@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { RecordService } from '../shared/services';
+import { RecordService } from '../services';
 import { logIdSelector } from './router.selector';
 import { toastSuccess, toastWarn } from './toast.actions';
 import * as RecordActions from './record.actions';

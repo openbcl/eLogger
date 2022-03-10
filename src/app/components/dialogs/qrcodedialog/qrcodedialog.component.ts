@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { QRCodeComponent } from 'angularx-qrcode';
-import { toJSON } from '../../shared/utils/helper';
-import { BaseDialogComponent } from '../../shared/components/basedialog.component';
-import { ExportService } from '../../shared/services/export.service';
+import { toJSON } from '../../../utils/helper';
+import { BaseDialogComponent } from '../../basedialog/basedialog.component';
+import { ExportService } from '../../../services/export.service';
 
 @Component({
   selector: 'el-qrcode-dialog',

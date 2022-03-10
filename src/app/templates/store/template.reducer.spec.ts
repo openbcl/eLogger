@@ -1,7 +1,7 @@
 import { createTemplate, deleteTemplate, loadTemplate, loadTemplateSuccess, loadTemplateFailure, updateTemplate, updateTemplateFailure, createTemplateFailure, deleteTemplateFailure } from './template.actions';
 import { createTemplateSuccess, deleteTemplateSuccess, updateTemplateSuccess } from '../../store/template.actions';
 import { templateReducer, initialTemplateState } from './template.reducer';
-import { Template } from '../../shared/models';
+import { Template } from '../../models';
 
 const templateTemplate: Template = new Template('', '');
 const errorTemplate = {}

@@ -7,8 +7,8 @@ import { recordsSelector } from '../../../store/record.selectors';
 import { templatesSelector } from '../../../store/template.selectors';
 import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';
-import { Log, Record } from '../../../shared/models';
-import { ExportService } from '../../../shared/services/export.service';
+import { Log, Record } from '../../../models';
+import { ExportService } from '../../../services/export.service';
 import { logIdSelector } from '../../../store/router.selector';
 
 @Component({

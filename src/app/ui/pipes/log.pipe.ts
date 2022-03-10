@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { of } from 'rxjs';
-import { EventType, Template } from '../../shared/models';
+import { EventType, Template } from '../../models';
 
 @Pipe({
   name: 'templateExists'

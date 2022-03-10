@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { createRecord } from '../../../../store/record.actions';
-import { EventTemplate } from '../../../../shared/models';
+import { EventTemplate } from '../../../../models';
 import { logIdSelector } from '../../../../store/router.selector';
 import { filter } from 'rxjs';
-import { BaseDialogComponent } from '../../../../shared/components/basedialog.component';
+import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 
 @Component({
   selector: 'el-text-record-dialog',
