@@ -13,9 +13,17 @@
                             <input type="text" pInputText [disabled]="true" [value]="template.desc || 'no description set'" />
                         </div>
                     </div>
-                    <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0">
+                    <div class="col-12 sm:col-fixed flex sm:flex-column flex-row justify-content-center sm:justify-content-between p-0 mt-3 sm:mt-0" *ngrxLet="templateNotDeletable$ as templateNotDeletable">
                         <button pButton pRipple icon="fas fa-edit" class="p-button-outlined p-button-rounded p-button-warning mr-2 sm:mr-0" iconPos="right" (click)="displayUpdateTemplateDialog = true"></button>
-                        <button pButton pRipple [disabled]="templateNotDeletable$ | async" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger sm:mb-1" iconPos="right" (click)="displayDeleteTemplateDialog = true"></button>
+                        <button
+                            pButton
+                            pRipple
+                            [ngClass]="{'p-button-danger': !templateNotDeletable, 'p-button-secondary': templateNotDeletable}"
+                            icon="pi pi-trash"
+                            class="p-button-outlined p-button-rounded p-button-danger sm:mb-1"
+                            iconPos="right"
+                            (click)="deleteTemplate(templateNotDeletable)">
+                        </button>
                     </div>
                 </div>
             </ng-template>

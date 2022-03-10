@@ -6,6 +6,7 @@ import { EventTemplate, Template } from '../../../models';
 import { loadTemplate, updateTemplate } from '../../store/template.actions';
 import { templateProcessingSelector, templateSelector } from '../../store/template.selectors';
 import { templateIdSelector } from '../../../store/router.selector';
+import { toastInfo } from '../../../store/toast.actions';
 
 @Component({
   selector: 'el-template',
@@ -29,7 +30,7 @@ export class TemplateComponent implements OnInit {
     switchMap(templateId => 
       this.store.pipe(
         select(logsSelector),
-        map(logs => logs?.find(log => log.templateId === templateId))
+        map(logs => !!logs?.find(log => log.templateId === templateId))
       )
     )
   );
@@ -64,6 +65,17 @@ export class TemplateComponent implements OnInit {
       eventTemplates.splice(index, 1);
       eventTemplates.splice(index+ranking, 0, eventTemplate);
       this.onRowReorder(eventTemplates, template)
+    }
+  }
+
+  deleteTemplate(templateNotDeletable: boolean) {
+    if (templateNotDeletable) {
+      this.store.dispatch(toastInfo({
+        summary: 'Can not delete template!',
+        detail: 'The template is used by a log.'
+      }))
+    } else {
+      this.displayDeleteTemplateDialog = true;
     }
   }
 
