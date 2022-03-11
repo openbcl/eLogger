@@ -22,7 +22,7 @@ export class TextRecordDialogComponent extends BaseDialogComponent {
 
   logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
 
-  form = this.fb.group({ text: [null, Validators.required] });
+  form = this.fb.group({ data: [null, Validators.required] });
 
   constructor(
     private store: Store,
@@ -36,7 +36,7 @@ export class TextRecordDialogComponent extends BaseDialogComponent {
       eventTemplate: this.textEventTemplate,
       logId,
       date: this.timestamp,
-      text: this.form.value.text
+      data: this.form.value.data
     }));
     this.close();
   }

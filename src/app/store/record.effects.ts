@@ -44,7 +44,7 @@ export class RecordEffects {
 
   createRecord$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.createRecord),
-    concatMap(createRecord => this.recordService.createRecord(createRecord.eventTemplate, createRecord.logId, createRecord.date, createRecord.text).pipe(
+    concatMap(createRecord => this.recordService.createRecord(createRecord.eventTemplate, createRecord.logId, createRecord.date, createRecord.data).pipe(
       map(record => RecordActions.createRecordSuccess({ record })),
       catchError(error => of(RecordActions.createRecordFailure({ error })))
     ))

@@ -10,10 +10,10 @@ export class RecordService {
 
   constructor(private db: NgxIndexedDBService) { }
   
-  createRecord(eventTemplate: EventTemplate, logId: string, date: Date, text?: string) {
+  createRecord(eventTemplate: EventTemplate, logId: string, date: Date, data?: string) {
     const value = new Record(eventTemplate, logId, date);
-    if (eventTemplate.eventType === EventType.TEXT && !!text?.length) {
-      value.text = text;
+    if (eventTemplate.eventType === EventType.TEXT && !!data?.length) {
+      value.data = data;
     }
     return this.db.add(RECORDS, value);
   }

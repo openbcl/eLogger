@@ -10,7 +10,7 @@ export class Record implements EventTemplate {
     eventType: EventType;
     icon: SelectItem;
     color: string;
-    text?: string;
+    data?: string;
     date: Date;
 
     constructor(eventTemplate: EventTemplate, logId: string, date: Date) {

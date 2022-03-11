@@ -104,7 +104,7 @@ export class ExportService {
                 const relTime = this.eventRelTime.transform(record, records);
                 const row = [ record.name, this.eventLabel.transform(record.eventType) ];
                 if (containData) {
-                    row.push(!!record.text?.length ? record.text : '');
+                    row.push(!!record.data?.length ? record.data : '');
                 }
                 row.push(this.date.transform(record.date, 'yyyy-MM-dd, HH:mm:ss'));
                 if (containStart) {

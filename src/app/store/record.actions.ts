@@ -46,7 +46,7 @@ export const countTotalRecordsSuccess = createAction(
 
 export const createRecord = createAction(
   '[Record] Create Record',
-  props<{ eventTemplate: EventTemplate, logId: string, date: Date, text?: string }>()
+  props<{ eventTemplate: EventTemplate, logId: string, date: Date, data?: string }>()
 );
 
 export const createRecordFailure = createAction(
