@@ -12,24 +12,24 @@ describe('Setting Selectors', () => {
     const result = themeSelector({
       [fromSetting.settingsFeatureKey]: fromSetting.initialSettingsState
     });
-    expect(result).toEqual(undefined);
+    expect(result).toEqual(fromSetting.initialSettingsState.theme);
   });
   it('should select the initial seperator', () => {
     const result = seperatorSelector({
       [fromSetting.settingsFeatureKey]: fromSetting.initialSettingsState
     });
-    expect(result).toEqual(';');
+    expect(result).toEqual(fromSetting.initialSettingsState.seperator);
   });
   it('should select the initial language', () => {
     const result = languageSelector({
       [fromSetting.settingsFeatureKey]: fromSetting.initialSettingsState
     });
-    expect(result).toEqual(undefined);
+    expect(result).toEqual(fromSetting.initialSettingsState.language);
   });
   it('should select the initial beep setting', () => {
     const result = beepSelector({
       [fromSetting.settingsFeatureKey]: fromSetting.initialSettingsState
     });
-    expect(result).toEqual(false);
+    expect(result).toEqual(fromSetting.initialSettingsState.beep);
   });
 });

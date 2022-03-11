@@ -1,11 +1,11 @@
-<p-menubar class="fixed w-full top-0 left-0 z-5" [model]="navitems" *ngIf="theme$ | async">
+<p-menubar class="fixed w-full top-0 left-0 z-5" [model]="navitems">
   <ng-template pTemplate="end">
     <a routerLink="/">
       <img src="assets/icons/icon-512x512.png" height="40" class="p-mr-2">
     </a>
   </ng-template>
 </p-menubar>
-<router-outlet></router-outlet>
+<router-outlet *ngrxLet="theme$"></router-outlet>
 <ng-container *ngrxLet="templates$ as templates">
   <el-export-templates-dialog [(visible)]="displayExportTemplatesDialog" [templates]="templates"></el-export-templates-dialog>
   <el-export-logs-dialog [(visible)]="displayExportLogsDialog" [logs]="logs$ | async" [templates]="templates"></el-export-logs-dialog>

@@ -12,7 +12,7 @@ export interface SettingsState {
 }
 
 export const initialSettingsState: SettingsState = {
-  theme: undefined,
+  theme: localStorage.getItem('theme') || 'light',
   seperator: ';',
   language: undefined,
   beep: false,

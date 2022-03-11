@@ -95,7 +95,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    this.store.dispatch(loadTheme());
     this.store.dispatch(loadTemplates());
     this.store.dispatch(loadLogs());
     if (this.swUpdate.isEnabled) {
