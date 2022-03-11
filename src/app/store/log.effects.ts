@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { LogService } from '../services/log.service';
-import { toastError, toastInfo, toastSuccess } from './toast.actions';
+import * as ToastActions from './toast.actions';
 import * as LogActions from './log.actions';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class LogEffects {
 
   createLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.createLogSuccess),
-    switchMap(createLogSuccess => of(toastSuccess({
+    switchMap(createLogSuccess => of(ToastActions.toastSuccess({
       summary: 'Log created successfully!',
       detail: createLogSuccess.log.title
     })))
@@ -44,7 +44,7 @@ export class LogEffects {
 
   updateLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.updateLogSuccess),
-    switchMap(updateLogSuccess => of(toastInfo({
+    switchMap(updateLogSuccess => of(ToastActions.toastInfo({
       summary: 'Log updated successfully!',
       detail: updateLogSuccess.log.title
     })))
@@ -52,7 +52,7 @@ export class LogEffects {
 
   deleteLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.deleteLogSuccess),
-    switchMap(deleteLogSuccess => of(toastSuccess({
+    switchMap(deleteLogSuccess => of(ToastActions.toastSuccess({
       summary: 'Log deleted successfully!',
       detail: deleteLogSuccess.log.title
     })))
@@ -60,7 +60,7 @@ export class LogEffects {
 
   patchLogsSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.patchLogsSuccess),
-    switchMap(patchLogsSuccess => of(toastSuccess({
+    switchMap(patchLogsSuccess => of(ToastActions.toastSuccess({
       summary: 'Logs imported successfully!',
       detail: patchLogsSuccess.logs.length.toString()
     })))
@@ -68,7 +68,7 @@ export class LogEffects {
 
   loadLogsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.loadLogsFailure),
-    switchMap(loadLogsFailure => of(toastError({
+    switchMap(loadLogsFailure => of(ToastActions.toastError({
       summary: 'Error while loading logs!',
       detail: loadLogsFailure.error
     })))
@@ -76,7 +76,7 @@ export class LogEffects {
 
   patchLogsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.patchLogsFailure),
-    switchMap(patchLogsFailure => of(toastError({
+    switchMap(patchLogsFailure => of(ToastActions.toastError({
       summary: 'Error while patching logs!',
       detail: patchLogsFailure.error
     })))
@@ -84,7 +84,7 @@ export class LogEffects {
 
   reorderLogsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.reorderLogsFailure),
-    switchMap(reorderLogsFailure => of(toastError({
+    switchMap(reorderLogsFailure => of(ToastActions.toastError({
       summary: 'Error while reordering logs!',
       detail: reorderLogsFailure.error
     })))

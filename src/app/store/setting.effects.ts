@@ -4,7 +4,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { SettingService } from '../services/setting.service';
 import * as SettingActions from './setting.actions';
-import { toastError, toastSuccess } from './toast.actions';
+import * as ToastActions from './toast.actions';
 
 @Injectable()
 export class SettingEffects {
@@ -83,7 +83,7 @@ export class SettingEffects {
 
   loadThemeFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadThemeFailure),
-    switchMap(loadThemeFailure => of(toastError({
+    switchMap(loadThemeFailure => of(ToastActions.toastError({
       summary: 'Error while loading theme!',
       detail: loadThemeFailure.error
     })))
@@ -91,7 +91,7 @@ export class SettingEffects {
 
   loadSeperatorFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadSeperatorFailure),
-    switchMap(loadSeperatorFailure => of(toastError({
+    switchMap(loadSeperatorFailure => of(ToastActions.toastError({
       summary: 'Error while loading csv seperator setting!',
       detail: loadSeperatorFailure.error
     })))
@@ -99,7 +99,7 @@ export class SettingEffects {
 
   loadLanguageFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadLanguageFailure),
-    switchMap(loadLanguageFailure => of(toastError({
+    switchMap(loadLanguageFailure => of(ToastActions.toastError({
       summary: 'Error while loading language setting!',
       detail: loadLanguageFailure.error
     })))
@@ -107,7 +107,7 @@ export class SettingEffects {
 
   loadBeepFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadBeepFailure),
-    switchMap(loadBeepFailure => of(toastError({
+    switchMap(loadBeepFailure => of(ToastActions.toastError({
       summary: 'Error while loading record beep setting!',
       detail: loadBeepFailure.error
     })))
@@ -115,7 +115,7 @@ export class SettingEffects {
 
   resetDBFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.resetDBFailure),
-    switchMap(resetDBFailure => of(toastError({
+    switchMap(resetDBFailure => of(ToastActions.toastError({
       summary: 'Error while resetting database!',
       detail: resetDBFailure.error
     })))
@@ -123,7 +123,7 @@ export class SettingEffects {
 
   resetDBSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.resetDBSuccess),
-    switchMap(() => of(toastSuccess({
+    switchMap(() => of(ToastActions.toastSuccess({
       summary: 'Database reset successfully!',
     })))
   ));

@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
-import { createLog, deleteLog, loadLog, loadLogSuccess, loadLogFailure, updateLog, updateLogFailure, createLogFailure, deleteLogFailure } from './log.actions';
-import { updateLogSuccess, createLogSuccess, deleteLogSuccess } from '../../store/log.actions';
+import * as LazyLogActions from './log.actions';
+import * as LogActions from '../../store/log.actions';
 import { logReducer, initialLogState } from './log.reducer';
 import { Log } from '../../models';
 
@@ -10,68 +10,68 @@ const errorTemplate = {}
 describe('Log Reducer', () => {
   describe('Load Log action', () => {
     it('should enable the processing flag', () => {
-      const newState = logReducer(initialLogState, loadLog({ id : log.id }));
+      const newState = logReducer(initialLogState, LazyLogActions.loadLog({ id : log.id }));
       expect(newState.processing).toBe(true);
     });
 
     it('should return the log', () => {
-      const newState = logReducer(initialLogState, loadLogSuccess({ log : log }));
+      const newState = logReducer(initialLogState, LazyLogActions.loadLogSuccess({ log : log }));
       expect(newState.log).toBe(log);
     });
 
     it('should return the error', () => {
-      const newState = logReducer(initialLogState, loadLogFailure({ error : errorTemplate }));
+      const newState = logReducer(initialLogState, LazyLogActions.loadLogFailure({ error : errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });
 
   describe('Update Log action', () => {
     it('should enable the processing flag', () => {
-      const newState = logReducer(initialLogState, updateLog({ log : log }));
+      const newState = logReducer(initialLogState, LazyLogActions.updateLog({ log : log }));
       expect(newState.processing).toBe(true);
     });
 
     it('should return the log', () => {
-      const newState = logReducer(initialLogState, updateLogSuccess({ log : log }));
+      const newState = logReducer(initialLogState, LogActions.updateLogSuccess({ log : log }));
       expect(newState.log).toBe(log);
     });
 
     it('should return the error', () => {
-      const newState = logReducer(initialLogState, updateLogFailure({ error : errorTemplate }));
+      const newState = logReducer(initialLogState, LazyLogActions.updateLogFailure({ error : errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });
 
   describe('Create Log action', () => {
     it('should enable the processing flag', () => {
-      const newState = logReducer(initialLogState, createLog({ templateId : log.templateId, title: log.title, desc: log.desc }));
+      const newState = logReducer(initialLogState, LazyLogActions.createLog({ templateId : log.templateId, title: log.title, desc: log.desc }));
       expect(newState.processing).toBe(true);
     });
 
     it('should return the log', () => {
-      const newState = logReducer(initialLogState, createLogSuccess({ log : log }));
+      const newState = logReducer(initialLogState, LogActions.createLogSuccess({ log : log }));
       expect(newState.log).toBe(log);
     });
 
     it('should return the error', () => {
-      const newState = logReducer(initialLogState, createLogFailure({ error : errorTemplate }));
+      const newState = logReducer(initialLogState, LazyLogActions.createLogFailure({ error : errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });
 
   describe('Delete Log action', () => {
     it('should enable the processing flag', () => {
-      const newState = logReducer(initialLogState, deleteLog({ log : log }));
+      const newState = logReducer(initialLogState, LazyLogActions.deleteLog({ log : log }));
       expect(newState.processing).toBe(true);
     });
 
     it('should return null', () => {
-      const newState = logReducer(initialLogState, deleteLogSuccess({ log : log }));
+      const newState = logReducer(initialLogState, LogActions.deleteLogSuccess({ log : log }));
       expect(newState.log).toBe(null);
     });
 
     it('should return the error', () => {
-      const newState = logReducer(initialLogState, deleteLogFailure({ error : errorTemplate }));
+      const newState = logReducer(initialLogState, LazyLogActions.deleteLogFailure({ error : errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });

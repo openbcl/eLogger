@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { TemplateService } from '../services/template.service';
-import { toastError, toastInfo, toastSuccess } from './toast.actions';
+import * as ToastActions from './toast.actions';
 import * as TemplateActions from './template.actions';
 
 @Injectable()
@@ -28,7 +28,7 @@ export class TemplateEffects {
 
   createTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.createTemplateSuccess),
-    switchMap(createTemplateSuccess => of(toastSuccess({
+    switchMap(createTemplateSuccess => of(ToastActions.toastSuccess({
       summary: 'Template created successfully!',
       detail: createTemplateSuccess.template.title
     })))
@@ -36,7 +36,7 @@ export class TemplateEffects {
 
   updateTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.updateTemplateSuccess),
-    switchMap(updateTemplateSuccess => of(toastInfo({
+    switchMap(updateTemplateSuccess => of(ToastActions.toastInfo({
       summary: 'Template updated successfully!',
       detail: updateTemplateSuccess.template.title
     })))
@@ -44,7 +44,7 @@ export class TemplateEffects {
 
   deleteTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.deleteTemplateSuccess),
-    switchMap(deleteTemplateSuccess => of(toastSuccess({
+    switchMap(deleteTemplateSuccess => of(ToastActions.toastSuccess({
       summary: 'Template deleted successfully!',
       detail: deleteTemplateSuccess.template.title
     })))
@@ -52,7 +52,7 @@ export class TemplateEffects {
 
   patchTemplatesSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.patchTemplatesSuccess),
-    switchMap(patchTemplatesSuccess => of(toastSuccess({
+    switchMap(patchTemplatesSuccess => of(ToastActions.toastSuccess({
       summary: 'Templates imported successfully!',
       detail: patchTemplatesSuccess.templates.length.toString()
     })))
@@ -60,7 +60,7 @@ export class TemplateEffects {
 
   loadTemplatesFailure$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.loadTemplatesFailure),
-    switchMap(loadTemplatesFailure => of(toastError({
+    switchMap(loadTemplatesFailure => of(ToastActions.toastError({
       summary: 'Error while loading templates!',
       detail: loadTemplatesFailure.error
     })))
@@ -68,7 +68,7 @@ export class TemplateEffects {
 
   patchTemplatesFailure$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.patchTemplatesFailure),
-    switchMap(patchTemplatesFailure => of(toastError({
+    switchMap(patchTemplatesFailure => of(ToastActions.toastError({
       summary: 'Error while patching templates!',
       detail: patchTemplatesFailure.error
     })))

@@ -1,4 +1,4 @@
-import { loadTemplates, loadTemplatesSuccess, loadTemplatesFailure } from './template.actions';
+import * as TemplateActions from './template.actions';
 import { templatesReducer, initialTemplatesState } from './template.reducer';
 import { Template } from '../models';
 
@@ -8,17 +8,17 @@ const errorTemplate = {}
 describe('Templates Reducer', () => {
   describe('Load Templates action', () => {
     it('should enable the processing flag', () => {
-      const newState = templatesReducer(initialTemplatesState, loadTemplates());
+      const newState = templatesReducer(initialTemplatesState, TemplateActions.loadTemplates());
       expect(newState.processing).toBe(true);
     });
 
     it('should return the templates', () => {
-      const newState = templatesReducer(initialTemplatesState, loadTemplatesSuccess({ templates : [ templateTemplate ] }));
+      const newState = templatesReducer(initialTemplatesState, TemplateActions.loadTemplatesSuccess({ templates : [ templateTemplate ] }));
       expect(newState.templates?.length).toBe(1);
     });
 
     it('should return the error', () => {
-      const newState = templatesReducer(initialTemplatesState, loadTemplatesFailure({ error : errorTemplate }));
+      const newState = templatesReducer(initialTemplatesState, TemplateActions.loadTemplatesFailure({ error : errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });
