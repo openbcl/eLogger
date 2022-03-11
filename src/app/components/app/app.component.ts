@@ -5,6 +5,8 @@ import { select, Store } from '@ngrx/store';
 import { MenuItem, PrimeIcons, PrimeNGConfig } from 'primeng/api';
 import { combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
+import { loadTheme, setTheme } from 'src/app/store/setting.actions';
+import { themeSelector } from 'src/app/store/setting.selectors';
 import { loadLogs } from '../../store/log.actions';
 import { logsSelector } from '../../store/log.selectors';
 import { loadTemplates } from '../../store/template.actions';
@@ -18,7 +20,6 @@ import { templatesSelector } from '../../store/template.selectors';
 export class AppComponent {
   title = 'eLogger';
   keys = {
-    themeID: 'app-theme',
     settingsID: 'settings',
     exportID: 'export',
     exports : {
@@ -48,9 +49,9 @@ export class AppComponent {
         { id: this.keys.exports.templatesID, label: 'Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportTemplatesDialog = true },
       ]},
       { id: this.keys.themesID, label: 'Themes', icon: PrimeIcons.PALETTE, items: [
-        { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.switchTheme(event.item.id) },
-        { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.switchTheme(event.item.id) },
-        { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.switchTheme(event.item.id) }
+        { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
+        { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
+        { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) }
       ]}
     ]
   }];
@@ -65,28 +66,8 @@ export class AppComponent {
   templates$ = this.logData$.pipe(map(logData => logData[0]), filter(templates => !!templates));
   logs$ = this.logData$.pipe(map(logData => logData[1]), filter(logs => !!logs));
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private swUpdate: SwUpdate,
-    private primengConfig: PrimeNGConfig,
-    private store: Store
-  ){ }
-
-  ngOnInit(): void {
-    this.switchTheme();
-    this.primengConfig.ripple = true;
-    this.store.dispatch(loadTemplates());
-    this.store.dispatch(loadLogs());
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates.pipe(
-        filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
-      ).subscribe(() => window.location.reload());
-    }
-  }
-
-  switchTheme(theme = localStorage.getItem(this.keys.themeID) || this.keys.themes.lightID) {
-    localStorage.setItem(this.keys.themeID, theme);
-    const htmlLinkTheme = this.document.getElementById(this.keys.themeID) as HTMLLinkElement;
+  theme$ = this.store.pipe(select(themeSelector), filter(theme => !!theme), tap(theme => {
+    const htmlLinkTheme = this.document.getElementById('app-theme') as HTMLLinkElement;
     const htmlMetaTheme = this.document.getElementsByName('theme-color')?.[0] as HTMLMetaElement;
     htmlLinkTheme.href = `${theme}.css`;
     this.navitems.find(item => item.id === this.keys.settingsID).items.find(item => item.id === this.keys.themesID).items.forEach(item => {
@@ -102,6 +83,25 @@ export class AppComponent {
       case this.keys.themes.darkID:
         htmlMetaTheme.content = '#1e1e1e';
         break;
+    }
+  }))
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private swUpdate: SwUpdate,
+    private primengConfig: PrimeNGConfig,
+    private store: Store
+  ){ }
+
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+    this.store.dispatch(loadTheme());
+    this.store.dispatch(loadTemplates());
+    this.store.dispatch(loadLogs());
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.versionUpdates.pipe(
+        filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
+      ).subscribe(() => window.location.reload());
     }
   }
 
