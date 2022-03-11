@@ -37,6 +37,19 @@ export const RecordServiceMock = {
     deleteRecords: (logId: string) => of(logId),
 }
 
+export const SettingServiceMock = {
+    loadTheme: () => 'light',
+    setTheme: (theme: string) => theme,
+    loadSeperator: () => ';',
+    setSeperator: (seperator: string) => seperator,
+    loadLanguage: () => '',
+    setLanguage: (language: string) => language,
+    loadBeep: () => false,
+    setBeep: (beep: boolean) => beep,
+    resetDB: () => true,
+}
+
+
 export const RouterMock = {
     navigate: (value: any) => new Promise(value)
 }

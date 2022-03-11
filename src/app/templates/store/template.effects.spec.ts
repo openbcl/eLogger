@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TemplateServiceMock, StoreMock, RouterMock } from '../../testing/mocks';
-import { TemplateService } from '../../services';
+import { TemplateService } from '../../services/template.service';
 import { TemplateEffects } from './template.effects';
 
 describe('TemplateEffects', () => {

@@ -3,6 +3,7 @@ import { Log } from '../../models';
 import * as LazyLogActions from './log.actions';
 import * as LogActions from '../../store/log.actions';
 import * as RecordActions from '../../store/record.actions';
+import * as SettingActions from '../../store/setting.actions';
 
 export const logFeatureKey = 'log';
 
@@ -65,5 +66,8 @@ export const logReducer = createReducer(
   })),
   on(RecordActions.deleteRecordsSuccess, (state, _action) => ({
     ...state, log: { ...state.log, recordsCount: 0 }
+  })),
+  on(SettingActions.resetDBSuccess, (state, _action) => ({
+    ...state, log: null
   })),
 );

@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
+import { SettingService } from '../services/setting.service';
+import { SettingServiceMock } from '../testing/mocks';
 
 import { SettingEffects } from './setting.effects';
 
@@ -12,7 +14,10 @@ describe('SettingEffects', () => {
     TestBed.configureTestingModule({
       providers: [
         SettingEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$), {
+          provide: SettingService,
+          useValue: SettingServiceMock
+        }
       ]
     });
 

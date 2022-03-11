@@ -3,9 +3,9 @@ import { select, Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { RecordService } from '../services';
+import { RecordService } from '../services/record.service';
 import { logIdSelector } from './router.selector';
-import { toastSuccess, toastWarn } from './toast.actions';
+import { toastError, toastSuccess } from './toast.actions';
 import * as RecordActions from './record.actions';
 
 @Injectable()
@@ -87,14 +87,14 @@ export class RecordEffects {
 
   deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.deleteRecordsSuccess),
-    switchMap(() => of(toastWarn({
+    switchMap(() => of(toastSuccess({
       summary: 'Records deleted successfully!'
     })))
   ));
 
   loadRecordsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.loadRecordsFailure),
-    switchMap(loadRecordsFailure => of(toastSuccess({
+    switchMap(loadRecordsFailure => of(toastError({
       summary: 'Error while loading records!',
       detail: loadRecordsFailure.error
     })))
@@ -102,7 +102,7 @@ export class RecordEffects {
 
   loadAllRecordsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.loadAllRecordsFailure),
-    switchMap(loadAllRecordsFailure => of(toastSuccess({
+    switchMap(loadAllRecordsFailure => of(toastError({
       summary: 'Error while loading all records!',
       detail: loadAllRecordsFailure.error
     })))
@@ -110,7 +110,7 @@ export class RecordEffects {
 
   createRecordFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.createRecordFailure),
-    switchMap(createRecordFailure => of(toastSuccess({
+    switchMap(createRecordFailure => of(toastError({
       summary: 'Error while creating record!',
       detail: createRecordFailure.error
     })))
@@ -118,7 +118,7 @@ export class RecordEffects {
 
   revokeRecordFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.revokeRecordFailure),
-    switchMap(revokeRecordFailure => of(toastSuccess({
+    switchMap(revokeRecordFailure => of(toastError({
       summary: 'Error while revoking record!',
       detail: revokeRecordFailure.error
     })))
@@ -126,7 +126,7 @@ export class RecordEffects {
 
   deleteRecordsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.deleteRecordsFailure),
-    switchMap(deleteRecordsFailure => of(toastSuccess({
+    switchMap(deleteRecordsFailure => of(toastError({
       summary: 'Error while deleting records!',
       detail: deleteRecordsFailure.error
     })))

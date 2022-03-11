@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { TemplateService } from '../services';
-import { toastError, toastInfo, toastSuccess, toastWarn } from './toast.actions';
+import { TemplateService } from '../services/template.service';
+import { toastError, toastInfo, toastSuccess } from './toast.actions';
 import * as TemplateActions from './template.actions';
 
 @Injectable()
@@ -44,7 +44,7 @@ export class TemplateEffects {
 
   deleteTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.deleteTemplateSuccess),
-    switchMap(deleteTemplateSuccess => of(toastWarn({
+    switchMap(deleteTemplateSuccess => of(toastSuccess({
       summary: 'Template deleted successfully!',
       detail: deleteTemplateSuccess.template.title
     })))

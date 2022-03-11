@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Template } from '../../models';
 import * as LazyTemplateActions from './template.actions';
 import * as TemplateActions from '../../store/template.actions';
+import * as SettingActions from '../../store/setting.actions';
 
 export const templateFeatureKey = 'template';
 
@@ -55,5 +56,8 @@ export const templateReducer = createReducer(
   })),
   on(LazyTemplateActions.deleteTemplateFailure, (state, action) => ({
     ...state, error: action.error, processing: false
+  })),
+  on(SettingActions.resetDBSuccess, (state, _action) => ({
+    ...state, template: null
   })),
 );

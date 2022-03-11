@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Log } from '../models';
 import * as LogActions from './log.actions';
 import * as RecordActions from './record.actions';
+import * as SettingActions from './setting.actions';
 
 export const logsFeatureKey = 'logs';
 
@@ -49,5 +50,8 @@ export const logsReducer = createReducer(
   })),
   on(RecordActions.deleteRecordsSuccess, (state, action) => ({
     ...state, logs: state.logs.map(oldLog => oldLog.id === action.logId ? { ...oldLog, recordsCount: 0 } : oldLog )
+  })),
+  on(SettingActions.resetDBSuccess, (state, _action) => ({
+    ...state, logs: []
   })),
 );

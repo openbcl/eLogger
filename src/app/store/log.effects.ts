@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { LogService } from '../services';
-import { toastError, toastInfo, toastSuccess, toastWarn } from './toast.actions';
+import { LogService } from '../services/log.service';
+import { toastError, toastInfo, toastSuccess } from './toast.actions';
 import * as LogActions from './log.actions';
 
 @Injectable()
@@ -52,7 +52,7 @@ export class LogEffects {
 
   deleteLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.deleteLogSuccess),
-    switchMap(deleteLogSuccess => of(toastWarn({
+    switchMap(deleteLogSuccess => of(toastSuccess({
       summary: 'Log deleted successfully!',
       detail: deleteLogSuccess.log.title
     })))

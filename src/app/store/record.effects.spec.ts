@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { RecordServiceMock, StoreMock } from '../testing/mocks';
-import { RecordService } from '../services';
+import { RecordService } from '../services/record.service';
 import { RecordEffects } from './record.effects';
 
 describe('RecordEffects', () => {

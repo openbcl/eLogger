@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 import { LogServiceMock, RouterMock } from '../testing/mocks';
-import { LogService } from '../services';
+import { LogService } from '../services/log.service';
 
 import { LogEffects } from './log.effects';
 import { Router } from '@angular/router';

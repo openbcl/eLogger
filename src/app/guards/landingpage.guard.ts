@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { TemplateService } from '../services';
+import { TemplateService } from '../services/template.service';
 
 
 @Injectable({

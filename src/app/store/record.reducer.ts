@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Record } from '../models';
 import * as RecordActions from './record.actions';
+import * as SettingActions from './setting.actions';
 
 export const recordsFeatureKey = 'records';
 
@@ -74,5 +75,8 @@ export const recordsReducer = createReducer(
   })),
   on(RecordActions.deleteRecordsFailure, (state, action) => ({
     ...state, error: action.error, processing: false
+  })),
+  on(SettingActions.resetDBSuccess, (state, _action) => ({
+    ...state, records: []
   })),
 );

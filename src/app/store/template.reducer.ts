@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { Template } from '../models';
 import * as TemplateActions from './template.actions';
+import * as SettingActions from './setting.actions';
 
 export const templatesFeatureKey = 'templates';
 
@@ -39,5 +40,8 @@ export const templatesReducer = createReducer(
   })),
   on(TemplateActions.patchTemplatesSuccess, (state, action) => ({
     ...state, templates: [ ...state.templates.filter(oldTemplate => !action.templates.map(template => template.id).includes(oldTemplate.id)), ...action.templates ], processing: false
+  })),
+  on(SettingActions.resetDBSuccess, (state, _action) => ({
+    ...state, templates: []
   })),
 );

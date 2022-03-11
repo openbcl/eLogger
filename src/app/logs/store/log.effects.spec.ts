@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LogServiceMock, RecordServiceMock, RouterMock, StoreMock } from '../../testing/mocks';
-import { LogService, RecordService } from '../../services';
+import { LogService } from '../../services/log.service';
+import { RecordService } from '../../services/record.service';
 import { LogEffects } from './log.effects';
 
 describe('LogEffects', () => {
