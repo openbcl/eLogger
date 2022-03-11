@@ -15,17 +15,20 @@ import { UiModule } from './ui/ui.module';
 import { TemplateEffects } from './store/template.effects';
 import { LogEffects } from './store/log.effects';
 import { RecordEffects } from './store/record.effects';
-import { routerFeatureKey } from './store/router.selector';
+import { SettingEffects } from './store/setting.effects';
 import { ToastEffects } from './store/toast.effects';
+import { routerFeatureKey } from './store/router.selector';
 import { ImportDialogComponent } from './components/dialogs/importdialog/importdialog.component';
 import { QRcodeDialogComponent } from './components/dialogs/qrcodedialog/qrcodedialog.component';
 import { ExportTemplatesDialogComponent } from './components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component';
 import { ExportLogsDialogComponent } from './components/dialogs/exportlogsdialog/exportlogsdialog.component';
+import { SettingsComponent } from './components/settings/settings.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import * as fromTemplate from './store/template.reducer';
 import * as fromLog from './store/log.reducer';
 import * as fromRecord from './store/record.reducer';
+import * as fromSetting from './store/setting.reducer';
 
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
@@ -49,6 +52,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
 @NgModule({
   declarations: [
     AppComponent,
+    SettingsComponent,
     ImportDialogComponent,
     ExportTemplatesDialogComponent,
     ExportLogsDialogComponent,
@@ -68,10 +72,11 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
       [fromTemplate.templatesFeatureKey]: fromTemplate.templatesReducer,
       [fromLog.logsFeatureKey]: fromLog.logsReducer,
       [fromRecord.recordsFeatureKey]: fromRecord.recordsReducer,
+      [fromSetting.settingsFeatureKey]: fromSetting.settingsReducer,
       [routerFeatureKey]: routerReducer
     }, {}),
     environment.production ? [] : StoreDevtoolsModule.instrument({ maxAge: 100 }),
-    EffectsModule.forRoot([TemplateEffects, LogEffects, RecordEffects, ToastEffects]),
+    EffectsModule.forRoot([TemplateEffects, LogEffects, RecordEffects, ToastEffects, SettingEffects]),
     StoreRouterConnectingModule.forRoot(),
     NgxIndexedDBModule.forRoot({
       name: 'eLoggerDB',

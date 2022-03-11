@@ -20,6 +20,7 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
+          "/assets/icons/icon-512x512.png",
           "/primeicons*.ttf",
           "/primeicons*.woff",
           "/*.woff2"
