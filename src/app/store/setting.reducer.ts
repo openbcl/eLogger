@@ -14,7 +14,7 @@ export interface SettingsState {
 export const initialSettingsState: SettingsState = {
   theme: localStorage.getItem('theme') || 'light',
   seperator: ';',
-  language: undefined,
+  language: 'en',
   beep: false,
   error: null
 };

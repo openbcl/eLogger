@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
+import { seperatorSelector } from '../../../../store/setting.selectors';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 import { Template } from '../../../../models';
 import { ExportService } from '../../../../services/export.service';
@@ -19,6 +20,7 @@ export class ShareLogsDialogComponent extends BaseDialogComponent {
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   templates$ = this.store.pipe(select(templatesSelector));
+  seperator$ = this.store.pipe(select(seperatorSelector));
 
   cols: any[] = [
     { field: 'title', header: 'Title' },
@@ -37,8 +39,8 @@ export class ShareLogsDialogComponent extends BaseDialogComponent {
     super();
   }
 
-  submit(templates: Template[]) {
-    this.exportService.shareLogs(this.form.value.logs, templates);
+  submit(templates: Template[], seperator: string) {
+    this.exportService.shareLogs(this.form.value.logs, templates, seperator);
     this.close();
   }
 

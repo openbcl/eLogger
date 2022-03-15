@@ -19,7 +19,7 @@ export class SettingService {
   constructor(private db: NgxIndexedDBService) { }
   
   loadTheme() {
-    return localStorage.getItem(this.settings.theme) || 'light'
+    return localStorage.getItem(this.settings.theme) || 'light'
   }
 
   setTheme(theme: string) {

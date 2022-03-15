@@ -17,6 +17,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownModule } from 'primeng/dropdown';
 import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { FileUploadModule } from 'primeng/fileupload';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -55,6 +56,7 @@ const modules = [
   DropdownModule,
   AccordionModule,
   ProgressSpinnerModule,
+  InputSwitchModule,
   FileUploadModule,
   QRCodeModule,
   ZXingScannerModule

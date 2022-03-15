@@ -47,12 +47,12 @@ export const loadBeep = createAction(
 );
 
 export const loadBeepSuccess = createAction(
-  '[Setting] Load Language Success',
+  '[Setting] Load Beep Success',
   props<{ beep: boolean }>()
 );
 
 export const loadBeepFailure = createAction(
-  '[Setting] Load Language Failure',
+  '[Setting] Load Beep Failure',
   props<{ error: any }>()
 );
 
@@ -107,12 +107,12 @@ export const setBeep = createAction(
 );
 
 export const setBeepSuccess = createAction(
-  '[Setting] Set Language Success',
+  '[Setting] Set Beep Success',
   props<{ beep: boolean }>()
 );
 
 export const setBeepFailure = createAction(
-  '[Setting] Set Language Failure',
+  '[Setting] Set Beep Failure',
   props<{ error: any }>()
 );
 

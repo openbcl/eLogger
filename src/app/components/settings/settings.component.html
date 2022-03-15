@@ -1,1 +1,41 @@
-<p>settings works!</p>
+<p-panel header="Device Settings">
+    <form [formGroup]="form" class="grid">
+        <p-fieldset class="col-12" *ngrxLet="language$">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-content-center align-items-center">
+                    <span class="py-2 pr-2 ">Language:</span>
+                    <p-dropdown formControlName="language" [options]="languages" (onChange)="submitLanguage($event)"></p-dropdown>
+                </div>
+            </ng-template>
+            <span>
+                eLogger is available in different languages. Please select your language.
+                If your preferred language is not available you are welcome to participate
+                in the translation of the app so that eLogger will be available for your
+                language soon. Instructions can be found at:
+            </span>
+            <a href="https://github.com/openbcl/eLogger">https://github.com/openbcl/eLogger</a>
+        </p-fieldset>
+        <p-fieldset class="col-12" *ngrxLet="seperator$">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-content-center align-items-center">
+                    <span class="py-2 pr-2 ">CSV Seperator:</span>
+                    <p-selectButton formControlName="seperator" [options]="seperators" (onChange)="submitSeperator($event)"></p-selectButton>
+                </div>
+            </ng-template>
+            Logs and records are exported in CSV file format (comma-separated values).
+            Depending on the country either point (.) or comma (,) is used as a decimal
+            separator of a number. If the comma is used as a decimal separator it can
+            no longer be used for seperating values in CSV files. In this case a
+            semicolon must be used as a separator for the CSV format.
+        </p-fieldset>
+        <p-fieldset class="col-12" *ngrxLet="beep$">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-content-center align-items-center">
+                    <span class="py-2 pr-2 ">Enable Event Sound:</span>
+                    <p-inputSwitch formControlName="beep" class="flex" (onChange)="submitBeep($event)"></p-inputSwitch>
+                </div>
+            </ng-template>
+            During a log recording additional audio feedback can be emitted when events are triggered.
+        </p-fieldset>
+    </form>
+</p-panel>

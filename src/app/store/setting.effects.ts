@@ -121,6 +121,34 @@ export class SettingEffects {
     })))
   ));
 
+  setLanguageSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(SettingActions.setLanguageSuccess),
+    switchMap(setLanguageSuccess => of(ToastActions.toastSuccess({
+      summary: 'Switched language successfully!',
+      detail: setLanguageSuccess.language
+    })))
+  ));
+
+  setSeperatorSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(SettingActions.setSeperatorSuccess),
+    switchMap(setSeperatorSuccess => of(ToastActions.toastSuccess({
+      summary: 'Switched seperator successfully!',
+      detail: setSeperatorSuccess.seperator
+    })))
+  ));
+
+  setBeepSuccess$ = createEffect(() => this.actions$.pipe(
+    ofType(SettingActions.setBeepSuccess),
+    switchMap(setBeepSuccess => {
+      const enabled = 'enabled';
+      const disabled = 'disabled';
+      return of(ToastActions.toastSuccess({
+        summary: 'Event sound',
+        detail: setBeepSuccess.beep ? enabled : disabled
+      }))
+    })
+  ));
+
   resetDBSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.resetDBSuccess),
     switchMap(() => of(ToastActions.toastSuccess({

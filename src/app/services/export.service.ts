@@ -17,7 +17,6 @@ import * as JSZip from 'jszip'
 })
 export class ExportService {
 
-    private delimiter = ';';
     private acceptableTitleLength = 40;
     private acceptableMaxLength = 60;
 
@@ -30,8 +29,8 @@ export class ExportService {
         private store: Store
     ) { }
 
-    shareLogs (logs: Log[], templates: Template[]) {
-        const blob = this.logsToCSV(logs, templates);
+    shareLogs (logs: Log[], templates: Template[], seperator: string) {
+        const blob = this.logsToCSV(logs, templates, seperator);
         if (blob) {
             const filename = this.uniqueFilename('eLogger_export', blob, '')
             const logsSummaryFile = {
@@ -46,7 +45,7 @@ export class ExportService {
                     take(1)
                 ).subscribe(async allRecords => {
                     const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
-                        blob: this.recordsToCSV(allRecords[log.id], log),
+                        blob: this.recordsToCSV(allRecords[log.id], log, seperator),
                         filename: this.recordsFilename(log, allRecords[log.id])
                     }));
                     files.push(logsSummaryFile);
@@ -58,8 +57,8 @@ export class ExportService {
         }
     }
 
-    shareRecords (records: Record[], log: Log) {
-        const blob = this.recordsToCSV(records, log);
+    shareRecords (records: Record[], log: Log, seperator: string) {
+        const blob = this.recordsToCSV(records, log, seperator);
         blob && this.downloadFile(blob, this.recordsFilename(log, records))
     }
 
@@ -86,7 +85,7 @@ export class ExportService {
         );
     }
 
-    private recordsToCSV(records: Record[], log: Log) {
+    private recordsToCSV(records: Record[], log: Log, seperator: string) {
         if (!!records?.length && !!log) {
             const csv: string[][] = [];
             const containStart = !!records.find(r => r.eventType === EventType.START);
@@ -112,13 +111,13 @@ export class ExportService {
                 }
                 csv.push(row);
             });
-            const csvData = csv.map(row => row.map(value => `"${value}"`).join(this.delimiter)).join('\r\n');
+            const csvData = csv.map(row => row.map(value => `"${value}"`).join(seperator)).join('\r\n');
             return this.csvBlob(csvData);
         }
         return null;
     }
 
-    private logsToCSV(logs: Log[], templates: Template[]) {
+    private logsToCSV(logs: Log[], templates: Template[], seperator: string) {
         if (!!logs?.length && !!templates?.length) {
             const csv: (string|number)[][] = [[ 'Title', 'Description', 'ID', 'Type', 'Records' ]];
             logs.forEach(log => {
@@ -132,7 +131,7 @@ export class ExportService {
                     log.recordsCount
                 ])
             });
-            const csvData = csv.map(row => row.map(value => typeof(value) === 'string' ? `"${value}"` : value).join(this.delimiter)).join('\r\n');
+            const csvData = csv.map(row => row.map(value => typeof(value) === 'string' ? `"${value}"` : value).join(seperator)).join('\r\n');
             return this.csvBlob(csvData);
         }
         return null;
