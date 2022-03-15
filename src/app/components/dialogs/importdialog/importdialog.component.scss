@@ -1,5 +1,9 @@
 :host ::ng-deep {
 
+    .p-dialog:not(.p-dialog-maximized) .p-dialog-content {
+        max-width: 100vh;
+    }
+
     p-selectbutton .p-button {
         width: 50%;
     }
