@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { combineLatest, map } from 'rxjs';
 import { LOGS, RECORDS, TEMPLATES } from '../models';
+import { initialSettingsState } from '../store/setting.reducer';
 import { processResult } from '../utils/errorHandler';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class SettingService {
   constructor(private db: NgxIndexedDBService) { }
   
   loadTheme() {
-    return localStorage.getItem(this.settings.theme) || 'light'
+    return localStorage.getItem(this.settings.theme) || initialSettingsState.theme
   }
 
   setTheme(theme: string) {
@@ -28,7 +29,7 @@ export class SettingService {
   }
 
   loadSeperator() {
-    return localStorage.getItem(this.settings.seperator);
+    return localStorage.getItem(this.settings.seperator) || initialSettingsState.seperator;
   }
 
   setSeperator(seperator: string) {
@@ -37,7 +38,7 @@ export class SettingService {
   }
 
   loadLanguage() {
-    return localStorage.getItem(this.settings.language);
+    return localStorage.getItem(this.settings.language) || initialSettingsState.language;
   }
 
   setLanguage(language: string) {
