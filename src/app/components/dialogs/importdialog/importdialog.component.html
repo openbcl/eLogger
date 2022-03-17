@@ -12,12 +12,23 @@
                     </ng-template>
                 </p-fileUpload>
             </div>
+            <p-dropdown
+                *ngIf="form.value.importOption"
+                class="col-12"
+                formControlName="deviceCurrent"
+                [options]="availableDevices"
+                (onChange)="onDeviceSelectChange($event)"
+                placeholder="Loading cameras...">
+            </p-dropdown>
             <div class="col-12 pb-0 relative" *ngIf="form.value.importOption">
                 <zxing-scanner
                     #scanner
                     class="p-2 align-content-center text-center"
                     [enable]="visible && form.value.importOption"
                     [formats]="formats"
+                    [device]="form.value.deviceCurrent"
+                    (deviceChange)="onDeviceChange($event)"
+                    (camerasFound)="onCamerasFound($event)"
                     (scanSuccess)="patch($event)"
                     (scanError)="raiseError('Error when scanning QR code!', 'An error occured during the scan process.')">
                 </zxing-scanner>

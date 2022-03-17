@@ -10,6 +10,7 @@ import { SharedLogs, SharedTemplates } from '../../../models';
 import { patchLogs } from '../../../store/log.actions';
 import { toastError } from '../../../store/toast.actions';
 
+
 @Component({
   selector: 'el-import-dialog',
   templateUrl: './importdialog.component.html',
@@ -23,6 +24,10 @@ export class ImportDialogComponent extends BaseDialogComponent {
   @ViewChild('scanner')
   scanner: ZXingScannerComponent;
 
+  availableDevices: MediaDeviceInfo[];
+  deviceSelected: string;
+  hasDevices: boolean;
+
   formats = [ BarcodeFormat.QR_CODE ];
 
   importOptions = [{
@@ -33,13 +38,49 @@ export class ImportDialogComponent extends BaseDialogComponent {
     value: true
   }];
 
-  form = this.fb.group({ importOption: false });
+  form = this.fb.group({
+    importOption: false,
+    deviceCurrent: null as MediaDeviceInfo
+  });
 
   constructor(
     private store: Store,
     private fb: FormBuilder,
   ) {
     super();
+  }
+
+  onCamerasFound(devices: MediaDeviceInfo[]): void {
+    this.availableDevices = devices;
+    this.hasDevices = Boolean(devices && devices.length);
+    const preSelectedCamera = localStorage.getItem('camera');
+    if (!!preSelectedCamera?.length) {
+      this.onDeviceSelectChange({value: { deviceId: preSelectedCamera }});
+    }
+  }
+
+  onDeviceSelectChange(event: { value: { deviceId: string }}) {
+    const deviceSelected = event?.value?.deviceId || '';
+    if (!!deviceSelected?.length) {
+      localStorage.setItem('camera', deviceSelected);
+    }
+    if (this.deviceSelected !== deviceSelected) {      
+      this.deviceSelected = deviceSelected;
+      const device = this.availableDevices.find(x => x.deviceId === deviceSelected);
+      this.form.patchValue({
+        deviceCurrent: device || undefined
+      });
+    }
+  }
+
+  onDeviceChange(device: MediaDeviceInfo) {
+    const deviceSelected = device?.deviceId || '';
+    if (this.deviceSelected !== deviceSelected) {      
+      this.deviceSelected = deviceSelected;
+      this.form.patchValue({
+        deviceCurrent: device || undefined
+      });
+    }
   }
 
   uploadFiles(event: { files: Blob[] }) {
