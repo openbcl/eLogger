@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FileUpload } from 'primeng/fileupload';
 import { FormBuilder } from '@angular/forms';
@@ -16,7 +16,7 @@ import { toastError } from '../../../store/toast.actions';
   templateUrl: './importdialog.component.html',
   styleUrls: ['./importdialog.component.scss']
 })
-export class ImportDialogComponent extends BaseDialogComponent {
+export class ImportDialogComponent extends BaseDialogComponent implements OnInit {
 
   @ViewChild('fileUpload')
   fileUpload: FileUpload;
@@ -25,9 +25,8 @@ export class ImportDialogComponent extends BaseDialogComponent {
   scanner: ZXingScannerComponent;
 
   availableDevices: MediaDeviceInfo[];
-  deviceSelected: string;
-  hasDevices: boolean;
-
+  hasDevices = false;
+  selectedDevice: string;
   formats = [ BarcodeFormat.QR_CODE ];
 
   importOptions = [{
@@ -50,37 +49,36 @@ export class ImportDialogComponent extends BaseDialogComponent {
     super();
   }
 
+  ngOnInit(): void {
+    this.selectedDevice = localStorage.getItem('camera') || '';
+  }
+
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     this.availableDevices = devices;
-    this.hasDevices = Boolean(devices && devices.length);
-    const preSelectedCamera = localStorage.getItem('camera');
-    if (!!preSelectedCamera?.length) {
-      this.onDeviceSelectChange({value: { deviceId: preSelectedCamera }});
-    }
+    this.hasDevices = !!devices?.length;
   }
 
   onDeviceSelectChange(event: { value: { deviceId: string }}) {
-    const deviceSelected = event?.value?.deviceId || '';
-    if (!!deviceSelected?.length) {
-      localStorage.setItem('camera', deviceSelected);
-    }
-    if (this.deviceSelected !== deviceSelected) {      
-      this.deviceSelected = deviceSelected;
-      const device = this.availableDevices.find(x => x.deviceId === deviceSelected);
-      this.form.patchValue({
-        deviceCurrent: device || undefined
-      });
+    this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
+    if (this.scanner?.device?.deviceId !== this.selectedDevice) {
+      localStorage.setItem('camera', this.selectedDevice);
+      this.setCameraDevice();
     }
   }
 
-  onDeviceChange(device: MediaDeviceInfo) {
-    const deviceSelected = device?.deviceId || '';
-    if (this.deviceSelected !== deviceSelected) {      
-      this.deviceSelected = deviceSelected;
-      this.form.patchValue({
-        deviceCurrent: device || undefined
-      });
-    }
+  restoreLastDevice() {
+    if (this.scanner?.device?.deviceId !== this.selectedDevice) {
+      if (this.selectedDevice === '' && !!this.scanner?.device?.deviceId?.length) {
+        this.selectedDevice = this.scanner.device.deviceId;
+      }
+      this.setCameraDevice();
+    } 
+  }
+
+  setCameraDevice() {
+    this.form.patchValue({
+      deviceCurrent: this.availableDevices.find(x => x.deviceId === this.selectedDevice)
+    });
   }
 
   uploadFiles(event: { files: Blob[] }) {
@@ -125,7 +123,6 @@ export class ImportDialogComponent extends BaseDialogComponent {
 
   override close() {
     this.fileUpload?.clear();
-    this.scanner?.reset();
     this.form.patchValue({ importOption: false });
     super.close();
   }
