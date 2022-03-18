@@ -8,11 +8,10 @@ import { logIdSelector } from './router.selector';
 import * as ToastActions from './toast.actions';
 import * as RecordActions from './record.actions';
 import { beepSelector } from './setting.selectors';
+import { AudioService } from '../services/audio.service';
 
 @Injectable()
 export class RecordEffects {
-
-  audioCtx: AudioContext = new((window as any).AudioContext || (window as any).webkitAudioContext)();
 
   loadRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.loadRecords),
@@ -90,15 +89,7 @@ export class RecordEffects {
       take(1),
       tap(beep => {
         if (beep) {
-          const oscillator = this.audioCtx.createOscillator();
-          const gainNode = this.audioCtx.createGain();
-          oscillator.connect(gainNode);
-          gainNode.connect(this.audioCtx.destination);
-          gainNode.gain.value = 1;
-          oscillator.frequency.value = 580;
-          oscillator.type = 'triangle';
-          oscillator.start();
-          setTimeout(() => oscillator.stop(), 100);
+          this.audioService.beep();
         }
         window.navigator.vibrate && window.navigator.vibrate(100)
       })
@@ -155,7 +146,8 @@ export class RecordEffects {
   constructor(
     private store: Store,
     private recordService: RecordService,
-    private actions$: Actions
+    private actions$: Actions,
+    private audioService: AudioService
   ) {}
 
 }

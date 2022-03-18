@@ -10,6 +10,7 @@ import { logSelector } from '../../store/log.selectors';
 import { recordsSelector } from '../../../store/record.selectors';
 import { CurrentEventRelTimePipe } from '../../../ui/pipes/event.pipe';
 import { logIdSelector } from '../../../store/router.selector';
+import { AudioService } from '../../../services/audio.service';
 
 @Component({
   selector: 'el-record',
@@ -43,12 +44,14 @@ export class RecordComponent implements OnInit {
 
   constructor(
     private store: Store,
+    private audioService: AudioService,
     private currentEventRelTime: CurrentEventRelTimePipe
   ) { }
 
   ngOnInit(): void {
     this.store.dispatch(loadRecords({}));
     this.store.dispatch(loadLog({}));
+    this.audioService.unlock();
   }
 
   raiseEvent(eventTemplate: EventTemplate, logId: string) {
