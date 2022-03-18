@@ -53,8 +53,9 @@ export class AppComponent {
         { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
         { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) }
       ]}
-    ]
-  }];
+    ]},
+    { label: 'Info', icon: PrimeIcons.INFO_CIRCLE, routerLink: ['/info'] }
+  ];
 
   logData$ = combineLatest([this.store.pipe(select(templatesSelector)), this.store.pipe(select(logsSelector))]).pipe(tap(logData => {
     const exportItem = this.navitems.find(item => item.id === this.keys.settingsID).items.find(item => item.id === this.keys.exportID);

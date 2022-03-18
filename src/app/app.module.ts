@@ -29,6 +29,7 @@ import * as fromTemplate from './store/template.reducer';
 import * as fromLog from './store/log.reducer';
 import * as fromRecord from './store/record.reducer';
 import * as fromSetting from './store/setting.reducer';
+import { InfoComponent } from './components/info/info.component';
 
 
 const generateStoreSchema = (obj: any): ObjectStoreSchema[] => {
@@ -56,7 +57,8 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     ImportDialogComponent,
     ExportTemplatesDialogComponent,
     ExportLogsDialogComponent,
-    QRcodeDialogComponent
+    QRcodeDialogComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,

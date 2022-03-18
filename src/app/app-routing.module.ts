@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
+import { InfoComponent } from './components/info/info.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LandingpageGuard } from './guards/landingpage.guard';
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'settings',
     component: SettingsComponent
+  },
+  {
+    path: 'info',
+    component: InfoComponent
   }
 ];
 
