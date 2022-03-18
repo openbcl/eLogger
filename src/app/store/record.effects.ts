@@ -7,9 +7,12 @@ import { RecordService } from '../services/record.service';
 import { logIdSelector } from './router.selector';
 import * as ToastActions from './toast.actions';
 import * as RecordActions from './record.actions';
+import { beepSelector } from './setting.selectors';
 
 @Injectable()
 export class RecordEffects {
+
+  audioCtx: AudioContext = new((window as any).AudioContext || (window as any).webkitAudioContext)();
 
   loadRecords$ = createEffect(() => this.actions$.pipe( 
     ofType(RecordActions.loadRecords),
@@ -81,8 +84,25 @@ export class RecordEffects {
   ));
 
   createRecordSuccess$ = createEffect(() => this.actions$.pipe(
-    ofType(RecordActions.createRecordSuccess),
-    tap(() => window.navigator.vibrate && window.navigator.vibrate(100))
+    ofType(RecordActions.createRecordSuccess, RecordActions.revokeRecordSuccess),
+    switchMap(() => this.store.pipe(
+      select(beepSelector),
+      take(1),
+      tap(beep => {
+        if (beep) {
+          const oscillator = this.audioCtx.createOscillator();
+          const gainNode = this.audioCtx.createGain();
+          oscillator.connect(gainNode);
+          gainNode.connect(this.audioCtx.destination);
+          gainNode.gain.value = 1;
+          oscillator.frequency.value = 580;
+          oscillator.type = 'triangle';
+          oscillator.start();
+          setTimeout(() => oscillator.stop(), 100);
+        }
+        window.navigator.vibrate && window.navigator.vibrate(100)
+      })
+    ))
   ), { dispatch: false });
 
   deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe(

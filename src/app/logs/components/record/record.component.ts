@@ -20,7 +20,7 @@ export class RecordComponent implements OnInit {
 
   PrimeIcons = PrimeIcons;
 
-  refreshRate = 1000/144;
+  refreshRate = 1000/60;
   displayTextRecordDialog = false;
   timestamp: Date;
   textEventTemplate: EventTemplate;
