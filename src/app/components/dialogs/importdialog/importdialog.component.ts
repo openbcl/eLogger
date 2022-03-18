@@ -53,16 +53,16 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
     this.selectedDevice = localStorage.getItem('camera') || '';
   }
 
-  onCamerasFound(devices: MediaDeviceInfo[]): void {
+  camerasFound(devices: MediaDeviceInfo[]): void {
     this.availableDevices = devices;
     this.hasDevices = !!devices?.length;
   }
 
-  onDeviceSelectChange(event: { value: { deviceId: string }}) {
+  deviceChange(event: { value: { deviceId: string }}) {
     this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
     if (this.scanner?.device?.deviceId !== this.selectedDevice) {
       localStorage.setItem('camera', this.selectedDevice);
-      this.setCameraDevice();
+      this.setDevice();
     }
   }
 
@@ -71,13 +71,13 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
       if (this.selectedDevice === '' && !!this.scanner?.device?.deviceId?.length) {
         this.selectedDevice = this.scanner.device.deviceId;
       }
-      this.setCameraDevice();
-    } 
+      this.setDevice();
+    }
   }
 
-  setCameraDevice() {
+  setDevice() {
     this.form.patchValue({
-      deviceCurrent: this.availableDevices.find(x => x.deviceId === this.selectedDevice)
+      deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
     });
   }
 

@@ -17,8 +17,8 @@
                 class="col-12"
                 formControlName="deviceCurrent"
                 [options]="availableDevices"
-                (onChange)="onDeviceSelectChange($event)"
-                placeholder="Loading cameras...">
+                (onChange)="deviceChange($event)"
+                placeholder="Loading cameras ...">
             </p-dropdown>
             <div class="col-12 pb-0 relative" *ngIf="form.value.importOption">
                 <zxing-scanner
@@ -28,7 +28,8 @@
                     [formats]="formats"
                     [device]="form.value.deviceCurrent"
                     (autostarted)="restoreLastDevice()"
-                    (camerasFound)="onCamerasFound($event)"
+                    (deviceChange)="setDevice()"
+                    (camerasFound)="camerasFound($event)"
                     (scanSuccess)="patch($event)"
                     (scanError)="raiseError('Error when scanning QR code!', 'An error occured during the scan process.')">
                 </zxing-scanner>
