@@ -5,6 +5,7 @@
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 body {
+    -webkit-text-size-adjust: none;
     background-attachment: fixed;
     color: var(--text-color);
     el-root {
