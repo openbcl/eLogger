@@ -1,0 +1,10 @@
+
+<p-dialog header="Picture Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <video #video autoplay></video>
+    <canvas #canvas [width]="WIDTH" [height]="HEIGHT"></canvas>
+    <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
+        <form [formGroup]="form" (ngSubmit)="submit(logId)">
+            <button pButton pRipple type="submit" icon="pi pi-camera" class="p-button-success p-button-text"></button>
+        </form>
+    </ng-template>
+</p-dialog>

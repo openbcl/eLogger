@@ -23,8 +23,9 @@ export class RecordComponent implements OnInit {
 
   refreshRate = 1000/60;
   displayTextRecordDialog = false;
+  displayPictureRecordDialog = false;
   timestamp: Date;
-  textEventTemplate: EventTemplate;
+  eventTemplate: EventTemplate;
 
   logData = combineLatest([
     this.store.pipe(select(logSelector), filter(log => !!log)),
@@ -55,16 +56,21 @@ export class RecordComponent implements OnInit {
   }
 
   raiseEvent(eventTemplate: EventTemplate, logId: string) {
-    if (eventTemplate.eventType !== EventType.TEXT) {
-      this.store.dispatch(createRecord({
-        eventTemplate,
-        logId,
-        date: new Date()
-      }));
-    } else {
-      this.timestamp = new Date();
-      this.textEventTemplate = eventTemplate;
-      this.displayTextRecordDialog = true;
+    switch(eventTemplate.eventType) {
+      case EventType.TEXT:
+        this.timestamp = new Date();
+        this.eventTemplate = eventTemplate;
+        this.displayTextRecordDialog = true;
+        break;
+      case EventType.PICTURE:
+        this.displayPictureRecordDialog = true;
+        break;
+      default:
+        this.store.dispatch(createRecord({
+          eventTemplate,
+          logId,
+          date: new Date()
+        }));
     }
   }
 
