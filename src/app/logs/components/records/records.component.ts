@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { revokeRecord } from '../../../store/record.actions';
-import { Template, Record } from '../../../models';
+import { Template, Record, EventType } from '../../../models';
 
 @Component({
   selector: 'el-records',
@@ -9,6 +9,8 @@ import { Template, Record } from '../../../models';
   styleUrls: ['./records.component.scss']
 })
 export class RecordsComponent {
+
+  EventType = EventType;
 
   @Input()
   records: Record[];

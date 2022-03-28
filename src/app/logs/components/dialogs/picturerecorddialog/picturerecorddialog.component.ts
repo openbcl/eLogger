@@ -5,6 +5,7 @@ import { EventTemplate } from '../../../../models';
 import { logIdSelector } from '../../../../store/router.selector';
 import { filter } from 'rxjs';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
+import { createRecord } from '../../../../store/record.actions';
 
 @Component({
   selector: 'el-picture-record-dialog',
@@ -16,23 +17,12 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
   @Input()
   pictureEventTemplate: EventTemplate;
 
+  @ViewChild('video')
+  video: ElementRef;
+
   logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
 
-  form = this.fb.group({
-    data: [null, Validators.required],
-    deviceCurrent: null as MediaDeviceInfo
-  });
-
-  WIDTH = 640;
-  HEIGHT = 480;
-
-  @ViewChild('video')
-  public video: ElementRef;
-
-  @ViewChild('canvas')
-  public canvas: ElementRef;
-
-  captures: string[] = [];
+  form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
 
   availableDevices: MediaDeviceInfo[];
   hasDevices = false;
@@ -89,13 +79,28 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
   }
 
   submit(logId: string) {
-    this.canvas.nativeElement.getContext("2d").drawImage(this.video.nativeElement, 0, 0);
-    this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
+    const streamSettings = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings()
+    const canvasElement = document.createElement('canvas');
+    canvasElement.width = streamSettings.width;
+    canvasElement.height = streamSettings.height;
+    canvasElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0);
+    this.store.dispatch(createRecord({
+      eventTemplate: this.pictureEventTemplate,
+      logId,
+      date: new Date(),
+      data: canvasElement.toDataURL('image/jpeg', 0.5)
+    }));
+    this.close();
   }
 
   stopCamera() {
     this.video?.nativeElement?.srcObject?.getVideoTracks().forEach((track: any) =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
     this.video.nativeElement.srcObject = null;
+  }
+
+  override close(): void {
+    this.stopCamera();
+    super.close();
   }
 
 }

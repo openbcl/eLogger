@@ -16,19 +16,22 @@
         <tr>
             <th></th>
             <th>Event</th>
-            <th *ngIf="logEventTemplates.containData && showDataColumn">Data</th>
+            <th *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
             <th [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
                 Absolute Time
             </th>
             <th *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-record>
+    <ng-template pTemplate="body" let-record let-rowIndex="rowIndex">
         <tr [class]="record.color | colorClass">
             <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
             <td>{{ record.name }}</td>
             <td *ngIf="logEventTemplates.containData && showDataColumn">
-                <span *ngIf="record.data">{{ record.data }}</span>
+                <ng-container *ngIf="record.data">
+                    <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
+                    <img *ngIf="record.eventType === EventType.PICTURE" [src]="record.data"/>
+                </ng-container>
             </td>
             <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
                 {{ record.date | date: 'yyyy-MM-dd, HH:mm:ss' }}

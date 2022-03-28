@@ -56,10 +56,10 @@ export class RecordComponent implements OnInit {
   }
 
   raiseEvent(eventTemplate: EventTemplate, logId: string) {
+    this.eventTemplate = eventTemplate;
     switch(eventTemplate.eventType) {
       case EventType.TEXT:
         this.timestamp = new Date();
-        this.eventTemplate = eventTemplate;
         this.displayTextRecordDialog = true;
         break;
       case EventType.PICTURE:
