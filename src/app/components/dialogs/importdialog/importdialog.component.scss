@@ -19,6 +19,8 @@
     zxing-scanner video {
         z-index: 2;
         border-radius: 6px;
+        max-height: calc(100vh - 18.5rem);
+        object-fit: contain !important;
     }
     
     p-fileUpload, zxing-scanner {

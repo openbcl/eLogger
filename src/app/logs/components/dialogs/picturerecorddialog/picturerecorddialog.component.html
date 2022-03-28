@@ -9,12 +9,17 @@
                 (onChange)="deviceChange($event)"
                 placeholder="Loading cameras ...">
             </p-dropdown>
-            <video #video autoplay></video>
+            <div class="col-12 pb-0 relative">
+                <div #camera id="camera" class="p-2 align-content-center text-center">
+                    <video #video autoplay muted></video>
+                </div>
+                <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
+            </div>
         </div>
     </form>
     <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
         <form [formGroup]="form" (ngSubmit)="submit(logId)">
-            <button pButton pRipple type="submit" icon="pi pi-camera" class="p-button-success p-button-text"></button>
+            <button pButton pRipple type="submit" icon="pi pi-camera" class="p-button-rounded p-button-danger"></button>
         </form>
     </ng-template>
 </p-dialog>

@@ -7,5 +7,31 @@
     .p-dropdown {
         width: 100%;
     }
-    
+
+    p-progressspinner, #camera {
+        display: grid;
+    }
+
+    #camera {
+        background-color: var(--surface-c);
+        min-height: 20rem;
+        border-radius: 6px;
+        max-width: 100%;
+        video {
+            border-radius: 6px;
+            z-index: 2;
+            width: 100%;
+            max-height: calc(100vh - 16.25rem);
+        }
+    }
+
+    .p-dialog .p-dialog-footer {
+        form {
+            text-align: center;
+        }
+        button {
+         width: 3rem;
+         height: 3rem;
+        }
+    }
 }

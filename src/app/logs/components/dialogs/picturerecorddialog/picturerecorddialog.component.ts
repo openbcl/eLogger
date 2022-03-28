@@ -6,6 +6,7 @@ import { logIdSelector } from '../../../../store/router.selector';
 import { filter } from 'rxjs';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 import { createRecord } from '../../../../store/record.actions';
+import { toastError } from '../../../../store/toast.actions';
 
 @Component({
   selector: 'el-picture-record-dialog',
@@ -24,10 +25,9 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
 
   form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
 
-  availableDevices: MediaDeviceInfo[];
+  availableDevices: MediaDeviceInfo[] = [];
   hasDevices = false;
   selectedDevice: string;
-  cameraIsBlocked = false;
 
   constructor(
     private store: Store,
@@ -44,13 +44,13 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     const isVisible = !!changes?.['visible']?.currentValue;
     const wasVisible = !!changes?.['visible']?.previousValue;
     if (isVisible && !wasVisible) {
-      this.setupDevices();
+      this.startCamera();
     } else if (!isVisible && wasVisible && !!this.video?.nativeElement.srcObject) {
       this.stopCamera();
     }
   }
 
-  async setupDevices() {
+  async startCamera() {
     if (!this.hasDevices) {
       this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput');
       this.hasDevices = !!this.availableDevices?.length;
@@ -61,13 +61,14 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
         this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice } });
         this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
-          this.form.patchValue({
-            deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
-          });
+          this.setDevice()
         }
-        this.video.nativeElement.play();
-      } catch (err) {
-        this.cameraIsBlocked = true;
+        console.log(this.form.value.deviceCurrent);
+      } catch {
+        this.store.dispatch(toastError({
+          summary: 'Camera error',
+          detail: 'Can not access camera.'
+        }));
       }
     }
   }
@@ -75,7 +76,13 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
   deviceChange(event: { value: { deviceId: string }}) {
     this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
     localStorage.setItem('eventCamera', this.selectedDevice);
-    this.setupDevices();
+    this.startCamera();
+  }
+
+  setDevice() {
+    this.form.patchValue({
+      deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
+    });
   }
 
   submit(logId: string) {
