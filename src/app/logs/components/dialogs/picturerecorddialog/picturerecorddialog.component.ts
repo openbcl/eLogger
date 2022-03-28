@@ -18,7 +18,10 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
 
   logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
 
-  form = this.fb.group({ data: [null, Validators.required] });
+  form = this.fb.group({
+    data: [null, Validators.required],
+    deviceCurrent: null as MediaDeviceInfo
+  });
 
   WIDTH = 640;
   HEIGHT = 480;
@@ -44,38 +47,45 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
   }
   
   ngOnInit(): void {
-    this.selectedDevice = localStorage.getItem('camera') || '';
+    this.selectedDevice = localStorage.getItem('eventCamera') || localStorage.getItem('qrCamera') || undefined;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     const isVisible = !!changes?.['visible']?.currentValue;
-    const wasInvisible = !changes?.['visible']?.previousValue;
-    if (isVisible && wasInvisible) {
+    const wasVisible = !!changes?.['visible']?.previousValue;
+    if (isVisible && !wasVisible) {
       this.setupDevices();
-    } else if (!isVisible && !wasInvisible && !!this.video?.nativeElement.srcObject) {
-      this.video.nativeElement.srcObject.getTracks().forEach((track: any) =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
-      this.video.nativeElement.srcObject = null;
+    } else if (!isVisible && wasVisible && !!this.video?.nativeElement.srcObject) {
+      this.stopCamera();
     }
   }
 
   async setupDevices() {
-    if (!this.availableDevices?.length) {
+    if (!this.hasDevices) {
       this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput');
       this.hasDevices = !!this.availableDevices?.length;
     }
     if (this.hasDevices) {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: {
-          deviceId: this.selectedDevice || undefined
-        } });
-        if (stream) {
-          this.video.nativeElement.srcObject = stream;
-          this.video.nativeElement.play();
+        this.stopCamera();
+        this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice } });
+        this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
+        if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
+          this.form.patchValue({
+            deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
+          });
         }
+        this.video.nativeElement.play();
       } catch (err) {
         this.cameraIsBlocked = true;
       }
     }
+  }
+
+  deviceChange(event: { value: { deviceId: string }}) {
+    this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
+    localStorage.setItem('eventCamera', this.selectedDevice);
+    this.setupDevices();
   }
 
   submit(logId: string) {
@@ -83,9 +93,9 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     this.captures.push(this.canvas.nativeElement.toDataURL("image/png"));
   }
 
-  override close() {
-    super.close();
-    this.form.reset();
+  stopCamera() {
+    this.video?.nativeElement?.srcObject?.getVideoTracks().forEach((track: any) =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
+    this.video.nativeElement.srcObject = null;
   }
 
 }

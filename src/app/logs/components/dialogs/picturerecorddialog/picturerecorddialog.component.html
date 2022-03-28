@@ -1,7 +1,18 @@
 
 <p-dialog header="Picture Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <video #video autoplay></video>
-    <canvas #canvas [width]="WIDTH" [height]="HEIGHT"></canvas>
+    <form [formGroup]="form">
+        <div class="grid">
+            <p-dropdown
+                class="col-12"
+                formControlName="deviceCurrent"
+                [options]="availableDevices"
+                (onChange)="deviceChange($event)"
+                placeholder="Loading cameras ...">
+            </p-dropdown>
+            <video #video autoplay></video>
+            <canvas #canvas [width]="WIDTH" [height]="HEIGHT"></canvas>
+        </div>
+    </form>
     <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
         <form [formGroup]="form" (ngSubmit)="submit(logId)">
             <button pButton pRipple type="submit" icon="pi pi-camera" class="p-button-success p-button-text"></button>

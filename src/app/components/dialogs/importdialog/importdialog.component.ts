@@ -50,7 +50,7 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
   }
 
   ngOnInit(): void {
-    this.selectedDevice = localStorage.getItem('camera') || '';
+    this.selectedDevice = localStorage.getItem('qrCamera') || localStorage.getItem('eventCamera') || '';
   }
 
   camerasFound(devices: MediaDeviceInfo[]): void {
@@ -61,7 +61,7 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
   deviceChange(event: { value: { deviceId: string }}) {
     this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
     if (this.scanner?.device?.deviceId !== this.selectedDevice) {
-      localStorage.setItem('camera', this.selectedDevice);
+      localStorage.setItem('qrCamera', this.selectedDevice);
       this.setDevice();
     }
   }
