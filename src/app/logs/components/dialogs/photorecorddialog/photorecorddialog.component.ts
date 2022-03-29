@@ -10,14 +10,14 @@ import { toastError } from '../../../../store/toast.actions';
 import { qualitySelector } from '../../../../store/setting.selectors';
 
 @Component({
-  selector: 'el-picture-record-dialog',
-  templateUrl: './picturerecorddialog.component.html',
-  styleUrls: ['./picturerecorddialog.component.scss']
+  selector: 'el-photo-record-dialog',
+  templateUrl: './photorecorddialog.component.html',
+  styleUrls: ['./photorecorddialog.component.scss']
 })
-export class PictureRecordDialogComponent extends BaseDialogComponent implements OnInit, OnChanges {
+export class PhotoRecordDialogComponent extends BaseDialogComponent implements OnInit, OnChanges {
 
   @Input()
-  pictureEventTemplate: EventTemplate;
+  photoEventTemplate: EventTemplate;
 
   @ViewChild('video')
   video: ElementRef;
@@ -94,7 +94,7 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     canvasElement.height = streamSettings.height;
     canvasElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0);
     this.store.dispatch(createRecord({
-      eventTemplate: this.pictureEventTemplate,
+      eventTemplate: this.photoEventTemplate,
       logId,
       date: new Date(),
       data: canvasElement.toDataURL('image/jpeg', quality / 10)

@@ -132,7 +132,7 @@ export class SettingEffects {
   loadQualityFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadQualityFailure),
     switchMap(loadQualityFailure => of(ToastActions.toastError({
-      summary: 'Error while loading picture quality setting!',
+      summary: 'Error while loading photo quality setting!',
       detail: loadQualityFailure.error
     })))
   ));

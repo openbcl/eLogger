@@ -45,10 +45,10 @@ export class LogEventTemplatesPipe implements PipeTransform {
     const containStart = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.START);
     const containText = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.TEXT);
     const containAudio = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.AUDIO);
-    const containPicture = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.PICTURE);
-    const containData = containText || containAudio || containPicture;
+    const containPhoto = !!template.eventTemplates.find(eventTemplate => eventTemplate.eventType === EventType.PHOTO);
+    const containData = containText || containAudio || containPhoto;
     const additionalColumns = containStart ? (containData ? 2 : 1) : (containData ? 1 : 0)
-    return of({ containStart, containText, containAudio, containPicture, containData, additionalColumns })
+    return of({ containStart, containText, containAudio, containPhoto, containData, additionalColumns })
   }
 
 }

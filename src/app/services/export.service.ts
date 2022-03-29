@@ -89,7 +89,7 @@ export class ExportService {
         if (!!records?.length && !!log) {
             const csv: string[][] = [];
             const containStart = !!records.find(r => r.eventType === EventType.START);
-            const containData = !!records.find(r =>  [EventType.TEXT, EventType.AUDIO, EventType.PICTURE].includes(r.eventType));
+            const containData = !!records.find(r =>  [EventType.TEXT, EventType.AUDIO, EventType.PHOTO].includes(r.eventType));
             const headers = [ 'Name', 'Type' ];
             if (containData) {
                 headers.push('Data');

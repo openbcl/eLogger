@@ -96,7 +96,7 @@ export class EventLabelWithIconPipe implements PipeTransform {
         return { label: eventLabel(eventType), value: 'pi pi-stop' };
       case EventType.TEXT:
         return { label: eventLabel(eventType), value: 'pi pi-comments' };
-      case EventType.PICTURE:
+      case EventType.PHOTO:
         return { label: eventLabel(eventType), value: 'pi pi-camera' };
       case EventType.AUDIO:
         return { label: eventLabel(eventType), value: 'fas fa-microphone', styleClass: 'el-icon-w16' };
@@ -119,8 +119,8 @@ const eventLabel = (eventType: EventType): string => {
       return 'End';
     case EventType.TEXT:
       return 'Text'
-    case EventType.PICTURE:
-      return 'Picture';
+    case EventType.PHOTO:
+      return 'Photo';
     case EventType.AUDIO:
       return 'Audio';
     default:

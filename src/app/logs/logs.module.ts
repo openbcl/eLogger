@@ -17,7 +17,7 @@ import { DeleteRecordsDialogComponent } from './components/dialogs/deleterecords
 import { RecordsComponent } from './components/records/records.component';
 import { TextRecordDialogComponent } from './components/dialogs/textrecorddialog/textrecorddialog.component';
 import { ShareLogsDialogComponent } from './components/dialogs/sharelogsdialog/sharelogsdialog.component';
-import { PictureRecordDialogComponent } from './components/dialogs/picturerecorddialog/picturerecorddialog.component';
+import { PhotoRecordDialogComponent } from './components/dialogs/photorecorddialog/photorecorddialog.component';
 
 
 
@@ -33,7 +33,7 @@ import { PictureRecordDialogComponent } from './components/dialogs/picturerecord
     RecordsComponent,
     TextRecordDialogComponent,
     ShareLogsDialogComponent,
-    PictureRecordDialogComponent
+    PhotoRecordDialogComponent
   ],
   imports: [
     CommonModule,
