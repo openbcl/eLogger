@@ -4,6 +4,13 @@
         max-width: 100vh;
     }
 
+    .p-dialog.p-dialog-maximized #camera {
+        max-height: calc(100vh - 15.75rem);
+        video {
+            max-height: calc(100vh - 16.75rem);
+        }
+    }
+    
     .p-dropdown {
         width: 100%;
     }
@@ -14,14 +21,14 @@
 
     #camera {
         background-color: var(--surface-c);
-        min-height: 20rem;
+        max-height: calc(100vh - 23rem);
         border-radius: 6px;
         max-width: 100%;
         video {
             border-radius: 6px;
             z-index: 2;
             width: 100%;
-            max-height: calc(100vh - 16.25rem);
+            max-height: calc(100vh - 24rem);
         }
     }
 
