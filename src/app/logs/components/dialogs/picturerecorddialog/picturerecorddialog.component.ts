@@ -52,6 +52,7 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
 
   async startCamera() {
     if (!this.hasDevices) {
+      await navigator.mediaDevices.getUserMedia({ video: { width: { min: 320, ideal: 9000 }, height: { min: 240, ideal: 6000 } }});
       this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput').map(device => ({
         deviceId: device.deviceId,
         groupId: device.groupId,
@@ -63,10 +64,7 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     if (this.hasDevices) {
       try {
         this.stopCamera();
-        this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: {
-          deviceId: this.selectedDevice,
-          width: { min: 240 }
-        }});
+        this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice }});
         this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
           this.form.patchValue({
