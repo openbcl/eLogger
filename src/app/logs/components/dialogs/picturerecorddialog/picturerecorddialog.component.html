@@ -18,7 +18,7 @@
         </div>
     </form>
     <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
-        <form [formGroup]="form" (ngSubmit)="submit(logId)">
+        <form *ngrxLet="quality$ as quality" [formGroup]="form" (ngSubmit)="submit(logId, quality)">
             <button pButton pRipple type="submit" icon="pi pi-camera" class="p-button-rounded p-button-danger"></button>
         </form>
     </ng-template>

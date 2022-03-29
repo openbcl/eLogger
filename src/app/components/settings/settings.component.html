@@ -28,6 +28,12 @@
             no longer be used for seperating values in CSV files. In this case a
             semicolon must be used as a separator for the CSV format.
         </p-fieldset>
+        <p-fieldset class="col-12" *ngrxLet="quality$" legend="JPEG Quality: {{ form.value.quality }}">
+            <p-slider formControlName="quality" [min]="1" [step]="1" [max]="10" (onChange)="submitQuality($event)"></p-slider>
+            <p>
+                If you use photo events in your logs you should set quality rate of photo files. The higher the quality the larger the resulting file size.
+            </p>
+        </p-fieldset>
         <p-fieldset class="col-12" *ngrxLet="beep$">
             <ng-template pTemplate="header">
                 <div class="flex flex-wrap align-content-center align-items-center">

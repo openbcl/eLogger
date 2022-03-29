@@ -1,5 +1,5 @@
 import * as fromSetting from './setting.reducer';
-import { beepSelector, languageSelector, seperatorSelector, settingsStateSelector, themeSelector } from './setting.selectors';
+import { beepSelector, qualitySelector, languageSelector, seperatorSelector, settingsStateSelector, themeSelector } from './setting.selectors';
 
 describe('Setting Selectors', () => {
   it('should select the initial feature state', () => {
@@ -31,5 +31,11 @@ describe('Setting Selectors', () => {
       [fromSetting.settingsFeatureKey]: fromSetting.initialSettingsState
     });
     expect(result).toEqual(fromSetting.initialSettingsState.beep);
+  });
+  it('should select the initial quality setting', () => {
+    const result = qualitySelector({
+      [fromSetting.settingsFeatureKey]: fromSetting.initialSettingsState
+    });
+    expect(result).toEqual(fromSetting.initialSettingsState.quality);
   });
 });

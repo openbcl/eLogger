@@ -7,6 +7,7 @@ import { filter } from 'rxjs';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 import { createRecord } from '../../../../store/record.actions';
 import { toastError } from '../../../../store/toast.actions';
+import { qualitySelector } from '../../../../store/setting.selectors';
 
 @Component({
   selector: 'el-picture-record-dialog',
@@ -22,6 +23,7 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
   video: ElementRef;
 
   logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
+  quality$ = this.store.pipe(select(qualitySelector));
 
   form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
 
@@ -85,7 +87,7 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     this.startCamera();
   }
 
-  submit(logId: string) {
+  submit(logId: string, quality: number) {
     const streamSettings = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings()
     const canvasElement = document.createElement('canvas');
     canvasElement.width = streamSettings.width;
@@ -95,7 +97,7 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
       eventTemplate: this.pictureEventTemplate,
       logId,
       date: new Date(),
-      data: canvasElement.toDataURL('image/jpeg', 0.5)
+      data: canvasElement.toDataURL('image/jpeg', quality / 10)
     }));
     this.close();
   }

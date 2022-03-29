@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
-import { setBeep, setLanguage, setSeperator } from '../../store/setting.actions';
-import { beepSelector, languageSelector, seperatorSelector } from '../../store/setting.selectors';
+import { setBeep, setQuality, setLanguage, setSeperator } from '../../store/setting.actions';
+import { beepSelector, qualitySelector, languageSelector, seperatorSelector } from '../../store/setting.selectors';
 
 @Component({
   selector: 'el-settings',
@@ -15,6 +15,7 @@ export class SettingsComponent {
   language$ = this.store.pipe(select(languageSelector), filter(language => !!language), tap(language => this.form.patchValue({ language })));
   seperator$ = this.store.pipe(select(seperatorSelector), filter(seperator => !!seperator), tap(seperator => this.form.patchValue({ seperator })));
   beep$ = this.store.pipe(select(beepSelector), filter(beep => beep !== undefined), tap(beep => this.form.patchValue({ beep })));
+  quality$ = this.store.pipe(select(qualitySelector), tap(quality => this.form.patchValue({ quality })));
 
   seperators = [
     {label: ';', value: ';'},
@@ -26,7 +27,7 @@ export class SettingsComponent {
     {label: 'Deutsch', value: 'de'}
   ]
 
-  form = this.fb.group({ language: null, seperator: null, beep: null }) ;
+  form = this.fb.group({ language: null, seperator: null, beep: null, quality: null }) ;
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +49,12 @@ export class SettingsComponent {
   submitBeep(event: { checked: boolean }) {
     this.store.dispatch(setBeep({
       beep: event.checked
+    }));
+  }
+
+  submitQuality(event: { value: number }) {
+    this.store.dispatch(setQuality({
+      quality: event.value
     }));
   }
 }

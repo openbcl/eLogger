@@ -20,6 +20,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FileUploadModule } from 'primeng/fileupload';
+import { SliderModule } from 'primeng/slider';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe } from './pipes/event.pipe';
@@ -60,6 +61,7 @@ const modules = [
   ProgressSpinnerModule,
   InputSwitchModule,
   FileUploadModule,
+  SliderModule,
   QRCodeModule,
   ZXingScannerModule
 ]

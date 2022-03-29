@@ -56,6 +56,20 @@ export const loadBeepFailure = createAction(
   props<{ error: any }>()
 );
 
+export const loadQuality = createAction(
+  '[Setting] Load Quality'
+);
+
+export const loadQualitySuccess = createAction(
+  '[Setting] Load Quality Success',
+  props<{ quality: number }>()
+);
+
+export const loadQualityFailure = createAction(
+  '[Setting] Load Quality Failure',
+  props<{ error: any }>()
+);
+
 export const setTheme = createAction(
   '[Setting] Set Theme',
   props<{ theme: string }>()
@@ -113,6 +127,21 @@ export const setBeepSuccess = createAction(
 
 export const setBeepFailure = createAction(
   '[Setting] Set Beep Failure',
+  props<{ error: any }>()
+);
+
+export const setQuality = createAction(
+  '[Setting] Set Quality',
+  props<{ quality: number }>()
+);
+
+export const setQualitySuccess = createAction(
+  '[Setting] Set Quality Success',
+  props<{ quality: number }>()
+);
+
+export const setQualityFailure = createAction(
+  '[Setting] Set Quality Failure',
   props<{ error: any }>()
 );
 

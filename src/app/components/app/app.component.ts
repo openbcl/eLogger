@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { MenuItem, PrimeIcons, PrimeNGConfig } from 'primeng/api';
 import { combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { loadBeep, loadLanguage, loadSeperator, loadTheme, setTheme } from '../../store/setting.actions';
+import { loadBeep, loadQuality, loadLanguage, loadSeperator, loadTheme, setTheme } from '../../store/setting.actions';
 import { themeSelector } from '../../store/setting.selectors';
 import { loadLogs } from '../../store/log.actions';
 import { logsSelector } from '../../store/log.selectors';
@@ -102,6 +102,7 @@ export class AppComponent {
     this.store.dispatch(loadLanguage());
     this.store.dispatch(loadSeperator());
     this.store.dispatch(loadBeep());
+    this.store.dispatch(loadQuality());
     if (this.swUpdate.isEnabled) {
       this.swUpdate.versionUpdates.pipe(
         filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')

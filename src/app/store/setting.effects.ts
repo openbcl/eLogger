@@ -73,6 +73,22 @@ export class SettingEffects {
     ))
   ));
 
+  loadQuality$ = createEffect(() => this.actions$.pipe( 
+    ofType(SettingActions.loadQuality),
+    switchMap(() => of(this.settingService.loadQuality()).pipe(
+      map(quality => SettingActions.loadQualitySuccess({ quality })),
+      catchError(error => of(SettingActions.loadQualityFailure({ error })))
+    ))
+  ));
+
+  setQuality$ = createEffect(() => this.actions$.pipe( 
+    ofType(SettingActions.setQuality),
+    switchMap(setQuality => of(this.settingService.setQuality(setQuality.quality)).pipe(
+      map(quality => SettingActions.setQualitySuccess({ quality })),
+      catchError(error => of(SettingActions.setQualityFailure({ error })))
+    ))
+  ));
+
   resetDB$ = createEffect(() => this.actions$.pipe( 
     ofType(SettingActions.resetDB),
     switchMap(() => of(this.settingService.resetDB()).pipe(
@@ -110,6 +126,14 @@ export class SettingEffects {
     switchMap(loadBeepFailure => of(ToastActions.toastError({
       summary: 'Error while loading record beep setting!',
       detail: loadBeepFailure.error
+    })))
+  ));
+
+  loadQualityFailure$ = createEffect(() => this.actions$.pipe(
+    ofType(SettingActions.loadQualityFailure),
+    switchMap(loadQualityFailure => of(ToastActions.toastError({
+      summary: 'Error while loading picture quality setting!',
+      detail: loadQualityFailure.error
     })))
   ));
 

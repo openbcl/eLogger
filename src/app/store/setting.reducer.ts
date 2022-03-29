@@ -8,6 +8,7 @@ export interface SettingsState {
   seperator: string,
   language: string,
   beep: boolean,
+  quality: number,
   error: any
 }
 
@@ -16,6 +17,7 @@ export const initialSettingsState: SettingsState = {
   seperator: ';',
   language: 'en',
   beep: false,
+  quality: 5,
   error: null
 };
 
@@ -54,6 +56,14 @@ export const settingsReducer = createReducer(
     ...state, error: action.error
   })),
 
+  on(SettingActions.loadQualitySuccess, (state, action) => ({
+    ...state, quality: action.quality
+  })),
+
+  on(SettingActions.loadQualityFailure, (state, action) => ({
+    ...state, error: action.error
+  })),
+
   on(SettingActions.setThemeSuccess, (state, action) => ({
     ...state, theme: action.theme
   })),
@@ -83,6 +93,14 @@ export const settingsReducer = createReducer(
   })),
 
   on(SettingActions.setBeepFailure, (state, action) => ({
+    ...state, error: action.error
+  })),
+
+  on(SettingActions.setQualitySuccess, (state, action) => ({
+    ...state, quality: action.quality
+  })),
+
+  on(SettingActions.setQualityFailure, (state, action) => ({
     ...state, error: action.error
   })),
 );

@@ -1,7 +1,7 @@
 import * as SettingAction from './setting.actions';
 import { settingsReducer, initialSettingsState } from './setting.reducer';
 
-const settings = { theme: 'light', language: 'en', seperator: ';', beep: false }
+const settings = { theme: 'light', language: 'en', seperator: ';', beep: false, quality: 8 }
 const errorTemplate = {}
 
 describe('Setting Reducer', () => {
@@ -73,6 +73,23 @@ describe('Setting Reducer', () => {
     });
   });
 
+  describe('Load Quality action', () => {
+    it('should return 5', () => {
+      const newState = settingsReducer(initialSettingsState, SettingAction.loadQuality());
+      expect(newState.quality).toBe(initialSettingsState.quality);
+    });
+
+    it('should return quality level', () => {
+      const newState = settingsReducer(initialSettingsState, SettingAction.loadQualitySuccess({ quality: settings.quality }));
+      expect(newState.quality).toBe(settings.quality);
+    });
+
+    it('should return the error', () => {
+      const newState = settingsReducer(initialSettingsState, SettingAction.loadQualityFailure({ error: errorTemplate }));
+      expect(newState.error).toBe(errorTemplate);
+    });
+  });
+
   describe('Set Theme action', () => {
     it('should return the undefined', () => {
       const newState = settingsReducer(initialSettingsState, SettingAction.setTheme({ theme: settings.theme }));
@@ -137,6 +154,23 @@ describe('Setting Reducer', () => {
 
     it('should return the error', () => {
       const newState = settingsReducer(initialSettingsState, SettingAction.setBeepFailure({ error: errorTemplate }));
+      expect(newState.error).toBe(errorTemplate);
+    });
+  });
+
+  describe('Set Quality action', () => {
+    it('should return 8', () => {
+      const newState = settingsReducer(initialSettingsState, SettingAction.setQuality({ quality: settings.quality }));
+      expect(newState.quality).toBe(initialSettingsState.quality);
+    });
+
+    it('should return quality level', () => {
+      const newState = settingsReducer(initialSettingsState, SettingAction.setQualitySuccess({ quality: settings.quality }));
+      expect(newState.quality).toBe(settings.quality);
+    });
+
+    it('should return the error', () => {
+      const newState = settingsReducer(initialSettingsState, SettingAction.setQualityFailure({ error: errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });

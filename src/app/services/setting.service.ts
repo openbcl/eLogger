@@ -14,7 +14,8 @@ export class SettingService {
     theme: 'theme',
     seperator: 'seperator',
     language: 'language',
-    beep: 'beep'
+    beep: 'beep',
+    quality: 'quality'
   }
 
   constructor(private db: NgxIndexedDBService) { }
@@ -53,6 +54,15 @@ export class SettingService {
   setBeep(beep: boolean) {
     localStorage.setItem(this.settings.beep, beep ? 'true' : 'false');
     return beep;
+  }
+
+  loadQuality() {
+    return parseInt(localStorage.getItem(this.settings.quality) ||  initialSettingsState.quality.toString());
+  }
+  
+  setQuality(quality: number) {
+    localStorage.setItem(this.settings.quality, quality.toString());
+    return quality;
   }
 
   resetDB() {

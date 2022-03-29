@@ -24,3 +24,8 @@ export const beepSelector = createSelector(
   settingsStateSelector,
   settingsState => settingsState.beep
 )
+
+export const qualitySelector = createSelector(
+  settingsStateSelector,
+  settingsState => settingsState.quality
+)
