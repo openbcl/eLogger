@@ -15,6 +15,7 @@ import { RippleModule } from 'primeng/ripple';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FieldsetModule } from 'primeng/fieldset'; 
 import { DropdownModule } from 'primeng/dropdown';
+import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -50,6 +51,7 @@ const modules = [
   ButtonModule,
   PanelModule,
   ScrollPanelModule,
+  ImageModule,
   DialogModule,
   SelectButtonModule,
   FieldsetModule,

@@ -30,7 +30,7 @@
             <td *ngIf="logEventTemplates.containData && showDataColumn">
                 <ng-container *ngIf="record.data">
                     <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
-                    <img *ngIf="record.eventType === EventType.PICTURE" [src]="record.data"/>
+                    <p-image *ngIf="record.eventType === EventType.PICTURE" [src]="record.data" [preview]="true"></p-image>
                 </ng-container>
             </td>
             <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">

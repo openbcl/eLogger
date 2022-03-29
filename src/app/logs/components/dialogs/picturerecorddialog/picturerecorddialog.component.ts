@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { EventTemplate } from '../../../../models';
 import { logIdSelector } from '../../../../store/router.selector';
@@ -63,7 +63,10 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     if (this.hasDevices) {
       try {
         this.stopCamera();
-        this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice } });
+        this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: {
+          deviceId: this.selectedDevice,
+          width: { min: 240 }
+        }});
         this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
           this.form.patchValue({
