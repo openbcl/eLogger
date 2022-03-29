@@ -44,10 +44,12 @@ export class ExportService {
                     filter(allRecords => !!allRecords && logs.filter(log => !!log.recordsCount).map(log => log.id).every(id => !!Object.keys(allRecords).find(key => key === id))),
                     take(1)
                 ).subscribe(async allRecords => {
-                    const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
+                    let files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
                         blob: this.recordsToCSV(allRecords[log.id], log, seperator),
-                        filename: this.recordsFilename(log, allRecords[log.id])
-                    }));
+                        filename: `${this.logName(log)}/${this.recordsFilename(allRecords[log.id], log)}`
+                    })).concat((await Promise.all(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.PHOTO)).map(async log =>
+                        await this.extractPhotos(allRecords[log.id].filter(record => record.eventType === EventType.PHOTO), log)
+                    ))).flat());
                     files.push(logsSummaryFile);
                     await this.downloadZipFile(files, `${filename}zip`)
                 });
@@ -59,7 +61,7 @@ export class ExportService {
 
     shareRecords (records: Record[], log: Log, seperator: string) {
         const blob = this.recordsToCSV(records, log, seperator);
-        blob && this.downloadFile(blob, this.recordsFilename(log, records))
+        blob && this.downloadFile(blob, this.recordsFilename(records, log))
     }
 
     exportTemplates(templates: Template[]) {
@@ -71,18 +73,29 @@ export class ExportService {
     }
 
     uniqueFilename (part: string, data: any, extension: string) {
-        return `${part}_${this.date.transform(new Date(), 'yyyy-MM-dd')}_${sha1(JSON.stringify(data)).substring(0,7)}.${extension}`;
+        return `${part}_${this.date.transform(new Date(), 'yy-MM-dd')}_${sha1(JSON.stringify(data)).substring(0,7)}.${extension}`;
     }
 
-    private recordsFilename(log: Log, records: Record[]) {
+    private logName(log: Log) {
         const part = !!log.desc?.length ?
             `${log.title.length > this.acceptableTitleLength ? log.title.substring(0, this.acceptableTitleLength) : log.title} - ${log.desc}` :
             log.title.length > this.acceptableMaxLength ? log.title.substring(0, this.acceptableMaxLength) : log.title;
-        return this.uniqueFilename(
-            `${(part.length > this.acceptableMaxLength ? `${part.substring(0, this.acceptableMaxLength)}` : part)}_${log.id.substring(0, 6)}`.replace(/ /g, '_'),
-            records,
-            'csv'
-        );
+        return `${(part.length > this.acceptableMaxLength ? `${part.substring(0, this.acceptableMaxLength)}` : part)}_${log.id.substring(0, 6)}`.replace(/ /g, '_');
+    }
+
+    private recordsFilename(records: Record[], log: Log) {
+        return this.uniqueFilename(this.logName(log), records, 'csv');
+    }
+
+    private pictureFilename(record: Record, log: Log) {
+        return `${this.logName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.jpg`
+    }
+
+    private async extractPhotos(records: Record[], log: Log) {
+        return Promise.all(records.map(async record => ({
+            blob: await (await fetch(record.data)).blob(),
+            filename: `${this.logName(log)}/${this.pictureFilename(record, log)}`
+        })))
     }
 
     private recordsToCSV(records: Record[], log: Log, seperator: string) {
@@ -103,9 +116,15 @@ export class ExportService {
                 const relTime = this.eventRelTime.transform(record, records);
                 const row = [ record.name, this.eventLabel.transform(record.eventType) ];
                 if (containData) {
-                    row.push(!!record.data?.length ? record.data : '');
+                    switch(record.eventType) {
+                        case EventType.PHOTO:
+                            row.push(!!record.data?.length ? this.pictureFilename(record, log) : '');
+                            break;
+                        default:
+                            row.push(!!record.data?.length ? record.data : '');
+                    }
                 }
-                row.push(this.date.transform(record.date, 'yyyy-MM-dd, HH:mm:ss'));
+                row.push(this.date.transform(record.date, 'yy-MM-dd, HH:mm:ss'));
                 if (containStart) {
                     row.push(!!relTime.time ? `${relTime.prefix}${this.date.transform(relTime.time, 'HH:mm:ss.SSS', 'UTC+0')}`: relTime.prefix)
                 }

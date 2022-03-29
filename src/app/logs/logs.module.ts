@@ -20,7 +20,6 @@ import { ShareLogsDialogComponent } from './components/dialogs/sharelogsdialog/s
 import { PhotoRecordDialogComponent } from './components/dialogs/photorecorddialog/photorecorddialog.component';
 
 
-
 @NgModule({
   declarations: [
     LogsComponent,
