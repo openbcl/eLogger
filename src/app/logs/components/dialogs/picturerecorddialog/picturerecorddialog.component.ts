@@ -52,7 +52,12 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
 
   async startCamera() {
     if (!this.hasDevices) {
-      this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput');
+      this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput').map(device => ({
+        deviceId: device.deviceId,
+        groupId: device.groupId,
+        kind: device.kind,
+        label: device.label
+      }) as MediaDeviceInfo);
       this.hasDevices = !!this.availableDevices?.length;
     }
     if (this.hasDevices) {
@@ -61,9 +66,9 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
         this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice } });
         this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
-          this.setDevice()
-        }
-        console.log(this.form.value.deviceCurrent);
+          this.form.patchValue({
+            deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
+          });        }
       } catch {
         this.store.dispatch(toastError({
           summary: 'Camera error',
@@ -77,12 +82,6 @@ export class PictureRecordDialogComponent extends BaseDialogComponent implements
     this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
     localStorage.setItem('eventCamera', this.selectedDevice);
     this.startCamera();
-  }
-
-  setDevice() {
-    this.form.patchValue({
-      deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
-    });
   }
 
   submit(logId: string) {
