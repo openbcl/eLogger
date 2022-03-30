@@ -2,21 +2,22 @@ import { TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-import { RecordServiceMock, StoreMock } from '../testing/mocks';
-import { RecordService } from '../services/record.service';
-import { RecordEffects } from './record.effects';
+import { ExportService } from '../services/export.service';
+import { ExportServiceMock, StoreMock } from '../testing/mocks';
 
-describe('RecordEffects', () => {
+import { ShareEffects } from './share.effects';
+
+describe('ShareEffects', () => {
   let actions$: Observable<any>;
-  let effects: RecordEffects;
+  let effects: ShareEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        RecordEffects,
+        ShareEffects,
         provideMockActions(() => actions$), {
-          provide: RecordService,
-          useValue: RecordServiceMock
+          provide: ExportService,
+          useValue: ExportServiceMock
         }, {
           provide: Store,
           useValue: StoreMock
@@ -24,7 +25,7 @@ describe('RecordEffects', () => {
       ]
     });
 
-    effects = TestBed.inject(RecordEffects);
+    effects = TestBed.inject(ShareEffects);
   });
 
   it('should be created', () => {

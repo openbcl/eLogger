@@ -49,6 +49,11 @@ export const SettingServiceMock = {
     resetDB: () => true,
 }
 
+export const ExportServiceMock = {
+    shareLogs: (_logs: any[], _templates: any, _seperator: string): void => null,
+    shareRecords: (_records: any[], _log: any, _seperator: string): void => null
+}
+
 
 export const RouterMock = {
     navigate: (value: any) => new Promise(value)

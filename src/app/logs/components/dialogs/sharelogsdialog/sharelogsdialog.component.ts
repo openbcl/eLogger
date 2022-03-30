@@ -2,12 +2,11 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
-import { seperatorSelector } from '../../../../store/setting.selectors';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 import { Template } from '../../../../models';
-import { ExportService } from '../../../../services/export.service';
 import { logsSelector } from '../../../../store/log.selectors';
 import { templatesSelector } from '../../../../store/template.selectors';
+import { shareLogs } from '../../../../store/share.actions';
 
 @Component({
   selector: 'el-share-logs-dialog',
@@ -20,7 +19,6 @@ export class ShareLogsDialogComponent extends BaseDialogComponent {
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   templates$ = this.store.pipe(select(templatesSelector));
-  seperator$ = this.store.pipe(select(seperatorSelector));
 
   cols: any[] = [
     { field: 'title', header: 'Title' },
@@ -33,14 +31,16 @@ export class ShareLogsDialogComponent extends BaseDialogComponent {
 
   constructor(
     private store: Store,
-    private fb: FormBuilder,
-    private exportService: ExportService
+    private fb: FormBuilder
   ) {
     super();
   }
 
-  submit(templates: Template[], seperator: string) {
-    this.exportService.shareLogs(this.form.value.logs, templates, seperator);
+  submit(templates: Template[]) {
+    this.store.dispatch(shareLogs({
+      logs: this.form.value.logs,
+      templates
+    }))
     this.close();
   }
 

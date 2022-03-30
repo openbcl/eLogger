@@ -8,9 +8,8 @@ import { templatesSelector } from '../../../store/template.selectors';
 import { loadLog } from '../../store/log.actions';
 import { logSelector } from '../../store/log.selectors';
 import { Log, Record } from '../../../models';
-import { ExportService } from '../../../services/export.service';
 import { logIdSelector } from '../../../store/router.selector';
-import { seperatorSelector } from '../../../store/setting.selectors';
+import { shareRecords } from '../../../store/share.actions';
 
 @Component({
   selector: 'el-log',
@@ -33,20 +32,16 @@ export class LogComponent implements OnInit {
   log$ = this.logData.pipe(map(logData => logData[0]));
   template$ = this.logData.pipe(map(logData => logData[1].find(template => template.id === logData[0].templateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
-  seperator$ = this.store.pipe(select(seperatorSelector));
 
-  constructor(
-    private store: Store,
-    private exportService: ExportService
-  ) { }
+  constructor(private store: Store) { }
   
   ngOnInit(): void {
     this.store.dispatch(loadRecords({}));
     this.store.dispatch(loadLog({}));
   }
 
-  shareRecords(records: Record[], log: Log, seperator: string) {
-    this.exportService.shareRecords(records, log, seperator);
+  shareRecords(records: Record[], log: Log) {
+    this.store.dispatch(shareRecords({ records, log }))
   }
 
 }
