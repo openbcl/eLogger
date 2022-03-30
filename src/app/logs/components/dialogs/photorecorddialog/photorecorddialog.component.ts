@@ -92,7 +92,7 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
     const canvasElement = document.createElement('canvas');
     canvasElement.width = streamSettings.width;
     canvasElement.height = streamSettings.height;
-    canvasElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0);
+    canvasElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0, streamSettings.width, streamSettings.height);
     this.store.dispatch(createRecord({
       eventTemplate: this.photoEventTemplate,
       logId,
