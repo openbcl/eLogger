@@ -1,0 +1,19 @@
+
+<p-dialog header="Audio Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+  <form [formGroup]="form">
+      <div class="grid">
+          <p-dropdown
+              class="col-12"
+              formControlName="deviceCurrent"
+              [options]="availableDevices"
+              placeholder="Loading microphones ...">
+          </p-dropdown>
+          <span class="col-12 text-center">
+            Please hold the microphone button to record your voice message.
+          </span>
+      </div>
+  </form>
+  <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
+    <button pButton pRipple icon="fas fa-microphone" class="p-button-rounded p-button-danger"></button>
+  </ng-template>
+</p-dialog>

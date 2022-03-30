@@ -24,6 +24,7 @@ export class RecordComponent implements OnInit {
   refreshRate = 1000/60;
   displayTextRecordDialog = false;
   displayPhotoRecordDialog = false;
+  displayAudioRecordDialog = false;
   timestamp: Date;
   eventTemplate: EventTemplate;
 
@@ -64,6 +65,9 @@ export class RecordComponent implements OnInit {
         break;
       case EventType.PHOTO:
         this.displayPhotoRecordDialog = true;
+        break;
+      case EventType.AUDIO:
+        this.displayAudioRecordDialog = true;
         break;
       default:
         this.store.dispatch(createRecord({

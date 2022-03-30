@@ -18,6 +18,7 @@ import { RecordsComponent } from './components/records/records.component';
 import { TextRecordDialogComponent } from './components/dialogs/textrecorddialog/textrecorddialog.component';
 import { ShareLogsDialogComponent } from './components/dialogs/sharelogsdialog/sharelogsdialog.component';
 import { PhotoRecordDialogComponent } from './components/dialogs/photorecorddialog/photorecorddialog.component';
+import { AudioRecordDialogComponent } from './components/dialogs/audiorecorddialog/audiorecorddialog.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PhotoRecordDialogComponent } from './components/dialogs/photorecorddial
     RecordsComponent,
     TextRecordDialogComponent,
     ShareLogsDialogComponent,
-    PhotoRecordDialogComponent
+    PhotoRecordDialogComponent,
+    AudioRecordDialogComponent
   ],
   imports: [
     CommonModule,

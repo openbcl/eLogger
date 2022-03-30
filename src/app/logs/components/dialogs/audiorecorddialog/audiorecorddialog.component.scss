@@ -1,0 +1,18 @@
+:host ::ng-deep {
+
+  .p-dialog:not(.p-dialog-maximized) .p-dialog-content {
+      max-width: 100vh;
+  }
+ 
+  .p-dropdown {
+      width: 100%;
+  }
+
+  .p-dialog .p-dialog-footer {
+      text-align: center;
+      button {
+       width: 3rem;
+       height: 3rem;
+      }
+  }
+}
