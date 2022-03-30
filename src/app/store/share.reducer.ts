@@ -22,7 +22,7 @@ export const shareReducer = createReducer(
   on(ShareActions.shareLogs, state => ({
     ...state, processing: true
   })),
-  on(ShareActions.shareSuccess, (state, _action) => ({
+  on(ShareActions.shareSuccess, state => ({
     ...state, processing: false
   })),
   on(ShareActions.shareFailure, (state, action) => ({

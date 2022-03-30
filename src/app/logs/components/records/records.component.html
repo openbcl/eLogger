@@ -6,6 +6,7 @@
     [breakpoint]="breakpoint"
     [styleClass]="styleClass"
     [rowHover]="true"
+    [loading]="!showRevokeButton && processing$ | async"
     [value]="records">
     <ng-template *ngIf="showRevokeButton"pTemplate="caption">
         <div class="p-2">

@@ -17,7 +17,7 @@ export class ShareEffects {
       this.store.pipe(
         select(seperatorSelector),
         take(1),
-        concatMap(seperator => of(this.exportService.shareRecords(shareRecords.records, shareRecords.log, seperator)).pipe(
+        concatMap(seperator => this.exportService.shareRecords(shareRecords.records, shareRecords.log, seperator).pipe(          
           map(() => ShareActions.shareSuccess()),
           catchError(error => of(ShareActions.shareFailure({ error })))
         ))
@@ -31,7 +31,7 @@ export class ShareEffects {
       this.store.pipe(
         select(seperatorSelector),
         take(1),
-        concatMap(seperator => of(this.exportService.shareLogs(shareLogs.logs, shareLogs.templates, seperator)).pipe(
+        concatMap(seperator => this.exportService.shareLogs(shareLogs.logs, shareLogs.templates, seperator).pipe(
           map(() => ShareActions.shareSuccess()),
           catchError(error => of(ShareActions.shareFailure({ error })))
         ))

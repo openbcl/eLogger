@@ -11,6 +11,7 @@ import { loadLogs } from '../../store/log.actions';
 import { logsSelector } from '../../store/log.selectors';
 import { loadTemplates } from '../../store/template.actions';
 import { templatesSelector } from '../../store/template.selectors';
+import { downloadingSelector } from '../../store/share.selectors';
 
 @Component({
   selector: 'el-root',
@@ -66,6 +67,7 @@ export class AppComponent {
 
   templates$ = this.logData$.pipe(map(logData => logData[0]), filter(templates => !!templates));
   logs$ = this.logData$.pipe(map(logData => logData[1]), filter(logs => !!logs));
+  downloading$ = this.store.pipe(select(downloadingSelector));
 
   theme$ = this.store.pipe(select(themeSelector), filter(theme => !!theme), tap(theme => {
     const htmlLinkTheme = this.document.getElementById('app-theme') as HTMLLinkElement;

@@ -1,3 +1,7 @@
+<p-blockUI [blocked]="downloading$ | async">
+  <p-progressSpinner></p-progressSpinner>
+</p-blockUI>
+
 <p-menubar class="fixed w-full top-0 left-0 z-5" [model]="navitems">
   <ng-template pTemplate="end">
     <a routerLink="/">

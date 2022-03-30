@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store';
-import { filter, take } from 'rxjs';
+import { filter, from, of, switchMap, take } from 'rxjs';
 import { EventLabelPipe, EventRelTimePipe } from '../ui/pipes/event.pipe'
 import { TemplateDescPipe, TemplateTitlePipe } from '../ui/pipes/log.pipe'
 import { EventType, Log, Template, Record } from '../models'
@@ -31,20 +31,19 @@ export class ExportService {
 
     shareLogs (logs: Log[], templates: Template[], seperator: string) {
         const blob = this.logsToCSV(logs, templates, seperator);
-        if (blob) {
-            const filename = this.uniqueFilename('eLogger_export', blob, '')
-            const logsSummaryFile = {
-                blob,
-                filename: `${filename}csv`
-            }
-            if (!!logs.find(log => !!log.recordsCount)) {
-                this.store.dispatch(loadAllRecords());
-                this.store.pipe(
-                    select(allRecordsSelector),
-                    filter(allRecords => !!allRecords && logs.filter(log => !!log.recordsCount).map(log => log.id).every(id => !!Object.keys(allRecords).find(key => key === id))),
-                    take(1)
-                ).subscribe(async allRecords => {
-                    let files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
+        const filename = this.uniqueFilename('eLogger_export', blob, '')
+        const logsSummaryFile = {
+            blob,
+            filename: `${filename}csv`
+        }
+        if (!!logs.find(log => !!log.recordsCount)) {
+            this.store.dispatch(loadAllRecords());
+            return this.store.pipe(
+                select(allRecordsSelector),
+                filter(allRecords => !!allRecords && logs.filter(log => !!log.recordsCount).map(log => log.id).every(id => !!Object.keys(allRecords).find(key => key === id))),
+                take(1),
+                switchMap(async allRecords => {
+                    const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
                         blob: this.recordsToCSV(allRecords[log.id], log, seperator),
                         filename: `${this.folderName(log)}/${this.recordsFilename(allRecords[log.id], log)}`
                     })).concat((await Promise.all(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.PHOTO)).map(async log =>
@@ -52,21 +51,22 @@ export class ExportService {
                     ))).flat());
                     files.push(logsSummaryFile);
                     await this.downloadZipFile(files, `${filename}zip`)
-                });
-            } else {
-                this.downloadFile(logsSummaryFile.blob, logsSummaryFile.filename)
-            }
+                })
+            );
+        } else {
+            return of(this.downloadFile(logsSummaryFile.blob, logsSummaryFile.filename))
         }
     }
 
-    async shareRecords (records: Record[], log: Log, seperator: string) {
-        const filename = this.recordsFilename(records, log);
+    shareRecords (records: Record[], log: Log, seperator: string) {
         const blob = this.recordsToCSV(records, log, seperator);
+        const filename = this.recordsFilename(records, log);
         if (!!records.find(record => record.eventType === EventType.PHOTO)) {
-            const files = [ { filename, blob }, ...await this.extractPhotos(records, log, '.') ]
-            await this.downloadZipFile(files, this.uniqueFilename(this.folderName(log), records, 'zip'))
+            return from(this.extractPhotos(records, log, '.')).pipe(switchMap(photos => this.downloadZipFile([
+                { filename, blob }, ...photos
+            ], this.uniqueFilename(this.folderName(log), records, 'zip'))))
         } else {
-            this.downloadFile(blob, filename)
+            return of(this.downloadFile(blob, filename));
         }
     }
 

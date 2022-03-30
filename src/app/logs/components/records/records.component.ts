@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { revokeRecord } from '../../../store/record.actions';
 import { Template, Record, EventType } from '../../../models';
+import { recordsProcessingSelector } from '../../../store/record.selectors';
 
 @Component({
   selector: 'el-records',
@@ -38,6 +39,8 @@ export class RecordsComponent {
     { field: 'name', header: 'Name' },
     { field: 'date', header: 'Absolute Time', styleClass: 'text-center' }
   ];
+
+  processing$ =this.store.pipe(select(recordsProcessingSelector))
 
   constructor(private store: Store) { }
 

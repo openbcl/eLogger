@@ -12,3 +12,7 @@
 router-outlet {
     margin-top: 4.25rem;
 }
+
+p-blockUI {
+    z-index: 9999;
+}

@@ -19,6 +19,7 @@ import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { BlockUIModule } from 'primeng/blockui';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SliderModule } from 'primeng/slider';
 import { QRCodeModule } from 'angularx-qrcode';
@@ -57,6 +58,7 @@ const modules = [
   SelectButtonModule,
   FieldsetModule,
   DropdownModule,
+  BlockUIModule,
   AccordionModule,
   ProgressSpinnerModule,
   InputSwitchModule,
