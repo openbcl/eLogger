@@ -46,9 +46,9 @@ export class ExportService {
                 ).subscribe(async allRecords => {
                     let files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
                         blob: this.recordsToCSV(allRecords[log.id], log, seperator),
-                        filename: `${this.logName(log)}/${this.recordsFilename(allRecords[log.id], log)}`
+                        filename: `${this.folderName(log)}/${this.recordsFilename(allRecords[log.id], log)}`
                     })).concat((await Promise.all(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.PHOTO)).map(async log =>
-                        await this.extractPhotos(allRecords[log.id].filter(record => record.eventType === EventType.PHOTO), log)
+                        await this.extractPhotos(allRecords[log.id], log)
                     ))).flat());
                     files.push(logsSummaryFile);
                     await this.downloadZipFile(files, `${filename}zip`)
@@ -59,9 +59,15 @@ export class ExportService {
         }
     }
 
-    shareRecords (records: Record[], log: Log, seperator: string) {
+    async shareRecords (records: Record[], log: Log, seperator: string) {
+        const filename = this.recordsFilename(records, log);
         const blob = this.recordsToCSV(records, log, seperator);
-        blob && this.downloadFile(blob, this.recordsFilename(records, log))
+        if (!!records.find(record => record.eventType === EventType.PHOTO)) {
+            const files = [ { filename, blob }, ...await this.extractPhotos(records, log, '.') ]
+            await this.downloadZipFile(files, this.uniqueFilename(this.folderName(log), records, 'zip'))
+        } else {
+            this.downloadFile(blob, filename)
+        }
     }
 
     exportTemplates(templates: Template[]) {
@@ -72,29 +78,33 @@ export class ExportService {
         this.downloadJSON(logs, 'logs', 'logs');
     }
 
-    uniqueFilename (part: string, data: any, extension: string) {
-        return `${part}_${this.date.transform(new Date(), 'yy-MM-dd')}_${sha1(JSON.stringify(data)).substring(0,7)}.${extension}`;
+    private fsCompatibleFilename(path: string) {
+        return path.replace(/[/\\?%*:|"<>,]/g, '_');
     }
 
-    private logName(log: Log) {
+    uniqueFilename (part: string, data: any, extension: string) {
+        return this.fsCompatibleFilename(`${part}_${this.date.transform(new Date(), 'yy-MM-dd')}_${sha1(JSON.stringify(data)).substring(0,7)}.${extension}`);
+    }
+
+    private folderName(log: Log) {
         const part = !!log.desc?.length ?
             `${log.title.length > this.acceptableTitleLength ? log.title.substring(0, this.acceptableTitleLength) : log.title} - ${log.desc}` :
             log.title.length > this.acceptableMaxLength ? log.title.substring(0, this.acceptableMaxLength) : log.title;
-        return `${(part.length > this.acceptableMaxLength ? `${part.substring(0, this.acceptableMaxLength)}` : part)}_${log.id.substring(0, 6)}`.replace(/ /g, '_');
+        return this.fsCompatibleFilename(`${(part.length > this.acceptableMaxLength ? `${part.substring(0, this.acceptableMaxLength)}` : part)}_${log.id.substring(0, 6)}`.replace(/ /g, '_'));
     }
 
     private recordsFilename(records: Record[], log: Log) {
-        return this.uniqueFilename(this.logName(log), records, 'csv');
+        return this.uniqueFilename(this.folderName(log), records, 'csv');
     }
 
     private pictureFilename(record: Record, log: Log) {
-        return `${this.logName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.jpg`
+        return this.fsCompatibleFilename(`${this.folderName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.jpg`)
     }
 
-    private async extractPhotos(records: Record[], log: Log) {
-        return Promise.all(records.map(async record => ({
+    private async extractPhotos(records: Record[], log: Log, folder = this.folderName(log)) {
+        return Promise.all(records.filter(record => record.eventType === EventType.PHOTO).map(async record => ({
             blob: await (await fetch(record.data)).blob(),
-            filename: `${this.logName(log)}/${this.pictureFilename(record, log)}`
+            filename: `${folder}/${this.pictureFilename(record, log)}`
         })))
     }
 
