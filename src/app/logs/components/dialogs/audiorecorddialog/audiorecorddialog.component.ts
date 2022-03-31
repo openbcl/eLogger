@@ -86,7 +86,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
     }
   }
 
-  recordDataAvailable(event: { data: Blob }) {
+  recordDataAvailable(event: BlobEvent) {
     /// DEBUG iOS
       console.log('RECORD DATA AVAILABLE');
       console.log(event);
@@ -104,10 +104,6 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
         date: this.timestamp,
         data: reader.result as string
       }));
-      /// DEBUG iOS
-        console.log('RECORD DATA COMPLETE: reader.onload')
-        console.log(reader.result as string);
-      ///
       this.close();
     }
     /// DEBUG iOS
