@@ -26,6 +26,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
   selectedDevice: string;
 
   mediaRecorder: MediaRecorder;
+  chunks: any[] = [];
 
   private stream: MediaStream;
   private timestamp: Date;
@@ -67,7 +68,8 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
         !!this.stream && this.stopMic();
         this.stream = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: this.selectedDevice }});
         this.mediaRecorder = new MediaRecorder(this.stream);
-        this.mediaRecorder.ondataavailable = (event) => this.recordCompleted(event);
+        this.mediaRecorder.ondataavailable = (e) => this.recordDataAvailable(e);
+        this.mediaRecorder.onstop = (e) => this.recordDataComplete(e);
         this.selectedDevice = this.mediaRecorder.stream.getAudioTracks().find(track => track.kind === 'audio').getSettings().deviceId;
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
           this.form.patchValue({
@@ -88,7 +90,11 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
     this.mediaRecorder.start();
   }
 
-  recordCompleted(event: { data: Blob }) {
+  recordDataAvailable(event: { data: Blob }) {
+    this.chunks.push(event.data);
+  }
+
+  recordDataComplete(event: any) {
     const reader = new FileReader;
     reader.onload = async () => {
       this.store.dispatch(createRecord({
@@ -99,7 +105,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
       }));
       this.close();
     }
-    reader.readAsDataURL(event.data);
+    reader.readAsDataURL(new Blob(this.chunks, { type: event.currentTarget.mimeType }));
   }
 
   deviceChange(event: { value: { deviceId: string }}) {
@@ -111,6 +117,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
   stopMic() {
     this.mediaRecorder = null;
     this.stream?.getAudioTracks().forEach((track => track.stop()));
+    this.chunks = [];
     this.stream = null;
   }
 
