@@ -1,28 +1,34 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
-import { filter } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { createRecord } from '../../../../store/record.actions';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
-import { logIdSelector } from '../../../../store/router.selector';
 import { EventTemplate } from '../../../../models';
+import { toastError } from '../../../../store/toast.actions';
 
 @Component({
   selector: 'el-audio-record-dialog',
   templateUrl: './audiorecorddialog.component.html',
   styleUrls: ['./audiorecorddialog.component.scss']
 })
-export class AudioRecordDialogComponent extends BaseDialogComponent implements OnInit {
+export class AudioRecordDialogComponent extends BaseDialogComponent implements OnInit, OnChanges {
 
   @Input()
   audioEventTemplate: EventTemplate;
 
-  logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
+  @Input()
+  logId: string;
 
   form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
 
   availableDevices: MediaDeviceInfo[] = [];
   hasDevices = false;
   selectedDevice: string;
+
+  mediaRecorder: MediaRecorder;
+
+  private stream: MediaStream;
+  private timestamp: Date;
 
   constructor(
     private store: Store,
@@ -33,6 +39,84 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
 
   ngOnInit(): void {
     this.selectedDevice = localStorage.getItem('eventMic') || undefined;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isVisible = !!changes?.['visible']?.currentValue;
+    const wasVisible = !!changes?.['visible']?.previousValue;
+    if (isVisible && !wasVisible) {
+      this.startMic();
+    } else if (!isVisible && wasVisible && !!this.stream) {
+      this.stopMic();
+    }
+  }
+
+  async startMic() {
+    if (!this.hasDevices) {
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'audioinput').map(device => ({
+        deviceId: device.deviceId,
+        groupId: device.groupId,
+        kind: device.kind,
+        label: device.label
+      }) as MediaDeviceInfo);
+      this.hasDevices = !!this.availableDevices?.length;
+    }
+    if (this.hasDevices) {
+      try {
+        !!this.stream && this.stopMic();
+        this.stream = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: this.selectedDevice }});
+        this.mediaRecorder = new MediaRecorder(this.stream);
+        this.mediaRecorder.ondataavailable = (event) => this.recordCompleted(event);
+        this.selectedDevice = this.mediaRecorder.stream.getAudioTracks().find(track => track.kind === 'audio').getSettings().deviceId;
+        if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
+          this.form.patchValue({
+            deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
+          });
+        }
+      } catch {
+        this.store.dispatch(toastError({
+          summary: 'Microphone error',
+          detail: 'Can not access microphone.'
+        }));
+      }
+    }
+  }
+
+  startRecord() {
+    this.timestamp = new Date();
+    this.mediaRecorder.start();
+  }
+
+  recordCompleted(event: { data: Blob }) {
+    const reader = new FileReader;
+    reader.onload = async () => {
+      this.store.dispatch(createRecord({
+        eventTemplate: this.audioEventTemplate,
+        logId: this.logId,
+        date: this.timestamp,
+        data: reader.result as string
+      }));
+      this.close();
+    }
+    reader.readAsDataURL(event.data);
+  }
+
+  deviceChange(event: { value: { deviceId: string }}) {
+    this.selectedDevice = event?.value?.deviceId || this.selectedDevice;
+    localStorage.setItem('eventMic', this.selectedDevice);
+    this.startMic();
+  }
+
+  stopMic() {
+    this.mediaRecorder = null;
+    this.stream?.getAudioTracks().forEach((track => track.stop()));
+    this.stream = null;
+  }
+
+  override close(): void {
+    this.stopMic();
+    super.close();
   }
 
 }

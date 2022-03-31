@@ -1,11 +1,12 @@
 
 <p-dialog header="Audio Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
   <form [formGroup]="form">
-      <div class="grid">
+      <div class="grid" style="height: 10rem;">
           <p-dropdown
               class="col-12"
               formControlName="deviceCurrent"
               [options]="availableDevices"
+              (onChange)="deviceChange($event)"
               placeholder="Loading microphones ...">
           </p-dropdown>
           <span class="col-12 text-center">
@@ -13,7 +14,7 @@
           </span>
       </div>
   </form>
-  <ng-template pTemplate="footer" *ngrxLet="logId$ as logId">
-    <button pButton pRipple icon="fas fa-microphone" class="p-button-rounded p-button-danger"></button>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple icon="fas fa-microphone" class="p-button-rounded p-button-danger" (mousedown)="startRecord()" (mouseup)="mediaRecorder.stop()"></button>
   </ng-template>
 </p-dialog>

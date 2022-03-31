@@ -32,6 +32,7 @@
                 <ng-container *ngIf="record.data">
                     <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
                     <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="record.data" [preview]="true"></p-image>
+                    <audio *ngIf="record.eventType === EventType.AUDIO" [src]="record.data | bypassSecurityTrustUrl" controls></audio>
                 </ng-container>
             </td>
             <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">

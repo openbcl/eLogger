@@ -18,9 +18,10 @@ export class TextRecordDialogComponent extends BaseDialogComponent {
   textEventTemplate: EventTemplate;
 
   @Input()
-  timestamp: Date;
+  logId: string;
 
-  logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
+  @Input()
+  timestamp: Date;
 
   form = this.fb.group({ data: [null, Validators.required] });
 
@@ -31,10 +32,10 @@ export class TextRecordDialogComponent extends BaseDialogComponent {
     super();
   }
 
-  submit(logId: string) {
+  submit() {
     this.store.dispatch(createRecord({
       eventTemplate: this.textEventTemplate,
-      logId,
+      logId: this.logId,
       date: this.timestamp,
       data: this.form.value.data
     }));

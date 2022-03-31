@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { EventTemplate, EventType } from '../../models';
 import { Record } from '../../models'
 
@@ -103,6 +104,19 @@ export class EventLabelWithIconPipe implements PipeTransform {
       default:
         return { label: eventLabel(eventType), value: 'pi pi-cog' };
     }
+  }
+
+}
+
+@Pipe({
+  name: 'bypassSecurityTrustUrl'
+})
+export class BypassSecurityTrustUrlPipe implements PipeTransform {
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  transform(value: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(value);
   }
 
 }

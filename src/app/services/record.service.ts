@@ -12,7 +12,7 @@ export class RecordService {
   
   createRecord(eventTemplate: EventTemplate, logId: string, date: Date, data?: string) {
     const value = new Record(eventTemplate, logId, date);
-    if (!!data?.length && [EventType.TEXT, EventType.PHOTO].includes(eventTemplate.eventType)) {
+    if (!!data?.length && [EventType.TEXT, EventType.PHOTO, EventType.AUDIO].includes(eventTemplate.eventType)) {
       value.data = data;
     }
     return this.db.add(RECORDS, value);

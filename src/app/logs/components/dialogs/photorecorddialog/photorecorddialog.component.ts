@@ -19,10 +19,12 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
   @Input()
   photoEventTemplate: EventTemplate;
 
+  @Input()
+  logId: string;
+
   @ViewChild('video')
   video: ElementRef;
 
-  logId$ = this.store.pipe(select(logIdSelector), filter(logId => !!logId));
   quality$ = this.store.pipe(select(qualitySelector));
 
   form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
@@ -71,7 +73,8 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
           this.form.patchValue({
             deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
-          });        }
+          });
+        }
       } catch {
         this.store.dispatch(toastError({
           summary: 'Camera error',
@@ -87,7 +90,7 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
     this.startCamera();
   }
 
-  submit(logId: string, quality: number) {
+  submit(quality: number) {
     const streamSettings = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings()
     const canvasElement = document.createElement('canvas');
     canvasElement.width = streamSettings.width;
@@ -95,7 +98,7 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
     canvasElement.getContext('2d').drawImage(this.video.nativeElement, 0, 0, streamSettings.width, streamSettings.height);
     this.store.dispatch(createRecord({
       eventTemplate: this.photoEventTemplate,
-      logId,
+      logId: this.logId,
       date: new Date(),
       data: canvasElement.toDataURL('image/jpeg', quality / 10)
     }));
@@ -103,7 +106,7 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
   }
 
   stopCamera() {
-    this.video?.nativeElement?.srcObject?.getVideoTracks().forEach((track: any) =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
+    (this.video?.nativeElement?.srcObject as MediaStream)?.getVideoTracks().forEach(track =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
     this.video.nativeElement.srcObject = null;
   }
 

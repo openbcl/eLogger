@@ -42,15 +42,17 @@ export class ExportService {
                 select(allRecordsSelector),
                 filter(allRecords => !!allRecords && logs.filter(log => !!log.recordsCount).map(log => log.id).every(id => !!Object.keys(allRecords).find(key => key === id))),
                 take(1),
-                switchMap(async allRecords => {
+                switchMap(allRecords => {
                     const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
                         blob: this.recordsToCSV(allRecords[log.id], log, seperator),
                         filename: `${this.folderName(log)}/${this.recordsFilename(allRecords[log.id], log)}`
-                    })).concat((await Promise.all(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.PHOTO)).map(async log =>
-                        await this.extractPhotos(allRecords[log.id], log)
-                    ))).flat());
+                    })).concat(...(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.PHOTO)).map(log =>
+                        this.extractPhotos(allRecords[log.id], log)
+                    ))).concat(...(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.AUDIO)).map(log =>
+                        this.extractAudios(allRecords[log.id], log)
+                    )));
                     files.push(logsSummaryFile);
-                    await this.downloadZipFile(files, `${filename}zip`)
+                    return this.downloadZipFile(files, `${filename}zip`)
                 })
             );
         } else {
@@ -61,13 +63,12 @@ export class ExportService {
     shareRecords (records: Record[], log: Log, seperator: string) {
         const blob = this.recordsToCSV(records, log, seperator);
         const filename = this.recordsFilename(records, log);
-        if (!!records.find(record => record.eventType === EventType.PHOTO)) {
-            return from(this.extractPhotos(records, log, '.')).pipe(switchMap(photos => this.downloadZipFile([
-                { filename, blob }, ...photos
-            ], this.uniqueFilename(this.folderName(log), records, 'zip'))))
-        } else {
+        if (!records.find(record => [EventType.PHOTO, EventType.AUDIO].includes(record.eventType))) {
             return of(this.downloadFile(blob, filename));
         }
+        const photos = this.extractPhotos(records, log, '.');
+        const audios = this.extractAudios(records, log, '.');
+        return from(this.downloadZipFile([ { filename, blob }, ...photos, ...audios ], this.uniqueFilename(this.folderName(log), records, 'zip')))
     }
 
     exportTemplates(templates: Template[]) {
@@ -97,15 +98,36 @@ export class ExportService {
         return this.uniqueFilename(this.folderName(log), records, 'csv');
     }
 
-    private pictureFilename(record: Record, log: Log) {
-        return this.fsCompatibleFilename(`${this.folderName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.jpg`)
+    private mediaFilename(record: Record, log: Log) {
+        const extension = record.data.match(/data:.+?\/(.+?);/)[1];
+        return this.fsCompatibleFilename(`${this.folderName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.${extension === 'jpeg' ? 'jpg' : extension}`)
     }
 
-    private async extractPhotos(records: Record[], log: Log, folder = this.folderName(log)) {
-        return Promise.all(records.filter(record => record.eventType === EventType.PHOTO).map(async record => ({
-            blob: await (await fetch(record.data)).blob(),
-            filename: `${folder}/${this.pictureFilename(record, log)}`
-        })))
+    private extractPhotos(records: Record[], log: Log, folder = this.folderName(log)) {
+        return records.filter(record => record.eventType === EventType.PHOTO).map(record => ({
+            blob: this.dataUrlToBlob(record.data),
+            filename: `${folder}/${this.mediaFilename(record, log)}`
+        }));
+    }
+
+    private extractAudios(records: Record[], log: Log, folder = this.folderName(log)) {
+        return records.filter(record => record.eventType === EventType.AUDIO).map(record => ({
+            blob: this.dataUrlToBlob(record.data),
+            filename: `${folder}/${this.mediaFilename(record, log)}`
+        }));
+    }
+
+    private dataUrlToBlob(data: string) {
+        const type = data.match(/data:(.+?);base64/)[1];
+        const marker = ';base64,';
+        const base64 = data.substring(data.indexOf(marker) + marker.length);
+        const raw = window.atob(base64);
+        const rawLength = raw.length;
+        const arr = new Uint8Array(new ArrayBuffer(rawLength));
+        for (let i = 0; i < rawLength; i++) {
+            arr[i] = raw.charCodeAt(i);
+        }
+        return new Blob([arr], { type });
     }
 
     private recordsToCSV(records: Record[], log: Log, seperator: string) {
@@ -128,7 +150,10 @@ export class ExportService {
                 if (containData) {
                     switch(record.eventType) {
                         case EventType.PHOTO:
-                            row.push(!!record.data?.length ? this.pictureFilename(record, log) : '');
+                            row.push(!!record.data?.length ? this.mediaFilename(record, log) : '');
+                            break;
+                        case EventType.AUDIO:
+                            row.push(!!record.data?.length ? this.mediaFilename(record, log) : '');
                             break;
                         default:
                             row.push(!!record.data?.length ? record.data : '');
