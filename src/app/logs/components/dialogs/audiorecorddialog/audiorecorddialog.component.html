@@ -15,11 +15,6 @@
       </div>
   </form>
   <ng-template pTemplate="footer">
-    <button pButton pRipple icon="fas fa-microphone" class="p-button-rounded p-button-danger" (click)="mediaRecorder.start()"></button>
-    <button pButton pRipple icon="fas fa-times" class="p-button-rounded p-button-danger" (click)="mediaRecorder.stop()"></button>
-
-    <!--
-      <button pButton pRipple icon="fas fa-microphone" class="p-button-rounded p-button-danger" (mousedown)="mediaRecorder.start()" (mouseup)="mediaRecorder.stop()"></button>
-    -->
+    <button pButton pRipple icon="fas fa-microphone" class="p-button-rounded p-button-danger" (pointerdown)="mediaRecorder.start()" (pointerup)="mediaRecorder.stop()"></button>
   </ng-template>
 </p-dialog>

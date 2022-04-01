@@ -69,8 +69,8 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
         this.stream = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: this.selectedDevice }});
         this.mediaRecorder = new MediaRecorder(this.stream);
         this.mediaRecorder.onstart = () => this.timestamp = new Date();
-        this.mediaRecorder.ondataavailable = (e) => this.recordDataAvailable(e);
-        this.mediaRecorder.onstop = (e) => this.recordDataComplete(e);
+        this.mediaRecorder.ondataavailable = (e) => this.chunks.push(e.data);
+        this.mediaRecorder.onstop = (e) => this.recordComplete(e);
         this.selectedDevice = this.mediaRecorder.stream.getAudioTracks().find(track => track.kind === 'audio').getSettings().deviceId;
         if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
           this.form.patchValue({
@@ -86,16 +86,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
     }
   }
 
-  recordDataAvailable(event: BlobEvent) {
-    /// DEBUG iOS
-      console.log('RECORD DATA AVAILABLE');
-      console.log(event);
-      console.log(event.data);
-    ///
-    this.chunks.push(event.data);
-  }
-
-  recordDataComplete(event: any) {
+  recordComplete(event: any) {
     const reader = new FileReader;
     reader.onload = async () => {
       this.store.dispatch(createRecord({
@@ -106,13 +97,6 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
       }));
       this.close();
     }
-    /// DEBUG iOS
-      console.log('RECORD DATA COMPLETE')
-      console.log(event);
-      console.log(event.currentTarget.mimeType);
-      console.log(this.chunks);
-      console.log(new Blob(this.chunks, { type: event.currentTarget.mimeType }));
-    ///
     reader.readAsDataURL(new Blob(this.chunks, { type: event.currentTarget.mimeType }));
   }
 
