@@ -12,6 +12,8 @@ import { beepSelector, qualitySelector, languageSelector, seperatorSelector } fr
 })
 export class SettingsComponent {
 
+  displayResetDbDialog = false;
+
   language$ = this.store.pipe(select(languageSelector), filter(language => !!language), tap(language => this.form.patchValue({ language })));
   seperator$ = this.store.pipe(select(seperatorSelector), filter(seperator => !!seperator), tap(seperator => this.form.patchValue({ seperator })));
   beep$ = this.store.pipe(select(beepSelector), filter(beep => beep !== undefined), tap(beep => this.form.patchValue({ beep })));

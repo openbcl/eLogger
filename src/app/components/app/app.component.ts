@@ -42,8 +42,9 @@ export class AppComponent {
   navitems: MenuItem[] = [
     { label: 'Logs', icon: PrimeIcons.FILE, routerLink: ['/logs'] },
     { label: 'Templates', icon: PrimeIcons.LIST, routerLink: ['/templates'] },
+    { label: 'Info', icon: PrimeIcons.INFO_CIRCLE, routerLink: ['/info'] },
     { label: 'Settings', id: this.keys.settingsID, icon: PrimeIcons.COG, items: [
-      { label: 'Device Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
+      { label: 'App Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
       { label: 'Import Configuration', icon: 'fas fa-file-import', command: () => this.displayImportDialog = true },
       { id: this.keys.exportID, label: 'Export Configuration', icon: 'fas fa-file-export', disabled: true, items: [
         { id: this.keys.exports.logsID, label: 'Logs', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogsDialog = true },
@@ -54,8 +55,7 @@ export class AppComponent {
         { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
         { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) }
       ]}
-    ]},
-    { label: 'Info', icon: PrimeIcons.INFO_CIRCLE, routerLink: ['/info'] }
+    ]}
   ];
 
   logData$ = combineLatest([this.store.pipe(select(templatesSelector)), this.store.pipe(select(logsSelector))]).pipe(tap(logData => {

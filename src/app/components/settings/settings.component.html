@@ -1,4 +1,4 @@
-<p-panel header="Device Settings">
+<p-panel header="App Settings">
     <form [formGroup]="form" class="grid">
         <p-fieldset class="col-12" *ngrxLet="language$">
             <ng-template pTemplate="header">
@@ -43,5 +43,16 @@
             </ng-template>
             During a log recording additional audio feedback can be emitted when events are triggered.
         </p-fieldset>
+        <p-fieldset class="col-12" legend="Reset Data">
+            <div class="flex flex-wrap justify-content-between">
+                <p>
+                    <span>Here you can delete all templates, logs and records at once.</span>
+                    <span>&nbsp;</span>
+                    <span class="p-error">Caution: This process cannot be undone!</span>
+                </p>
+                <button pButton pRipple icon="fas fa-skull-crossbones" label="Reset App Data" class="p-button-danger" (click)="displayResetDbDialog = true"></button>
+            </div>
+        </p-fieldset>
     </form>
 </p-panel>
+<el-reset-db-dialog [(visible)]="displayResetDbDialog"></el-reset-db-dialog>

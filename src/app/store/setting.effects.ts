@@ -91,7 +91,7 @@ export class SettingEffects {
 
   resetDB$ = createEffect(() => this.actions$.pipe( 
     ofType(SettingActions.resetDB),
-    switchMap(() => of(this.settingService.resetDB()).pipe(
+    switchMap(() => this.settingService.resetDB().pipe(
       map(() => SettingActions.resetDBSuccess()),
       catchError(error => of(SettingActions.resetDBFailure({ error })))
     ))

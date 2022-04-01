@@ -23,6 +23,7 @@ import { ImportDialogComponent } from './components/dialogs/importdialog/importd
 import { QRcodeDialogComponent } from './components/dialogs/qrcodedialog/qrcodedialog.component';
 import { ExportTemplatesDialogComponent } from './components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component';
 import { ExportLogsDialogComponent } from './components/dialogs/exportlogsdialog/exportlogsdialog.component';
+import { ResetDbDialogComponent } from './components/dialogs/resetdbdialog/resetdbdialog.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -59,6 +60,7 @@ const generateObjectStoreMeta = (store: string, templateValue: any): ObjectStore
     ImportDialogComponent,
     ExportTemplatesDialogComponent,
     ExportLogsDialogComponent,
+    ResetDbDialogComponent,
     QRcodeDialogComponent,
     InfoComponent
   ],

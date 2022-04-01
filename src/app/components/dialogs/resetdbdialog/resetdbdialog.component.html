@@ -1,0 +1,23 @@
+<p-dialog header="Reset App Data" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    Are you sure you want to delete all logs, their event records and all templates?
+    <form [formGroup]="form">
+        <br>
+        <hr>
+        <p class="mb-0 font-light">
+            <span>Please enter the delete command</span> 
+            <span>&nbsp;(</span>
+            <span class="p-error">{{ deleteCommand }}</span>
+            <span>)&nbsp;</span>
+            <span>to confirm the deletion of all data.</span> 
+        </p>
+        <span class="p-float-label mt-5 field">
+            <input formControlName="deleteCommand" pInputText type="text" class="inputfield w-full"> 
+            <label for="float-input">Please enter the delete command here ...</label>
+        </span>
+    </form>
+    <ng-template pTemplate="footer">
+        <form [formGroup]="form" (ngSubmit)="resetDB()">
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-trash" label="Reset App Data" class="p-button-danger p-button-text"></button>
+        </form>
+    </ng-template>
+</p-dialog>
