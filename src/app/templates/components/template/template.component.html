@@ -36,6 +36,7 @@
                 #dt
                 styleClass="p-datatable-striped"
                 dataKey="name"
+                breakpoint="500px"
                 [columns]="cols"
                 [rowHover]="true"
                 [reorderableColumns]="true"
@@ -57,32 +58,32 @@
                         <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
                             {{col.header}}
                         </th>
-                        <th *ngIf="!isMobileLayout" class="w-3rem"></th>
+                        <th class="w-3rem hide-on-smallscreen"></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-eventTemplate let-index="rowIndex">
-                    <tr [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
-                        <td *ngIf="!isMobileLayout" class="cursor-move">
+                    <tr draggable="true" [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
+                        <td class="cursor-move hide-on-smallscreen">
                             <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                         </td>
-                        <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
+                        <td class="flex flex-wrap justify-content-between hide-on-bigscreen">
                             <div>
-                                <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, template, -1)"></button>
-                                <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, template, 1)"></button>
+                                <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, template, -1)"></button>
+                                <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, template, 1)"></button>
                             </div>
                             <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
                         <td class="text-center" >{{ eventTemplate.name }}</td>
                         <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
                         <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
-                        <td *ngIf="!isMobileLayout" class="pr-2">
+                        <td class="pr-2 hide-on-smallscreen">
                             <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td class="text-center" [attr.colspan]="cols.length + (isMobileLayout ? 1 : 2)">
+                        <td class="text-center" [attr.colspan]="cols.length + 2">
                             No Event Templates found.
                         </td>
                     </tr>

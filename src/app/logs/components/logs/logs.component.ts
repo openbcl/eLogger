@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { templatesSelector } from '../../../store/template.selectors';
@@ -11,13 +11,11 @@ import { Log } from '../../../models';
   templateUrl: './logs.component.html',
   styleUrls: ['./logs.component.scss']
 })
-export class LogsComponent implements OnInit {
+export class LogsComponent {
 
   searchTerm = '';
   displayCreateLogDialog = false;
   displayShareLogsDialog = false;
-  isMobileLayout = false;
-  breakpoint = 500;
 
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   logsLoading$ = this.store.pipe(select(logsProcessingSelector));
@@ -31,11 +29,6 @@ export class LogsComponent implements OnInit {
   ];
 
   constructor(private store: Store) { }
-
-  ngOnInit(): void {
-    this.isMobileLayout = window.innerWidth <= this.breakpoint;
-    window.onresize = () => this.isMobileLayout = window.innerWidth <= this.breakpoint;
-  }
 
   onRowReorder(logs: Log[]) {
     this.store.dispatch(reorderLogs({ logs }));

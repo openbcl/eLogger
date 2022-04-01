@@ -20,7 +20,6 @@ export class TemplateComponent implements OnInit {
   displayUpdateTemplateDialog = false;
   displayDeleteTemplateDialog = false;
   deletableEventTemplate: EventTemplate;
-  isMobileLayout = false;
   
   template$ = this.store.pipe(select(templateSelector), filter(template => !!template), map(template => ({ ...template, eventTemplates: [ ...template.eventTemplates ] })));
   templateLoading$ = this.store.pipe(select(templateProcessingSelector), take(2));
@@ -45,8 +44,6 @@ export class TemplateComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(loadTemplate({}));
-    this.isMobileLayout = window.innerWidth < 961;
-    window.onresize = () => this.isMobileLayout = window.innerWidth < 961;
   }
 
   onRowReorder(eventTemplates: EventTemplate[], template: Template) {

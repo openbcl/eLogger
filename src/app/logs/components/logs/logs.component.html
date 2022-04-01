@@ -3,7 +3,7 @@
         #dt
         styleClass="p-datatable-striped"
         dataKey="id"
-        breakpoint="{{breakpoint}}px"
+        breakpoint="500px"
         [rowHover]="true"
         [reorderableColumns]="true"
         (onRowReorder)="onRowReorder(dt.value)"
@@ -29,13 +29,13 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-log let-index="rowIndex">
-            <tr [pReorderableRow]="index" class="cursor-pointer">
-                <td *ngIf="!isMobileLayout" class="cursor-move">
+            <tr draggable="true" [pReorderableRow]="index" class="cursor-pointer">
+                <td class="cursor-move hide-on-smallscreen">
                     <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
                 </td>
-                <td *ngIf="isMobileLayout" class="flex flex-wrap justify-content-between">
-                    <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-primary mr-2" (click)="move(index, -1, dt.value)"></button>
-                    <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-primary mr-2" (click)="move(index, 1, dt.value)"></button>
+                <td class="flex flex-wrap justify-content-between hide-on-bigscreen">
+                    <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, -1, dt.value)"></button>
+                    <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, 1, dt.value)"></button>
                 </td>
                 <td [routerLink]="[log.id]">{{ log.title }}</td>
                 <td [routerLink]="[log.id]">{{ log.desc }}</td>
