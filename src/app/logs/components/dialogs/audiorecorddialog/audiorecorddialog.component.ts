@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createRecord } from '../../../../store/record.actions';
@@ -19,17 +19,24 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
   @Input()
   logId: string;
 
-  form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
+  @ViewChild('oscilloscope')
+  canvas: ElementRef<HTMLCanvasElement>;
 
+  @ViewChild('oscilloscopeContainer')
+  oscilloscopeContainer: ElementRef<HTMLDivElement>;;
+
+  form = this.fb.group({ deviceCurrent: null as MediaDeviceInfo });
   availableDevices: MediaDeviceInfo[] = [];
   hasDevices = false;
   selectedDevice: string;
-
   mediaRecorder: MediaRecorder;
-  chunks: any[] = [];
 
+  private chunks: any[] = [];
   private stream: MediaStream;
   private timestamp: Date;
+  private audioCtx: AudioContext;
+  private canvasCtx: CanvasRenderingContext2D;
+  private sourceNode: MediaStreamAudioSourceNode;
 
   constructor(
     private store: Store,
@@ -68,6 +75,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
         !!this.stream && this.stopMic();
         this.stream = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: this.selectedDevice }});
         this.mediaRecorder = new MediaRecorder(this.stream);
+        this.visualize();
         this.mediaRecorder.onstart = () => this.timestamp = new Date();
         this.mediaRecorder.ondataavailable = (e) => this.chunks.push(e.data);
         this.mediaRecorder.onstop = (e) => this.recordComplete(e);
@@ -107,10 +115,60 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
   }
 
   stopMic() {
+    this.sourceNode?.disconnect();
     this.mediaRecorder = null;
     this.stream?.getAudioTracks().forEach((track => track.stop()));
     this.chunks = [];
     this.stream = null;
+  }
+
+  // inspired by: https://github.com/mdn/web-dictaphone
+  visualize() {
+    if(!this.audioCtx) {
+      this.audioCtx = new AudioContext();
+    }
+    if(!this.canvasCtx) {
+      this.canvasCtx = this.canvas.nativeElement.getContext("2d");
+    }
+  
+    const analyser = this.audioCtx.createAnalyser();
+    analyser.fftSize = 1024;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+  
+    this.sourceNode = this.audioCtx.createMediaStreamSource(this.stream)
+    this.sourceNode.connect(analyser);
+    
+    const draw = () => {
+      this.canvas.nativeElement.width = this.oscilloscopeContainer.nativeElement.offsetWidth - 2;
+      
+      requestAnimationFrame(draw);
+  
+      analyser.getByteTimeDomainData(dataArray);
+  
+      this.canvasCtx.fillStyle = 'rgb(128, 0, 0)';
+      this.canvasCtx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+      this.canvasCtx.lineWidth = 2;
+      this.canvasCtx.strokeStyle = 'rgb(255, 0, 0)';
+      this.canvasCtx.beginPath();
+  
+      const sliceWidth = this.canvas.nativeElement.width * 1.0 / bufferLength;
+      let x = 0;
+      for(let i = 0; i < bufferLength; i++) {
+        const y = dataArray[i] / 128.0 * this.canvas.nativeElement.height / 2;
+        if(i === 0) {
+          this.canvasCtx.moveTo(x, y);
+        } else {
+          this.canvasCtx.lineTo(x, y);
+        }
+        x += sliceWidth;
+      }
+
+      this.canvasCtx.lineTo(this.canvas.nativeElement.width, this.canvas.nativeElement.height / 2);
+      this.canvasCtx.stroke();
+    }
+
+    draw();
   }
 
   override close(): void {
