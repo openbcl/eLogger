@@ -2,24 +2,29 @@
 <p-dialog #cameraDialog header="Photo Event" (onShow)="showDialogMaximized(cameraDialog, true)" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <form [formGroup]="form">
         <div class="grid">
-            <p-dropdown
-                class="col-12"
-                formControlName="deviceCurrent"
-                [options]="availableDevices"
-                (onChange)="deviceChange($event)"
-                placeholder="Loading cameras ...">
-            </p-dropdown>
-            <div class="col-12 pb-0 relative">
-                <div #camera id="camera" class="p-2 align-content-center text-center">
-                    <video #video autoplay muted webkit-playsinline playsinline></video>
+            <ng-container *ngIf="!blockUI">
+                <p-dropdown
+                    class="col-12"
+                    formControlName="deviceCurrent"
+                    [options]="availableDevices"
+                    (onChange)="deviceChange($event)"
+                    placeholder="Loading cameras ...">
+                </p-dropdown>
+                <div class="col-12 pb-0 relative">
+                    <div #camera id="camera" class="p-2 align-content-center text-center">
+                        <video #video autoplay muted webkit-playsinline playsinline></video>
+                    </div>
+                    <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
                 </div>
-                <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
-            </div>
+            </ng-container>
+            <span *ngIf="blockUI" class="col-12 text-center p-error">
+            Could not access camera(s).
+            </span>
         </div>
     </form>
     <ng-template pTemplate="footer">
         <form *ngrxLet="quality$ as quality" [formGroup]="form" (ngSubmit)="submit(quality)">
-            <button pButton pRipple type="submit" icon="pi pi-camera" class="p-button-rounded p-button-danger"></button>
+            <button pButton pRipple [disabled]="blockUI" type="submit" [icon]="blockUI ? 'pi pi-lock' : 'pi pi-camera'" class="p-button-rounded p-button-danger"></button>
         </form>
     </ng-template>
 </p-dialog>

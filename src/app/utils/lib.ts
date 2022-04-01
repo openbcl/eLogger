@@ -2,6 +2,11 @@ import { SelectItem, PrimeIcons } from "primeng/api";
 import { BaseLog, EventTemplate, EventType, Log } from "../models";
 import { version } from '../../environments/build'
 
+export const mediaDevicesError = {
+    summary: 'Browser feature "navigator.mediaDevices.getUserMedia" not available!',
+    detail: 'Reason: insecure connection (no https) or incompatible browser'
+} 
+
 export const isBaseLogTitleEqual = (existingTitle: string, importedTitle: string) => {
     return existingTitle === importedTitle ||
         existingTitle.startsWith(importedTitle) &&

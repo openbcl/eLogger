@@ -2,12 +2,11 @@ import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChi
 import { FormBuilder } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { EventTemplate } from '../../../../models';
-import { logIdSelector } from '../../../../store/router.selector';
-import { filter } from 'rxjs';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 import { createRecord } from '../../../../store/record.actions';
 import { toastError } from '../../../../store/toast.actions';
 import { qualitySelector } from '../../../../store/setting.selectors';
+import { mediaDevicesError } from '../../../../utils/lib';
 
 @Component({
   selector: 'el-photo-record-dialog',
@@ -32,6 +31,7 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
   availableDevices: MediaDeviceInfo[] = [];
   hasDevices = false;
   selectedDevice: string;
+  blockUI = false;
 
   constructor(
     private store: Store,
@@ -55,32 +55,37 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
   }
 
   async startCamera() {
-    if (!this.hasDevices) {
-      await navigator.mediaDevices.getUserMedia({ video: { width: { min: 320, ideal: 9000 }, height: { min: 240, ideal: 6000 } }});
-      this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput').map(device => ({
-        deviceId: device.deviceId,
-        groupId: device.groupId,
-        kind: device.kind,
-        label: device.label
-      }) as MediaDeviceInfo);
-      this.hasDevices = !!this.availableDevices?.length;
-    }
-    if (this.hasDevices) {
-      try {
-        this.stopCamera();
-        this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice }});
-        this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
-        if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
-          this.form.patchValue({
-            deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
-          });
-        }
-      } catch {
-        this.store.dispatch(toastError({
-          summary: 'Camera error',
-          detail: 'Can not access camera.'
-        }));
+    try {
+      if (!this.hasDevices) {
+        await navigator.mediaDevices.getUserMedia({ video: { width: { min: 320, ideal: 9000 }, height: { min: 240, ideal: 6000 } }});
+        this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput').map(device => ({
+          deviceId: device.deviceId,
+          groupId: device.groupId,
+          kind: device.kind,
+          label: device.label
+        }) as MediaDeviceInfo);
+        this.hasDevices = !!this.availableDevices?.length;
       }
+      if (this.hasDevices) {
+        try {
+          this.stopCamera();
+          this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice }});
+          this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
+          if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
+            this.form.patchValue({
+              deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
+            });
+          }
+        } catch {
+          this.store.dispatch(toastError({
+            summary: 'Camera error',
+            detail: 'Can not access camera.'
+          }));
+        }
+      }
+    } catch {
+      this.blockUI = true;
+      this.store.dispatch(toastError(mediaDevicesError));
     }
   }
 
@@ -106,8 +111,10 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
   }
 
   stopCamera() {
-    (this.video?.nativeElement?.srcObject as MediaStream)?.getVideoTracks().forEach(track =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
-    this.video.nativeElement.srcObject = null;
+    if (this.video?.nativeElement) {
+      (this.video.nativeElement.srcObject as MediaStream)?.getVideoTracks().forEach(track =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
+      this.video.nativeElement.srcObject = null;
+    }
   }
 
   override close(): void {

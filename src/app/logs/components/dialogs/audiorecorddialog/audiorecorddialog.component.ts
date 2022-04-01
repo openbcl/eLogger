@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createRecord } from '../../../../store/record.actions';
 import { BaseDialogComponent } from '../../../../components/basedialog/basedialog.component';
 import { EventTemplate } from '../../../../models';
 import { toastError } from '../../../../store/toast.actions';
+import { mediaDevicesError } from '../../../../utils/lib';
 
 @Component({
   selector: 'el-audio-record-dialog',
@@ -30,6 +31,7 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
   hasDevices = false;
   selectedDevice: string;
   mediaRecorder: MediaRecorder;
+  blockUI = false;
 
   private chunks: any[] = [];
   private stream: MediaStream;
@@ -60,37 +62,42 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
   }
 
   async startMic() {
-    if (!this.hasDevices) {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
-      this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'audioinput').map(device => ({
-        deviceId: device.deviceId,
-        groupId: device.groupId,
-        kind: device.kind,
-        label: device.label
-      }) as MediaDeviceInfo);
-      this.hasDevices = !!this.availableDevices?.length;
-    }
-    if (this.hasDevices) {
-      try {
-        !!this.stream && this.stopMic();
-        this.stream = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: this.selectedDevice }});
-        this.mediaRecorder = new MediaRecorder(this.stream);
-        this.visualize();
-        this.mediaRecorder.onstart = () => this.timestamp = new Date();
-        this.mediaRecorder.ondataavailable = (e) => this.chunks.push(e.data);
-        this.mediaRecorder.onstop = (e) => this.recordComplete(e);
-        this.selectedDevice = this.mediaRecorder.stream.getAudioTracks().find(track => track.kind === 'audio').getSettings().deviceId;
-        if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
-          this.form.patchValue({
-            deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
-          });
-        }
-      } catch {
-        this.store.dispatch(toastError({
-          summary: 'Microphone error',
-          detail: 'Can not access microphone.'
-        }));
+    try {
+      if (!this.hasDevices) {
+        await navigator.mediaDevices.getUserMedia({ audio: true });
+        this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'audioinput').map(device => ({
+          deviceId: device.deviceId,
+          groupId: device.groupId,
+          kind: device.kind,
+          label: device.label
+        }) as MediaDeviceInfo);
+        this.hasDevices = !!this.availableDevices?.length;
       }
+      if (this.hasDevices) {
+        try {
+          !!this.stream && this.stopMic();
+          this.stream = await navigator.mediaDevices.getUserMedia({ audio: { deviceId: this.selectedDevice }});
+          this.mediaRecorder = new MediaRecorder(this.stream);
+          this.visualize();
+          this.mediaRecorder.onstart = () => this.timestamp = new Date();
+          this.mediaRecorder.ondataavailable = (e) => this.chunks.push(e.data);
+          this.mediaRecorder.onstop = (e) => this.recordComplete(e);
+          this.selectedDevice = this.mediaRecorder.stream.getAudioTracks().find(track => track.kind === 'audio').getSettings().deviceId;
+          if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
+            this.form.patchValue({
+              deviceCurrent: this.availableDevices?.find(x => x.deviceId === this.selectedDevice)
+            });
+          }
+        } catch {
+          this.store.dispatch(toastError({
+            summary: 'Microphone error',
+            detail: 'Can not access microphone.'
+          }));
+        }
+      }
+    } catch {
+      this.blockUI = true;
+      this.store.dispatch(toastError(mediaDevicesError));
     }
   }
 

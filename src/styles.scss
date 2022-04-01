@@ -24,6 +24,11 @@ body {
     margin: 0.75rem;
 }
 
+.p-dialog-maximized {
+    border-radius: 0;
+    border: unset;
+}
+
 .p-dialog-maximized .p-dialog-header, .p-dialog-footer {
     border-radius: 0;
 }
