@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { MenuItem, PrimeIcons, PrimeNGConfig } from 'primeng/api';
 import { combineLatest } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { loadBeep, loadQuality, loadLanguage, loadSeperator, loadTheme, setTheme } from '../../store/setting.actions';
+import { loadBeep, loadQuality, loadSeperator, loadTheme, setTheme } from '../../store/setting.actions';
 import { themeSelector } from '../../store/setting.selectors';
 import { loadLogs } from '../../store/log.actions';
 import { logsSelector } from '../../store/log.selectors';
@@ -40,20 +40,20 @@ export class AppComponent {
   displayImportDialog = false;
 
   navitems: MenuItem[] = [
-    { label: 'Logs', icon: PrimeIcons.FILE, routerLink: ['/logs'] },
-    { label: 'Templates', icon: PrimeIcons.LIST, routerLink: ['/templates'] },
-    { label: 'Info', icon: PrimeIcons.INFO_CIRCLE, routerLink: ['/info'] },
-    { label: 'Settings', id: this.keys.settingsID, icon: PrimeIcons.COG, items: [
-      { label: 'App Settings', icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
-      { label: 'Import Configuration', icon: 'fas fa-file-import', command: () => this.displayImportDialog = true },
-      { id: this.keys.exportID, label: 'Export Configuration', icon: 'fas fa-file-export', disabled: true, items: [
-        { id: this.keys.exports.logsID, label: 'Logs', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogsDialog = true },
-        { id: this.keys.exports.templatesID, label: 'Templates', disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportTemplatesDialog = true },
+    { label: $localize`:MenuBar Item (Logs)@@AppComponent\:menuBarLogs:Logs`, icon: PrimeIcons.FILE, routerLink: ['/logs'] },
+    { label: $localize`:MenuBar Item (Templates)@@AppComponent\:menuBarTemplates:Templates`, icon: PrimeIcons.LIST, routerLink: ['/templates'] },
+    { label: $localize`:MenuBar Item (Info)@@AppComponent\:menuBarInfo:Info`, icon: PrimeIcons.INFO_CIRCLE, routerLink: ['/info'] },
+    { label: $localize`:MenuBar Item (Settings)@@AppComponent\:menuBarSettings:Settings`, id: this.keys.settingsID, icon: PrimeIcons.COG, items: [
+      { label: $localize`:MenuBar Item (App Settings)@@AppComponent\:menuBarAppSettings:App Settings`, icon: PrimeIcons.MOBILE, routerLink: ['/settings'] },
+      { label: $localize`:MenuBar Item (Import Configuration)@@AppComponent\:menuBarImportConfiguration:Import Configuration`, icon: 'fas fa-file-import', command: () => this.displayImportDialog = true },
+      { id: this.keys.exportID, label: $localize`:MenuBar Item (Export Configuration)@@AppComponent\:menuBarExportConfiguration:Export Configuration`, icon: 'fas fa-file-export', disabled: true, items: [
+        { id: this.keys.exports.logsID, label: $localize`:MenuBar Item (Export Configuration Logs)@@AppComponent\:menuBarExportLogs:Logs`, disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportLogsDialog = true },
+        { id: this.keys.exports.templatesID, label: $localize`:MenuBar Item (Export Configuration Templates)@@AppComponent\:menuBarExportTemplates:Templates`, disabled: true, icon: 'fas fa-file-upload', command: () => this.displayExportTemplatesDialog = true },
       ]},
-      { id: this.keys.themesID, label: 'Themes', icon: PrimeIcons.PALETTE, items: [
-        { id: this.keys.themes.lightID, label: 'Light', icon: 'far fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
-        { id: this.keys.themes.mediumID, label: 'Medium', icon: 'fas fa-adjust', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
-        { id: this.keys.themes.darkID, label: 'Dark', icon: 'fas fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) }
+      { id: this.keys.themesID, label: $localize`:MenuBar Item (Themes)@@AppComponent\:menuBarThemes:Themes`, icon: PrimeIcons.PALETTE, items: [
+        { id: this.keys.themes.lightID, label: $localize`:MenuBar Item (Theme Light)@@AppComponent\:menuBarThemeLight:Light`, icon: 'far fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
+        { id: this.keys.themes.mediumID, label: $localize`:MenuBar Item (ThemeMedium)@@AppComponent\:menuBarThemeMedium:Medium`, icon: 'fas fa-adjust', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) },
+        { id: this.keys.themes.darkID, label: $localize`:MenuBar Item (ThemeDark)@@AppComponent\:menuBarThemeDark:Dark`, icon: 'fas fa-circle', command: (event: any) => this.store.dispatch(setTheme({ theme: event.item.id})) }
       ]}
     ]}
   ];
@@ -101,7 +101,6 @@ export class AppComponent {
     this.store.dispatch(loadTheme()),
     this.store.dispatch(loadTemplates());
     this.store.dispatch(loadLogs());
-    this.store.dispatch(loadLanguage());
     this.store.dispatch(loadSeperator());
     this.store.dispatch(loadBeep());
     this.store.dispatch(loadQuality());

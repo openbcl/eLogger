@@ -6,7 +6,6 @@ export const settingsFeatureKey = 'settings';
 export interface SettingsState {
   theme: string,
   seperator: string,
-  language: string,
   beep: boolean,
   quality: number,
   error: any
@@ -15,7 +14,6 @@ export interface SettingsState {
 export const initialSettingsState: SettingsState = {
   theme: localStorage.getItem('theme') || 'light',
   seperator: ';',
-  language: 'en',
   beep: false,
   quality: 5,
   error: null
@@ -29,14 +27,6 @@ export const settingsReducer = createReducer(
   })),
 
   on(SettingActions.loadThemeFailure, (state, action) => ({
-    ...state, error: action.error
-  })),
-
-  on(SettingActions.loadLanguageSuccess, (state, action) => ({
-    ...state, language: action.language
-  })),
-
-  on(SettingActions.loadLanguageFailure, (state, action) => ({
     ...state, error: action.error
   })),
 
@@ -69,14 +59,6 @@ export const settingsReducer = createReducer(
   })),
 
   on(SettingActions.setThemeFailure, (state, action) => ({
-    ...state, error: action.error
-  })),
-
-  on(SettingActions.setLanguageSuccess, (state, action) => ({
-    ...state, language: action.language
-  })),
-
-  on(SettingActions.setLanguageFailure, (state, action) => ({
     ...state, error: action.error
   })),
 

@@ -10,11 +10,6 @@ export const themeSelector = createSelector(
   settingsState => settingsState.theme
 )
 
-export const languageSelector = createSelector(
-  settingsStateSelector,
-  settingsState => settingsState.language
-)
-
 export const seperatorSelector = createSelector(
   settingsStateSelector,
   settingsState => settingsState.seperator

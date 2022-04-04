@@ -28,20 +28,6 @@ export const loadSeperatorFailure = createAction(
   props<{ error: any }>()
 );
 
-export const loadLanguage = createAction(
-  '[Setting] Load Language'
-);
-
-export const loadLanguageSuccess = createAction(
-  '[Setting] Load Language Success',
-  props<{ language: string }>()
-);
-
-export const loadLanguageFailure = createAction(
-  '[Setting] Load Language Failure',
-  props<{ error: any }>()
-);
-
 export const loadBeep = createAction(
   '[Setting] Load Beep'
 );
@@ -97,21 +83,6 @@ export const setSeperatorSuccess = createAction(
 
 export const setSeperatorFailure = createAction(
   '[Setting] Set Seperator Failure',
-  props<{ error: any }>()
-);
-
-export const setLanguage = createAction(
-  '[Setting] Set Language',
-  props<{ language: string }>()
-);
-
-export const setLanguageSuccess = createAction(
-  '[Setting] Set Language Success',
-  props<{ language: string }>()
-);
-
-export const setLanguageFailure = createAction(
-  '[Setting] Set Language Failure',
   props<{ error: any }>()
 );
 

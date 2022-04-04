@@ -41,22 +41,6 @@ export class SettingEffects {
     ))
   ));
 
-  loadLanguage$ = createEffect(() => this.actions$.pipe( 
-    ofType(SettingActions.loadLanguage),
-    switchMap(() => of(this.settingService.loadLanguage()).pipe(
-      map(language => SettingActions.loadLanguageSuccess({ language })),
-      catchError(error => of(SettingActions.loadLanguageFailure({ error })))
-    ))
-  ));
-
-  setLanguage$ = createEffect(() => this.actions$.pipe( 
-    ofType(SettingActions.setLanguage),
-    switchMap(setLanguage => of(this.settingService.setLanguage(setLanguage.language)).pipe(
-      map(language => SettingActions.setLanguageSuccess({ language })),
-      catchError(error => of(SettingActions.setLanguageFailure({ error })))
-    ))
-  ));
-
   loadBeep$ = createEffect(() => this.actions$.pipe( 
     ofType(SettingActions.loadBeep),
     switchMap(() => of(this.settingService.loadBeep()).pipe(
@@ -113,14 +97,6 @@ export class SettingEffects {
     })))
   ));
 
-  loadLanguageFailure$ = createEffect(() => this.actions$.pipe(
-    ofType(SettingActions.loadLanguageFailure),
-    switchMap(loadLanguageFailure => of(ToastActions.toastError({
-      summary: 'Error while loading language setting!',
-      detail: loadLanguageFailure.error
-    })))
-  ));
-
   loadBeepFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadBeepFailure),
     switchMap(loadBeepFailure => of(ToastActions.toastError({
@@ -142,14 +118,6 @@ export class SettingEffects {
     switchMap(resetDBFailure => of(ToastActions.toastError({
       summary: 'Error while resetting database!',
       detail: resetDBFailure.error
-    })))
-  ));
-
-  setLanguageSuccess$ = createEffect(() => this.actions$.pipe(
-    ofType(SettingActions.setLanguageSuccess),
-    switchMap(setLanguageSuccess => of(ToastActions.toastSuccess({
-      summary: 'Switched language successfully!',
-      detail: setLanguageSuccess.language
     })))
   ));
 

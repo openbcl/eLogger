@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE translationbundle [
+<!ELEMENT translationbundle (translation)*>
+<!ATTLIST translationbundle lang CDATA #REQUIRED>
+
+<!ELEMENT translation (#PCDATA|ph)*>
+<!ATTLIST translation id CDATA #REQUIRED>
+<!ATTLIST translation desc CDATA #IMPLIED>
+<!ATTLIST translation meaning CDATA #IMPLIED>
+<!ATTLIST translation xml:space (default|preserve) "default">
+
+<!ELEMENT ph (#PCDATA|ex)*>
+<!ATTLIST ph name CDATA #REQUIRED>
+
+<!ELEMENT ex (#PCDATA)>
+]>
+<translationbundle lang="de">
+  <translation id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)">Protokolle</translation>
+  <translation id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)">Vorlagen</translation>
+  <translation id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)">Infos</translation>
+  <translation id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)">Einstellungen</translation>
+  <translation id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)">App-Einstellungen</translation>
+  <translation id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)">Konfiguration importieren</translation>
+  <translation id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)">Konfiguration exportieren</translation>
+  <translation id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)">Protokolle</translation>
+  <translation id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)">Voralgen</translation>
+  <translation id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)">Darstellung</translation>
+  <translation id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)">Hell</translation>
+  <translation id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)">Mittel</translation>
+  <translation id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)">Dunkel</translation>
+</translationbundle>

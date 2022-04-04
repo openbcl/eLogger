@@ -1,7 +1,7 @@
 import * as SettingAction from './setting.actions';
 import { settingsReducer, initialSettingsState } from './setting.reducer';
 
-const settings = { theme: 'light', language: 'en', seperator: ';', beep: false, quality: 8 }
+const settings = { theme: 'light', seperator: ';', beep: false, quality: 8 }
 const errorTemplate = {}
 
 describe('Setting Reducer', () => {
@@ -18,23 +18,6 @@ describe('Setting Reducer', () => {
 
     it('should return the error', () => {
       const newState = settingsReducer(initialSettingsState, SettingAction.loadThemeFailure({ error: errorTemplate }));
-      expect(newState.error).toBe(errorTemplate);
-    });
-  });
-
-  describe('Load Language action', () => {
-    it('should return the undefined', () => {
-      const newState = settingsReducer(initialSettingsState, SettingAction.loadLanguage());
-      expect(newState.language).toBe(initialSettingsState.language);
-    });
-
-    it('should return the language', () => {
-      const newState = settingsReducer(initialSettingsState, SettingAction.loadLanguageSuccess({ language: settings.language }));
-      expect(newState.language).toBe(settings.language);
-    });
-
-    it('should return the error', () => {
-      const newState = settingsReducer(initialSettingsState, SettingAction.loadLanguageFailure({ error: errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });
@@ -103,23 +86,6 @@ describe('Setting Reducer', () => {
 
     it('should return the error', () => {
       const newState = settingsReducer(initialSettingsState, SettingAction.setThemeFailure({ error: errorTemplate }));
-      expect(newState.error).toBe(errorTemplate);
-    });
-  });
-
-  describe('Set Language action', () => {
-    it('should return the undefined', () => {
-      const newState = settingsReducer(initialSettingsState, SettingAction.setLanguage({ language: settings.language }));
-      expect(newState.language).toBe(initialSettingsState.language);
-    });
-
-    it('should return the language', () => {
-      const newState = settingsReducer(initialSettingsState, SettingAction.setLanguageSuccess({ language: settings.language }));
-      expect(newState.language).toBe(settings.language);
-    });
-
-    it('should return the error', () => {
-      const newState = settingsReducer(initialSettingsState, SettingAction.setLanguageFailure({ error: errorTemplate }));
       expect(newState.error).toBe(errorTemplate);
     });
   });

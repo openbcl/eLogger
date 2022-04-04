@@ -13,7 +13,6 @@ export class SettingService {
   private settings = {
     theme: 'theme',
     seperator: 'seperator',
-    language: 'language',
     beep: 'beep',
     quality: 'quality'
   }
@@ -36,15 +35,6 @@ export class SettingService {
   setSeperator(seperator: string) {
     localStorage.setItem(this.settings.seperator, seperator);
     return seperator;
-  }
-
-  loadLanguage() {
-    return localStorage.getItem(this.settings.language) || initialSettingsState.language;
-  }
-
-  setLanguage(language: string) {
-    localStorage.setItem(this.settings.language, language);
-    return language;
   }
 
   loadBeep() {

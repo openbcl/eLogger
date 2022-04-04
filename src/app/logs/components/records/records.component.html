@@ -36,7 +36,7 @@
                 </ng-container>
             </td>
             <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
-                {{ record.date | date: 'yyyy-MM-dd, HH:mm:ss' }}
+                {{ record.date | date : 'medium' }}
             </td>
             <td *ngIf="logEventTemplates.containStart" class="text-right">
                 <ng-container *ngIf="record | eventRelTime: records as rel">
