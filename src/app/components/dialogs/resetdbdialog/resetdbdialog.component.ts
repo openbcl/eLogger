@@ -13,7 +13,7 @@ import { resetDB } from '../../../store/setting.actions';
 })
 export class ResetDbDialogComponent extends BaseDialogComponent {
 
-  deleteCommand = 'Reset App Data'
+  deleteCommand = $localize`:Delete command@@ResetDbDialogComponent\:deleteCommand:Reset App Data`;
 
   form = this.fb.group({ deleteCommand: [null, null, AppValidators.isEqualString(of(this.deleteCommand))] });
 

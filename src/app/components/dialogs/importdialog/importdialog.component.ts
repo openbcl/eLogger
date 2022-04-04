@@ -30,10 +30,10 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
   formats = [ BarcodeFormat.QR_CODE ];
 
   importOptions = [{
-    label: 'File Upload',
+    label: $localize`:File upload option@@ImportDialogComponent\:fileUploadOption:File Upload`,
     value: false
   }, {
-    label: 'QR code',
+    label: $localize`:QR code option@@ImportDialogComponent\:qrCodeOption:QR code`,
     value: true
   }];
 
@@ -116,8 +116,8 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
     }
     this.fileUpload?.clear();
     this.raiseError(
-      isFileReader ? 'Error reading file!' : 'Error when scanning QR code!',
-      isFileReader ? 'The input file has an incompatible format.' : 'The QR code may have an incompatible format.'
+      isFileReader ? $localize`:File error headline@@ImportDialogComponent\:fileErrorHeader:Error reading file!` : $localize`:QR code error headline@@ImportDialogComponent\:qrCodeErrorHeader:Error when scanning QR code!`,
+      isFileReader ? $localize`:File error details@@ImportDialogComponent\:fileErrorDetails:The input file has an incompatible format.` : $localize`:QR code error details@@qrCodeErrorDetails\:qrCodeOption:The QR code may have an incompatible format.`
     )
   }
 
@@ -127,7 +127,7 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
     super.close();
   }
 
-  raiseError(summary = 'Error when scanning QR code!', detail = 'An error occured during the scan process.') {
+  raiseError(summary = $localize`:Scan error headline@@ImportDialogComponent\:scanErrorHeadline:Error when scanning QR code!`, detail = $localize`:Scan error details@@ImportDialogComponent\:scanErrorDetails:An error occured during the scan process.`) {
     this.store.dispatch(toastError({ summary, detail }));
   }
 

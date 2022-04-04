@@ -7,6 +7,7 @@ import { loadTemplate, updateTemplate } from '../../store/template.actions';
 import { templateProcessingSelector, templateSelector } from '../../store/template.selectors';
 import { templateIdSelector } from '../../../store/router.selector';
 import { toastInfo } from '../../../store/toast.actions';
+import { nameCol, eventTypeCol, iconCol } from '../../../utils/lib';
 
 @Component({
   selector: 'el-template',
@@ -34,11 +35,7 @@ export class TemplateComponent implements OnInit {
     )
   );
 
-  cols: any[] = [
-    { field: 'name', header: 'Name' },
-    { field: 'eventType', header: 'Type' },
-    { field: 'icon', header: 'Icon' }
-  ];
+  cols: any[] = [nameCol, eventTypeCol, iconCol];
 
   constructor(private store: Store) { }
 
@@ -68,8 +65,8 @@ export class TemplateComponent implements OnInit {
   deleteTemplate(templateNotDeletable: boolean) {
     if (templateNotDeletable) {
       this.store.dispatch(toastInfo({
-        summary: 'Can not delete template!',
-        detail: 'The template is used by a log.'
+        summary: $localize`:Delete template error headline@@TemplateComponent\:deleteErrorHeadline:Can not delete template!`,
+        detail: $localize`:Delete template error details@@TemplateComponent\:deleteErrorDetails:The template is used by a log.`
       }))
     } else {
       this.displayDeleteTemplateDialog = true;

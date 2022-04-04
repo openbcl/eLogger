@@ -78,8 +78,8 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
           }
         } catch {
           this.store.dispatch(toastError({
-            summary: 'Camera error',
-            detail: 'Can not access camera.'
+            summary: $localize`:Camera error headline@@PhotoRecordDialogComponent\:cameraErrorHeadline:'Camera error`,
+            detail: $localize`:Camera error details@@PhotoRecordDialogComponent\:cameraErrorDetails:Can not access camera.`
           }));
         }
       }

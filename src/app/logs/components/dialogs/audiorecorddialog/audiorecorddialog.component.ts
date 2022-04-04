@@ -90,8 +90,8 @@ export class AudioRecordDialogComponent extends BaseDialogComponent implements O
           }
         } catch {
           this.store.dispatch(toastError({
-            summary: 'Microphone error',
-            detail: 'Can not access microphone.'
+            summary: $localize`:Microphone error headline@@AudioRecordDialogComponent\:micErrorHeadline:Microphone error`,
+            detail: $localize`:Microphone error details@@AudioRecordDialogComponent\:micErrorDetails:Can not access microphone.`
           }));
         }
       }

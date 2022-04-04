@@ -4,6 +4,7 @@ import { ExportService } from '../../../services/export.service';
 import { Template } from '../../../models';
 import { AppValidators, isQRcodeCompatibleError } from '../../../utils/validators';
 import { BaseDialogComponent } from '../../basedialog/basedialog.component';
+import { titleCol, descCol, revisionCol } from '../../../utils/lib';
 
 @Component({
   selector: 'el-export-templates-dialog',
@@ -20,11 +21,7 @@ export class ExportTemplatesDialogComponent extends BaseDialogComponent {
   @Input()
   templates: Template[];
 
-  cols: any[] = [
-    { field: 'title', header: 'Title' },
-    { field: 'desc', header: 'Description' },
-    { field: 'revision', header: 'Created/Modified' }
-  ];
+  cols: any[] = [titleCol, descCol, revisionCol];
 
   form = this.fb.group({ templates: [[], Validators.required] }, {
     validators: [AppValidators.isQRcodeCompatible('templates')]

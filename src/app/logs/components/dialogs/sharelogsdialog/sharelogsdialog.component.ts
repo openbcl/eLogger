@@ -7,6 +7,7 @@ import { Template } from '../../../../models';
 import { logsSelector } from '../../../../store/log.selectors';
 import { templatesSelector } from '../../../../store/template.selectors';
 import { shareLogs } from '../../../../store/share.actions';
+import { titleCol, descCol, typeCol, recordsCol } from '../../../../utils/lib';
 
 @Component({
   selector: 'el-share-logs-dialog',
@@ -20,12 +21,7 @@ export class ShareLogsDialogComponent extends BaseDialogComponent {
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   templates$ = this.store.pipe(select(templatesSelector));
 
-  cols: any[] = [
-    { field: 'title', header: 'Title' },
-    { field: 'desc', header: 'Description' },
-    { field: 'type', header: 'Type' },
-    { field: 'records', header: 'Records', class: 'text-center' }
-  ];
+  cols: any[] = [ titleCol, descCol, typeCol, recordsCol ];
 
   form = this.fb.group({ logs: [[], Validators.required] }) 
 

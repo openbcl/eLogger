@@ -5,6 +5,7 @@ import { templatesSelector } from '../../../store/template.selectors';
 import { reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
 import { Log } from '../../../models';
+import { titleCol, descCol, typeCol, recordsCol } from '../../../utils/lib';
 
 @Component({
   selector: 'el-logs',
@@ -21,12 +22,7 @@ export class LogsComponent {
   logsLoading$ = this.store.pipe(select(logsProcessingSelector));
   templates$ = this.store.pipe(select(templatesSelector));
 
-  cols: any[] = [
-    { field: 'title', header: 'Title' },
-    { field: 'desc', header: 'Description' },
-    { field: 'type', header: 'Type' },
-    { field: 'records', header: 'Records', class: 'text-center' }
-  ];
+  cols: any[] = [ titleCol, descCol, typeCol, recordsCol ];
 
   constructor(private store: Store) { }
 

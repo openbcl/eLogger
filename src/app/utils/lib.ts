@@ -2,6 +2,17 @@ import { SelectItem, PrimeIcons } from "primeng/api";
 import { BaseLog, EventTemplate, EventType, Log } from "../models";
 import { version } from '../../environments/build'
 
+export const titleCol = { field: 'title', header: $localize`:Title column@@lib\:titleColumn:Title` };
+export const descCol = { field: 'desc', header: $localize`:Description column@@lib\:descriptionColumn:Description` };
+export const typeCol = { field: 'type', header: $localize`:Type column@@lib\:typeColumn:Type` };
+export const recordsCol = { field: 'records', header: $localize`:Records column@@lib\:RecordsColumn:Records`, class: 'text-center' };
+export const iconCol = { field: 'icon', header: $localize`:Icon column@@lib\:iconColumn:Icon` };
+export const nameCol = { field: 'name', header: $localize`:Name column@@lib\:nameColumn:Name` };
+export const absTimeCol = { field: 'date', header: $localize`:Absolute time column@@lib\:absTimeCol:Absolute Time`, styleClass: 'text-center' };
+export const revisionCol = { field: 'revision', header: $localize`:Modified column@@lib\:modifiedColumn:Created/Modified` }
+export const eventTypeCol = { field: 'eventType', header: $localize`:Event type column@@lib\:eventTypeColumn:Type` };
+
+
 export const mediaDevicesError = {
     summary: 'Browser feature "navigator.mediaDevices.getUserMedia" not available!',
     detail: 'Reason: insecure connection (no https) or incompatible browser'

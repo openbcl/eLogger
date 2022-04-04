@@ -50,6 +50,14 @@
   <msg id="ImportDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/importdialog/importdialog.component.html:1,4</source> Please choose between the two options &quot;File Upload&quot; and &quot;QR code&quot; to import a configuration. </msg>
   <msg id="ImportDialogComponent:jsonUpload" desc="JSON uploud button"><source>src/app/components/dialogs/importdialog/importdialog.component.html:8</source>Upload File</msg>
   <msg id="ImportDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/components/dialogs/importdialog/importdialog.component.html:21</source>Loading cameras ...</msg>
+  <msg id="ImportDialogComponent:fileUploadOption" desc="File upload option"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:32</source>File Upload</msg>
+  <msg id="ImportDialogComponent:qrCodeOption" desc="QR code option"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:35</source>QR code</msg>
+  <msg id="ImportDialogComponent:fileErrorHeader" desc="File error headline"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:118</source>Error reading file!</msg>
+  <msg id="ImportDialogComponent:qrCodeErrorHeader" desc="QR code error headline"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:118</source>Error when scanning QR code!</msg>
+  <msg id="ImportDialogComponent:fileErrorDetails" desc="File error details"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:119</source>The input file has an incompatible format.</msg>
+  <msg id="qrCodeErrorDetails:qrCodeOption" desc="QR code error details"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:119</source>The QR code may have an incompatible format.</msg>
+  <msg id="ImportDialogComponent:scanErrorHeadline" desc="Scan error headline"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:129</source>Error when scanning QR code!</msg>
+  <msg id="ImportDialogComponent:scanErrorDetails" desc="Scan error details"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:129</source>An error occured during the scan process.</msg>
   <msg id="QRcodeDialogComponent:pngDownload" desc="PNG download button"><source>src/app/components/dialogs/qrcodedialog/qrcodedialog.component.html:4</source>Download PNG</msg>
   <msg id="ResetDbDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:0</source>Reset App Data</msg>
   <msg id="ResetDbDialogComponent:question" desc="Dialog question"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:1,4</source> Are you sure you want to delete all logs, their event records and all templates? </msg>
@@ -57,6 +65,7 @@
   <msg id="ResetDbDialogComponent:hint2" desc="Hint 2/2"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:12</source>to confirm the deletion of all data.</msg>
   <msg id="ResetDbDialogComponent:hintLabel" desc="Hint input label"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:16</source>Please enter the delete command here ...</msg>
   <msg id="ResetDbDialogComponent:deleteButton" desc="Reset App button"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:21</source>Reset App Data</msg>
+  <msg id="ResetDbDialogComponent:deleteCommand" desc="Delete command"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.ts:15</source>Reset App Data</msg>
   <msg id="InfoComponent:header" desc="Page headline"><source>src/app/components/info/info.component.html:0</source>App Information</msg>
   <msg id="InfoComponent:name" desc="App name"><source>src/app/components/info/info.component.html:2</source>Name</msg>
   <msg id="InfoComponent:version" desc="App version"><source>src/app/components/info/info.component.html:6</source>Version</msg>
@@ -83,6 +92,8 @@
   <msg id="AudioRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:11,15</source>Loading microphones ...</msg>
   <msg id="AudioRecordDialogComponent:hint" desc="How to record hint"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:20,24</source> Please hold the microphone button to record your voice message. </msg>
   <msg id="AudioRecordDialogComponent:error" desc="No microphone access"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:24,29</source> Could not access microphone(s). </msg>
+  <msg id="AudioRecordDialogComponent:micErrorHeadline" desc="Microphone error headline"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.ts:92,92</source>Microphone error</msg>
+  <msg id="AudioRecordDialogComponent:micErrorDetails" desc="Microphone error details"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.ts:93</source>Can not access microphone.</msg>
   <msg id="CreateLogDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:0</source>Add new Log</msg>
   <msg id="CreateLogDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:10,13</source>Please Choose a template ...</msg>
   <msg id="CreateLogDialogComponent:titleLabel" desc="Title input label"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:28,30</source>Title</msg>
@@ -106,6 +117,8 @@
   <msg id="PhotoRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:1</source>Photo Event</msg>
   <msg id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:11,15</source>Loading cameras ...</msg>
   <msg id="PhotoRecordDialogComponent:error" desc="No camera access"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:21,26</source> Could not access camera(s). </msg>
+  <msg id="PhotoRecordDialogComponent:cameraErrorHeadline" desc="Camera error headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.ts:80,80</source>&apos;Camera error</msg>
+  <msg id="PhotoRecordDialogComponent:cameraErrorDetails" desc="Camera error details"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.ts:81</source>Can not access camera.</msg>
   <msg id="ShareLogsDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:0</source>Share Logs</msg>
   <msg id="ShareLogsDialogComponent:description" desc="Dialog description"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:2,5</source> Please select all logs, you want to export in an overview. If recordings are also available for individual logs all download files will be provided in a common ZIP file. </msg>
   <msg id="ShareLogsDialogComponent:shareButton" desc="Share button"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:41,43</source>Share</msg>
@@ -171,7 +184,18 @@
   <msg id="TemplateComponent:tableHeadline" desc="Table headline"><source>src/app/templates/components/template/template.component.html:33</source>Event Templates</msg>
   <msg id="TemplateComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/templates/components/template/template.component.html:49</source>Search keyword</msg>
   <msg id="TemplateComponent:empty" desc="Empty table message"><source>src/app/templates/components/template/template.component.html:85,88</source> No Event Templates found. </msg>
+  <msg id="TemplateComponent:deleteErrorHeadline" desc="Delete template error headline"><source>src/app/templates/components/template/template.component.ts:67</source>Can not delete template!</msg>
+  <msg id="TemplateComponent:deleteErrorDetails" desc="Delete template error details"><source>src/app/templates/components/template/template.component.ts:68</source>The template is used by a log.</msg>
   <msg id="TemplatesComponent:header" desc="Page headline"><source>src/app/templates/components/templates/templates.component.html:0,4</source>Templates</msg>
   <msg id="TemplatesComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/templates/components/templates/templates.component.html:14,17</source>Search keyword</msg>
   <msg id="TemplatesComponent:empty" desc="Empty table message"><source>src/app/templates/components/templates/templates.component.html:34,37</source> No Templates found. Please add at least one template. Afterwards you can create protocols. </msg>
+  <msg id="lib:titleColumn" desc="Title column"><source>src/app/utils/lib.ts:4</source>Title</msg>
+  <msg id="lib:descriptionColumn" desc="Description column"><source>src/app/utils/lib.ts:5</source>Description</msg>
+  <msg id="lib:typeColumn" desc="Type column"><source>src/app/utils/lib.ts:6</source>Type</msg>
+  <msg id="lib:RecordsColumn" desc="Records column"><source>src/app/utils/lib.ts:7</source>Records</msg>
+  <msg id="lib:iconColumn" desc="Icon column"><source>src/app/utils/lib.ts:8</source>Icon</msg>
+  <msg id="lib:nameColumn" desc="Name column"><source>src/app/utils/lib.ts:9</source>Name</msg>
+  <msg id="lib:absTimeCol" desc="Absolute time column"><source>src/app/utils/lib.ts:10</source>Absolute Time</msg>
+  <msg id="lib:modifiedColumn" desc="Modified column"><source>src/app/utils/lib.ts:11</source>Created/Modified</msg>
+  <msg id="lib:eventTypeColumn" desc="Event type column"><source>src/app/utils/lib.ts:12</source>Type</msg>
 </messagebundle>

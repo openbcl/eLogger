@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
+import { titleCol, descCol, revisionCol } from '../../../utils/lib';
 import { templatesProcessingSelector, templatesSelector } from '../../../store/template.selectors';
 
 @Component({
@@ -16,11 +17,7 @@ export class TemplatesComponent {
   templates$ = this.store.pipe(select(templatesSelector), map(templates => [ ...templates ]));
   templatesLoading$ = this.store.pipe(select(templatesProcessingSelector));
 
-  cols: any[] = [
-    { field: 'title', header: 'Title' },
-    { field: 'desc', header: 'Description' },
-    { field: 'revision', header: 'Created/Modified' }
-  ];
+  cols: any[] = [titleCol, descCol, revisionCol];
 
   constructor(private store: Store) { }
 

@@ -3,6 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { revokeRecord } from '../../../store/record.actions';
 import { Template, Record, EventType } from '../../../models';
 import { recordsProcessingSelector } from '../../../store/record.selectors';
+import { iconCol, nameCol, absTimeCol } from '../../../utils/lib';
 
 @Component({
   selector: 'el-records',
@@ -34,11 +35,7 @@ export class RecordsComponent {
   @Input()
   showRevokeButton = false;
 
-  cols: any[] = [
-    { field: 'icon', header: 'Icon' },
-    { field: 'name', header: 'Name' },
-    { field: 'date', header: 'Absolute Time', styleClass: 'text-center' }
-  ];
+  cols: any[] = [iconCol, nameCol, absTimeCol];
 
   processing$ =this.store.pipe(select(recordsProcessingSelector))
 
