@@ -1,41 +1,41 @@
-<p-panel header="App Information">
+<p-panel i18n-header="Page headline@@InfoComponent:header" header="App Information">
     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-        <span class="p-inputgroup-addon">Name</span>
+        <span i18n="App name@@InfoComponent:name" class="p-inputgroup-addon">Name</span>
         <input type="text" pInputText [disabled]="true" value="eLogger" />
     </div>
     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-        <span class="p-inputgroup-addon">Version</span>
+        <span i18n="App version@@InfoComponent:version" class="p-inputgroup-addon">Version</span>
         <input type="text" pInputText [disabled]="true" [value]="version" />
     </div>
     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-        <span class="p-inputgroup-addon">Branch</span>
+        <span i18n="App branch@@InfoComponent:branch" class="p-inputgroup-addon">Branch</span>
         <input type="text" pInputText [disabled]="true" [value]="branch" />
     </div>
     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-        <span class="p-inputgroup-addon">Commit</span>
+        <span i18n="App commit@@InfoComponent:commit" class="p-inputgroup-addon">Commit</span>
         <input type="text" pInputText [disabled]="true" [value]="commit" />
     </div>
     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-        <span class="p-inputgroup-addon ">Developer</span>
+        <span i18n="App developer@@InfoComponent:developer" class="p-inputgroup-addon ">Developer</span>
         <input type="text" pInputText [disabled]="true" class="white-space-normal" value="Robert Weiße" />
     </div>
     <div class="p-inputgroup col-12 pt-0 pl-0 pr-0 text-overflow-anywhere">
-        <span class="p-inputgroup-addon">Contact</span>
+        <span i18n="Contact to app developer@@InfoComponent:contact" class="p-inputgroup-addon">Contact</span>
         <a type="text" pInputText href="https://github.com/openbcl/eLogger/issues">https://github.com/openbcl/eLogger/issues</a>
     </div>
-    <h4 class="uppercase">About</h4>
-    <p>
+    <h4 i18n="About headline@@InfoComponent:aboutHeadline" class="uppercase">About</h4>
+    <p i18n="About text 1/2@@InfoComponent:aboutText1">
         eLogger is an open source progressive web app (PWA).
         The app itself is hosted on GitHub.
         It can either be run in popular browsers or be exported to home screen of mobile devices via Safari-Browser (iOS) or Chrome-Browser (Android).
     </p>
-    <p>
-        There is no backend. Therefore, no data is exchanged. All data remains on the user's own device.
+    <p i18n="About text 2/2@@InfoComponent:aboutText2">
+        There is no backend. Therefore, no data is exchanged. All data remains on the users own device.
         This app has no commercial purposes. The use is private.
     </p>
 
-    <h4 class="uppercase">Disclaimer</h4>
-    <span class="uppercase">
+    <h4 i18n="Disclaimer headline@@InfoComponent:disclaimerHeadline" class="uppercase">Disclaimer</h4>
+    <span i18n="Disclaimer text@@InfoComponent:disclaimerText" class="uppercase">
         We make no warranty of any kind, express, implied, in fact or arising by
         operation of law, including, without limitation, the implied warranty of
         merchantability, fitness for a particular purpose, non-infringement and

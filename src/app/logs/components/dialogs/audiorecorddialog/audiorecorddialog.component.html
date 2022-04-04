@@ -1,9 +1,10 @@
 
-<p-dialog header="Audio Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog i18n-header="Dialog headline@@AudioRecordDialogComponent:header" header="Audio Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
   <form [formGroup]="form">
       <div class="grid">
         <ng-container *ngIf="!blockUI">
             <p-dropdown
+                i18n-placeholder="Dropdown placeholder no items@@AudioRecordDialogComponent:dropdownPlaceholder" 
                 class="col-12"
                 formControlName="deviceCurrent"
                 [options]="availableDevices"
@@ -16,11 +17,11 @@
                 <canvas height="80px" #oscilloscope></canvas>
               </div>
             </div>
-            <span class="col-12 text-center">
+            <span i18n="How to record hint@@AudioRecordDialogComponent:hint" header="Audio Event" class="col-12 text-center">
               Please hold the microphone button to record your voice message.
             </span>
           </ng-container>
-          <span *ngIf="blockUI" class="col-12 text-center p-error">
+          <span i18n="No microphone access@@AudioRecordDialogComponent:error" *ngIf="blockUI" class="col-12 text-center p-error">
             Could not access microphone(s).
           </span>
       </div>

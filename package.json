@@ -6,8 +6,11 @@
   "scripts": {
     "ng": "ng",
     "start": "node ./build && ng serve --hmr --host 0.0.0.0",
+    "start-de": "node ./build && ng serve --configuration=de --hmr --host 0.0.0.0",
     "build": "node ./build && ng build",
+    "build-de": "node ./build && ng build --configuration=de",
     "watch": "node ./build && ng build --watch --configuration development",
+    "watch-de": "node ./build && ng build --watch --configuration=development,de",
     "test": "node ./build && ng test"
   },
   "private": true,
@@ -47,6 +50,7 @@
     "@angular-devkit/build-angular": "^13.1.2",
     "@angular/cli": "^13.1.2",
     "@angular/compiler-cli": "^13.1.1",
+    "@angular/localize": "^13.1.1",
     "@ngrx/schematics": "^13.0.2",
     "@types/jasmine": "^3.10.3",
     "@types/node": "^12.20.37",

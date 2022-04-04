@@ -1,4 +1,4 @@
-<p-panel header="Templates">
+<p-panel i18n-header="Page headline@@TemplatesComponent:header" header="Templates">
     <p-table
         #dt
         styleClass="p-datatable-striped"
@@ -12,7 +12,7 @@
             <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
                 <div class="p-inputgroup max-w-full sm:w-auto m-1">
                     <i class="p-inputgroup-addon pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" i18n-placeholder="Search placeholder@@TemplatesComponent:seachPlaceholder" placeholder="Search keyword" />
                 </div>
                 <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateTemplateDialog = true"></button>
             </div>
@@ -31,7 +31,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>
             <tr>
-                <td class="text-center" [attr.colspan]="cols.length">
+                <td i18n="Empty table message@@TemplatesComponent:empty" class="text-center" [attr.colspan]="cols.length">
                     No Templates found. Please add at least one template. Afterwards you can create protocols.
                 </td>
             </tr>

@@ -1,5 +1,5 @@
-<p-dialog header="Export configuration of logs" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <span class="flex text-center font-light">
+<p-dialog i18n-header="Dialog headline@@ExportLogsDialogComponent:header" header="Export configuration of logs" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <span i18n="Dialog description@@ExportLogsDialogComponent:description" class="flex text-center font-light">
         Please select all logs you want to export as json file or QR code. These can be imported again at any time or by another device. Only the configuration data and no records are exported.
     </span>
     <p-table
@@ -37,17 +37,17 @@
         </ng-template>
     </p-table>
     <div *ngIf="form.errors?.[isQRcodeCompatibleError]" class="w-full mt-2 px-2 text-center">
-        <span class="p-error text-xs">
+        <span i18n="Error message@@ExportLogsDialogComponent:error" class="p-error text-xs">
             The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download.
         </span>
     </div>
     <ng-template pTemplate="footer">
         <div class="flex flex-wrap flex-row-reverse">
             <form [formGroup]="form" (ngSubmit)="download()">
-                <button pButton pRipple type="submit" [disabled]="form.get('logs').invalid" icon="fas fa-file-download" label="Download JSON" class="p-button-info p-button-text"></button>
+                <button pButton pRipple type="submit" [disabled]="form.get('logs').invalid" icon="fas fa-file-download" i18n-label="QR code download button@@ExportLogsDialogComponent:qrDownload" label="Download JSON" class="p-button-info p-button-text"></button>
             </form>
-            <button pButton pRipple [disabled]="form.invalid" icon="fas fa-qrcode" label="Show QR code" class="p-button-info p-button-text" (click)="displayQRcodeDialog = true"></button>
+            <button pButton pRipple [disabled]="form.invalid" icon="fas fa-qrcode" i18n-label="JSON download button@@ExportLogsDialogComponent:jsonDownload" label="Show QR code" class="p-button-info p-button-text" (click)="displayQRcodeDialog = true"></button>
         </div>
     </ng-template>
 </p-dialog>
-<el-qrcode-dialog header="Logs Configuration (QR code)" [(visible)]="displayQRcodeDialog" [data]="form.value.logs" type="logs" filename="logs"></el-qrcode-dialog>
+<el-qrcode-dialog i18n-header="QR Code Dialog header@@ExportLogsDialogComponent:headerQRDialog" header="Logs Configuration (QR code)" [(visible)]="displayQRcodeDialog" [data]="form.value.logs" type="logs" filename="logs"></el-qrcode-dialog>

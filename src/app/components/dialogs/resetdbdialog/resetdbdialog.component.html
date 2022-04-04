@@ -1,23 +1,25 @@
-<p-dialog header="Reset App Data" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    Are you sure you want to delete all logs, their event records and all templates?
+<p-dialog i18n-header="Dialog headline@@ResetDbDialogComponent:header"  header="Reset App Data" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <ng-container i18n="Dialog question@@ResetDbDialogComponent:question">
+        Are you sure you want to delete all logs, their event records and all templates?
+    </ng-container>
     <form [formGroup]="form">
         <br>
         <hr>
         <p class="mb-0 font-light">
-            <span>Please enter the delete command</span> 
+            <span i18n="Hint 1/2@@ResetDbDialogComponent:hint1">Please enter the delete command</span> 
             <span>&nbsp;(</span>
             <span class="p-error">{{ deleteCommand }}</span>
             <span>)&nbsp;</span>
-            <span>to confirm the deletion of all data.</span> 
+            <span i18n="Hint 2/2@@ResetDbDialogComponent:hint2">to confirm the deletion of all data.</span> 
         </p>
         <span class="p-float-label mt-5 field">
             <input formControlName="deleteCommand" pInputText type="text" class="inputfield w-full"> 
-            <label for="float-input">Please enter the delete command here ...</label>
+            <label i18n="Hint input label@@ResetDbDialogComponent:hintLabel" for="float-input">Please enter the delete command here ...</label>
         </span>
     </form>
     <ng-template pTemplate="footer">
         <form [formGroup]="form" (ngSubmit)="resetDB()">
-            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-trash" label="Reset App Data" class="p-button-danger p-button-text"></button>
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-trash" i18n-label="Reset App button@@ResetDbDialogComponent:deleteButton" label="Reset App Data" class="p-button-danger p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>

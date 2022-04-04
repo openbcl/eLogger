@@ -5,11 +5,11 @@
                 <div class="grid m-0 w-full">
                     <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
                         <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-                            <span class="p-inputgroup-addon">Title</span>
+                            <span i18n="Title@@TemplateComponent:title" class="p-inputgroup-addon">Title</span>
                             <input type="text" pInputText [disabled]="true" [value]="template.title" />
                         </div>
                         <div class="p-inputgroup col-12 pb-0 pl-0 pr-0">
-                            <span class="p-inputgroup-addon">Description</span>
+                            <span i18n="Description@@TemplateComponent:description" class="p-inputgroup-addon">Description</span>
                             <input type="text" pInputText [disabled]="true" [value]="template.desc || 'no description set'" />
                         </div>
                     </div>
@@ -27,11 +27,11 @@
                     </div>
                 </div>
             </ng-template>
-            <span class="flex text-center justify-content-center font-light">
+            <span i18n="Page hint@@TemplateComponent:hint" class="flex text-center justify-content-center font-light">
                 In this view you can customize the title and description of the template. Furthermore you have the possibility to specify events that might occur during the logging process.
             </span>
         </p-panel>
-        <p-panel class="col-12" header="Event Templates">
+        <p-panel i18n-header="Table headline@@TemplateComponent:tableHeadline" class="col-12" header="Event Templates">
             <p-table
                 #dt
                 styleClass="p-datatable-striped"
@@ -47,7 +47,7 @@
                     <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
                         <div class="p-inputgroup max-w-full sm:w-auto m-1">
                             <i class="p-inputgroup-addon pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                            <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" i18n-placeholder="Search placeholder@@TemplateComponent:seachPlaceholder" placeholder="Search keyword" />
                         </div>
                         <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateEventTemplateDialog = true"></button>
                     </div>
@@ -83,7 +83,7 @@
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
                     <tr>
-                        <td class="text-center" [attr.colspan]="cols.length + 2">
+                        <td i18n="Empty table message@@TemplateComponent:empty" class="text-center" [attr.colspan]="cols.length + 2">
                             No Event Templates found.
                         </td>
                     </tr>

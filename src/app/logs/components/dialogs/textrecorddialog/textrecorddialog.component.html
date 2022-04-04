@@ -1,14 +1,16 @@
-<p-dialog header="Text Event" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    Please enter a suitable text for the event.
+<p-dialog i18n-header="Dialog headline@@TextRecordDialogComponent:header" header="Text Event" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <ng-container i18n="Dialog description@@TextRecordDialogComponent:description">
+        Please enter a suitable text for the event.
+    </ng-container>
     <form [formGroup]="form">
         <span class="p-float-label mt-5 field">
             <input formControlName="data" pInputText type="text" class="inputfield w-full">
-            <label for="float-input">Text</label>
+            <label i18n="Text input label@@TextRecordDialogComponent:textLabel" for="float-input">Text</label>
         </span>
     </form>
     <ng-template pTemplate="footer">
         <form [formGroup]="form" (ngSubmit)="submit()">
-            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-plus" label="Create Record" class="p-button-success p-button-text"></button>
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-plus" i18n-label="Create record button@@ResetDbDialogComponent:createButton" label="Create Record" class="p-button-success p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>

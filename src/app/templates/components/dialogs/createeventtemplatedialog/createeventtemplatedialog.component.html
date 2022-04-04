@@ -1,10 +1,11 @@
-<p-dialog *ngrxLet="template$ as template" styleClass="w-full sm:w-8" [resizable]="false" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog i18n-header="Dialog headline@@CreateEventTemplateDialogComponent:header" *ngrxLet="template$ as template" styleClass="w-full sm:w-8" [resizable]="false" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <div *ngrxLet="eventTemplates$ as eventTemplates">
         <form [formGroup]="form">
             <div *ngIf="eventTemplates.length">
-                <p-fieldset legend="Known Event Templates">
+                <p-fieldset i18n-legend="Known templates headline@@CreateEventTemplateDialogComponent:knownTemplates" legend="Known Event Templates">
                     <div class="grid">
                         <p-dropdown
+                            i18n-placeholder="Dropdown placeholder chooseItems@@CreateEventTemplateDialogComponent:dropdownPlaceholder"
                             class="col-12 el-dropdown-items-p-0"
                             styleClass="w-full white-space-normal"
                             panelStyleClass="white-space-normal"
@@ -29,14 +30,14 @@
                                 </div>
                             </ng-template>
                         </p-dropdown>
-                        <span class="col-12 flex text-center justify-content-center font-light">
+                        <span i18n="Dialog description@@CreateEventTemplateDialogComponent:description" class="col-12 flex text-center justify-content-center font-light">
                             You can either choose an event template from the known templates or create a completely new event template.
                         </span>
                     </div>
                 </p-fieldset>
                 <br>
             </div>
-            <p-fieldset legend="Event Type">
+            <p-fieldset i18n-legend="Event type headline@@CreateEventTemplateDialogComponent:eventType" legend="Event Type">
                 <p-selectButton formControlName="eventType" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventTypes" (click)="setName()">
                     <ng-template let-eventType>
                         <div *ngIf="(eventType | eventLabelWithIcon) as item" class="grid w-7rem">
@@ -51,12 +52,12 @@
                     [class.ng-dirty]="!form.value.selectedTemplate"
                     [class.ng-invalid]="form.errors?.[eventTypeIsUniqueError] || !form.get('name').valid"
                     [class.ng-valid]="!form.errors?.[eventTypeIsUniqueError] && form.get('name').valid">
-                <label for="float-input">Event Name</label>
+                <label i18n="Event name headline@@CreateEventTemplateDialogComponent:eventName" for="float-input">Event Name</label>
                 <div *ngIf="form.errors?.[eventTypeIsUniqueError]" class="w-full text-center justify-content-center mt-1 px-2">
-                    <span class="p-error text-xs">An event template with this name already exists. Please choose another name.</span>
+                    <span i18n="Event name duplicate error@@CreateEventTemplateDialogComponent:error" class="p-error text-xs">An event template with this name already exists. Please choose another name.</span>
                 </div>
             </span>
-            <p-fieldset legend="Event Icon" *ngIf="form.getRawValue().eventType === 0">
+            <p-fieldset i18n-legend="Event icon headline@@CreateEventTemplateDialogComponent:eventIcon" legend="Event Icon" *ngIf="form.getRawValue().eventType === 0">
                 <p-selectButton formControlName="icon" class="el-icon-selector flex align-items-center justify-content-center" [options]="eventIcons" optionLabel="icon">
                     <ng-template let-item>
                         <i class="{{ item.value }} {{ item.styleClass }}"></i>
@@ -64,7 +65,7 @@
                 </p-selectButton>
             </p-fieldset>
             <br>
-            <p-fieldset legend="Event Color">
+            <p-fieldset i18n-legend="Event color headline@@CreateEventTemplateDialogComponent:eventColor" legend="Event Color">
                 <div class="flex flex-wrap justify-content-center">
                     <div pRipple *ngFor="let color of colors"
                     class="border-2 border-round m-1 p-3 cursor-pointer {{ color | colorClass }}"
@@ -82,7 +83,7 @@
     </div>
     <ng-template pTemplate="footer">
         <form [formGroup]="form" (ngSubmit)="submit(template)">
-            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-check" label="Add" class="p-button-success p-button-text"></button>
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-check" i18n-label="Add button@@CreateEventTemplateDialogComponent:addButton" label="Add" class="p-button-success p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>

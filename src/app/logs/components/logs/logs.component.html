@@ -1,4 +1,4 @@
-<p-panel header="Logs" *ngrxLet="templates$ as templates">
+<p-panel i18n-header="Page headline@@LogsComponent:header" header="Logs" *ngrxLet="templates$ as templates">
     <p-table
         #dt
         styleClass="p-datatable-striped"
@@ -14,7 +14,7 @@
             <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
                 <div class="p-inputgroup max-w-full sm:w-auto m-1">
                     <i class="p-inputgroup-addon pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" placeholder="Search keyword" />
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" i18n-placeholder="Search placeholder@@LogsComponent:seachPlaceholder" placeholder="Search keyword" />
                 </div>
                 <div class="flex flex-wrap">
                     <button pButton pRipple *ngIf="!!dt.value?.length" type="button" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-1" (click)="displayShareLogsDialog = true"></button>
@@ -52,7 +52,7 @@
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>
             <tr>
-                <td class="text-center" [attr.colspan]="cols.length + 1">
+                <td i18n="Empty table message@@LogsComponent:empty" class="text-center" [attr.colspan]="cols.length + 1">
                     No Logs found.
                 </td>
             </tr>

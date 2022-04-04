@@ -1,18 +1,19 @@
-<p-dialog #scanDialog header="Import configuration" (onShow)="showDialogMaximized(scanDialog, true)" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <span class="flex justify-content-center text-center font-light pb-3">
+<p-dialog i18n-header="Dialog headline@@ImportDialogComponent:header" #scanDialog header="Import configuration" (onShow)="showDialogMaximized(scanDialog, true)" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <span i18n="Dialog description@@ImportDialogComponent:description" class="flex justify-content-center text-center font-light pb-3">
         Please choose between the two options "File Upload" and "QR code" to import a configuration.
     </span>
     <form [formGroup]="form">
         <div class="grid">
             <p-selectButton class="col-12" [options]="importOptions" formControlName="importOption"></p-selectButton>
             <div class="col-12 pb-0" *ngIf="!form.value.importOption">
-                <p-fileUpload #fileUpload chooseIcon="fas fa-file-import" [customUpload]="true" [auto]="true" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)">
+                <p-fileUpload #fileUpload chooseIcon="fas fa-file-import" [customUpload]="true" [auto]="true" i18n-chooseLabel="JSON uploud button@@ImportDialogComponent:jsonUpload" chooseLabel="Upload File" accept=".json" (uploadHandler)="uploadFiles($event)">
                     <ng-template pTemplate="content">
                         <i class="pi pi-download"></i>
                     </ng-template>
                 </p-fileUpload>
             </div>
             <p-dropdown
+                i18n-placeholder="Dropdown placeholder no items@@ImportDialogComponent:dropdownPlaceholder" 
                 *ngIf="form.value.importOption"
                 class="col-12"
                 formControlName="deviceCurrent"
@@ -31,7 +32,7 @@
                     (deviceChange)="setDevice()"
                     (camerasFound)="camerasFound($event)"
                     (scanSuccess)="patch($event)"
-                    (scanError)="raiseError('Error when scanning QR code!', 'An error occured during the scan process.')">
+                    (scanError)="raiseError()">
                 </zxing-scanner>
                 <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
             </div>

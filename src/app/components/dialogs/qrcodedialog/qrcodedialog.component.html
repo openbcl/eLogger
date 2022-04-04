@@ -2,6 +2,6 @@
     <qrcode [width]="750" [qrdata]="qrdata" [margin]="2" elementType="svg" errorCorrectionLevel="L"></qrcode>
     <qrcode #qrcode class="hidden" [qrdata]="qrdata" [width]="1080" elementType="img" errorCorrectionLevel="L"></qrcode>
     <ng-template pTemplate="footer">
-        <button pButton pRipple icon="fas fa-file-download" label="Download PNG" class="p-button-info p-button-text" (click)="download()"></button>
+        <button pButton pRipple icon="fas fa-file-download" i18n-label="PNG download button@@QRcodeDialogComponent:pngDownload" label="Download PNG" class="p-button-info p-button-text" (click)="download()"></button>
     </ng-template>
 </p-dialog>

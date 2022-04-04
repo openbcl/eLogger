@@ -1,27 +1,27 @@
-<p-dialog *ngrxLet="log$ as log" header="Update Template" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog i18n-header="Dialog headline@@UpdateLogDialogComponent:header" *ngrxLet="log$ as log" header="Update Template" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <form [formGroup]="form">
         <span class="p-float-label mt-5 field">
             <input formControlName="title" pInputText type="text" class="inputfield w-full"
                 [class.ng-invalid]="form.errors?.[abstractLogIsUniqueError] || !form.get('title').valid"
                 [class.ng-valid]="!form.errors?.[abstractLogIsUniqueError] && form.get('title').valid">
-            <label for="float-input">Title</label>
+            <label i18n="Title input label@@UpdateLogDialogComponent:titleLabel" for="float-input">Title</label>
             <div *ngIf="form.errors?.[abstractLogIsUniqueError]" class="w-full mt-1 px-2">
-                <span class="p-error text-xs">A template with this name already exists. Please choose another name.</span>
+                <span i18n="Title error hint@@UpdateLogDialogComponent:titleError" class="p-error text-xs">A template with this name already exists. Please choose another name.</span>
             </div>
         </span>
         <span class="p-float-label mt-5 field">
             <input formControlName="desc" pInputText type="text" class="inputfield w-full"
                 [class.ng-invalid]="form.errors?.[abstractLogIsUniqueError] || !form.get('desc').valid"
                 [class.ng-valid]="!form.errors?.[abstractLogIsUniqueError] && form.get('desc').valid">
-            <label for="float-input">Description</label>
+            <label i18n="Description input label@@UpdateLogDialogComponent:descriptionLabel" for="float-input">Description</label>
             <div *ngIf="form.errors?.[abstractLogIsUniqueError]" class="w-full mt-1 px-2">
-                <span class="p-error text-xs">A template with this description already exists. Please choose another description.</span>
+                <span i18n="Description error hint@@UpdateLogDialogComponent:descriptionError" class="p-error text-xs">A template with this description already exists. Please choose another description.</span>
             </div>
         </span>
     </form>
     <ng-template pTemplate="footer">
         <form [formGroup]="form" (ngSubmit)="submit(log)">
-            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-check" label="Update" class="p-button-success p-button-text"></button>
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-check" i18n-label="Update button@@UpdateLogDialogComponent:updateButton" label="Update" class="p-button-success p-button-text"></button>
         </form>
     </ng-template>
 </p-dialog>

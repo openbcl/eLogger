@@ -127,7 +127,7 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
     super.close();
   }
 
-  raiseError(summary: string, detail: string) {
+  raiseError(summary = 'Error when scanning QR code!', detail = 'An error occured during the scan process.') {
     this.store.dispatch(toastError({ summary, detail }));
   }
 

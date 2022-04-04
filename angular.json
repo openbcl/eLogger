@@ -4,6 +4,15 @@
   "newProjectRoot": "projects",
   "projects": {
     "elogger": {
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "de": {
+            "translation": "src/messages.de.xtb",
+            "baseHref": ""
+          }
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -21,6 +30,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "allowedCommonJsDependencies": [
               "@cordobo/qrcode"
             ],
@@ -77,6 +87,9 @@
               ],
               "outputHashing": "all"
             },
+            "de": {
+              "localize": ["de"]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -96,6 +109,9 @@
             },
             "development": {
               "browserTarget": "elogger:build:development"
+            },
+            "de": {
+              "browserTarget": "elogger:build:de"
             }
           },
           "defaultConfiguration": "development"

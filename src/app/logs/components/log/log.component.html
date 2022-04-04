@@ -11,11 +11,11 @@
                     </div>
                     <div class="grid col-12 sm:col p-0 pb-1 m-0 sm:mr-3">
                         <div class="p-inputgroup col-12 pt-0 pl-0 pr-0">
-                            <span class="p-inputgroup-addon">Title</span>
+                            <span i18n="Title@@LogComponent:title" class="p-inputgroup-addon">Title</span>
                             <input type="text" pInputText [disabled]="true" [value]="log.title" />
                         </div>
                         <div class="p-inputgroup col-12 pb-0 pl-0 pr-0">
-                            <span class="p-inputgroup-addon">Description</span>
+                            <span i18n="Description@@LogComponent:description" class="p-inputgroup-addon">Description</span>
                             <input type="text" pInputText [disabled]="true" [value]="log.desc || 'no description set'" />
                         </div>
                     </div>
@@ -31,11 +31,11 @@
                 <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-2 w-full md:w-13rem" iconPos="right" label="Share records" (click)="shareRecords(records, log)"></button>
                 <button pButton pRipple *ngIf="!!records?.length" icon="pi pi-trash" class="p-button-outlined p-button-rounded p-button-danger m-2 w-full md:w-13rem" iconPos="right" label="Clear records" (click)="displayDeleteRecordsDialog = true"></button>
             </div>
-            <span *ngIf="!template" class="p-error flex text-center justify-content-center font-light">
+            <span i18n="Missing template error message@@LogComponent:error" *ngIf="!template" class="p-error flex text-center justify-content-center font-light">
                 This log is based on an unknown template. Please import the corresponding template first.
             </span>
         </p-panel>
-        <p-panel *ngIf="template" class="col-12" header="Event Records">
+        <p-panel i18n-header="Table headline@@LogComponent:tableHeadline" *ngIf="template" class="col-12" header="Event Records">
             <el-records [records]="records" [template]="template" [showDataColumn]="true" breakpoint="550px" styleClass="p-datatable-striped"></el-records>
         </p-panel> 
     </ng-container>

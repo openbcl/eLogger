@@ -1,5 +1,5 @@
-<p-dialog header="Share Logs" [resizable]="true" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
-    <span class="flex text-center font-light">
+<p-dialog i18n-header="Dialog headline@@ShareLogsDialogComponent:header" header="Share Logs" [resizable]="true" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <span i18n="Dialog description@@ShareLogsDialogComponent:description" class="flex text-center font-light">
         Please select all logs, you want to export in an overview. If recordings are also available for individual logs all download files will be provided in a common ZIP file.
     </span>
     <ng-container *ngrxLet="templates$ as templates">
@@ -39,7 +39,7 @@
         </p-table>
         <ng-template pTemplate="footer">
             <form [formGroup]="form" (ngSubmit)="submit(templates)">
-                <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-share-alt" label="Share" class="p-button-info p-button-text"></button>
+                <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-share-alt" i18n-label="Share button@@ShareLogsDialogComponent:shareButton" label="Share" class="p-button-info p-button-text"></button>
             </form>
         </ng-template>
     </ng-container>

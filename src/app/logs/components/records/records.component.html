@@ -10,18 +10,18 @@
     [value]="records">
     <ng-template *ngIf="showRevokeButton"pTemplate="caption">
         <div class="p-2">
-            <button pButton pRipple [disabled]="!records?.length" icon="pi pi-replay" class="p-button-outlined p-button-rounded p-button-danger w-full" iconPos="right" label="Revoke last record" (click)="revokeRecord()"></button>
+            <button pButton pRipple [disabled]="!records?.length" icon="pi pi-replay" class="p-button-outlined p-button-rounded p-button-danger w-full" iconPos="right" i18n-label="Revoke button@@RecordsComponent:revokeButton" label="Revoke last record" (click)="revokeRecord()"></button>
         </div>
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th></th>
-            <th>Event</th>
-            <th *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
-            <th [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+            <th i18n="Event column@@RecordsComponent:eventColumn">Event</th>
+            <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
+            <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
                 Absolute Time
             </th>
-            <th *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
+            <th i18n="Relative time column@@RecordsComponent:relativeTimeColumn" *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-record let-rowIndex="rowIndex">
@@ -49,7 +49,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
-            <td class="text-center" [attr.colspan]="3 + logEventTemplates.additionalColumns">
+            <td i18n="Empty table message@@RecordsComponent:empty" class="text-center" [attr.colspan]="3 + logEventTemplates.additionalColumns">
                 No records found.
             </td>
         </tr>
