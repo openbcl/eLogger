@@ -124,20 +124,20 @@ export class BypassSecurityTrustUrlPipe implements PipeTransform {
 const eventLabel = (eventType: EventType): string => {
   switch(eventType) {
     case EventType.START:
-      return 'Start';
+      return $localize`:Start label@@EventLabelPipe\:start:Start`;
     case EventType.PAUSE:
-      return 'Pause';
+      return $localize`:Pause label@@EventLabelPipe\:pause:Pause`;
     case EventType.RESUME:
-      return 'Resume';
+      return $localize`:Resume label@@EventLabelPipe\:resume:Resume`;
     case EventType.END:
-      return 'End';
+      return $localize`:End label@@EventLabelPipe\:end:End`;
     case EventType.TEXT:
-      return 'Text'
+      return $localize`:Text label@@EventLabelPipe\:text:Text`;
     case EventType.PHOTO:
-      return 'Photo';
+      return $localize`:Photo label@@EventLabelPipe\:photo:Photo`;
     case EventType.AUDIO:
-      return 'Audio';
+      return $localize`:Audio label@@EventLabelPipe\:audio:Audio`;
     default:
-      return 'Custom'
+      return $localize`:Custom label@@EventLabelPipe\:custom:Custom`
   }
 }

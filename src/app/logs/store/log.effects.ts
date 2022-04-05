@@ -87,7 +87,7 @@ export class LogEffects {
     ofType(LazyLogActions.loadLogFailure),
     tap(() => this.router.navigate(['logs'])),
     switchMap(loadLogFailure => of(toastError({
-      summary: 'Error while loading log!',
+      summary: $localize`:Log not found error@@LogEffects\:loadLogFailureHeadline:Error while loading log!`,
       detail: loadLogFailure.error
     })))
   ));
@@ -95,7 +95,7 @@ export class LogEffects {
   createLogFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyLogActions.createLogFailure),
     switchMap(createLogFailure => of(toastError({
-      summary: 'Error while creating log!',
+      summary: $localize`:Log not created error@@LogEffects\:createLogFailureHeadline:Error while creating log!`,
       detail: createLogFailure.error
     })))
   ));
@@ -103,7 +103,7 @@ export class LogEffects {
   updateLogFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyLogActions.updateLogFailure),
     switchMap(updateLogFailure => of(toastError({
-      summary: 'Error while updating log!',
+      summary: $localize`:Log not updated error@@LogEffects\:updateLogFailureHeadline:Error while updating log!`,
       detail: updateLogFailure.error
     })))
   ));
@@ -111,7 +111,7 @@ export class LogEffects {
   deleteLogFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyLogActions.deleteLogFailure),
     switchMap(deleteLogFailure => of(toastError({
-      summary: 'Error while deleting log!',
+      summary: $localize`:Log not deleted error@@LogEffects\:deleteLogFailureHeadline:Error while deleting log!`,
       detail: deleteLogFailure.error
     })))
   ));

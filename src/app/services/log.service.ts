@@ -61,11 +61,11 @@ export class LogService {
   }
 
   loadLog(id: string) {
-    return this.db.getByIndex<Log>(LOGS, 'id', id).pipe(map(log => processResult(!!log, log, 'Log does not exist.')));
+    return this.db.getByIndex<Log>(LOGS, 'id', id).pipe(map(log => processResult(!!log, log, $localize`:Log not found error@@LogService\:notFoundError:Log does not exist.`)));
   }
 
   deleteLog(value: Log) {
-    const errorMsg = 'Could not delete log.';
+    const errorMsg = $localize`:Log not deleted error@@LogService\:deleteError:Could not delete log.`;
     const result = !value.key ?
         this.loadLog(value.id).pipe(concatMap(result => 
           this.db.deleteByKey(LOGS, result.key!).pipe(map(deleted => processResult(deleted, value, errorMsg)))

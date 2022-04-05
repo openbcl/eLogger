@@ -48,11 +48,11 @@ export class TemplateService {
   }
 
   loadTemplate(id: string) {
-    return this.db.getByIndex<Template>(TEMPLATES, 'id', id).pipe(map(template => processResult(!!template, template, 'Template does not exist.')));
+    return this.db.getByIndex<Template>(TEMPLATES, 'id', id).pipe(map(template => processResult(!!template, template, $localize`:Template not found error@@TemplateService\:notFoundError:Template does not exist.`)));
   }
 
   deleteTemplate(value: Template) {
-    const errorMsg = 'Could not delete template.';
+    const errorMsg = $localize`:Template not deleted error@@TemplateService\:deleteError:Could not delete template.`;
     return !value.key ? this.loadTemplate(value.id).pipe(concatMap(result => 
       this.db.deleteByKey(TEMPLATES, result.key!).pipe(map(deleted => processResult(deleted, value, errorMsg)))
     )) : this.db.deleteByKey(TEMPLATES, value.key).pipe(map(deleted => processResult(deleted, value, errorMsg)))

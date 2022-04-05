@@ -42,7 +42,7 @@ export class ShareEffects {
   shareFailure$ = createEffect(() => this.actions$.pipe(
     ofType(ShareActions.shareFailure),
     switchMap(shareFailure => of(ToastActions.toastError({
-      summary: 'Download failed!',
+      summary: $localize`:Download failed error@@ShareEffects\:shareFailureHeadline:Download failed!`,
       detail: shareFailure.error
     })))
   ));

@@ -116,7 +116,7 @@ export class ImportDialogComponent extends BaseDialogComponent implements OnInit
     }
     this.fileUpload?.clear();
     this.raiseError(
-      isFileReader ? $localize`:File error headline@@ImportDialogComponent\:fileErrorHeader:Error reading file!` : $localize`:QR code error headline@@ImportDialogComponent\:qrCodeErrorHeader:Error when scanning QR code!`,
+      isFileReader ? $localize`:File error headline@@ImportDialogComponent\:fileErrorHeadline:Error reading file!` : $localize`:QR code error headline@@ImportDialogComponent\:qrCodeErrorHeadline:Error when scanning QR code!`,
       isFileReader ? $localize`:File error details@@ImportDialogComponent\:fileErrorDetails:The input file has an incompatible format.` : $localize`:QR code error details@@qrCodeErrorDetails\:qrCodeOption:The QR code may have an incompatible format.`
     )
   }

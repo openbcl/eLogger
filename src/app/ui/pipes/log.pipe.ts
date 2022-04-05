@@ -19,7 +19,7 @@ export class TemplateExistsPipe implements PipeTransform {
 export class TemplateTitlePipe implements PipeTransform {
 
   transform(id: string, templates: Template[]): string {
-    return templates?.find(template => template.id === id)?.title || 'Unknown template: Please import the corresponding template first.';
+    return templates?.find(template => template.id === id)?.title || $localize`:Unknown template error@@TemplateTitlePipe\:unknownTemplateError:Unknown template: Please import the corresponding template first.`;
   }
 
 }

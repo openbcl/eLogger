@@ -62,7 +62,7 @@ export class SettingService {
       this.db.clear(TEMPLATES)
     ]).pipe(
       map(values => values.reduce((prev, current) => prev === current && prev === true, true)),
-      map(success => processResult(success, success, 'Could not reset database.'))
+      map(success => processResult(success, success, $localize`:Reset database error@@SettingService\:resetError:Could not reset database.`))
     )
   }
 

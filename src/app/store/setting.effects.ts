@@ -84,7 +84,7 @@ export class SettingEffects {
   loadThemeFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadThemeFailure),
     switchMap(loadThemeFailure => of(ToastActions.toastError({
-      summary: 'Error while loading theme!',
+      summary: $localize`:Could not load theme error@@SettingEffects\:loadThemeFailureHeadline:Error while loading theme!`,
       detail: loadThemeFailure.error
     })))
   ));
@@ -92,7 +92,7 @@ export class SettingEffects {
   loadSeperatorFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadSeperatorFailure),
     switchMap(loadSeperatorFailure => of(ToastActions.toastError({
-      summary: 'Error while loading csv seperator setting!',
+      summary: $localize`:Could not load seperator error@@SettingEffects\:loadSeperatorFailureHeadline:Error while loading csv seperator setting!`,
       detail: loadSeperatorFailure.error
     })))
   ));
@@ -100,7 +100,7 @@ export class SettingEffects {
   loadBeepFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadBeepFailure),
     switchMap(loadBeepFailure => of(ToastActions.toastError({
-      summary: 'Error while loading record beep setting!',
+      summary: $localize`:Could not load event sound setting error@@SettingEffects\:loadBeepFailureHeadline:Error while loading record beep setting!`,
       detail: loadBeepFailure.error
     })))
   ));
@@ -108,7 +108,7 @@ export class SettingEffects {
   loadQualityFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.loadQualityFailure),
     switchMap(loadQualityFailure => of(ToastActions.toastError({
-      summary: 'Error while loading photo quality setting!',
+      summary: $localize`:Could not load photo quality setting error@@SettingEffects\:loadQualityFailureHeadline:Error while loading photo quality setting!`,
       detail: loadQualityFailure.error
     })))
   ));
@@ -116,7 +116,7 @@ export class SettingEffects {
   resetDBFailure$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.resetDBFailure),
     switchMap(resetDBFailure => of(ToastActions.toastError({
-      summary: 'Error while resetting database!',
+      summary: $localize`:Could not reset database error@@SettingEffects\:resetDBFailureHeadline:Error while resetting database!`,
       detail: resetDBFailure.error
     })))
   ));
@@ -124,7 +124,7 @@ export class SettingEffects {
   setSeperatorSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.setSeperatorSuccess),
     switchMap(setSeperatorSuccess => of(ToastActions.toastSuccess({
-      summary: 'Switched seperator successfully!',
+      summary: $localize`:Seperator configured information@@SettingEffects\:setSeperatorSuccessHeadline:Switched seperator successfully!`,
       detail: setSeperatorSuccess.seperator
     })))
   ));
@@ -132,10 +132,10 @@ export class SettingEffects {
   setBeepSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.setBeepSuccess),
     switchMap(setBeepSuccess => {
-      const enabled = 'enabled';
-      const disabled = 'disabled';
+      const enabled = $localize`:Event sound enabled information@@SettingEffects\:setBeepSuccessEnabledDetails:Sound enabled`;
+      const disabled = $localize`:Event sound disabled information@@SettingEffects\:setBeepSuccessDisabledDetails:Sound disabled`;
       return of(ToastActions.toastSuccess({
-        summary: 'Event sound',
+        summary: $localize`:Event sound configured information@@SettingEffects\:setBeepSuccessHeadline:Event sound`,
         detail: setBeepSuccess.beep ? enabled : disabled
       }))
     })
@@ -144,7 +144,7 @@ export class SettingEffects {
   resetDBSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(SettingActions.resetDBSuccess),
     switchMap(() => of(ToastActions.toastSuccess({
-      summary: 'Database reset successfully!',
+      summary: $localize`:Database resetted information@@SettingEffects\:resetDBSuccessHeadline:Database reset successfully!`,
     })))
   ));
 

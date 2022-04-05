@@ -33,7 +33,7 @@ export class RecordService {
   revokeRecord(logId: string) {
     return this.loadRecords(logId).pipe(
       exhaustMap(records => !!records?.length ? this.db.deleteByKey(RECORDS, records[records.length - 1].key).pipe(
-        exhaustMap(result => result ? of(logId) : throwError(() => ({ error: `Could not revoke last record of logId ${logId}.` })))
+        exhaustMap(result => result ? of(logId) : throwError(() => ({ error: $localize`:Revoke record failed error@@RecordService\:revokeError:Could not revoke last record of logId` + ` ${logId}.` })))
       ) : of(logId))
     )
   }

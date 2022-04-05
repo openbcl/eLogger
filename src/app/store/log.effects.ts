@@ -37,7 +37,7 @@ export class LogEffects {
   createLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.createLogSuccess),
     switchMap(createLogSuccess => of(ToastActions.toastSuccess({
-      summary: 'Log created successfully!',
+      summary: $localize`:Log created information@@LogEffects\:createLogSuccessHeadline:Log created successfully!`,
       detail: createLogSuccess.log.title
     })))
   ));
@@ -45,7 +45,7 @@ export class LogEffects {
   updateLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.updateLogSuccess),
     switchMap(updateLogSuccess => of(ToastActions.toastInfo({
-      summary: 'Log updated successfully!',
+      summary: $localize`:Log updated information@@LogEffects\:updateLogSuccessHeadline:Log updated successfully!`,
       detail: updateLogSuccess.log.title
     })))
   ));
@@ -53,7 +53,7 @@ export class LogEffects {
   deleteLogSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.deleteLogSuccess),
     switchMap(deleteLogSuccess => of(ToastActions.toastSuccess({
-      summary: 'Log deleted successfully!',
+      summary: $localize`:Log deleted information@@LogEffects\:deleteLogSuccessHeadline:Log deleted successfully!`,
       detail: deleteLogSuccess.log.title
     })))
   ));
@@ -61,7 +61,7 @@ export class LogEffects {
   patchLogsSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.patchLogsSuccess),
     switchMap(patchLogsSuccess => of(ToastActions.toastSuccess({
-      summary: 'Logs imported successfully!',
+      summary: $localize`:Logs imported information@@LogEffects\:patchLogsSuccessHeadline:Logs imported successfully!`,
       detail: patchLogsSuccess.logs.length.toString()
     })))
   ));
@@ -69,7 +69,7 @@ export class LogEffects {
   loadLogsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.loadLogsFailure),
     switchMap(loadLogsFailure => of(ToastActions.toastError({
-      summary: 'Error while loading logs!',
+      summary: $localize`:Logs not found error@@LogEffects\:loadLogsFailureHeadline:Error while loading logs!`,
       detail: loadLogsFailure.error
     })))
   ));
@@ -77,7 +77,7 @@ export class LogEffects {
   patchLogsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.patchLogsFailure),
     switchMap(patchLogsFailure => of(ToastActions.toastError({
-      summary: 'Error while patching logs!',
+      summary: $localize`:Logs not patched error@@LogEffects\:patchLogsFailureHeadline:Error while patching logs!`,
       detail: patchLogsFailure.error
     })))
   ));
@@ -85,7 +85,7 @@ export class LogEffects {
   reorderLogsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LogActions.reorderLogsFailure),
     switchMap(reorderLogsFailure => of(ToastActions.toastError({
-      summary: 'Error while reordering logs!',
+      summary: $localize`:Logs not reordered error@@LogEffects\:reorderLogsFailureHeadline:Error while reordering logs!`,
       detail: reorderLogsFailure.error
     })))
   ));

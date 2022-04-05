@@ -14,8 +14,8 @@ export const eventTypeCol = { field: 'eventType', header: $localize`:Event type 
 
 
 export const mediaDevicesError = {
-    summary: 'Browser feature "navigator.mediaDevices.getUserMedia" not available!',
-    detail: 'Reason: insecure connection (no https) or incompatible browser'
+    summary: $localize`:No camera/microphone access error headline@@lib\:mediaErrorHeadline:Browser feature "navigator.mediaDevices.getUserMedia" not available!`,
+    detail: $localize`:No camera/microphone access error details@@lib\:mediaErrorDetails:Reason: insecure connection (no https) or incompatible browser`
 } 
 
 export const isBaseLogTitleEqual = (existingTitle: string, importedTitle: string) => {

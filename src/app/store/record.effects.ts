@@ -99,14 +99,14 @@ export class RecordEffects {
   deleteRecordsSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.deleteRecordsSuccess),
     switchMap(() => of(ToastActions.toastSuccess({
-      summary: 'Records deleted successfully!'
+      summary: $localize`:Records deleted information@@RecordEffects\:deleteRecordsSuccessHeadline:Records deleted successfully!`
     })))
   ));
 
   loadRecordsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.loadRecordsFailure),
     switchMap(loadRecordsFailure => of(ToastActions.toastError({
-      summary: 'Error while loading records!',
+      summary: $localize`:Records of log not found error@@RecordEffects\:loadRecordsFailureHeadline:Error while loading records!`,
       detail: loadRecordsFailure.error
     })))
   ));
@@ -114,7 +114,7 @@ export class RecordEffects {
   loadAllRecordsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.loadAllRecordsFailure),
     switchMap(loadAllRecordsFailure => of(ToastActions.toastError({
-      summary: 'Error while loading all records!',
+      summary: $localize`:No records found error@@RecordEffects\:loadAllRecordsFailureHeadline:Error while loading all records!`,
       detail: loadAllRecordsFailure.error
     })))
   ));
@@ -122,7 +122,7 @@ export class RecordEffects {
   createRecordFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.createRecordFailure),
     switchMap(createRecordFailure => of(ToastActions.toastError({
-      summary: 'Error while creating record!',
+      summary: $localize`:Record not created error@@RecordEffects\:createRecordFailureHeadline:Error while creating record!`,
       detail: createRecordFailure.error
     })))
   ));
@@ -130,7 +130,7 @@ export class RecordEffects {
   revokeRecordFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.revokeRecordFailure),
     switchMap(revokeRecordFailure => of(ToastActions.toastError({
-      summary: 'Error while revoking record!',
+      summary: $localize`:Record not revoked error@@RecordEffects\:revokeRecordFailureHeadline:Error while revoking record!`,
       detail: revokeRecordFailure.error
     })))
   ));
@@ -138,7 +138,7 @@ export class RecordEffects {
   deleteRecordsFailure$ = createEffect(() => this.actions$.pipe(
     ofType(RecordActions.deleteRecordsFailure),
     switchMap(deleteRecordsFailure => of(ToastActions.toastError({
-      summary: 'Error while deleting records!',
+      summary: $localize`:Records not deleted error@@RecordEffects\:deleteRecordsFailureHeadline:Error while deleting records!`,
       detail: deleteRecordsFailure.error
     })))
   ));

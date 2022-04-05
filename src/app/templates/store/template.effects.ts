@@ -56,7 +56,7 @@ export class TemplateEffects {
     ofType(LazyTemplateActions.loadTemplateFailure),
     tap(() => this.router.navigate(['templates'])),
     switchMap(loadTemplateFailure => of(toastError({
-      summary: 'Error while loading template!',
+      summary: $localize`:Template not found error@@TemplateEffects\:loadTemplateFailureHeadline:Error while loading template!`,
       detail: loadTemplateFailure.error
     })))
   ));
@@ -64,7 +64,7 @@ export class TemplateEffects {
   createTemplateFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyTemplateActions.createTemplateFailure),
     switchMap(createTemplateFailure => of(toastError({
-      summary: 'Error while creating template!',
+      summary: $localize`:Template not created error@@TemplateEffects\:createTemplateFailureHeadline:Error while creating template!`,
       detail: createTemplateFailure.error
     })))
   ));
@@ -72,7 +72,7 @@ export class TemplateEffects {
   updateTemplateFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyTemplateActions.updateTemplateFailure),
     switchMap(updateTemplateFailure => of(toastError({
-      summary: 'Error while updating template!',
+      summary: $localize`:Template not updated error@@TemplateEffects\:updateTemplateFailureHeadline:Error while updating template!`,
       detail: updateTemplateFailure.error
     })))
   ));
@@ -80,7 +80,7 @@ export class TemplateEffects {
   deleteTemplateFailure$ = createEffect(() => this.actions$.pipe(
     ofType(LazyTemplateActions.deleteTemplateFailure),
     switchMap(deleteTemplateFailure => of(toastError({
-      summary: 'Error while deleting template!',
+      summary: $localize`:Template not deleted error@@TemplateEffects\:deleteTemplateFailureHeadline:Error while deleting template!`,
       detail: deleteTemplateFailure.error
     })))
   ));

@@ -29,7 +29,7 @@ export class TemplateEffects {
   createTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.createTemplateSuccess),
     switchMap(createTemplateSuccess => of(ToastActions.toastSuccess({
-      summary: 'Template created successfully!',
+      summary: $localize`:Template created information@@TemplateEffects\:createTemplateSuccessHeadline:Template created successfully!`,
       detail: createTemplateSuccess.template.title
     })))
   ));
@@ -37,7 +37,7 @@ export class TemplateEffects {
   updateTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.updateTemplateSuccess),
     switchMap(updateTemplateSuccess => of(ToastActions.toastInfo({
-      summary: 'Template updated successfully!',
+      summary: $localize`:Template updated information@@TemplateEffects\:updateTemplateSuccessHeadline:Template updated successfully!`,
       detail: updateTemplateSuccess.template.title
     })))
   ));
@@ -45,7 +45,7 @@ export class TemplateEffects {
   deleteTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.deleteTemplateSuccess),
     switchMap(deleteTemplateSuccess => of(ToastActions.toastSuccess({
-      summary: 'Template deleted successfully!',
+      summary: $localize`:Template deleted information@@TemplateEffects\:deleteTemplateSuccessHeadline:Template deleted successfully!`,
       detail: deleteTemplateSuccess.template.title
     })))
   ));
@@ -53,7 +53,7 @@ export class TemplateEffects {
   patchTemplatesSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.patchTemplatesSuccess),
     switchMap(patchTemplatesSuccess => of(ToastActions.toastSuccess({
-      summary: 'Templates imported successfully!',
+      summary: $localize`:Templates imported information@@TemplateEffects\:patchTemplatesSuccessHeadline:Templates imported successfully!`,
       detail: patchTemplatesSuccess.templates.length.toString()
     })))
   ));
@@ -61,7 +61,7 @@ export class TemplateEffects {
   loadTemplatesFailure$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.loadTemplatesFailure),
     switchMap(loadTemplatesFailure => of(ToastActions.toastError({
-      summary: 'Error while loading templates!',
+      summary: $localize`:Templates not found error@@TemplateEffects\:loadTemplatesFailureHeadline:Error while loading templates!`,
       detail: loadTemplatesFailure.error
     })))
   ));
@@ -69,7 +69,7 @@ export class TemplateEffects {
   patchTemplatesFailure$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.patchTemplatesFailure),
     switchMap(patchTemplatesFailure => of(ToastActions.toastError({
-      summary: 'Error while patching templates!',
+      summary: $localize`:Templates not patched error@@TemplateEffects\:patchTemplatesFailureHeadline:Error while patching templates!`,
       detail: patchTemplatesFailure.error
     })))
   ));
