@@ -106,7 +106,7 @@
   <translation id="DeleteRecordsDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Ereignisaufzeichnungen dieses Protokolls löschen wollen? </translation>
   <translation id="DeleteRecordsDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
   <translation id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, um die Löschung aller aufgezeichneten Ereignisse zu bestätigen.</translation>
-  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Alle aufgezeichneten Ereignisse des Protokolls löschen (Titel) ...</translation>
+  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Aufgezeichnete Protokollereignisse löschen (Titel) ...</translation>
   <translation id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
   <translation id="PhotoRecordDialogComponent:header" desc="Dialog headline">Fotoereignis</translation>
   <translation id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Kameras werden geladen ...</translation>
@@ -119,7 +119,7 @@
   <translation id="TextRecordDialogComponent:header" desc="Dialog headline">Textereignis</translation>
   <translation id="TextRecordDialogComponent:description" desc="Dialog description"> Bitte geben Sie einen passenden Text für das Ereignis ein. </translation>
   <translation id="TextRecordDialogComponent:textLabel" desc="Text input label">Text</translation>
-  <translation id="ResetDbDialogComponent:createButton" desc="Create record button">Ereignis erstellen</translation>
+  <translation id="TextRecordDialogComponent:createButton" desc="Create record button">Ereignis festhalten</translation>
   <translation id="UpdateLogDialogComponent:header" desc="Dialog headline">Vorlage aktualisieren</translation>
   <translation id="UpdateLogDialogComponent:titleLabel" desc="Title input label">Titel</translation>
   <translation id="UpdateLogDialogComponent:titleError" desc="Title error hint">Eine Vorlage mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen.</translation>

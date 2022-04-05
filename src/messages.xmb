@@ -126,7 +126,7 @@
   <msg id="TextRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:0</source>Text Event</msg>
   <msg id="TextRecordDialogComponent:description" desc="Dialog description"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:1,4</source> Please enter a suitable text for the event. </msg>
   <msg id="TextRecordDialogComponent:textLabel" desc="Text input label"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:7</source>Text</msg>
-  <msg id="ResetDbDialogComponent:createButton" desc="Create record button"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:12</source>Create Record</msg>
+  <msg id="TextRecordDialogComponent:createButton" desc="Create record button"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:12</source>Create Record</msg>
   <msg id="UpdateLogDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:0</source>Update Template</msg>
   <msg id="UpdateLogDialogComponent:titleLabel" desc="Title input label"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:6,8</source>Title</msg>
   <msg id="UpdateLogDialogComponent:titleError" desc="Title error hint"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:8,12</source>A template with this name already exists. Please choose another name.</msg>
