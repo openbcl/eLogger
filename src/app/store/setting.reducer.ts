@@ -13,7 +13,7 @@ export interface SettingsState {
 
 export const initialSettingsState: SettingsState = {
   theme: localStorage.getItem('theme') || 'light',
-  seperator: ';',
+  seperator: $localize`:Default csv seperator@@SettingsState\:defaultSeperator:,`,
   beep: false,
   quality: 5,
   error: null

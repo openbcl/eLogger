@@ -34,7 +34,7 @@
                             (click)="raiseEvent(eventTemplate, log.id)">
                         </button>
                     </ng-container>
-                    <span i18n="Error message@@RecordComponent:error" *ngIf="!template.eventTemplates?.length">No configured record events found. Please add some record events to your template first.</span>
+                    <span i18n="Error message@@RecordComponent:error" *ngIf="!template.eventTemplates?.length">No configured events found. Please add some events to your template first.</span>
                 </p-panel>
                 <p-accordion class="col-12 md:hidden">
                     <p-accordionTab i18n-header="Table container headline@@RecordComponent:tableContainerHeadline" header="Recorded Events" [selected]="false" styleClass="p-0">

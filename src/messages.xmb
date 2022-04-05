@@ -88,6 +88,7 @@
   <msg id="SettingsComponent:resetAppData" desc="Reset app data headline"><source>src/app/components/settings/settings.component.html:40</source>Reset Data</msg>
   <msg id="SettingsComponent:resetAppText" desc="Description about resetting app data"><source>src/app/components/settings/settings.component.html:43</source>Here you can delete all templates, logs and records at once.</msg>
   <msg id="SettingsComponent:resetAppWarning" desc="Warning about resetting app data"><source>src/app/components/settings/settings.component.html:45</source>Caution: This process cannot be undone!</msg>
+  <msg id="SettingsComponent:resetAppButton" desc="Reset button"><source>src/app/components/settings/settings.component.html:47</source>Reset App Data</msg>
   <msg id="AudioRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:1</source>Audio Event</msg>
   <msg id="AudioRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:11,15</source>Loading microphones ...</msg>
   <msg id="AudioRecordDialogComponent:hint" desc="How to record hint"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:20,24</source> Please hold the microphone button to record your voice message. </msg>
@@ -134,13 +135,17 @@
   <msg id="UpdateLogDialogComponent:updateButton" desc="Update button"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:23,25</source>Update</msg>
   <msg id="LogComponent:title" desc="Title"><source>src/app/logs/components/log/log.component.html:13</source>Title</msg>
   <msg id="LogComponent:description" desc="Description"><source>src/app/logs/components/log/log.component.html:17</source>Description</msg>
+  <msg id="LogComponent:startLoggingButton" desc="Start logging button"><source>src/app/logs/components/log/log.component.html:28</source>Start logging</msg>
+  <msg id="LogComponent:resumeLoggingButton" desc="Resume logging button"><source>src/app/logs/components/log/log.component.html:29</source>Resume logging</msg>
+  <msg id="LogComponent:shareRecordsButton" desc="Share records button"><source>src/app/logs/components/log/log.component.html:30</source>Share records</msg>
+  <msg id="LogComponent:clearRecordsButton" desc="Clear records button"><source>src/app/logs/components/log/log.component.html:31</source>Clear records</msg>
   <msg id="LogComponent:error" desc="Missing template error message"><source>src/app/logs/components/log/log.component.html:33,36</source> This log is based on an unknown template. Please import the corresponding template first. </msg>
   <msg id="LogComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/log/log.component.html:37</source>Event Records</msg>
   <msg id="LogsComponent:header" desc="Page headline"><source>src/app/logs/components/logs/logs.component.html:0,2</source>Logs</msg>
   <msg id="LogsComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/logs/components/logs/logs.component.html:16,19</source>Search keyword</msg>
   <msg id="LogsComponent:empty" desc="Empty table message"><source>src/app/logs/components/logs/logs.component.html:55,58</source> No Logs found. </msg>
   <msg id="RecordComponent:header" desc="Page headline"><source>src/app/logs/components/record/record.component.html:26,28</source>Record Event</msg>
-  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:36,39</source>No configured record events found. Please add some record events to your template first.</msg>
+  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:36,39</source>No configured events found. Please add some events to your template first.</msg>
   <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:39,41</source>Recorded Events</msg>
   <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:43,45</source>Recorded Events</msg>
   <msg id="RecordsComponent:revokeButton" desc="Revoke button"><source>src/app/logs/components/records/records.component.html:13</source>Revoke last record</msg>
@@ -182,6 +187,7 @@
   <msg id="SettingEffects:setBeepSuccessDisabledDetails" desc="Event sound disabled information"><source>src/app/store/setting.effects.ts:135</source>Sound disabled</msg>
   <msg id="SettingEffects:setBeepSuccessHeadline" desc="Event sound configured information"><source>src/app/store/setting.effects.ts:137</source>Event sound</msg>
   <msg id="SettingEffects:resetDBSuccessHeadline" desc="Database resetted information"><source>src/app/store/setting.effects.ts:146</source>Database reset successfully!</msg>
+  <msg id="SettingsState:defaultSeperator" desc="Default csv seperator"><source>src/app/store/setting.reducer.ts:15</source>,</msg>
   <msg id="ShareEffects:shareFailureHeadline" desc="Download failed error"><source>src/app/store/share.effects.ts:44</source>Download failed!</msg>
   <msg id="TemplateEffects:createTemplateSuccessHeadline" desc="Template created information"><source>src/app/store/template.effects.ts:31</source>Template created successfully!</msg>
   <msg id="TemplateEffects:updateTemplateSuccessHeadline" desc="Template updated information"><source>src/app/store/template.effects.ts:39</source>Template updated successfully!</msg>
@@ -207,7 +213,7 @@
   <msg id="CreateTemplateDialogComponent:addButton" desc="Add button"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:24,26</source>Add</msg>
   <msg id="DeleteEventTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:0</source>Delete Template</msg>
   <msg id="DeleteEventTemplateDialogComponent:question" desc="Dialog question"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:1,4</source> Are you sure you want to delete this event template? </msg>
-  <msg id="DeleteEventTemplateDialogComponent:warning" desc="Warning about deletion"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:4,7</source> If you decide to do so this EventTemplate will no longer be available for future logging. Existing log entries remain unaffected. </msg>
+  <msg id="DeleteEventTemplateDialogComponent:warning" desc="Warning about deletion"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:4,7</source> If you decide to do so this event template will no longer be available for future logging. Existing log entries remain unaffected. </msg>
   <msg id="DeleteEventTemplateDialogComponent:deleteButton" desc="Delete button"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:8</source>Delete</msg>
   <msg id="DeleteTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/deletetemplatedialog/deletetemplatedialog.component.html:0</source>Delete Template</msg>
   <msg id="DeleteTemplateDialogComponent:question" desc="Dialog question"><source>src/app/templates/components/dialogs/deletetemplatedialog/deletetemplatedialog.component.html:1,4</source> Are you sure you want to delete this template? </msg>
