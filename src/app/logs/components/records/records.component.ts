@@ -37,7 +37,7 @@ export class RecordsComponent {
 
   cols: any[] = [iconCol, nameCol, absTimeCol];
 
-  processing$ =this.store.pipe(select(recordsProcessingSelector))
+  processingRevoke$ =this.store.pipe(select(recordsProcessingSelector))
 
   constructor(private store: Store) { }
 

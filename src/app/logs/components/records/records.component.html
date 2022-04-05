@@ -1,57 +1,59 @@
-<p-table
-    #dt
-    *ngrxLet="template | logEventTemplates as logEventTemplates"
-    dataKey="name"
-    [responsiveLayout]="responsiveLayout"
-    [breakpoint]="breakpoint"
-    [styleClass]="styleClass"
-    [rowHover]="true"
-    [loading]="!showRevokeButton && processing$ | async"
-    [value]="records">
-    <ng-template *ngIf="showRevokeButton"pTemplate="caption">
-        <div class="p-2">
-            <button pButton pRipple [disabled]="!records?.length" icon="pi pi-replay" class="p-button-outlined p-button-rounded p-button-danger w-full" iconPos="right" i18n-label="Revoke button@@RecordsComponent:revokeButton" label="Revoke last record" (click)="revokeRecord()"></button>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-        <tr>
-            <th></th>
-            <th i18n="Event column@@RecordsComponent:eventColumn">Event</th>
-            <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
-            <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
-                Absolute Time
-            </th>
-            <th i18n="Relative time column@@RecordsComponent:relativeTimeColumn" *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-record let-rowIndex="rowIndex">
-        <tr [class]="record.color | colorClass">
-            <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
-            <td>{{ record.name }}</td>
-            <td *ngIf="logEventTemplates.containData && showDataColumn">
-                <ng-container *ngIf="record.data">
-                    <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
-                    <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="record.data" [preview]="true"></p-image>
-                    <audio *ngIf="record.eventType === EventType.AUDIO" [src]="record.data | bypassSecurityTrustUrl" controls></audio>
-                </ng-container>
-            </td>
-            <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
-                {{ record.date | date : 'medium' }}
-            </td>
-            <td *ngIf="logEventTemplates.containStart" class="text-right">
-                <ng-container *ngIf="record | eventRelTime: records as rel">
-                    <span class="el-font-monospace">
-                        {{ rel.prefix }} {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
-                    </span>
-                </ng-container>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-        <tr>
-            <td i18n="Empty table message@@RecordsComponent:empty" class="text-center" [attr.colspan]="3 + logEventTemplates.additionalColumns">
-                No records found.
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+<ng-container *ngrxLet="processingRevoke$ as processingRevoke">
+    <p-table
+        #dt
+        *ngrxLet="template | logEventTemplates as logEventTemplates"
+        dataKey="name"
+        [responsiveLayout]="responsiveLayout"
+        [breakpoint]="breakpoint"
+        [styleClass]="styleClass"
+        [rowHover]="true"
+        [loading]="!showRevokeButton && processingRevoke"
+        [value]="records">
+        <ng-template *ngIf="showRevokeButton"pTemplate="caption">
+            <div class="p-2">
+                <button pButton pRipple [disabled]="!records?.length || processingRevoke" icon="pi pi-replay" class="p-button-outlined p-button-rounded p-button-danger w-full" iconPos="right" i18n-label="Revoke button@@RecordsComponent:revokeButton" label="Revoke last record" (click)="revokeRecord()"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th></th>
+                <th i18n="Event column@@RecordsComponent:eventColumn">Event</th>
+                <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
+                <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                    Absolute Time
+                </th>
+                <th i18n="Relative time column@@RecordsComponent:relativeTimeColumn" *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-record let-rowIndex="rowIndex">
+            <tr [class]="record.color | colorClass">
+                <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
+                <td>{{ record.name }}</td>
+                <td *ngIf="logEventTemplates.containData && showDataColumn">
+                    <ng-container *ngIf="record.data">
+                        <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
+                        <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="record.data" [preview]="true"></p-image>
+                        <audio *ngIf="record.eventType === EventType.AUDIO" [src]="record.data | bypassSecurityTrustUrl" controls></audio>
+                    </ng-container>
+                </td>
+                <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                    {{ record.date | date : 'medium' }}
+                </td>
+                <td *ngIf="logEventTemplates.containStart" class="text-right">
+                    <ng-container *ngIf="record | eventRelTime: records as rel">
+                        <span class="el-font-monospace">
+                            {{ rel.prefix }} {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
+                        </span>
+                    </ng-container>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td i18n="Empty table message@@RecordsComponent:empty" class="text-center" [attr.colspan]="3 + logEventTemplates.additionalColumns">
+                    No records found.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ng-container>

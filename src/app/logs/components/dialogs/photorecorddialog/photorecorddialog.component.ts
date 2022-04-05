@@ -57,7 +57,7 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
   async startCamera() {
     try {
       if (!this.hasDevices) {
-        await navigator.mediaDevices.getUserMedia({ video: { width: { min: 320, ideal: 9000 }, height: { min: 240, ideal: 6000 } }});
+        let mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
         this.availableDevices = (await navigator.mediaDevices.enumerateDevices())?.filter(device => device.kind === 'videoinput').map(device => ({
           deviceId: device.deviceId,
           groupId: device.groupId,
@@ -65,11 +65,22 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
           label: device.label
         }) as MediaDeviceInfo);
         this.hasDevices = !!this.availableDevices?.length;
+        mediaStream.getVideoTracks().forEach(track => {
+          try {
+            track.stop()
+          } catch {}
+        });
+        mediaStream = null;
       }
       if (this.hasDevices) {
         try {
           this.stopCamera();
-          this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({ video: { deviceId: this.selectedDevice }});
+          this.video.nativeElement.srcObject = await navigator.mediaDevices.getUserMedia({
+            video: {
+              deviceId: this.selectedDevice,
+              width: { min: 640, ideal: 9000 }, height: { min: 480, ideal: 6000 }
+            }
+          });
           this.selectedDevice = (this.video.nativeElement.srcObject as MediaStream).getVideoTracks().find(track => track.kind === 'video').getSettings().deviceId;
           if (this.form.value.deviceCurrent?.deviceId !== this.selectedDevice) {
             this.form.patchValue({
@@ -112,7 +123,11 @@ export class PhotoRecordDialogComponent extends BaseDialogComponent implements O
 
   stopCamera() {
     if (this.video?.nativeElement) {
-      (this.video.nativeElement.srcObject as MediaStream)?.getVideoTracks().forEach(track =>  track.readyState == 'live' && track.kind === 'video' && track.stop());
+      (this.video.nativeElement.srcObject as MediaStream)?.getVideoTracks().forEach(track => {
+        try {
+          track.stop()
+        } catch {}
+      });
       this.video.nativeElement.srcObject = null;
     }
   }
