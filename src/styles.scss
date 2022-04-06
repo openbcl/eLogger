@@ -45,6 +45,16 @@ body {
     }
 }
 
+.p-dropdown-label.p-placeholder {
+    white-space: normal !important;
+}
+
+.p-image-toolbar {
+    z-index: 1200;
+    background: rgba(0,0,0,0.25);
+    padding: 0.5rem;
+  }
+
 .el-dropdown-items-p-0 .p-dropdown-panel .p-dropdown-items li.p-dropdown-item  {
     padding: 0;
 }

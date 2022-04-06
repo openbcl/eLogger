@@ -57,7 +57,7 @@
   <translation id="ResetDbDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Protokolle, deren Ereignisaufzeichnungen und alle Vorlagen löschen wollen? </translation>
   <translation id="ResetDbDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Löschbefehl ein</translation>
   <translation id="ResetDbDialogComponent:hint2" desc="Hint 2/2">, um die Löschung aller Daten zu bestätigen.</translation>
-  <translation id="ResetDbDialogComponent:hintLabel" desc="Hint input label">Bitte geben Sie hier den Löschbefehl ein ...</translation>
+  <translation id="ResetDbDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
   <translation id="ResetDbDialogComponent:deleteButton" desc="Reset App button">App-Daten zurücksetzen</translation>
   <translation id="ResetDbDialogComponent:deleteCommand" desc="Delete command">App-Daten zurücksetzen</translation>
   <translation id="InfoComponent:header" desc="Page headline">App Info</translation>
@@ -100,13 +100,13 @@
   <translation id="DeleteLogDialogComponent:warning" desc="Warning about deletion"> Wenn Sie sich dafür entscheiden, werden auch alle Aufzeichnungen dieses Protokolls unwiederbringlich gelöscht. </translation>
   <translation id="DeleteLogDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
   <translation id="DeleteLogDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, das Sie löschen möchten, um den Löschvorgang zu bestätigen.</translation>
-  <translation id="DeleteLogDialogComponent:hintLabel" desc="Hint input label">Protokoll löschen (Titel) ...</translation>
+  <translation id="DeleteLogDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
   <translation id="DeleteLogDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
   <translation id="DeleteRecordsDialogComponent:header" desc="Dialog headline">Aufzeichnungen löschen</translation>
   <translation id="DeleteRecordsDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Ereignisaufzeichnungen dieses Protokolls löschen wollen? </translation>
   <translation id="DeleteRecordsDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
   <translation id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, um die Löschung aller aufgezeichneten Ereignisse zu bestätigen.</translation>
-  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Aufgezeichnete Protokollereignisse löschen (Titel) ...</translation>
+  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
   <translation id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
   <translation id="PhotoRecordDialogComponent:header" desc="Dialog headline">Fotoereignis</translation>
   <translation id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Kameras werden geladen ...</translation>

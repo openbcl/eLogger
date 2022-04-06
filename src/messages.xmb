@@ -63,7 +63,7 @@
   <msg id="ResetDbDialogComponent:question" desc="Dialog question"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:1,4</source> Are you sure you want to delete all logs, their event records and all templates? </msg>
   <msg id="ResetDbDialogComponent:hint1" desc="Hint 1/2"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:8</source>Please enter the delete command</msg>
   <msg id="ResetDbDialogComponent:hint2" desc="Hint 2/2"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:12</source>to confirm the deletion of all data.</msg>
-  <msg id="ResetDbDialogComponent:hintLabel" desc="Hint input label"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:16</source>Please enter the delete command here ...</msg>
+  <msg id="ResetDbDialogComponent:hintLabel" desc="Hint input label"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:16</source>Delete command</msg>
   <msg id="ResetDbDialogComponent:deleteButton" desc="Reset App button"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:21</source>Reset App Data</msg>
   <msg id="ResetDbDialogComponent:deleteCommand" desc="Delete command"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.ts:15</source>Reset App Data</msg>
   <msg id="InfoComponent:header" desc="Page headline"><source>src/app/components/info/info.component.html:0</source>App Information</msg>
@@ -107,13 +107,13 @@
   <msg id="DeleteLogDialogComponent:warning" desc="Warning about deletion"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:5,8</source> If you decide to do this all records of this log will also be unrecoverably deleted. </msg>
   <msg id="DeleteLogDialogComponent:hint1" desc="Hint 1/2"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:11,14</source>Please enter the title</msg>
   <msg id="DeleteLogDialogComponent:hint2" desc="Hint 2/2"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:15,18</source>of the log you want to delete to confirm the deletion.</msg>
-  <msg id="DeleteLogDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:19,23</source>Delete log with title ...</msg>
+  <msg id="DeleteLogDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:19,23</source>Delete command</msg>
   <msg id="DeleteLogDialogComponent:deleteButton" desc="Delete button"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:24,27</source>Delete</msg>
   <msg id="DeleteRecordsDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:0</source>Clear Records</msg>
   <msg id="DeleteRecordsDialogComponent:question" desc="Dialog question"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:2,6</source> Are you sure you want to delete all event records of this log? </msg>
   <msg id="DeleteRecordsDialogComponent:hint1" desc="Hint 1/2"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:8,11</source>Please enter the title</msg>
   <msg id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:12,15</source>of the log to confirm the deletion of all records.</msg>
-  <msg id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:16,20</source>Delete all records of log with title ...</msg>
+  <msg id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:16,20</source>Delete command</msg>
   <msg id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:21,24</source>Delete</msg>
   <msg id="PhotoRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:1</source>Photo Event</msg>
   <msg id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:11,15</source>Loading cameras ...</msg>

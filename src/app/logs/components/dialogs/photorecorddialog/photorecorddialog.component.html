@@ -25,7 +25,7 @@
     </form>
     <ng-template pTemplate="footer">
         <form *ngrxLet="quality$ as quality" [formGroup]="form" (ngSubmit)="submit(quality)">
-            <button pButton pRipple [disabled]="blockUI" type="submit" [icon]="blockUI ? 'pi pi-lock' : 'pi pi-camera'" class="p-button-rounded p-button-danger"></button>
+            <button pButton pRipple [disabled]="blockUI" type="submit" [icon]="blockUI ? 'pi pi-lock' : 'pi pi-camera'" class="p-button-rounded p-button-danger m-1 w-5rem h-5rem text-4xl"></button>
         </form>
     </ng-template>
 </p-dialog>

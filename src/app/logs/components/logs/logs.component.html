@@ -24,16 +24,16 @@
         </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th class="w-3rem"></th>
+                <th *ngIf="dt.value?.length > 1" class="w-3rem"></th>
                 <th *ngFor="let col of columns" [class]="col.class">{{ col.header }}</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-log let-index="rowIndex">
             <tr draggable="true" [pReorderableRow]="index" class="cursor-pointer">
-                <td class="cursor-move hide-on-smallscreen">
-                    <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+                <td *ngIf="dt.value?.length > 1" class="cursor-move hide-on-smallscreen">
+                    <span class="pi pi-bars" draggable="true" [pReorderableRowHandle]="index"></span>
                 </td>
-                <td class="flex flex-wrap justify-content-between hide-on-bigscreen">
+                <td *ngIf="dt.value?.length > 1" class="flex flex-wrap justify-content-between hide-on-bigscreen">
                     <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, -1, dt.value)"></button>
                     <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, 1, dt.value)"></button>
                 </td>

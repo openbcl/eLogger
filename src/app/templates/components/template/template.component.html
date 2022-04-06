@@ -54,8 +54,8 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="w-3rem"></th>
-                        <th class="text-center" *ngFor="let col of cols" pReorderableColumn>
+                        <th *ngIf="dt.value?.length > 1" class="w-3rem"></th>
+                        <th *ngFor="let col of cols" pReorderableColumn>
                             {{col.header}}
                         </th>
                         <th class="w-3rem hide-on-smallscreen"></th>
@@ -63,20 +63,20 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-eventTemplate let-index="rowIndex">
                     <tr draggable="true" [pReorderableRow]="index" [class]="eventTemplate.color | colorClass">
-                        <td class="cursor-move hide-on-smallscreen">
-                            <span class="pi pi-bars" [pReorderableRowHandle]="index"></span>
+                        <td *ngIf="dt.value?.length > 1" class="cursor-move hide-on-smallscreen">
+                            <span class="pi pi-bars" draggable="true" [pReorderableRowHandle]="index"></span>
                         </td>
-                        <td class="flex flex-wrap justify-content-between hide-on-bigscreen">
+                        <td *ngIf="dt.value?.length > 1" class="flex flex-wrap justify-content-between hide-on-bigscreen">
                             <div>
                                 <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, template, -1)"></button>
                                 <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, template, 1)"></button>
                             </div>
                             <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
-                        <td class="text-center" >{{ eventTemplate.name }}</td>
-                        <td class="text-center" >{{ eventTemplate.eventType | eventLabel}}</td>
+                        <td>{{ eventTemplate.name }}</td>
+                        <td>{{ eventTemplate.eventType | eventLabel}}</td>
                         <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
-                        <td class="pr-2 hide-on-smallscreen">
+                        <td [ngClass]="{'hide-on-smallscreen': dt.value?.length > 1 }" class="px-2">
                             <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
                     </tr>
