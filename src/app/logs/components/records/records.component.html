@@ -30,10 +30,12 @@
                 <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
                 <td>{{ record.name }}</td>
                 <td *ngIf="logEventTemplates.containData && showDataColumn">
-                    <ng-container *ngIf="record.data">
-                        <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
-                        <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="record.data" [preview]="true"></p-image>
-                        <audio *ngIf="record.eventType === EventType.AUDIO" [src]="record.data | bypassSecurityTrustUrl" controls></audio>
+                    <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
+                    <ng-container *ngIf="[EventType.AUDIO, EventType.PHOTO].includes(record.eventType)">
+                        <ng-container *ngIf="loadRecordData(record.key) | async as data">
+                            <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="data" [preview]="true"></p-image>
+                            <audio *ngIf="record.eventType === EventType.AUDIO" [src]="data | bypassSecurityTrustUrl" controls></audio>
+                        </ng-container>
                     </ng-container>
                 </td>
                 <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">

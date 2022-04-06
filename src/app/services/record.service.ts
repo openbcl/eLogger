@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Key, NgxIndexedDBService } from 'ngx-indexed-db';
-import { map, exhaustMap, of, throwError, catchError } from 'rxjs';
+import { map, exhaustMap, of, throwError, catchError, filter } from 'rxjs';
 import { EventTemplate, EventType, Record, RECORDS } from '../models';
 
 @Injectable({
@@ -19,11 +19,15 @@ export class RecordService {
   }
 
   loadRecords(logId: string) {
-    return this.db.getAllByIndex<Record>(RECORDS, 'logId', IDBKeyRange.only(logId));
+    return this.db.getAllByIndex<Record>(RECORDS, 'logId', IDBKeyRange.only(logId)).pipe(map(records => records.map(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType) ? { ...record, data: undefined } : record )));
   }
 
   loadAllRecords() {
-    return this.db.getAll<Record>(RECORDS);
+    return this.db.getAll<Record>(RECORDS).pipe(map(records => records.map(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType) ? { ...record, data: undefined } : record )));
+  }
+
+  loadRecordData(key: number) {
+    return this.db.getByKey<Record>(RECORDS, key).pipe(map(record => record?.data), filter(data => !!data?.length));
   }
 
   countTotalRecords() {

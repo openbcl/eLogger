@@ -4,6 +4,8 @@ import { revokeRecord } from '../../../store/record.actions';
 import { Template, Record, EventType } from '../../../models';
 import { recordsProcessingSelector } from '../../../store/record.selectors';
 import { iconCol, nameCol, absTimeCol } from '../../../utils/lib';
+import { RecordService } from '../../../services/record.service';
+import { filter, Observable } from 'rxjs';
 
 @Component({
   selector: 'el-records',
@@ -39,11 +41,23 @@ export class RecordsComponent {
 
   processingRevoke$ =this.store.pipe(select(recordsProcessingSelector))
 
-  constructor(private store: Store) { }
+  mediaData: { [key: number]: Observable<string> } = {}
+
+  constructor(
+    private store: Store,
+    private recordService: RecordService
+  ) { }
 
   revokeRecord() {
     if (!!this.records?.length) {
       this.store.dispatch(revokeRecord({ logId: this.records[0].logId}))
     }
+  }
+
+  loadRecordData(key: number) {
+    if (!this.mediaData[key]) {
+      this.mediaData[key] = this.recordService.loadRecordData(key);
+    }
+    return this.mediaData[key];
   }
 }

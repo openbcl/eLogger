@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store';
-import { filter, from, of, switchMap, take } from 'rxjs';
+import { filter, from, map, of, switchMap, take, combineLatest } from 'rxjs';
 import { EventLabelPipe, EventRelTimePipe } from '../ui/pipes/event.pipe'
 import { TemplateDescPipe, TemplateTitlePipe } from '../ui/pipes/log.pipe'
 import { EventType, Log, Template, Record } from '../models'
@@ -10,6 +10,7 @@ import { loadAllRecords } from '../store/record.actions';
 import { sha1 } from 'object-hash'
 import { toJSON } from '../utils/lib';
 import * as JSZip from 'jszip'
+import { RecordService } from './record.service';
 
 
 @Injectable({
@@ -26,7 +27,8 @@ export class ExportService {
         private eventRelTime: EventRelTimePipe,
         private templateTitle: TemplateTitlePipe,
         private templateDesc: TemplateDescPipe,
-        private store: Store
+        private store: Store,
+        private recordService: RecordService
     ) { }
 
     shareLogs (logs: Log[], templates: Template[], seperator: string) {
@@ -46,13 +48,14 @@ export class ExportService {
                     const files: {blob: Blob, filename: string}[] = logs.filter(log => !!log.recordsCount).map(log => ({
                         blob: this.recordsToCSV(allRecords[log.id], log, seperator),
                         filename: `${this.folderName(log)}/${this.recordsFilename(allRecords[log.id], log)}`
-                    })).concat(...(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.PHOTO)).map(log =>
-                        this.extractPhotos(allRecords[log.id], log)
-                    ))).concat(...(logs.filter(log => !!allRecords[log.id]?.find(record => record.eventType === EventType.AUDIO)).map(log =>
-                        this.extractAudios(allRecords[log.id], log)
-                    )));
+                    }));
                     files.push(logsSummaryFile);
-                    return this.downloadZipFile(files, `${filename}zip`)
+                    const mediaFiles = logs.filter(log => !!allRecords[log.id]?.find(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType))).map(log => ({
+                        records: allRecords[log.id],
+                        log,
+                        folder: this.folderName(log)
+                    }))
+                    return this.downloadZipFile(files, `${filename}zip`, mediaFiles)
                 })
             );
         } else {
@@ -66,9 +69,7 @@ export class ExportService {
         if (!records.find(record => [EventType.PHOTO, EventType.AUDIO].includes(record.eventType))) {
             return of(this.downloadFile(blob, filename));
         }
-        const photos = this.extractPhotos(records, log, '.');
-        const audios = this.extractAudios(records, log, '.');
-        return from(this.downloadZipFile([ { filename, blob }, ...photos, ...audios ], this.uniqueFilename(this.folderName(log), records, 'zip')))
+        return from(this.downloadZipFile([ { filename, blob } ], this.uniqueFilename(this.folderName(log), records, 'zip'), [{ records, log, folder: '.' }]))
     }
 
     exportTemplates(templates: Template[]) {
@@ -101,20 +102,6 @@ export class ExportService {
     private mediaFilename(record: Record, log: Log) {
         const extension = record.data.match(/data:.+?\/(.+?);/)[1];
         return this.fsCompatibleFilename(`${this.folderName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.${extension === 'jpeg' ? 'jpg' : extension}`)
-    }
-
-    private extractPhotos(records: Record[], log: Log, folder = this.folderName(log)) {
-        return records.filter(record => record.eventType === EventType.PHOTO).map(record => ({
-            blob: this.dataUrlToBlob(record.data),
-            filename: `${folder}/${this.mediaFilename(record, log)}`
-        }));
-    }
-
-    private extractAudios(records: Record[], log: Log, folder = this.folderName(log)) {
-        return records.filter(record => record.eventType === EventType.AUDIO).map(record => ({
-            blob: this.dataUrlToBlob(record.data),
-            filename: `${folder}/${this.mediaFilename(record, log)}`
-        }));
     }
 
     private dataUrlToBlob(data: string) {
@@ -204,12 +191,22 @@ export class ExportService {
         element.remove();
     }
 
-    private async downloadZipFile(files: {blob: Blob, filename: string}[], filename: string) {
+    private async downloadZipFile(files: {blob: Blob, filename: string}[], filename: string, logsData: { records: Record[], log: Log, folder: string }[] = []) {
         const zip = new JSZip();
-        files.forEach(file => zip.file(file.filename, file.blob))
-        await zip.generateAsync({type: 'blob'}).then(zipFile => {
+        const generateZIP = async () => await zip.generateAsync({type: 'blob'}).then(zipFile => {
             this.downloadFile(zipFile, filename)
         });
+        files.forEach(file => zip.file(file.filename, file.blob))
+        if (!!logsData?.find(logData => logData.records?.find(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType)))) {
+            combineLatest(logsData.map(logData => logData.records
+                .filter(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType))
+                .map(record => this.recordService.loadRecordData(record.key).pipe(map(data => {
+                    zip.file(`${logData.folder}/${this.mediaFilename({ ...record, data}, logData.log)}`, this.dataUrlToBlob(data))
+                })))
+            ).flat()).pipe(take(1)).subscribe(async () => await generateZIP());
+        } else {
+            await generateZIP();
+        }
     }
 
     private downloadJSON(values: any[], key: string, part: string) {
