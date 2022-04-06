@@ -198,12 +198,15 @@ export class ExportService {
         });
         files.forEach(file => zip.file(file.filename, file.blob))
         if (!!logsData?.find(logData => logData.records?.find(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType)))) {
-            combineLatest(logsData.map(logData => logData.records
+            return new Promise<void>(resolve => combineLatest(logsData.map(logData => logData.records
                 .filter(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType))
                 .map(record => this.recordService.loadRecordData(record.key).pipe(map(data => {
                     zip.file(`${logData.folder}/${this.mediaFilename({ ...record, data}, logData.log)}`, this.dataUrlToBlob(data))
                 })))
-            ).flat()).pipe(take(1)).subscribe(async () => await generateZIP());
+            ).flat()).pipe(take(1)).subscribe(async () => {
+                await generateZIP();
+                resolve();
+            }));
         } else {
             await generateZIP();
         }
