@@ -5,15 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class AudioService {
 
-  audioContext: AudioContext = new AudioContext();
+  private audioContext: AudioContext;
 
   constructor() { }
 
   unlock() {
-    if (this.audioContext.state === 'suspended') {
+    if (!this.audioContext || this.audioContext.state === 'suspended') {
       const events = ['touchstart', 'touchend', 'mousedown', 'keydown'];
       const unlock = () => {
         events.forEach(event => document.body.removeEventListener(event, unlock));
+        if (!this.audioContext) {
+          this.audioContext = new AudioContext();
+        }
         this.audioContext.resume();
       };
       events.forEach(event => document.body.addEventListener(event, unlock, false));
