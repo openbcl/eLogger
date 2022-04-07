@@ -5,7 +5,7 @@ import { Template, Record, EventType } from '../../../models';
 import { recordsProcessingSelector } from '../../../store/record.selectors';
 import { iconCol, nameCol, absTimeCol } from '../../../utils/lib';
 import { RecordService } from '../../../services/record.service';
-import { filter, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'el-records',
@@ -26,10 +26,10 @@ export class RecordsComponent {
   styleClass: string;
 
   @Input()
-  responsiveLayout = "stack";
+  responsiveLayout = 'stack';
 
   @Input()
-  breakpoint = "960px";
+  breakpoint = '960px';
 
   @Input()
   showDataColumn: boolean;

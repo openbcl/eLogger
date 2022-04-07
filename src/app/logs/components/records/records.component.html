@@ -19,9 +19,8 @@
                 <th></th>
                 <th i18n="Event column@@RecordsComponent:eventColumn">Event</th>
                 <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
-                <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
-                    Absolute Time
-                </th>
+                <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" class="text-center">Absolute Time</th>
+                <th i18n="Time difference column@@RecordsComponent:timeDifferenceCol" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">Time Difference</th>
                 <th i18n="Relative time column@@RecordsComponent:relativeTimeColumn" *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
             </tr>
         </ng-template>
@@ -38,8 +37,18 @@
                         </ng-container>
                     </ng-container>
                 </td>
-                <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                <td class="text-center">
                     {{ record.date | date : 'medium' }}
+                </td>
+                <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                    <ng-container *ngIf="record | eventTimeDiff: records as diff">
+                        <span *ngIf="diff.days" class="el-font-monospace">
+                            {{ diff.days }}d
+                        </span>
+                        <span class="el-font-monospace">
+                            {{ diff.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
+                        </span>
+                    </ng-container>
                 </td>
                 <td *ngIf="logEventTemplates.containStart" class="text-right">
                     <ng-container *ngIf="record | eventRelTime: records as rel">

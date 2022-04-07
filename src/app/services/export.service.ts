@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core'
 import { select, Store } from '@ngrx/store';
 import { filter, from, map, of, switchMap, take, combineLatest } from 'rxjs';
-import { EventLabelPipe, EventRelTimePipe } from '../ui/pipes/event.pipe'
+import { EventLabelPipe, EventRelTimePipe, EventTimeDiffPipe } from '../ui/pipes/event.pipe'
 import { TemplateDescPipe, TemplateTitlePipe } from '../ui/pipes/log.pipe'
 import { EventType, Log, Template, Record } from '../models'
 import { allRecordsSelector } from '../store/record.selectors';
@@ -25,6 +25,7 @@ export class ExportService {
         private eventLabel: EventLabelPipe,
         private date: DatePipe,
         private eventRelTime: EventRelTimePipe,
+        private eventTimeDiff: EventTimeDiffPipe,
         private templateTitle: TemplateTitlePipe,
         private templateDesc: TemplateDescPipe,
         private store: Store,
@@ -126,12 +127,14 @@ export class ExportService {
                 headers.push('Data');
             }
             headers.push('Absolute Time');
+            headers.push('Time Difference');
             if (containStart) {
                 headers.push('Relative Time');
             }
             csv.push(headers);
             records.forEach(record => {
                 const relTime = this.eventRelTime.transform(record, records);
+                const timeDiff = this.eventTimeDiff.transform(record, records);
                 const row = [ record.name, this.eventLabel.transform(record.eventType, false) ];
                 if (containData) {
                     switch(record.eventType) {
@@ -146,8 +149,9 @@ export class ExportService {
                     }
                 }
                 row.push(this.date.transform(record.date, 'yy-MM-dd, HH:mm:ss'));
+                row.push(`${timeDiff.days ? `${timeDiff.days}d ` : ''}${this.date.transform(timeDiff.time, 'HH:mm:ss.SSS', 'UTC+0')}`);
                 if (containStart) {
-                    row.push(!!relTime.time ? `${relTime.prefix}${relTime.days ? `${relTime.days}d ` : ''}${this.date.transform(relTime.time, 'HH:mm:ss.SSS', 'UTC+0')}`: relTime.prefix)
+                    row.push(!!relTime.time ? `${relTime.prefix}${relTime.days ? `${relTime.days}d ` : ''}${this.date.transform(relTime.time, 'HH:mm:ss.SSS', 'UTC+0')}`: relTime.prefix);
                 }
                 csv.push(row);
             });

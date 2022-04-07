@@ -145,23 +145,24 @@
   <msg id="LogsComponent:header" desc="Page headline"><source>src/app/logs/components/logs/logs.component.html:0,2</source>Logs</msg>
   <msg id="LogsComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/logs/components/logs/logs.component.html:16,19</source>Search keyword</msg>
   <msg id="LogsComponent:empty" desc="Empty table message"><source>src/app/logs/components/logs/logs.component.html:55,58</source> No Logs found. </msg>
-  <msg id="RecordComponent:header" desc="Page headline"><source>src/app/logs/components/record/record.component.html:26,28</source>Record Event</msg>
-  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:36,39</source>No configured events found. Please add some events to your template first.</msg>
-  <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:39,41</source>Recorded Events</msg>
-  <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:43,45</source>Recorded Events</msg>
+  <msg id="RecordComponent:header" desc="Page headline"><source>src/app/logs/components/record/record.component.html:27,29</source>Record Event</msg>
+  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:37,40</source>No configured events found. Please add some events to your template first.</msg>
+  <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:40,42</source>Recorded Events</msg>
+  <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:44,46</source>Recorded Events</msg>
   <msg id="RecordsComponent:revokeButton" desc="Revoke button"><source>src/app/logs/components/records/records.component.html:13,16</source>Revoke last record</msg>
   <msg id="RecordsComponent:eventColumn" desc="Event column"><source>src/app/logs/components/records/records.component.html:19,21</source>Event</msg>
   <msg id="RecordsComponent:dataColumn" desc="Data column"><source>src/app/logs/components/records/records.component.html:20,22</source>Data</msg>
-  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.html:22,25</source> Absolute Time </msg>
-  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.html:24,28</source>Relative Time</msg>
-  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:55,58</source> No records found. </msg>
+  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.html:21,23</source>Absolute Time</msg>
+  <msg id="RecordsComponent:timeDifferenceCol" desc="Time difference column"><source>src/app/logs/components/records/records.component.html:22,24</source>Time Difference</msg>
+  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.html:23,27</source>Relative Time</msg>
+  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:70,73</source> No records found. </msg>
   <msg id="LogEffects:loadLogFailureHeadline" desc="Log not found error"><source>src/app/logs/store/log.effects.ts:89</source>Error while loading log!</msg>
   <msg id="LogEffects:createLogFailureHeadline" desc="Log not created error"><source>src/app/logs/store/log.effects.ts:97</source>Error while creating log!</msg>
   <msg id="LogEffects:updateLogFailureHeadline" desc="Log not updated error"><source>src/app/logs/store/log.effects.ts:105</source>Error while updating log!</msg>
   <msg id="LogEffects:deleteLogFailureHeadline" desc="Log not deleted error"><source>src/app/logs/store/log.effects.ts:113</source>Error while deleting log!</msg>
   <msg id="LogService:notFoundError" desc="Log not found error"><source>src/app/services/log.service.ts:63</source>Log does not exist.</msg>
   <msg id="LogService:deleteError" desc="Log not deleted error"><source>src/app/services/log.service.ts:67</source>Could not delete log.</msg>
-  <msg id="RecordService:revokeError" desc="Revoke record failed error"><source>src/app/services/record.service.ts:39</source>Could not revoke last record of logId</msg>
+  <msg id="RecordService:revokeError" desc="Revoke record failed error"><source>src/app/services/record.service.ts:47</source>Could not revoke last record of logId</msg>
   <msg id="SettingService:resetError" desc="Reset database error"><source>src/app/services/setting.service.ts:64</source>Could not reset database.</msg>
   <msg id="TemplateService:notFoundError" desc="Template not found error"><source>src/app/services/template.service.ts:50</source>Template does not exist.</msg>
   <msg id="TemplateService:deleteError" desc="Template not deleted error"><source>src/app/services/template.service.ts:54</source>Could not delete template.</msg>
@@ -240,14 +241,14 @@
   <msg id="TemplateEffects:createTemplateFailureHeadline" desc="Template not created error"><source>src/app/templates/store/template.effects.ts:66</source>Error while creating template!</msg>
   <msg id="TemplateEffects:updateTemplateFailureHeadline" desc="Template not updated error"><source>src/app/templates/store/template.effects.ts:74</source>Error while updating template!</msg>
   <msg id="TemplateEffects:deleteTemplateFailureHeadline" desc="Template not deleted error"><source>src/app/templates/store/template.effects.ts:82</source>Error while deleting template!</msg>
-  <msg id="EventLabelPipe:start" desc="Start label"><source>src/app/ui/pipes/event.pipe.ts:126</source>Start</msg>
-  <msg id="EventLabelPipe:pause" desc="Pause label"><source>src/app/ui/pipes/event.pipe.ts:128</source>Pause</msg>
-  <msg id="EventLabelPipe:resume" desc="Resume label"><source>src/app/ui/pipes/event.pipe.ts:130</source>Resume</msg>
-  <msg id="EventLabelPipe:end" desc="End label"><source>src/app/ui/pipes/event.pipe.ts:132</source>End</msg>
-  <msg id="EventLabelPipe:text" desc="Text label"><source>src/app/ui/pipes/event.pipe.ts:134</source>Text</msg>
-  <msg id="EventLabelPipe:photo" desc="Photo label"><source>src/app/ui/pipes/event.pipe.ts:136</source>Photo</msg>
-  <msg id="EventLabelPipe:audio" desc="Audio label"><source>src/app/ui/pipes/event.pipe.ts:138</source>Audio</msg>
-  <msg id="EventLabelPipe:custom" desc="Custom label"><source>src/app/ui/pipes/event.pipe.ts:140</source>Custom</msg>
+  <msg id="EventLabelPipe:start" desc="Start label"><source>src/app/ui/pipes/event.pipe.ts:157</source>Start</msg>
+  <msg id="EventLabelPipe:pause" desc="Pause label"><source>src/app/ui/pipes/event.pipe.ts:159</source>Pause</msg>
+  <msg id="EventLabelPipe:resume" desc="Resume label"><source>src/app/ui/pipes/event.pipe.ts:161</source>Resume</msg>
+  <msg id="EventLabelPipe:end" desc="End label"><source>src/app/ui/pipes/event.pipe.ts:163</source>End</msg>
+  <msg id="EventLabelPipe:text" desc="Text label"><source>src/app/ui/pipes/event.pipe.ts:165</source>Text</msg>
+  <msg id="EventLabelPipe:photo" desc="Photo label"><source>src/app/ui/pipes/event.pipe.ts:167</source>Photo</msg>
+  <msg id="EventLabelPipe:audio" desc="Audio label"><source>src/app/ui/pipes/event.pipe.ts:169</source>Audio</msg>
+  <msg id="EventLabelPipe:custom" desc="Custom label"><source>src/app/ui/pipes/event.pipe.ts:171</source>Custom</msg>
   <msg id="TemplateTitlePipe:unknownTemplateError" desc="Unknown template error"><source>src/app/ui/pipes/log.pipe.ts:21</source>Unknown template: Please import the corresponding template first.</msg>
   <msg id="lib:titleColumn" desc="Title column"><source>src/app/utils/lib.ts:4</source>Title</msg>
   <msg id="lib:descriptionColumn" desc="Description column"><source>src/app/utils/lib.ts:5</source>Description</msg>

@@ -3,6 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { EventTemplate, EventType } from '../../models';
 import { Record } from '../../models'
 
+const relDays = (date: Date) => Math.trunc(+date / 86400000);
+
 @Pipe({
   name: 'eventRelTime'
 })
@@ -22,10 +24,10 @@ export class EventRelTimePipe implements PipeTransform {
           const accPauseEvents = records.filter(r => r.key < value.key && r.eventType === EventType.PAUSE).reduce((sum, r) => sum + +r.date, 0);
           const accResumeEvents = records.filter(r => r.key <= value.key && r.eventType === EventType.RESUME).reduce((sum, r) => sum + +r.date, 0);
           const time = new Date(+value.date - +startEvent.date - (accResumeEvents - accPauseEvents));
-          return { prefix: prefixPositiv, days: Math.trunc(+time / 86400000), time }
+          return { prefix: prefixPositiv, days: relDays(time), time }
         } else {
           const time = new Date(+startEvent.date - +value.date);
-          return { prefix: prefixNegativ, days: Math.trunc(+time / 86400000), time }
+          return { prefix: prefixNegativ, days: relDays(time), time }
         }
     }
   }
@@ -47,6 +49,33 @@ export class CurrentEventRelTimePipe implements PipeTransform {
     const accResumeEvents = records.filter(r => r.eventType === EventType.RESUME).reduce((sum, r) => sum + +r.date, 0);
     return new Date(+((record.eventType === EventType.PAUSE || record.eventType === EventType.END) ? record.date : new Date()) - +startEvent.date - (accResumeEvents - accPauseEvents));
   }
+}
+
+@Pipe({
+  name: 'eventTimeDiff'
+})
+export class EventTimeDiffPipe implements PipeTransform {
+
+  transform(value: Record, records: Record[]) {
+    const index = records.findIndex(record => record.key === value.key);
+    const preRecords = records.slice(0, index).reverse();
+    const timeDiffWithoutPauses = () => {
+      const preRecord = preRecords.find(record => ![EventType.PAUSE, EventType.RESUME].includes(record.eventType));
+      const preRecordIndex = preRecords.findIndex(record => record.key === preRecord.key);
+      let milliseconds = +value.date - +preRecord.date;
+      for (let i = 0; i < preRecordIndex; i = i + 2) {
+        milliseconds -= +preRecords[i].date - +preRecords[i + 1].date;
+      }
+      return new Date(milliseconds);
+    }
+    if (!!preRecords.length) {
+      const time = preRecords[0].eventType !== EventType.RESUME ? new Date(+value.date - +preRecords[0].date) : timeDiffWithoutPauses();
+      return { days: relDays(time), time }
+    } else {
+      return { days: 0, time: new Date(0) };
+    }
+  }
+
 }
 
 @Pipe({

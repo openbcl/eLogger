@@ -254,4 +254,5 @@
   <translation id="LogComponent:shareRecordsButton" desc="Share records button">Aufzeichnungen teilen</translation>
   <translation id="LogComponent:clearRecordsButton" desc="Clear records button">Aufzeichnungen löschen</translation>
   <translation id="AppComponent:generatingDownload" desc="Generating download message">Bitte warten (Download-Datei wird erstellt)</translation>
+  <translation id="RecordsComponent:timeDifferenceCol" desc="Time difference column">Zeitunterschied</translation>
 </translationbundle>

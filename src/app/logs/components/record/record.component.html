@@ -25,7 +25,7 @@
                 </div>
             </ng-template>
             <div class="grid" *ngrxLet="records$ as records">
-                <p-panel i18n-header="Page headline@@RecordComponent:header" header="Record Event" class="col-12 md:col-5 text-center py-2">
+                <p-panel i18n-header="Page headline@@RecordComponent:header" header="Record Event" class="col-12 lg:col-5 text-center py-2">
                     <ng-container *ngFor="let eventTemplate of template.eventTemplates">
                         <button pButton pRipple
                             class="{{ eventTemplate.color | colorClass }} p-button-rounded m-2 el-record-event-button"
@@ -37,13 +37,13 @@
                     </ng-container>
                     <span i18n="Error message@@RecordComponent:error" *ngIf="!template.eventTemplates?.length">No configured events found. Please add some events to your template first.</span>
                 </p-panel>
-                <p-accordion class="col-12 md:hidden">
+                <p-accordion class="col-12 lg:hidden">
                     <p-accordionTab i18n-header="Table container headline@@RecordComponent:tableContainerHeadline" header="Recorded Events" [selected]="false" styleClass="p-0">
-                        <el-records [records]="records" [template]="template" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                        <el-records [records]="records" [template]="template" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="550px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
                     </p-accordionTab>
                 </p-accordion>
-                <p-panel i18n-header="Table headline@@RecordComponent:tableHeadline" header="Recorded Events" class="hidden col-7 md:block" styleClass="p-0">
-                    <el-records [records]="records" [template]="template" [showDataColumn]="false" [showRevokeButton]="true" breakpoint="425px" styleClass="p-datatable-striped p-datatable-sm"></el-records>
+                <p-panel i18n-header="Table headline@@RecordComponent:tableHeadline" header="Recorded Events" class="hidden col-7 lg:block" styleClass="p-0">
+                    <el-records [records]="records" [template]="template" [showDataColumn]="false" [showRevokeButton]="true" styleClass="p-datatable-striped p-datatable-sm"></el-records>
                 </p-panel>
             </div>
         </p-panel>

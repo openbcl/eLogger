@@ -24,7 +24,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { SliderModule } from 'primeng/slider';
 import { QRCodeModule } from 'angularx-qrcode';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe, BypassSecurityTrustUrlPipe } from './pipes/event.pipe';
+import { EventButtonDisabledPipe, EventLabelPipe, EventLabelWithIconPipe, EventRelTimePipe, CurrentEventRelTimePipe, BypassSecurityTrustUrlPipe, EventTimeDiffPipe } from './pipes/event.pipe';
 import { ColorPipe } from './pipes/color.pipe';
 import { TemplateTitlePipe, TemplateDescPipe, LogEventTemplatesPipe, TemplateExistsPipe } from './pipes/log.pipe';
 
@@ -35,6 +35,7 @@ const pipes = [
   TemplateTitlePipe,
   TemplateDescPipe,
   EventRelTimePipe,
+  EventTimeDiffPipe,
   CurrentEventRelTimePipe,
   LogEventTemplatesPipe,
   EventButtonDisabledPipe,
