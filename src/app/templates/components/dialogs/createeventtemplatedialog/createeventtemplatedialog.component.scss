@@ -9,6 +9,10 @@
             border-style: solid;
             border-color: transparent;
             margin: 0.25em;
+            span {
+                word-break: break-all;
+                word-wrap: break-word;
+            }
         }
         .p-highlight {
             border-color: var(--primary-color);

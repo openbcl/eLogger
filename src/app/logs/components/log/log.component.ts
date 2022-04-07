@@ -10,6 +10,7 @@ import { logSelector } from '../../store/log.selectors';
 import { Log, Record } from '../../../models';
 import { logIdSelector } from '../../../store/router.selector';
 import { shareRecords } from '../../../store/share.actions';
+import { downloadingSelector } from '../../../store/share.selectors';
 
 @Component({
   selector: 'el-log',
@@ -32,6 +33,7 @@ export class LogComponent implements OnInit {
   log$ = this.logData.pipe(map(logData => logData[0]));
   template$ = this.logData.pipe(map(logData => logData[1].find(template => template.id === logData[0].templateId)));
   records$ = this.log$.pipe(switchMap(log => this.store.select(recordsSelector(log.id))));
+  downloading$ = this.store.pipe(select(downloadingSelector));
 
   constructor(private store: Store) { }
   

@@ -34,7 +34,7 @@
                     <ng-container *ngIf="[EventType.AUDIO, EventType.PHOTO].includes(record.eventType)">
                         <ng-container *ngIf="loadRecordData(record.key) | async as data">
                             <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="data" [preview]="true"></p-image>
-                            <audio *ngIf="record.eventType === EventType.AUDIO" [src]="data | bypassSecurityTrustUrl" controls></audio>
+                            <audio *ngIf="record.eventType === EventType.AUDIO" [src]="data | bypassSecurityTrustUrl" class="w-full" controls></audio>
                         </ng-container>
                     </ng-container>
                 </td>

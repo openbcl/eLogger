@@ -21,6 +21,7 @@
 <!ELEMENT ex (#PCDATA)>
 ]>
 <messagebundle>
+  <msg id="AppComponent:generatingDownload" desc="Generating download message"><source>src/app/components/app/app.component.html:6,12</source> Please wait (generating download file) </msg>
   <msg id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)"><source>src/app/components/app/app.component.ts:42</source>Logs</msg>
   <msg id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)"><source>src/app/components/app/app.component.ts:43</source>Templates</msg>
   <msg id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)"><source>src/app/components/app/app.component.ts:44</source>Info</msg>
@@ -133,14 +134,14 @@
   <msg id="UpdateLogDialogComponent:descriptionLabel" desc="Description input label"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:15,17</source>Description</msg>
   <msg id="UpdateLogDialogComponent:descriptionError" desc="Description error hint"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:17,22</source>A template with this description already exists. Please choose another description.</msg>
   <msg id="UpdateLogDialogComponent:updateButton" desc="Update button"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:23,25</source>Update</msg>
-  <msg id="LogComponent:title" desc="Title"><source>src/app/logs/components/log/log.component.html:13</source>Title</msg>
-  <msg id="LogComponent:description" desc="Description"><source>src/app/logs/components/log/log.component.html:17</source>Description</msg>
-  <msg id="LogComponent:startLoggingButton" desc="Start logging button"><source>src/app/logs/components/log/log.component.html:28</source>Start logging</msg>
-  <msg id="LogComponent:resumeLoggingButton" desc="Resume logging button"><source>src/app/logs/components/log/log.component.html:29</source>Resume logging</msg>
+  <msg id="LogComponent:title" desc="Title"><source>src/app/logs/components/log/log.component.html:13,15</source>Title</msg>
+  <msg id="LogComponent:description" desc="Description"><source>src/app/logs/components/log/log.component.html:17,19</source>Description</msg>
+  <msg id="LogComponent:startLoggingButton" desc="Start logging button"><source>src/app/logs/components/log/log.component.html:28,30</source>Start logging</msg>
+  <msg id="LogComponent:resumeLoggingButton" desc="Resume logging button"><source>src/app/logs/components/log/log.component.html:29,31</source>Resume logging</msg>
   <msg id="LogComponent:shareRecordsButton" desc="Share records button"><source>src/app/logs/components/log/log.component.html:30</source>Share records</msg>
-  <msg id="LogComponent:clearRecordsButton" desc="Clear records button"><source>src/app/logs/components/log/log.component.html:31</source>Clear records</msg>
-  <msg id="LogComponent:error" desc="Missing template error message"><source>src/app/logs/components/log/log.component.html:33,36</source> This log is based on an unknown template. Please import the corresponding template first. </msg>
-  <msg id="LogComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/log/log.component.html:37</source>Event Records</msg>
+  <msg id="LogComponent:clearRecordsButton" desc="Clear records button"><source>src/app/logs/components/log/log.component.html:31,33</source>Clear records</msg>
+  <msg id="LogComponent:error" desc="Missing template error message"><source>src/app/logs/components/log/log.component.html:34,38</source> This log is based on an unknown template. Please import the corresponding template first. </msg>
+  <msg id="LogComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/log/log.component.html:37,39</source>Event Records</msg>
   <msg id="LogsComponent:header" desc="Page headline"><source>src/app/logs/components/logs/logs.component.html:0,2</source>Logs</msg>
   <msg id="LogsComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/logs/components/logs/logs.component.html:16,19</source>Search keyword</msg>
   <msg id="LogsComponent:empty" desc="Empty table message"><source>src/app/logs/components/logs/logs.component.html:55,58</source> No Logs found. </msg>
@@ -148,19 +149,19 @@
   <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:36,39</source>No configured events found. Please add some events to your template first.</msg>
   <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:39,41</source>Recorded Events</msg>
   <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:43,45</source>Recorded Events</msg>
-  <msg id="RecordsComponent:revokeButton" desc="Revoke button"><source>src/app/logs/components/records/records.component.html:13</source>Revoke last record</msg>
-  <msg id="RecordsComponent:eventColumn" desc="Event column"><source>src/app/logs/components/records/records.component.html:19</source>Event</msg>
-  <msg id="RecordsComponent:dataColumn" desc="Data column"><source>src/app/logs/components/records/records.component.html:20</source>Data</msg>
-  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.html:21,24</source> Absolute Time </msg>
-  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.html:24</source>Relative Time</msg>
-  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:52,55</source> No records found. </msg>
+  <msg id="RecordsComponent:revokeButton" desc="Revoke button"><source>src/app/logs/components/records/records.component.html:13,16</source>Revoke last record</msg>
+  <msg id="RecordsComponent:eventColumn" desc="Event column"><source>src/app/logs/components/records/records.component.html:19,21</source>Event</msg>
+  <msg id="RecordsComponent:dataColumn" desc="Data column"><source>src/app/logs/components/records/records.component.html:20,22</source>Data</msg>
+  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.html:22,25</source> Absolute Time </msg>
+  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.html:24,28</source>Relative Time</msg>
+  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:55,58</source> No records found. </msg>
   <msg id="LogEffects:loadLogFailureHeadline" desc="Log not found error"><source>src/app/logs/store/log.effects.ts:89</source>Error while loading log!</msg>
   <msg id="LogEffects:createLogFailureHeadline" desc="Log not created error"><source>src/app/logs/store/log.effects.ts:97</source>Error while creating log!</msg>
   <msg id="LogEffects:updateLogFailureHeadline" desc="Log not updated error"><source>src/app/logs/store/log.effects.ts:105</source>Error while updating log!</msg>
   <msg id="LogEffects:deleteLogFailureHeadline" desc="Log not deleted error"><source>src/app/logs/store/log.effects.ts:113</source>Error while deleting log!</msg>
   <msg id="LogService:notFoundError" desc="Log not found error"><source>src/app/services/log.service.ts:63</source>Log does not exist.</msg>
   <msg id="LogService:deleteError" desc="Log not deleted error"><source>src/app/services/log.service.ts:67</source>Could not delete log.</msg>
-  <msg id="RecordService:revokeError" desc="Revoke record failed error"><source>src/app/services/record.service.ts:35</source>Could not revoke last record of logId</msg>
+  <msg id="RecordService:revokeError" desc="Revoke record failed error"><source>src/app/services/record.service.ts:39</source>Could not revoke last record of logId</msg>
   <msg id="SettingService:resetError" desc="Reset database error"><source>src/app/services/setting.service.ts:64</source>Could not reset database.</msg>
   <msg id="TemplateService:notFoundError" desc="Template not found error"><source>src/app/services/template.service.ts:50</source>Template does not exist.</msg>
   <msg id="TemplateService:deleteError" desc="Template not deleted error"><source>src/app/services/template.service.ts:54</source>Could not delete template.</msg>

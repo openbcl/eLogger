@@ -234,7 +234,7 @@
   <translation id="EventLabelPipe:text" desc="Text label">Text</translation>
   <translation id="EventLabelPipe:photo" desc="Photo label">Foto</translation>
   <translation id="EventLabelPipe:audio" desc="Audio label">Audio</translation>
-  <translation id="EventLabelPipe:custom" desc="Custom label">Benutzerdefiniert</translation>
+  <translation id="EventLabelPipe:custom" desc="Custom label">Individuell</translation>
   <translation id="TemplateTitlePipe:unknownTemplateError" desc="Unknown template error">Unbekannte Vorlage: Bitte importieren Sie zunächst die entsprechende Vorlage.</translation>
   <translation id="lib:titleColumn" desc="Title column">Titel</translation>
   <translation id="lib:descriptionColumn" desc="Description column">Beschreibung</translation>
@@ -253,4 +253,5 @@
   <translation id="LogComponent:resumeLoggingButton" desc="Resume logging button">Protokollierung fortsetzen</translation>
   <translation id="LogComponent:shareRecordsButton" desc="Share records button">Aufzeichnungen teilen</translation>
   <translation id="LogComponent:clearRecordsButton" desc="Clear records button">Aufzeichnungen löschen</translation>
+  <translation id="AppComponent:generatingDownload" desc="Generating download message">Bitte warten (Download-Datei wird erstellt)</translation>
 </translationbundle>

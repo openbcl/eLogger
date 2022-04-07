@@ -1,5 +1,12 @@
 <p-blockUI [blocked]="downloading$ | async">
-  <p-progressSpinner></p-progressSpinner>
+  <div class="flex flex-column align-items-center">
+    <p-progressSpinner></p-progressSpinner>
+    <span
+      i18n="Generating download message@@AppComponent:generatingDownload"
+      class="text-white text-center fadein animation-ease-in-out animation-duration-2000 animation-iteration-infinite ">
+      Please wait (generating download file)
+    </span>
+  </div>
 </p-blockUI>
 
 <p-menubar class="fixed w-full top-0 left-0 z-5" [model]="navitems">

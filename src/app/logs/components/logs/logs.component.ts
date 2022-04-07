@@ -6,6 +6,7 @@ import { reorderLogs } from '../../../store/log.actions';
 import { logsProcessingSelector, logsSelector } from '../../../store/log.selectors';
 import { Log } from '../../../models';
 import { titleCol, descCol, typeCol, recordsCol } from '../../../utils/lib';
+import { downloadingSelector } from '../../../store/share.selectors';
 
 @Component({
   selector: 'el-logs',
@@ -21,6 +22,7 @@ export class LogsComponent {
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   logsLoading$ = this.store.pipe(select(logsProcessingSelector));
   templates$ = this.store.pipe(select(templatesSelector));
+  downloading$ = this.store.pipe(select(downloadingSelector));
 
   cols: any[] = [ titleCol, descCol, typeCol, recordsCol ];
 
