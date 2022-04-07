@@ -44,7 +44,13 @@
                 <td *ngIf="logEventTemplates.containStart" class="text-right">
                     <ng-container *ngIf="record | eventRelTime: records as rel">
                         <span class="el-font-monospace">
-                            {{ rel.prefix }} {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
+                            {{ rel.prefix }}
+                        </span>
+                        <span *ngIf="rel.days" class="el-font-monospace">
+                            {{ rel.days }}d
+                        </span>
+                        <span class="el-font-monospace">
+                            {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
                         </span>
                     </ng-container>
                 </td>

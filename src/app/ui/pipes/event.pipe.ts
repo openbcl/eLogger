@@ -13,17 +13,19 @@ export class EventRelTimePipe implements PipeTransform {
     const prefixNegativ = '-';
     switch(value.eventType) {
       case EventType.START:
-        return { prefix: prefixPositiv, time: new Date(0) };
+        return { prefix: prefixPositiv, days: 0, time: new Date(0) };
       default:
         const startEvent = records.find(r => r.eventType === EventType.START);
         if (!startEvent) {
-          return { prefix: prefixNegativ, time: null };
+          return { prefix: prefixNegativ, days: null, time: null };
         } else if (startEvent.key < value.key) {
           const accPauseEvents = records.filter(r => r.key < value.key && r.eventType === EventType.PAUSE).reduce((sum, r) => sum + +r.date, 0);
           const accResumeEvents = records.filter(r => r.key <= value.key && r.eventType === EventType.RESUME).reduce((sum, r) => sum + +r.date, 0);
-          return { prefix: prefixPositiv, time: new Date(+value.date - +startEvent.date - (accResumeEvents - accPauseEvents)) }
+          const time = new Date(+value.date - +startEvent.date - (accResumeEvents - accPauseEvents));
+          return { prefix: prefixPositiv, days: Math.trunc(+time / 86400000), time }
         } else {
-          return { prefix: prefixNegativ, time: new Date(+startEvent.date - +value.date) }
+          const time = new Date(+startEvent.date - +value.date);
+          return { prefix: prefixNegativ, days: Math.trunc(+time / 86400000), time }
         }
     }
   }

@@ -148,7 +148,7 @@ export class ExportService {
                 }
                 row.push(this.date.transform(record.date, 'yy-MM-dd, HH:mm:ss'));
                 if (containStart) {
-                    row.push(!!relTime.time ? `${relTime.prefix}${this.date.transform(relTime.time, 'HH:mm:ss.SSS', 'UTC+0')}`: relTime.prefix)
+                    row.push(!!relTime.time ? `${relTime.prefix}${relTime.days ? `${relTime.days}d ` : ''}${this.date.transform(relTime.time, 'HH:mm:ss.SSS', 'UTC+0')}`: relTime.prefix)
                 }
                 csv.push(row);
             });

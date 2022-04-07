@@ -43,6 +43,7 @@ export class RecordComponent implements OnInit {
       }
       return interval(this.refreshRate).pipe(map(() => this.currentEventRelTime.transform(records)));
   }));
+  relDays$ = this.relTime$.pipe(filter(relTime => !!relTime), switchMap(relTime => of(Math.trunc(+relTime / 86400000))));
 
   constructor(
     private store: Store,
