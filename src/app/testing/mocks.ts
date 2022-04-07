@@ -32,6 +32,7 @@ export const RecordServiceMock = {
     createRecord: (_eventTemplate: any, logId: string, _date: Date, data?: string) => of({ logId, data }),
     loadRecords: (_logId: string) => of([]),
     loadAllRecords: () => of([]),
+    loadRecordData: (_key: number) => of(''),
     countTotalRecords: () => of(0),
     revokeRecord: (logId: string) => of(logId),
     deleteRecords: (logId: string) => of(logId),
