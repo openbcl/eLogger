@@ -3,7 +3,7 @@
         <p-panel *ngrxLet="log$ as log" class="col-12">
             <ng-template pTemplate="header">
                 <div class="grid m-0 w-full">
-                    <div *ngIf="template" class="col-12 p-panel-title p-0 mb-4">
+                    <div *ngIf="template" class="col-12 p-panel-title el-unset-order  p-0 mb-4">
                         <span class="text-overflow-anywhere">{{ template.title }}</span>
                         <ng-container *ngIf="!!template.desc?.length">
                             <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ template.desc }})</span>

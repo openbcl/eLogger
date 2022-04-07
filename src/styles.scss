@@ -17,6 +17,10 @@ body {
     font-family: monospace;
 }
 
+.el-unset-order {
+    order: unset !important;
+}
+
 .p-dialog:not(.p-dialog-maximized) {
     border-width: 1px;
     border-color: var(--primary-color);
