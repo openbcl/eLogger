@@ -9,8 +9,8 @@ import { allRecordsSelector } from '../store/record.selectors';
 import { loadAllRecords } from '../store/record.actions';
 import { sha1 } from 'object-hash'
 import { toJSON } from '../utils/lib';
-import * as JSZip from 'jszip'
 import { RecordService } from './record.service';
+import * as JSZip from 'jszip'
 
 
 @Injectable({
@@ -100,8 +100,7 @@ export class ExportService {
     }
 
     private mediaFilename(record: Record, log: Log) {
-        const extension = record.data.match(/data:.+?\/(.+?);/)[1];
-        return this.fsCompatibleFilename(`${this.folderName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.${extension === 'jpeg' ? 'jpg' : extension}`)
+        return this.fsCompatibleFilename(`${this.folderName(log)}_${this.date.transform(record.date, 'yy-MM-dd_HH-mm-ss-SSS')}.${record.data === 'jpeg' ? 'jpg' : record.data}`)
     }
 
     private dataUrlToBlob(data: string) {
@@ -133,7 +132,7 @@ export class ExportService {
             csv.push(headers);
             records.forEach(record => {
                 const relTime = this.eventRelTime.transform(record, records);
-                const row = [ record.name, this.eventLabel.transform(record.eventType) ];
+                const row = [ record.name, this.eventLabel.transform(record.eventType, false) ];
                 if (containData) {
                     switch(record.eventType) {
                         case EventType.PHOTO:
@@ -201,7 +200,7 @@ export class ExportService {
             return new Promise<void>(resolve => combineLatest(logsData.map(logData => logData.records
                 .filter(record => [EventType.AUDIO, EventType.PHOTO].includes(record.eventType))
                 .map(record => this.recordService.loadRecordData(record.key).pipe(map(data => {
-                    zip.file(`${logData.folder}/${this.mediaFilename({ ...record, data}, logData.log)}`, this.dataUrlToBlob(data))
+                    zip.file(`${logData.folder}/${this.mediaFilename(record, logData.log)}`, this.dataUrlToBlob(data))
                 })))
             ).flat()).pipe(take(1)).subscribe(async () => {
                 await generateZIP();

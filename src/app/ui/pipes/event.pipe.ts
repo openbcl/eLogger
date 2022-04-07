@@ -76,8 +76,8 @@ export class EventButtonDisabledPipe implements PipeTransform {
 })
 export class EventLabelPipe implements PipeTransform {
 
-  transform(eventType: EventType): string {
-    return eventLabel(eventType);
+  transform(eventType: EventType, localize = true): string {
+    return eventLabel(eventType, localize);
   }
 
 }
@@ -123,23 +123,23 @@ export class BypassSecurityTrustUrlPipe implements PipeTransform {
 
 }
 
-const eventLabel = (eventType: EventType): string => {
+const eventLabel = (eventType: EventType, localize = true): string => {
   switch(eventType) {
     case EventType.START:
-      return $localize`:Start label@@EventLabelPipe\:start:Start`;
+      return localize ? $localize`:Start label@@EventLabelPipe\:start:Start` : 'Start';
     case EventType.PAUSE:
-      return $localize`:Pause label@@EventLabelPipe\:pause:Pause`;
+      return localize ? $localize`:Pause label@@EventLabelPipe\:pause:Pause` : 'Pause';
     case EventType.RESUME:
-      return $localize`:Resume label@@EventLabelPipe\:resume:Resume`;
+      return localize ? $localize`:Resume label@@EventLabelPipe\:resume:Resume` : 'Resume';
     case EventType.END:
-      return $localize`:End label@@EventLabelPipe\:end:End`;
+      return localize ? $localize`:End label@@EventLabelPipe\:end:End` : 'End';
     case EventType.TEXT:
-      return $localize`:Text label@@EventLabelPipe\:text:Text`;
+      return localize ? $localize`:Text label@@EventLabelPipe\:text:Text` : 'Text';
     case EventType.PHOTO:
-      return $localize`:Photo label@@EventLabelPipe\:photo:Photo`;
+      return localize ? $localize`:Photo label@@EventLabelPipe\:photo:Photo` : 'Photo';
     case EventType.AUDIO:
-      return $localize`:Audio label@@EventLabelPipe\:audio:Audio`;
+      return localize ? $localize`:Audio label@@EventLabelPipe\:audio:Audio` : 'Audio';
     default:
-      return $localize`:Custom label@@EventLabelPipe\:custom:Custom`
+      return localize ? $localize`:Custom label@@EventLabelPipe\:custom:Custom` : 'Custom';
   }
 }
