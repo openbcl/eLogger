@@ -18,7 +18,7 @@
             <tr>
                 <th></th>
                 <th i18n="Event column@@RecordsComponent:eventColumn">Event</th>
-                <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && showDataColumn" class="w-min lg:w-5 xl:w-3">Data</th>
+                <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && hasData(records) && showDataColumn" class="text-center w-min lg:w-5 xl:w-3">Data</th>
                 <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" class="text-center">Absolute Time</th>
                 <th i18n="Time difference column@@RecordsComponent:timeDifferenceCol" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">Time Difference</th>
                 <th i18n="Relative time column@@RecordsComponent:relativeTimeColumn" *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
@@ -28,7 +28,7 @@
             <tr [class]="record.color | colorClass">
                 <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
                 <td>{{ record.name }}</td>
-                <td *ngIf="logEventTemplates.containData && showDataColumn">
+                <td class="text-center" *ngIf="logEventTemplates.containData && hasData(records) && showDataColumn">
                     <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
                     <ng-container *ngIf="[EventType.AUDIO, EventType.PHOTO].includes(record.eventType)">
                         <ng-container *ngIf="loadRecordData(record.key) | async as data">

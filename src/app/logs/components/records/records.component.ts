@@ -48,6 +48,10 @@ export class RecordsComponent {
     private recordService: RecordService
   ) { }
 
+  hasData(records: Record[]) {
+    return !!records?.find(value => !!value.data?.length);
+  }
+
   revokeRecord() {
     if (!!this.records?.length) {
       this.store.dispatch(revokeRecord({ logId: this.records[0].logId}))
