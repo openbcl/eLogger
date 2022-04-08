@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1649424033669,
+  "timestamp": 1649427320908,
   "index": "/eLogger/de/index.html",
   "assetGroups": [
     {
@@ -17,7 +17,7 @@
         "/eLogger/de/favicon.ico",
         "/eLogger/de/index.html",
         "/eLogger/de/light.css",
-        "/eLogger/de/main.b98509357c35c726.js",
+        "/eLogger/de/main.5c901cc831da3945.js",
         "/eLogger/de/manifest.webmanifest",
         "/eLogger/de/medium.css",
         "/eLogger/de/polyfills.85dd01b072c8c0ef.js",
@@ -154,9 +154,9 @@
     "/eLogger/de/fa-solid-900.e67670b0779338ff.woff": "a22acd7697f36e7d4cc31a853c70e776eac54bb1",
     "/eLogger/de/favicon.ico": "ea901908fcdedca53013a0d9234d286331ac2a35",
     "/eLogger/de/hue.8b1818380241e6ac.png": "f81ae627637a684614aa726e206c73ce099a01fd",
-    "/eLogger/de/index.html": "6a92273f1612b5481da6861394738b6c5eba866f",
+    "/eLogger/de/index.html": "e550f35d5a7c9a8e2cdf1ae17c419716c1adcd1b",
     "/eLogger/de/light.css": "df3e6c22365f13ff8a457151a8951fa707eebbe5",
-    "/eLogger/de/main.b98509357c35c726.js": "c148c5799aed8a9239c45062cfca3d03405c78de",
+    "/eLogger/de/main.5c901cc831da3945.js": "9a3796732c05e1275301fc34958ebcc996f2edf2",
     "/eLogger/de/manifest.webmanifest": "ce3c59ab74ea165bd84a1728d5c45f71e8bc41be",
     "/eLogger/de/medium.css": "1bb9d6d03441db3299ba98e44bb43fa4d0846cc5",
     "/eLogger/de/polyfills.85dd01b072c8c0ef.js": "afb198645af9430dcddd62b9ebbd739717b6e0a9",
