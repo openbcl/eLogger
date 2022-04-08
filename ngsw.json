@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1649421721582,
+  "timestamp": 1649421885448,
   "index": "/eLogger/index.html",
   "assetGroups": [
     {
@@ -154,7 +154,7 @@
     "/eLogger/fa-solid-900.e67670b0779338ff.woff": "a22acd7697f36e7d4cc31a853c70e776eac54bb1",
     "/eLogger/favicon.ico": "ea901908fcdedca53013a0d9234d286331ac2a35",
     "/eLogger/hue.8b1818380241e6ac.png": "f81ae627637a684614aa726e206c73ce099a01fd",
-    "/eLogger/index.html": "97d96876d9c6433061e90d3199df1908a636e7cc",
+    "/eLogger/index.html": "49d6065193eccbe5ddbdf31d238eac09d9d3cb00",
     "/eLogger/light.css": "df3e6c22365f13ff8a457151a8951fa707eebbe5",
     "/eLogger/main.b98509357c35c726.js": "9692b0b6b3ea44566a14a1f27f0543ac81a9a916",
     "/eLogger/manifest.webmanifest": "ce3c59ab74ea165bd84a1728d5c45f71e8bc41be",
