@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE messagebundle [
+<!ELEMENT messagebundle (msg)*>
+<!ATTLIST messagebundle class CDATA #IMPLIED>
+
+<!ELEMENT msg (#PCDATA|ph|source)*>
+<!ATTLIST msg id CDATA #IMPLIED>
+<!ATTLIST msg seq CDATA #IMPLIED>
+<!ATTLIST msg name CDATA #IMPLIED>
+<!ATTLIST msg desc CDATA #IMPLIED>
+<!ATTLIST msg meaning CDATA #IMPLIED>
+<!ATTLIST msg obsolete (obsolete) #IMPLIED>
+<!ATTLIST msg xml:space (default|preserve) "default">
+<!ATTLIST msg is_hidden CDATA #IMPLIED>
+
+<!ELEMENT source (#PCDATA)>
+
+<!ELEMENT ph (#PCDATA|ex)*>
+<!ATTLIST ph name CDATA #REQUIRED>
+
+<!ELEMENT ex (#PCDATA)>
+]>
+<messagebundle>
+  <msg id="AppComponent:generatingDownload" desc="Generating download message"><source>src/app/components/app/app.component.html:6,12</source> Please wait (generating download file) </msg>
+  <msg id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)"><source>src/app/components/app/app.component.ts:42</source>Logs</msg>
+  <msg id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)"><source>src/app/components/app/app.component.ts:43</source>Templates</msg>
+  <msg id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)"><source>src/app/components/app/app.component.ts:44</source>Info</msg>
+  <msg id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)"><source>src/app/components/app/app.component.ts:45</source>Settings</msg>
+  <msg id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)"><source>src/app/components/app/app.component.ts:46</source>App Settings</msg>
+  <msg id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)"><source>src/app/components/app/app.component.ts:47</source>Import Configuration</msg>
+  <msg id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)"><source>src/app/components/app/app.component.ts:48</source>Export Configuration</msg>
+  <msg id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)"><source>src/app/components/app/app.component.ts:49</source>Logs</msg>
+  <msg id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)"><source>src/app/components/app/app.component.ts:50</source>Templates</msg>
+  <msg id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)"><source>src/app/components/app/app.component.ts:52</source>Themes</msg>
+  <msg id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)"><source>src/app/components/app/app.component.ts:53</source>Light</msg>
+  <msg id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)"><source>src/app/components/app/app.component.ts:54</source>Medium</msg>
+  <msg id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)"><source>src/app/components/app/app.component.ts:55</source>Dark</msg>
+  <msg id="ExportLogsDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:0</source>Export configuration of logs</msg>
+  <msg id="ExportLogsDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:1,4</source> Please select all logs you want to export as json file or QR code. These can be imported again at any time or by another device. Only the configuration data and no records are exported. </msg>
+  <msg id="ExportLogsDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:39,42</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
+  <msg id="ExportLogsDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:46</source>Download JSON</msg>
+  <msg id="ExportLogsDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:48</source>Show QR code</msg>
+  <msg id="ExportLogsDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:52</source>Logs Configuration (QR code)</msg>
+  <msg id="ExportTemplatesDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:0</source>Export configuration of templates</msg>
+  <msg id="ExportTemplatesDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:1,4</source> Please select all templates you want to export as json file or QR code. These can be imported again at any time or by another device. Only the configuration data and no records are exported. </msg>
+  <msg id="ExportTemplatesDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:33,36</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
+  <msg id="ExportTemplatesDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:40</source>Download JSON</msg>
+  <msg id="ExportTemplatesDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:42</source>Show QR code</msg>
+  <msg id="ExportTemplatesDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:46</source>Template Configuration (QR code)</msg>
+  <msg id="ImportDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/importdialog/importdialog.component.html:0</source>Import configuration</msg>
+  <msg id="ImportDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/importdialog/importdialog.component.html:1,4</source> Please choose between the two options &quot;File Upload&quot; and &quot;QR code&quot; to import a configuration. </msg>
+  <msg id="ImportDialogComponent:jsonUpload" desc="JSON uploud button"><source>src/app/components/dialogs/importdialog/importdialog.component.html:8</source>Upload File</msg>
+  <msg id="ImportDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/components/dialogs/importdialog/importdialog.component.html:21</source>Loading cameras ...</msg>
+  <msg id="ImportDialogComponent:fileUploadOption" desc="File upload option"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:32</source>File Upload</msg>
+  <msg id="ImportDialogComponent:qrCodeOption" desc="QR code option"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:35</source>QR code</msg>
+  <msg id="ImportDialogComponent:fileErrorHeadline" desc="File error headline"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:118</source>Error reading file!</msg>
+  <msg id="ImportDialogComponent:qrCodeErrorHeadline" desc="QR code error headline"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:118</source>Error when scanning QR code!</msg>
+  <msg id="ImportDialogComponent:fileErrorDetails" desc="File error details"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:119</source>The input file has an incompatible format.</msg>
+  <msg id="qrCodeErrorDetails:qrCodeOption" desc="QR code error details"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:119</source>The QR code may have an incompatible format.</msg>
+  <msg id="ImportDialogComponent:scanErrorHeadline" desc="Scan error headline"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:129</source>Error when scanning QR code!</msg>
+  <msg id="ImportDialogComponent:scanErrorDetails" desc="Scan error details"><source>src/app/components/dialogs/importdialog/importdialog.component.ts:129</source>An error occured during the scan process.</msg>
+  <msg id="QRcodeDialogComponent:pngDownload" desc="PNG download button"><source>src/app/components/dialogs/qrcodedialog/qrcodedialog.component.html:4</source>Download PNG</msg>
+  <msg id="ResetDbDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:0</source>Reset App Data</msg>
+  <msg id="ResetDbDialogComponent:question" desc="Dialog question"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:1,4</source> Are you sure you want to delete all logs, their event records and all templates? </msg>
+  <msg id="ResetDbDialogComponent:hint1" desc="Hint 1/2"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:8</source>Please enter the delete command</msg>
+  <msg id="ResetDbDialogComponent:hint2" desc="Hint 2/2"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:12</source>to confirm the deletion of all data.</msg>
+  <msg id="ResetDbDialogComponent:hintLabel" desc="Hint input label"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:16</source>Delete command</msg>
+  <msg id="ResetDbDialogComponent:deleteButton" desc="Reset App button"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.html:21</source>Reset App Data</msg>
+  <msg id="ResetDbDialogComponent:deleteCommand" desc="Delete command"><source>src/app/components/dialogs/resetdbdialog/resetdbdialog.component.ts:15</source>Reset App Data</msg>
+  <msg id="InfoComponent:header" desc="Page headline"><source>src/app/components/info/info.component.html:0</source>App Information</msg>
+  <msg id="InfoComponent:name" desc="App name"><source>src/app/components/info/info.component.html:2</source>Name</msg>
+  <msg id="InfoComponent:version" desc="App version"><source>src/app/components/info/info.component.html:6</source>Version</msg>
+  <msg id="InfoComponent:branch" desc="App branch"><source>src/app/components/info/info.component.html:10</source>Branch</msg>
+  <msg id="InfoComponent:commit" desc="App commit"><source>src/app/components/info/info.component.html:14</source>Commit</msg>
+  <msg id="InfoComponent:developer" desc="App developer"><source>src/app/components/info/info.component.html:18</source>Developer</msg>
+  <msg id="InfoComponent:contact" desc="Contact to app developer"><source>src/app/components/info/info.component.html:22</source>Contact</msg>
+  <msg id="InfoComponent:aboutHeadline" desc="About headline"><source>src/app/components/info/info.component.html:25</source>About</msg>
+  <msg id="InfoComponent:aboutText1" desc="About text 1/2"><source>src/app/components/info/info.component.html:26,31</source> eLogger is an open source progressive web app (PWA). The app itself is hosted on GitHub. It can either be run in popular browsers or be exported to home screen of mobile devices via Safari-Browser (iOS) or Chrome-Browser (Android). </msg>
+  <msg id="InfoComponent:aboutText2" desc="About text 2/2"><source>src/app/components/info/info.component.html:31,35</source> There is no backend. Therefore, no data is exchanged. All data remains on the users own device. This app has no commercial purposes. The use is private. </msg>
+  <msg id="InfoComponent:disclaimerHeadline" desc="Disclaimer headline"><source>src/app/components/info/info.component.html:36</source>Disclaimer</msg>
+  <msg id="InfoComponent:disclaimerText" desc="Disclaimer text"><source>src/app/components/info/info.component.html:37,47</source> We make no warranty of any kind, express, implied, in fact or arising by operation of law, including, without limitation, the implied warranty of merchantability, fitness for a particular purpose, non-infringement and data accuracy. We neither represents nor warrants that the operation of the software will be uninterrupted or error-free, or that any defects will be corrected. We do not warrant or make any representations regarding the use of the software or the results thereof, including but not limited to the correctness, accuracy, reliability, or usefulness of the software. </msg>
+  <msg id="SettingsComponent:header" desc="Page headline"><source>src/app/components/settings/settings.component.html:0</source>App Settings</msg>
+  <msg id="SettingsComponent:chooseSeperator" desc="Choose CSV seperator headline"><source>src/app/components/settings/settings.component.html:5</source>CSV Seperator:</msg>
+  <msg id="SettingsComponent:seperatorText" desc="Description about CSV seperators"><source>src/app/components/settings/settings.component.html:9,16</source> Logs and records are exported in CSV file format (comma-separated values). Depending on the country either point (.) or comma (,) is used as a decimal separator of a number. If the comma is used as a decimal separator it can no longer be used for seperating values in CSV files. In this case a semicolon must be used as a separator for the CSV format. </msg>
+  <msg id="SettingsComponent:chooseQuality" desc="Choose JPEG quality headline"><source>src/app/components/settings/settings.component.html:20</source>JPEG Quality:</msg>
+  <msg id="SettingsComponent:qualityText" desc="Description about JPEG quality settings"><source>src/app/components/settings/settings.component.html:25,28</source> If you use photo events in your logs you should set quality rate of photo files. The higher the quality the larger the resulting file size. </msg>
+  <msg id="SettingsComponent:chooseBeep" desc="Enable event sound headline"><source>src/app/components/settings/settings.component.html:32</source>Enable Event Sound:</msg>
+  <msg id="SettingsComponent:beepText" desc="Description about audio feedback settings"><source>src/app/components/settings/settings.component.html:36,39</source> During a log recording additional audio feedback can be emitted when events are triggered. </msg>
+  <msg id="SettingsComponent:resetAppData" desc="Reset app data headline"><source>src/app/components/settings/settings.component.html:40</source>Reset Data</msg>
+  <msg id="SettingsComponent:resetAppText" desc="Description about resetting app data"><source>src/app/components/settings/settings.component.html:43</source>Here you can delete all templates, logs and records at once.</msg>
+  <msg id="SettingsComponent:resetAppWarning" desc="Warning about resetting app data"><source>src/app/components/settings/settings.component.html:45</source>Caution: This process cannot be undone!</msg>
+  <msg id="SettingsComponent:resetAppButton" desc="Reset button"><source>src/app/components/settings/settings.component.html:47</source>Reset App Data</msg>
+  <msg id="AudioRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:1</source>Audio Event</msg>
+  <msg id="AudioRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:11,15</source>Loading microphones ...</msg>
+  <msg id="AudioRecordDialogComponent:hint" desc="How to record hint"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:20,24</source> Please hold the microphone button to record your voice message. </msg>
+  <msg id="AudioRecordDialogComponent:error" desc="No microphone access"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.html:24,29</source> Could not access microphone(s). </msg>
+  <msg id="AudioRecordDialogComponent:micErrorHeadline" desc="Microphone error headline"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.ts:92,92</source>Microphone error</msg>
+  <msg id="AudioRecordDialogComponent:micErrorDetails" desc="Microphone error details"><source>src/app/logs/components/dialogs/audiorecorddialog/audiorecorddialog.component.ts:93</source>Can not access microphone.</msg>
+  <msg id="CreateLogDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:0</source>Add new Log</msg>
+  <msg id="CreateLogDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:10,13</source>Please Choose a template ...</msg>
+  <msg id="CreateLogDialogComponent:titleLabel" desc="Title input label"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:28,30</source>Title</msg>
+  <msg id="CreateLogDialogComponent:titleError" desc="Title error hint"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:30,34</source>A log with this name already exists. Please choose another name.</msg>
+  <msg id="CreateLogDialogComponent:descriptionLabel" desc="Description input label"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:37,39</source>Description</msg>
+  <msg id="CreateLogDialogComponent:descriptionError" desc="Description error hint"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:39,45</source>A log with this description already exists. Please choose another description.</msg>
+  <msg id="CreateLogDialogComponent:addButton" desc="Add button"><source>src/app/logs/components/dialogs/createlogdialog/createlogdialog.component.html:46,48</source>Add</msg>
+  <msg id="DeleteLogDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:0</source>Delete Log</msg>
+  <msg id="DeleteLogDialogComponent:question" desc="Dialog question"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:2,5</source> Are you sure you want to delete this log? </msg>
+  <msg id="DeleteLogDialogComponent:warning" desc="Warning about deletion"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:5,8</source> If you decide to do this all records of this log will also be unrecoverably deleted. </msg>
+  <msg id="DeleteLogDialogComponent:hint1" desc="Hint 1/2"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:11,14</source>Please enter the title</msg>
+  <msg id="DeleteLogDialogComponent:hint2" desc="Hint 2/2"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:15,18</source>of the log you want to delete to confirm the deletion.</msg>
+  <msg id="DeleteLogDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:19,23</source>Delete command</msg>
+  <msg id="DeleteLogDialogComponent:deleteButton" desc="Delete button"><source>src/app/logs/components/dialogs/deletelogdialog/deletelogdialog.component.html:24,27</source>Delete</msg>
+  <msg id="DeleteRecordsDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:0</source>Clear Records</msg>
+  <msg id="DeleteRecordsDialogComponent:question" desc="Dialog question"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:2,6</source> Are you sure you want to delete all event records of this log? </msg>
+  <msg id="DeleteRecordsDialogComponent:hint1" desc="Hint 1/2"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:8,11</source>Please enter the title</msg>
+  <msg id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:12,15</source>of the log to confirm the deletion of all records.</msg>
+  <msg id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:16,20</source>Delete command</msg>
+  <msg id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:21,24</source>Delete</msg>
+  <msg id="PhotoRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:1</source>Photo Event</msg>
+  <msg id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:11,15</source>Loading cameras ...</msg>
+  <msg id="PhotoRecordDialogComponent:error" desc="No camera access"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:21,26</source> Could not access camera(s). </msg>
+  <msg id="PhotoRecordDialogComponent:cameraErrorHeadline" desc="Camera error headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.ts:91,91</source>&apos;Camera error</msg>
+  <msg id="PhotoRecordDialogComponent:cameraErrorDetails" desc="Camera error details"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.ts:92</source>Can not access camera.</msg>
+  <msg id="ShareLogsDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:0</source>Share Logs</msg>
+  <msg id="ShareLogsDialogComponent:description" desc="Dialog description"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:2,5</source> Please select all logs, you want to export in an overview. If recordings are also available for individual logs all download files will be provided in a common ZIP file. </msg>
+  <msg id="ShareLogsDialogComponent:shareButton" desc="Share button"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:41,43</source>Share</msg>
+  <msg id="TextRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:0</source>Text Event</msg>
+  <msg id="TextRecordDialogComponent:description" desc="Dialog description"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:1,4</source> Please enter a suitable text for the event. </msg>
+  <msg id="TextRecordDialogComponent:textLabel" desc="Text input label"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:7</source>Text</msg>
+  <msg id="TextRecordDialogComponent:createButton" desc="Create record button"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:12</source>Create Record</msg>
+  <msg id="UpdateLogDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:0</source>Update Template</msg>
+  <msg id="UpdateLogDialogComponent:titleLabel" desc="Title input label"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:6,8</source>Title</msg>
+  <msg id="UpdateLogDialogComponent:titleError" desc="Title error hint"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:8,12</source>A template with this name already exists. Please choose another name.</msg>
+  <msg id="UpdateLogDialogComponent:descriptionLabel" desc="Description input label"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:15,17</source>Description</msg>
+  <msg id="UpdateLogDialogComponent:descriptionError" desc="Description error hint"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:17,22</source>A template with this description already exists. Please choose another description.</msg>
+  <msg id="UpdateLogDialogComponent:updateButton" desc="Update button"><source>src/app/logs/components/dialogs/updatelogdialog/updatelogdialog.component.html:23,25</source>Update</msg>
+  <msg id="LogComponent:title" desc="Title"><source>src/app/logs/components/log/log.component.html:13,15</source>Title</msg>
+  <msg id="LogComponent:description" desc="Description"><source>src/app/logs/components/log/log.component.html:17,19</source>Description</msg>
+  <msg id="LogComponent:startLoggingButton" desc="Start logging button"><source>src/app/logs/components/log/log.component.html:28,30</source>Start logging</msg>
+  <msg id="LogComponent:resumeLoggingButton" desc="Resume logging button"><source>src/app/logs/components/log/log.component.html:29,31</source>Resume logging</msg>
+  <msg id="LogComponent:shareRecordsButton" desc="Share records button"><source>src/app/logs/components/log/log.component.html:30</source>Share records</msg>
+  <msg id="LogComponent:clearRecordsButton" desc="Clear records button"><source>src/app/logs/components/log/log.component.html:31,33</source>Clear records</msg>
+  <msg id="LogComponent:error" desc="Missing template error message"><source>src/app/logs/components/log/log.component.html:34,38</source> This log is based on an unknown template. Please import the corresponding template first. </msg>
+  <msg id="LogComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/log/log.component.html:37,39</source>Event Records</msg>
+  <msg id="LogsComponent:header" desc="Page headline"><source>src/app/logs/components/logs/logs.component.html:0,2</source>Logs</msg>
+  <msg id="LogsComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/logs/components/logs/logs.component.html:16,19</source>Search keyword</msg>
+  <msg id="LogsComponent:empty" desc="Empty table message"><source>src/app/logs/components/logs/logs.component.html:55,58</source> No Logs found. </msg>
+  <msg id="RecordComponent:header" desc="Page headline"><source>src/app/logs/components/record/record.component.html:27,29</source>Record Event</msg>
+  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:37,40</source>No configured events found. Please add some events to your template first.</msg>
+  <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:40,42</source>Recorded Events</msg>
+  <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:44,46</source>Recorded Events</msg>
+  <msg id="RecordsComponent:revokeButton" desc="Revoke button"><source>src/app/logs/components/records/records.component.html:13,16</source>Revoke last record</msg>
+  <msg id="RecordsComponent:eventColumn" desc="Event column"><source>src/app/logs/components/records/records.component.html:19,21</source>Event</msg>
+  <msg id="RecordsComponent:dataColumn" desc="Data column"><source>src/app/logs/components/records/records.component.html:20,22</source>Data</msg>
+  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.html:21,23</source>Absolute Time</msg>
+  <msg id="RecordsComponent:timeDifferenceCol" desc="Time difference column"><source>src/app/logs/components/records/records.component.html:22,24</source>Time Difference</msg>
+  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.html:23,27</source>Relative Time</msg>
+  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:70,73</source> No records found. </msg>
+  <msg id="LogEffects:loadLogFailureHeadline" desc="Log not found error"><source>src/app/logs/store/log.effects.ts:89</source>Error while loading log!</msg>
+  <msg id="LogEffects:createLogFailureHeadline" desc="Log not created error"><source>src/app/logs/store/log.effects.ts:97</source>Error while creating log!</msg>
+  <msg id="LogEffects:updateLogFailureHeadline" desc="Log not updated error"><source>src/app/logs/store/log.effects.ts:105</source>Error while updating log!</msg>
+  <msg id="LogEffects:deleteLogFailureHeadline" desc="Log not deleted error"><source>src/app/logs/store/log.effects.ts:113</source>Error while deleting log!</msg>
+  <msg id="LogService:notFoundError" desc="Log not found error"><source>src/app/services/log.service.ts:63</source>Log does not exist.</msg>
+  <msg id="LogService:deleteError" desc="Log not deleted error"><source>src/app/services/log.service.ts:67</source>Could not delete log.</msg>
+  <msg id="RecordService:revokeError" desc="Revoke record failed error"><source>src/app/services/record.service.ts:47</source>Could not revoke last record of logId</msg>
+  <msg id="SettingService:resetError" desc="Reset database error"><source>src/app/services/setting.service.ts:64</source>Could not reset database.</msg>
+  <msg id="TemplateService:notFoundError" desc="Template not found error"><source>src/app/services/template.service.ts:50</source>Template does not exist.</msg>
+  <msg id="TemplateService:deleteError" desc="Template not deleted error"><source>src/app/services/template.service.ts:54</source>Could not delete template.</msg>
+  <msg id="LogEffects:createLogSuccessHeadline" desc="Log created information"><source>src/app/store/log.effects.ts:39</source>Log created successfully!</msg>
+  <msg id="LogEffects:updateLogSuccessHeadline" desc="Log updated information"><source>src/app/store/log.effects.ts:47</source>Log updated successfully!</msg>
+  <msg id="LogEffects:deleteLogSuccessHeadline" desc="Log deleted information"><source>src/app/store/log.effects.ts:55</source>Log deleted successfully!</msg>
+  <msg id="LogEffects:patchLogsSuccessHeadline" desc="Logs imported information"><source>src/app/store/log.effects.ts:63</source>Logs imported successfully!</msg>
+  <msg id="LogEffects:loadLogsFailureHeadline" desc="Logs not found error"><source>src/app/store/log.effects.ts:71</source>Error while loading logs!</msg>
+  <msg id="LogEffects:patchLogsFailureHeadline" desc="Logs not patched error"><source>src/app/store/log.effects.ts:79</source>Error while patching logs!</msg>
+  <msg id="LogEffects:reorderLogsFailureHeadline" desc="Logs not reordered error"><source>src/app/store/log.effects.ts:87</source>Error while reordering logs!</msg>
+  <msg id="RecordEffects:deleteRecordsSuccessHeadline" desc="Records deleted information"><source>src/app/store/record.effects.ts:101</source>Records deleted successfully!</msg>
+  <msg id="RecordEffects:loadRecordsFailureHeadline" desc="Records of log not found error"><source>src/app/store/record.effects.ts:108</source>Error while loading records!</msg>
+  <msg id="RecordEffects:loadAllRecordsFailureHeadline" desc="No records found error"><source>src/app/store/record.effects.ts:116</source>Error while loading all records!</msg>
+  <msg id="RecordEffects:createRecordFailureHeadline" desc="Record not created error"><source>src/app/store/record.effects.ts:124</source>Error while creating record!</msg>
+  <msg id="RecordEffects:revokeRecordFailureHeadline" desc="Record not revoked error"><source>src/app/store/record.effects.ts:132</source>Error while revoking record!</msg>
+  <msg id="RecordEffects:deleteRecordsFailureHeadline" desc="Records not deleted error"><source>src/app/store/record.effects.ts:140</source>Error while deleting records!</msg>
+  <msg id="SettingEffects:loadThemeFailureHeadline" desc="Could not load theme error"><source>src/app/store/setting.effects.ts:86</source>Error while loading theme!</msg>
+  <msg id="SettingEffects:loadSeperatorFailureHeadline" desc="Could not load seperator error"><source>src/app/store/setting.effects.ts:94</source>Error while loading csv seperator setting!</msg>
+  <msg id="SettingEffects:loadBeepFailureHeadline" desc="Could not load event sound setting error"><source>src/app/store/setting.effects.ts:102</source>Error while loading record beep setting!</msg>
+  <msg id="SettingEffects:loadQualityFailureHeadline" desc="Could not load photo quality setting error"><source>src/app/store/setting.effects.ts:110</source>Error while loading photo quality setting!</msg>
+  <msg id="SettingEffects:resetDBFailureHeadline" desc="Could not reset database error"><source>src/app/store/setting.effects.ts:118</source>Error while resetting database!</msg>
+  <msg id="SettingEffects:setSeperatorSuccessHeadline" desc="Seperator configured information"><source>src/app/store/setting.effects.ts:126</source>Switched seperator successfully!</msg>
+  <msg id="SettingEffects:setBeepSuccessEnabledDetails" desc="Event sound enabled information"><source>src/app/store/setting.effects.ts:134</source>Sound enabled</msg>
+  <msg id="SettingEffects:setBeepSuccessDisabledDetails" desc="Event sound disabled information"><source>src/app/store/setting.effects.ts:135</source>Sound disabled</msg>
+  <msg id="SettingEffects:setBeepSuccessHeadline" desc="Event sound configured information"><source>src/app/store/setting.effects.ts:137</source>Event sound</msg>
+  <msg id="SettingEffects:resetDBSuccessHeadline" desc="Database resetted information"><source>src/app/store/setting.effects.ts:146</source>Database reset successfully!</msg>
+  <msg id="SettingsState:defaultSeperator" desc="Default csv seperator"><source>src/app/store/setting.reducer.ts:15</source>,</msg>
+  <msg id="ShareEffects:shareFailureHeadline" desc="Download failed error"><source>src/app/store/share.effects.ts:44</source>Download failed!</msg>
+  <msg id="TemplateEffects:createTemplateSuccessHeadline" desc="Template created information"><source>src/app/store/template.effects.ts:31</source>Template created successfully!</msg>
+  <msg id="TemplateEffects:updateTemplateSuccessHeadline" desc="Template updated information"><source>src/app/store/template.effects.ts:39</source>Template updated successfully!</msg>
+  <msg id="TemplateEffects:deleteTemplateSuccessHeadline" desc="Template deleted information"><source>src/app/store/template.effects.ts:47</source>Template deleted successfully!</msg>
+  <msg id="TemplateEffects:patchTemplatesSuccessHeadline" desc="Templates imported information"><source>src/app/store/template.effects.ts:55</source>Templates imported successfully!</msg>
+  <msg id="TemplateEffects:loadTemplatesFailureHeadline" desc="Templates not found error"><source>src/app/store/template.effects.ts:63</source>Error while loading templates!</msg>
+  <msg id="TemplateEffects:patchTemplatesFailureHeadline" desc="Templates not patched error"><source>src/app/store/template.effects.ts:71</source>Error while patching templates!</msg>
+  <msg id="CreateEventTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:0</source>Add Event Template</msg>
+  <msg id="CreateEventTemplateDialogComponent:knownTemplates" desc="Known templates headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:4,8</source>Known Event Templates</msg>
+  <msg id="CreateEventTemplateDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder chooseItems"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:16,19</source>Choose a known template ...</msg>
+  <msg id="CreateEventTemplateDialogComponent:description" desc="Dialog description"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:33,36</source> You can either choose an event template from the known templates or create a completely new event template. </msg>
+  <msg id="CreateEventTemplateDialogComponent:eventType" desc="Event type headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:39,41</source>Event Type</msg>
+  <msg id="CreateEventTemplateDialogComponent:eventName" desc="Event name headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:54,56</source>Event Name</msg>
+  <msg id="CreateEventTemplateDialogComponent:error" desc="Event name duplicate error"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:56,60</source>An event template with this name already exists. Please choose another name.</msg>
+  <msg id="CreateEventTemplateDialogComponent:eventIcon" desc="Event icon headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:59,61</source>Event Icon</msg>
+  <msg id="CreateEventTemplateDialogComponent:eventColor" desc="Event color headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:67,70</source>Event Color</msg>
+  <msg id="CreateEventTemplateDialogComponent:addButton" desc="Add button"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:85,88</source>Add</msg>
+  <msg id="CreateTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:0</source>Add new Template</msg>
+  <msg id="CreateTemplateDialogComponent:titleLabel" desc="Title input label"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:6,8</source>Title</msg>
+  <msg id="CreateTemplateDialogComponent:titleError" desc="Title error hint"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:8,12</source>A template with this name already exists. Please choose another name.</msg>
+  <msg id="CreateTemplateDialogComponent:descriptionLabel" desc="Description input label"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:15,17</source>Description</msg>
+  <msg id="CreateTemplateDialogComponent:descriptionError" desc="Description error hint"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:17,23</source>A template with this description already exists. Please choose another description.</msg>
+  <msg id="CreateTemplateDialogComponent:addButton" desc="Add button"><source>src/app/templates/components/dialogs/createtemplatedialog/createtemplatedialog.component.html:24,26</source>Add</msg>
+  <msg id="DeleteEventTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:0</source>Delete Template</msg>
+  <msg id="DeleteEventTemplateDialogComponent:question" desc="Dialog question"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:1,4</source> Are you sure you want to delete this event template? </msg>
+  <msg id="DeleteEventTemplateDialogComponent:warning" desc="Warning about deletion"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:4,7</source> If you decide to do so this event template will no longer be available for future logging. Existing log entries remain unaffected. </msg>
+  <msg id="DeleteEventTemplateDialogComponent:deleteButton" desc="Delete button"><source>src/app/templates/components/dialogs/deleteeventtemplatedialog/deleteeventtemplatedialog.component.html:8</source>Delete</msg>
+  <msg id="DeleteTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/deletetemplatedialog/deletetemplatedialog.component.html:0</source>Delete Template</msg>
+  <msg id="DeleteTemplateDialogComponent:question" desc="Dialog question"><source>src/app/templates/components/dialogs/deletetemplatedialog/deletetemplatedialog.component.html:1,4</source> Are you sure you want to delete this template? </msg>
+  <msg id="DeleteTemplateDialogComponent:deleteButton" desc="Delete button"><source>src/app/templates/components/dialogs/deletetemplatedialog/deletetemplatedialog.component.html:5</source>Delete</msg>
+  <msg id="UpdateTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/updatetemplatedialog/updatetemplatedialog.component.html:0</source>Update Template</msg>
+  <msg id="UpdateTemplateDialogComponent:titleLabel" desc="Title input label"><source>src/app/templates/components/dialogs/updatetemplatedialog/updatetemplatedialog.component.html:6,8</source>Title</msg>
+  <msg id="UpdateTemplateDialogComponent:titleError" desc="Title error hint"><source>src/app/templates/components/dialogs/updatetemplatedialog/updatetemplatedialog.component.html:8,12</source>A template with this name already exists. Please choose another name.</msg>
+  <msg id="UpdateTemplateDialogComponent:descriptionLabel" desc="Description input label"><source>src/app/templates/components/dialogs/updatetemplatedialog/updatetemplatedialog.component.html:15,17</source>Description</msg>
+  <msg id="UpdateTemplateDialogComponent:descriptionError" desc="Description error hint"><source>src/app/templates/components/dialogs/updatetemplatedialog/updatetemplatedialog.component.html:17,22</source>A template with this description already exists. Please choose another description.</msg>
+  <msg id="UpdateTemplateDialogComponent:updateButton" desc="Update button"><source>src/app/templates/components/dialogs/updatetemplatedialog/updatetemplatedialog.component.html:23,26</source>Update</msg>
+  <msg id="TemplateComponent:title" desc="Title"><source>src/app/templates/components/template/template.component.html:7</source>Title</msg>
+  <msg id="TemplateComponent:description" desc="Description"><source>src/app/templates/components/template/template.component.html:11</source>Description</msg>
+  <msg id="TemplateComponent:hint" desc="Page hint"><source>src/app/templates/components/template/template.component.html:29,32</source> In this view you can customize the title and description of the template. Furthermore you have the possibility to specify events that might occur during the logging process. </msg>
+  <msg id="TemplateComponent:tableHeadline" desc="Table headline"><source>src/app/templates/components/template/template.component.html:33</source>Event Templates</msg>
+  <msg id="TemplateComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/templates/components/template/template.component.html:49</source>Search keyword</msg>
+  <msg id="TemplateComponent:empty" desc="Empty table message"><source>src/app/templates/components/template/template.component.html:85,88</source> No Event Templates found. </msg>
+  <msg id="TemplateComponent:deleteErrorHeadline" desc="Delete template error headline"><source>src/app/templates/components/template/template.component.ts:67</source>Can not delete template!</msg>
+  <msg id="TemplateComponent:deleteErrorDetails" desc="Delete template error details"><source>src/app/templates/components/template/template.component.ts:68</source>The template is used by a log.</msg>
+  <msg id="TemplatesComponent:header" desc="Page headline"><source>src/app/templates/components/templates/templates.component.html:0,4</source>Templates</msg>
+  <msg id="TemplatesComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/templates/components/templates/templates.component.html:14,17</source>Search keyword</msg>
+  <msg id="TemplatesComponent:empty" desc="Empty table message"><source>src/app/templates/components/templates/templates.component.html:34,37</source> No Templates found. Please add at least one template. Afterwards you can create protocols. </msg>
+  <msg id="TemplateEffects:loadTemplateFailureHeadline" desc="Template not found error"><source>src/app/templates/store/template.effects.ts:58</source>Error while loading template!</msg>
+  <msg id="TemplateEffects:createTemplateFailureHeadline" desc="Template not created error"><source>src/app/templates/store/template.effects.ts:66</source>Error while creating template!</msg>
+  <msg id="TemplateEffects:updateTemplateFailureHeadline" desc="Template not updated error"><source>src/app/templates/store/template.effects.ts:74</source>Error while updating template!</msg>
+  <msg id="TemplateEffects:deleteTemplateFailureHeadline" desc="Template not deleted error"><source>src/app/templates/store/template.effects.ts:82</source>Error while deleting template!</msg>
+  <msg id="EventLabelPipe:start" desc="Start label"><source>src/app/ui/pipes/event.pipe.ts:157</source>Start</msg>
+  <msg id="EventLabelPipe:pause" desc="Pause label"><source>src/app/ui/pipes/event.pipe.ts:159</source>Pause</msg>
+  <msg id="EventLabelPipe:resume" desc="Resume label"><source>src/app/ui/pipes/event.pipe.ts:161</source>Resume</msg>
+  <msg id="EventLabelPipe:end" desc="End label"><source>src/app/ui/pipes/event.pipe.ts:163</source>End</msg>
+  <msg id="EventLabelPipe:text" desc="Text label"><source>src/app/ui/pipes/event.pipe.ts:165</source>Text</msg>
+  <msg id="EventLabelPipe:photo" desc="Photo label"><source>src/app/ui/pipes/event.pipe.ts:167</source>Photo</msg>
+  <msg id="EventLabelPipe:audio" desc="Audio label"><source>src/app/ui/pipes/event.pipe.ts:169</source>Audio</msg>
+  <msg id="EventLabelPipe:custom" desc="Custom label"><source>src/app/ui/pipes/event.pipe.ts:171</source>Custom</msg>
+  <msg id="TemplateTitlePipe:unknownTemplateError" desc="Unknown template error"><source>src/app/ui/pipes/log.pipe.ts:21</source>Unknown template: Please import the corresponding template first.</msg>
+  <msg id="lib:titleColumn" desc="Title column"><source>src/app/utils/lib.ts:4</source>Title</msg>
+  <msg id="lib:descriptionColumn" desc="Description column"><source>src/app/utils/lib.ts:5</source>Description</msg>
+  <msg id="lib:typeColumn" desc="Type column"><source>src/app/utils/lib.ts:6</source>Type</msg>
+  <msg id="lib:RecordsColumn" desc="Records column"><source>src/app/utils/lib.ts:7</source>Records</msg>
+  <msg id="lib:iconColumn" desc="Icon column"><source>src/app/utils/lib.ts:8</source>Icon</msg>
+  <msg id="lib:nameColumn" desc="Name column"><source>src/app/utils/lib.ts:9</source>Name</msg>
+  <msg id="lib:absTimeCol" desc="Absolute time column"><source>src/app/utils/lib.ts:10</source>Absolute Time</msg>
+  <msg id="lib:modifiedColumn" desc="Modified column"><source>src/app/utils/lib.ts:11</source>Created/Modified</msg>
+  <msg id="lib:eventTypeColumn" desc="Event type column"><source>src/app/utils/lib.ts:12</source>Type</msg>
+  <msg id="lib:mediaErrorHeadline" desc="No camera/microphone access error headline"><source>src/app/utils/lib.ts:16</source>Browser feature &quot;navigator.mediaDevices.getUserMedia&quot; not available!</msg>
+  <msg id="lib:mediaErrorDetails" desc="No camera/microphone access error details"><source>src/app/utils/lib.ts:17</source>Reason: insecure connection (no https) or incompatible browser</msg>
+</messagebundle>

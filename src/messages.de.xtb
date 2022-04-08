@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE translationbundle [
+<!ELEMENT translationbundle (translation)*>
+<!ATTLIST translationbundle lang CDATA #REQUIRED>
+
+<!ELEMENT translation (#PCDATA|ph)*>
+<!ATTLIST translation id CDATA #REQUIRED>
+<!ATTLIST translation desc CDATA #IMPLIED>
+<!ATTLIST translation meaning CDATA #IMPLIED>
+<!ATTLIST translation xml:space (default|preserve) "default">
+
+<!ELEMENT ph (#PCDATA|ex)*>
+<!ATTLIST ph name CDATA #REQUIRED>
+
+<!ELEMENT ex (#PCDATA)>
+]>
+<translationbundle lang="de">
+  <translation id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)">Protokolle</translation>
+  <translation id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)">Vorlagen</translation>
+  <translation id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)">Infos</translation>
+  <translation id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)">Einstellungen</translation>
+  <translation id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)">App-Einstellungen</translation>
+  <translation id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)">Konfiguration importieren</translation>
+  <translation id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)">Konfiguration exportieren</translation>
+  <translation id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)">Protokolle</translation>
+  <translation id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)">Vorlagen</translation>
+  <translation id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)">Darstellung</translation>
+  <translation id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)">Hell</translation>
+  <translation id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)">Mittel</translation>
+  <translation id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)">Dunkel</translation>
+  <translation id="ExportLogsDialogComponent:header" desc="Dialog headline">Konfiguration von Protokollen exportieren</translation>
+  <translation id="ExportLogsDialogComponent:description" desc="Dialog description"> Bitte wählen Sie alle Protokolle aus, die Sie als json-Datei oder QR-Code exportieren möchten. Diese können jederzeit wieder importiert werden (auch von einem anderen Gerät). Es werden nur die Konfigurationsdaten und keine aufgezeichneten Ereignisse exportiert. </translation>
+  <translation id="ExportLogsDialogComponent:error" desc="Error message"> Die Gesamtgröße der ausgewählten Daten überschreitet die maximal zulässige Größe für einen QR-Code. Bitte reduzieren Sie Ihre Auswahl oder nutzen Sie den Datei-Download. </translation>
+  <translation id="ExportLogsDialogComponent:qrDownload" desc="QR code download button">JSON herunterladen</translation>
+  <translation id="ExportLogsDialogComponent:jsonDownload" desc="JSON download button">QR-Code anzeigen</translation>
+  <translation id="ExportLogsDialogComponent:headerQRDialog" desc="QR Code Dialog header">Konfigurierte Protokolle (QR-Code)</translation>
+  <translation id="ExportTemplatesDialogComponent:header" desc="Dialog headline">Konfigurierte Vorlagen exportieren</translation>
+  <translation id="ExportTemplatesDialogComponent:description" desc="Dialog description"> Bitte wählen Sie alle Vorlagen aus, die Sie als json-Datei oder QR-Code exportieren möchten. Diese können jederzeit wieder importiert werden (auch von einem anderen Gerät). Es werden nur die Konfigurationsdaten und keine aufgezeichneten Ereignisse exportiert. </translation>
+  <translation id="ExportTemplatesDialogComponent:error" desc="Error message"> Die Gesamtgröße der ausgewählten Daten überschreitet die maximal zulässige Größe für einen QR-Code. Bitte reduzieren Sie Ihre Auswahl oder nutzen Sie den Datei-Download. </translation>
+  <translation id="ExportTemplatesDialogComponent:qrDownload" desc="QR code download button">JSON herunterladen</translation>
+  <translation id="ExportTemplatesDialogComponent:jsonDownload" desc="JSON download button">QR-Code anzeigen</translation>
+  <translation id="ExportTemplatesDialogComponent:headerQRDialog" desc="QR Code Dialog header">Konfigurierte Vorlagen (QR-Code)</translation>
+  <translation id="ImportDialogComponent:header" desc="Dialog headline">Konfiguration importieren</translation>
+  <translation id="ImportDialogComponent:description" desc="Dialog description"> Bitte wählen Sie zwischen den beiden Optionen &quot;Datei-Upload&quot; und &quot;QR-Code&quot;, um eine Konfiguration zu importieren. </translation>
+  <translation id="ImportDialogComponent:jsonUpload" desc="JSON uploud button">Datei auswählen</translation>
+  <translation id="ImportDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Kameras werden geladen ...</translation>
+  <translation id="ImportDialogComponent:fileUploadOption" desc="File upload option">Datei-Upload</translation>
+  <translation id="ImportDialogComponent:qrCodeOption" desc="QR code option">QR-Code</translation>
+  <translation id="ImportDialogComponent:fileErrorHeadline" desc="File error headline">Fehler beim Lesen der Datei!</translation>
+  <translation id="ImportDialogComponent:qrCodeErrorHeadline" desc="QR code error headline">Fehler beim Scannen des QR-Codes!</translation>
+  <translation id="ImportDialogComponent:fileErrorDetails" desc="File error details">Die Eingabedatei weist ein inkompatibles Format auf.</translation>
+  <translation id="qrCodeErrorDetails:qrCodeOption" desc="QR code error details">Der QR-Code könnte ein inkompatibles Format besitzen.</translation>
+  <translation id="ImportDialogComponent:scanErrorHeadline" desc="Scan error headline">Fehler beim Scannen des QR-Codes!</translation>
+  <translation id="ImportDialogComponent:scanErrorDetails" desc="Scan error details">Während des Scanvorgangs ist ein Fehler aufgetreten.</translation>
+  <translation id="QRcodeDialogComponent:pngDownload" desc="PNG download button">PNG herunterladen</translation>
+  <translation id="ResetDbDialogComponent:header" desc="Dialog headline">App-Daten zurücksetzen</translation>
+  <translation id="ResetDbDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Protokolle, deren Ereignisaufzeichnungen und alle Vorlagen löschen wollen? </translation>
+  <translation id="ResetDbDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Löschbefehl ein</translation>
+  <translation id="ResetDbDialogComponent:hint2" desc="Hint 2/2">, um die Löschung aller Daten zu bestätigen.</translation>
+  <translation id="ResetDbDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
+  <translation id="ResetDbDialogComponent:deleteButton" desc="Reset App button">App-Daten zurücksetzen</translation>
+  <translation id="ResetDbDialogComponent:deleteCommand" desc="Delete command">App-Daten zurücksetzen</translation>
+  <translation id="InfoComponent:header" desc="Page headline">App Info</translation>
+  <translation id="InfoComponent:name" desc="App name">Name</translation>
+  <translation id="InfoComponent:version" desc="App version">Version</translation>
+  <translation id="InfoComponent:branch" desc="App branch">Branch</translation>
+  <translation id="InfoComponent:commit" desc="App commit">Commit</translation>
+  <translation id="InfoComponent:developer" desc="App developer">Entwickler</translation>
+  <translation id="InfoComponent:contact" desc="Contact to app developer">Kontakt</translation>
+  <translation id="InfoComponent:aboutHeadline" desc="About headline">Über eLogger</translation>
+  <translation id="InfoComponent:aboutText1" desc="About text 1/2"> eLogger ist eine quelloffene Progressive Web-App (PWA). Die App selbst wird auf GitHub gehostet. Sie kann entweder in gängigen Browsern ausgeführt oder über den Safari-Browser (iOS) oder Chrome-Browser (Android) auf den Startbildschirm mobiler Geräte exportiert werden. </translation>
+  <translation id="InfoComponent:aboutText2" desc="About text 2/2"> Es gibt kein Backend. Es werden also keine Daten ausgetauscht. Alle Daten verbleiben auf dem eigenen Gerät des Nutzers. Diese App verfolgt keine kommerziellen Zwecke. Die Nutzung ist privat. </translation>
+  <translation id="InfoComponent:disclaimerHeadline" desc="Disclaimer headline">Haftungsausschluss</translation>
+  <translation id="InfoComponent:disclaimerText" desc="Disclaimer text"> Wir übernehmen keinerlei ausdrückliche, stillschweigende, tatsächliche oder gesetzliche Gewährleistung, einschließlich, aber nicht beschränkt auf die stillschweigende Gewährleistung der Marktgängigkeit, der Eignung für einen bestimmten Zweck, der Nichtverletzung von Rechten Dritter und der Datengenauigkeit. Wir gewährleisten weder, dass der Betrieb der Software unterbrechungs- oder fehlerfrei ist, noch dass etwaige Mängel behoben werden. Wir übernehmen keine Garantie und machen keine Zusicherungen in Bezug auf die Verwendung der Software oder deren Ergebnisse, einschließlich, aber nicht beschränkt auf die Richtigkeit, Genauigkeit, Zuverlässigkeit oder Nützlichkeit der Software. </translation>
+  <translation id="SettingsComponent:header" desc="Page headline">App-Einstellungen</translation>
+  <translation id="SettingsComponent:chooseSeperator" desc="Choose CSV seperator headline">CSV-Separator:</translation>
+  <translation id="SettingsComponent:seperatorText" desc="Description about CSV seperators"> Protokolle und aufgezeichnete Ereignisse werden im CSV-Dateiformat (kommagetrennte Werte) exportiert. Je nach Land wird entweder ein Punkt (.) oder ein Komma (,) als Dezimaltrennzeichen für eine Zahl verwendet. Wenn das Komma als Dezimaltrennzeichen verwendet wird, kann es nicht mehr zur Trennung von Werten in CSV-Dateien verwendet werden. In diesem Fall muss ein Semikolon als Trennzeichen für das CSV-Format verwendet werden. </translation>
+  <translation id="SettingsComponent:chooseQuality" desc="Choose JPEG quality headline">JPEG-Qualität:</translation>
+  <translation id="SettingsComponent:qualityText" desc="Description about JPEG quality settings"> Wenn Sie Fotoereignisse in Ihren Protokollen verwenden, sollten Sie die Qualität der Fotodateien festlegen. Je höher die Qualität, desto größer ist die resultierende Dateigröße. </translation>
+  <translation id="SettingsComponent:chooseBeep" desc="Enable event sound headline">Ereigniston aktivieren:</translation>
+  <translation id="SettingsComponent:beepText" desc="Description about audio feedback settings"> Während einer Protokollaufzeichnung kann bei Ereignissen ein zusätzliches Audio-Feedback ausgegeben werden. </translation>
+  <translation id="SettingsComponent:resetAppData" desc="Reset app data headline">Daten zurücksetzen</translation>
+  <translation id="SettingsComponent:resetAppText" desc="Description about resetting app data">Hier können Sie alle Vorlagen, Protokolle und aufgezeichnete Ereignisse auf einmal löschen.</translation>
+  <translation id="SettingsComponent:resetAppWarning" desc="Warning about resetting app data">Achtung! Dieser Vorgang kann nicht rückgängig gemacht werden!</translation>
+  <translation id="AudioRecordDialogComponent:header" desc="Dialog headline">Audioereignis</translation>
+  <translation id="AudioRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Mikrofone werden geladen ...</translation>
+  <translation id="AudioRecordDialogComponent:hint" desc="How to record hint"> Bitte halten Sie die Mikrofontaste gedrückt, um Ihre Sprachnachricht aufzunehmen. </translation>
+  <translation id="AudioRecordDialogComponent:error" desc="No microphone access"> Auf Mikrofon(e) konnte nicht zugegriffen werden. </translation>
+  <translation id="AudioRecordDialogComponent:micErrorHeadline" desc="Microphone error headline">Mikrofonfehler</translation>
+  <translation id="AudioRecordDialogComponent:micErrorDetails" desc="Microphone error details">Kein Mikrofonzugriff möglich.</translation>
+  <translation id="CreateLogDialogComponent:header" desc="Dialog headline">Neues Protokoll hinzufügen</translation>
+  <translation id="CreateLogDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Bitte wählen Sie eine Vorlage ...</translation>
+  <translation id="CreateLogDialogComponent:titleLabel" desc="Title input label">Titel</translation>
+  <translation id="CreateLogDialogComponent:titleError" desc="Title error hint">Ein Protokoll mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen.</translation>
+  <translation id="CreateLogDialogComponent:descriptionLabel" desc="Description input label">Beschreibung</translation>
+  <translation id="CreateLogDialogComponent:descriptionError" desc="Description error hint">Ein Protokoll mit dieser Beschreibung existiert bereits. Bitte wählen Sie eine andere Beschreibung.</translation>
+  <translation id="CreateLogDialogComponent:addButton" desc="Add button">Hinzufügen</translation>
+  <translation id="DeleteLogDialogComponent:header" desc="Dialog headline">Protokoll löschen</translation>
+  <translation id="DeleteLogDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie dieses Protokoll löschen wollen? </translation>
+  <translation id="DeleteLogDialogComponent:warning" desc="Warning about deletion"> Wenn Sie sich dafür entscheiden, werden auch alle Aufzeichnungen dieses Protokolls unwiederbringlich gelöscht. </translation>
+  <translation id="DeleteLogDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
+  <translation id="DeleteLogDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, das Sie löschen möchten, um den Löschvorgang zu bestätigen.</translation>
+  <translation id="DeleteLogDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
+  <translation id="DeleteLogDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
+  <translation id="DeleteRecordsDialogComponent:header" desc="Dialog headline">Aufzeichnungen löschen</translation>
+  <translation id="DeleteRecordsDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Ereignisaufzeichnungen dieses Protokolls löschen wollen? </translation>
+  <translation id="DeleteRecordsDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
+  <translation id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, um die Löschung aller aufgezeichneten Ereignisse zu bestätigen.</translation>
+  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
+  <translation id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
+  <translation id="PhotoRecordDialogComponent:header" desc="Dialog headline">Fotoereignis</translation>
+  <translation id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Kameras werden geladen ...</translation>
+  <translation id="PhotoRecordDialogComponent:error" desc="No camera access"> Auf die Kamera(s) konnte nicht zugegriffen werden. </translation>
+  <translation id="PhotoRecordDialogComponent:cameraErrorHeadline" desc="Camera error headline">Kamerafehler</translation>
+  <translation id="PhotoRecordDialogComponent:cameraErrorDetails" desc="Camera error details">Kein Zugriff auf die Kamera möglich.</translation>
+  <translation id="ShareLogsDialogComponent:header" desc="Dialog headline">Protokolle teilen</translation>
+  <translation id="ShareLogsDialogComponent:description" desc="Dialog description"> Bitte wählen Sie alle Protokolle aus, die Sie in einer Übersicht exportieren möchten. Sollten auch für einzelne Protokolle Aufzeichnungen verfügbar sein, werden alle Download-Dateien in einer gemeinsamen ZIP-Datei bereitgestellt. </translation>
+  <translation id="ShareLogsDialogComponent:shareButton" desc="Share button">Teilen</translation>
+  <translation id="TextRecordDialogComponent:header" desc="Dialog headline">Textereignis</translation>
+  <translation id="TextRecordDialogComponent:description" desc="Dialog description"> Bitte geben Sie einen passenden Text für das Ereignis ein. </translation>
+  <translation id="TextRecordDialogComponent:textLabel" desc="Text input label">Text</translation>
+  <translation id="TextRecordDialogComponent:createButton" desc="Create record button">Ereignis festhalten</translation>
+  <translation id="UpdateLogDialogComponent:header" desc="Dialog headline">Vorlage aktualisieren</translation>
+  <translation id="UpdateLogDialogComponent:titleLabel" desc="Title input label">Titel</translation>
+  <translation id="UpdateLogDialogComponent:titleError" desc="Title error hint">Eine Vorlage mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen.</translation>
+  <translation id="UpdateLogDialogComponent:descriptionLabel" desc="Description input label">Beschreibung</translation>
+  <translation id="UpdateLogDialogComponent:descriptionError" desc="Description error hint">Eine Vorlage mit dieser Beschreibung existiert bereits. Bitte wählen Sie eine andere Beschreibung.</translation>
+  <translation id="UpdateLogDialogComponent:updateButton" desc="Update button">Aktualisieren</translation>
+  <translation id="LogComponent:title" desc="Title">Titel</translation>
+  <translation id="LogComponent:description" desc="Description">Beschreibung</translation>
+  <translation id="LogComponent:error" desc="Missing template error message"> Dieses Protokoll basiert auf einer unbekannten Vorlage. Bitte importieren Sie zunächst die entsprechende Vorlage. </translation>
+  <translation id="LogComponent:tableHeadline" desc="Table headline">Ereignisaufzeichnungen</translation>
+  <translation id="LogsComponent:header" desc="Page headline">Protokolle</translation>
+  <translation id="LogsComponent:seachPlaceholder" desc="Search placeholder">Suchbegriff</translation>
+  <translation id="LogsComponent:empty" desc="Empty table message"> Keine Protokolle gefunden. </translation>
+  <translation id="RecordComponent:header" desc="Page headline">Ereignis aufzeichnen</translation>
+  <translation id="RecordComponent:error" desc="Error message">Keine konfigurierten Ereignisse gefunden. Bitte fügen Sie zuerst einige Ereignisse Ihrer Vorlage hinzu.</translation>
+  <translation id="RecordComponent:tableContainerHeadline" desc="Table container headline">Aufgezeichnete Ereignisse</translation>
+  <translation id="RecordComponent:tableHeadline" desc="Table headline">Aufgezeichnete Ereignisse</translation>
+  <translation id="RecordsComponent:revokeButton" desc="Revoke button">Letzte Aufzeichnung widerrufen</translation>
+  <translation id="RecordsComponent:eventColumn" desc="Event column">Ereignis</translation>
+  <translation id="RecordsComponent:dataColumn" desc="Data column">Daten</translation>
+  <translation id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"> Absolute Zeit </translation>
+  <translation id="RecordsComponent:relativeTimeColumn" desc="Relative time column">Relative Zeit</translation>
+  <translation id="RecordsComponent:empty" desc="Empty table message"> Keine Aufzeichnungen vorhanden. </translation>
+  <translation id="LogEffects:loadLogFailureHeadline" desc="Log not found error">Fehler beim Laden des Protokolls!</translation>
+  <translation id="LogEffects:createLogFailureHeadline" desc="Log not created error">Fehler beim Erstellen des Protokolls!</translation>
+  <translation id="LogEffects:updateLogFailureHeadline" desc="Log not updated error">Fehler beim Aktualisieren des Protokolls!</translation>
+  <translation id="LogEffects:deleteLogFailureHeadline" desc="Log not deleted error">Fehler beim Löschen des Protokolls!</translation>
+  <translation id="LogService:notFoundError" desc="Log not found error">Das Protokoll existiert nicht.</translation>
+  <translation id="LogService:deleteError" desc="Log not deleted error">Das Protokoll konnte nicht gelöscht werden.</translation>
+  <translation id="RecordService:revokeError" desc="Revoke record failed error">Das letzte Ereignis konnte nicht widerrufen werden: logId</translation>
+  <translation id="SettingService:resetError" desc="Reset database error">Die Datenbank konnte nicht zurückgesetzt werden.</translation>
+  <translation id="TemplateService:notFoundError" desc="Template not found error">Die Vorlage existiert nicht.</translation>
+  <translation id="TemplateService:deleteError" desc="Template not deleted error">Die Vorlage konnte nicht gelöscht werden.</translation>
+  <translation id="LogEffects:createLogSuccessHeadline" desc="Log created information">Protokoll erfolgreich erstellt!</translation>
+  <translation id="LogEffects:updateLogSuccessHeadline" desc="Log updated information">Protokoll erfolgreich aktualisiert!</translation>
+  <translation id="LogEffects:deleteLogSuccessHeadline" desc="Log deleted information">Protokoll erfolgreich gelöscht!</translation>
+  <translation id="LogEffects:patchLogsSuccessHeadline" desc="Logs imported information">Protokolle erfolgreich importiert!</translation>
+  <translation id="LogEffects:loadLogsFailureHeadline" desc="Logs not found error">Fehler beim Laden von Protokollen!</translation>
+  <translation id="LogEffects:patchLogsFailureHeadline" desc="Logs not patched error">Fehler beim Aktualisieren von Protokollen!</translation>
+  <translation id="LogEffects:reorderLogsFailureHeadline" desc="Logs not reordered error">Fehler beim Neuordnen von Protokollen!</translation>
+  <translation id="RecordEffects:deleteRecordsSuccessHeadline" desc="Records deleted information">Aufzeichnungen erfolgreich gelöscht!</translation>
+  <translation id="RecordEffects:loadRecordsFailureHeadline" desc="Records of log not found error">Fehler beim Laden von Aufzeichnungen!</translation>
+  <translation id="RecordEffects:loadAllRecordsFailureHeadline" desc="No records found error">Fehler beim Laden aller Aufzeichnungen!</translation>
+  <translation id="RecordEffects:createRecordFailureHeadline" desc="Record not created error">Fehler beim Aufzeichnen des Ereignisses!</translation>
+  <translation id="RecordEffects:revokeRecordFailureHeadline" desc="Record not revoked error">Fehler beim Widerrufen des Ereignisses!</translation>
+  <translation id="RecordEffects:deleteRecordsFailureHeadline" desc="Records not deleted error">Fehler beim Löschen der Aufzeichnungen!</translation>
+  <translation id="SettingEffects:loadThemeFailureHeadline" desc="Could not load theme error">Fehler beim Laden des Themes!</translation>
+  <translation id="SettingEffects:loadSeperatorFailureHeadline" desc="Could not load seperator error">Fehler beim Laden der CSV-Separator-Einstellung!</translation>
+  <translation id="SettingEffects:loadBeepFailureHeadline" desc="Could not load event sound setting error">Fehler beim Laden der Einstellung für den Aufzeichnungston!</translation>
+  <translation id="SettingEffects:loadQualityFailureHeadline" desc="Could not load photo quality setting error">Fehler beim Laden der Fotoqualitätseinstellungen!</translation>
+  <translation id="SettingEffects:resetDBFailureHeadline" desc="Could not reset database error">Fehler beim Zurücksetzen der Datenbank!</translation>
+  <translation id="SettingEffects:setSeperatorSuccessHeadline" desc="Seperator configured information">Separator erfolgreich gewechselt!</translation>
+  <translation id="SettingEffects:setBeepSuccessEnabledDetails" desc="Event sound enabled information">Ton aktiviert</translation>
+  <translation id="SettingEffects:setBeepSuccessDisabledDetails" desc="Event sound disabled information">Ton deaktiviert</translation>
+  <translation id="SettingEffects:setBeepSuccessHeadline" desc="Event sound configured information">Ereigniston</translation>
+  <translation id="SettingEffects:resetDBSuccessHeadline" desc="Database resetted information">Datenbank erfolgreich zurückgesetzt!</translation>
+  <translation id="ShareEffects:shareFailureHeadline" desc="Download failed error">Download fehlgeschlagen!</translation>
+  <translation id="TemplateEffects:createTemplateSuccessHeadline" desc="Template created information">Vorlage erfolgreich erstellt!</translation>
+  <translation id="TemplateEffects:updateTemplateSuccessHeadline" desc="Template updated information">Vorlage erfolgreich aktualisiert!</translation>
+  <translation id="TemplateEffects:deleteTemplateSuccessHeadline" desc="Template deleted information">Vorlage erfolgreich gelöscht!</translation>
+  <translation id="TemplateEffects:patchTemplatesSuccessHeadline" desc="Templates imported information">Vorlagen erfolgreich importiert!</translation>
+  <translation id="TemplateEffects:loadTemplatesFailureHeadline" desc="Templates not found error">Fehler beim Laden von Vorlagen!</translation>
+  <translation id="TemplateEffects:patchTemplatesFailureHeadline" desc="Templates not patched error">Fehler beim Aktualisieren von Vorlagen!</translation>
+  <translation id="CreateEventTemplateDialogComponent:header" desc="Dialog headline">Ereignisvorlage hinzufügen</translation>
+  <translation id="CreateEventTemplateDialogComponent:knownTemplates" desc="Known templates headline">Bekannte Ereignisvorlagen</translation>
+  <translation id="CreateEventTemplateDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder chooseItems">Wählen Sie eine bekannte Vorlage ...</translation>
+  <translation id="CreateEventTemplateDialogComponent:description" desc="Dialog description"> Sie können entweder eine Ereignisvorlage aus den bekannten Vorlagen auswählen oder eine völlig neue Ereignisvorlage erstellen. </translation>
+  <translation id="CreateEventTemplateDialogComponent:eventType" desc="Event type headline">Ereignistyp</translation>
+  <translation id="CreateEventTemplateDialogComponent:eventName" desc="Event name headline">Name des Ereignisses</translation>
+  <translation id="CreateEventTemplateDialogComponent:error" desc="Event name duplicate error">Eine Ereignisvorlage mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen.</translation>
+  <translation id="CreateEventTemplateDialogComponent:eventIcon" desc="Event icon headline">Ereignissymbol</translation>
+  <translation id="CreateEventTemplateDialogComponent:eventColor" desc="Event color headline">Ereignisfarbe</translation>
+  <translation id="CreateEventTemplateDialogComponent:addButton" desc="Add button">Hinzufügen</translation>
+  <translation id="CreateTemplateDialogComponent:header" desc="Dialog headline">Neue Vorlage hinzufügen</translation>
+  <translation id="CreateTemplateDialogComponent:titleLabel" desc="Title input label">Titel</translation>
+  <translation id="CreateTemplateDialogComponent:titleError" desc="Title error hint">Eine Vorlage mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen.</translation>
+  <translation id="CreateTemplateDialogComponent:descriptionLabel" desc="Description input label">Beschreibung</translation>
+  <translation id="CreateTemplateDialogComponent:descriptionError" desc="Description error hint">Eine Vorlage mit dieser Beschreibung existiert bereits. Bitte wählen Sie eine andere Beschreibung.</translation>
+  <translation id="CreateTemplateDialogComponent:addButton" desc="Add button">Hinzufügen</translation>
+  <translation id="DeleteEventTemplateDialogComponent:header" desc="Dialog headline">Vorlage löschen</translation>
+  <translation id="DeleteEventTemplateDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie diese Ereignisvorlage löschen möchten? </translation>
+  <translation id="DeleteEventTemplateDialogComponent:warning" desc="Warning about deletion"> Wenn Sie sich dafür entscheiden, steht diese Ereignisvorlage nicht mehr für die zukünftige Protokollierung zur Verfügung. Bestehende Protokolleinträge bleiben davon unberührt. </translation>
+  <translation id="DeleteEventTemplateDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
+  <translation id="DeleteTemplateDialogComponent:header" desc="Dialog headline">Vorlage löschen</translation>
+  <translation id="DeleteTemplateDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie diese Vorlage löschen möchten? </translation>
+  <translation id="DeleteTemplateDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
+  <translation id="UpdateTemplateDialogComponent:header" desc="Dialog headline">Vorlage aktualisieren</translation>
+  <translation id="UpdateTemplateDialogComponent:titleLabel" desc="Title input label">Titel</translation>
+  <translation id="UpdateTemplateDialogComponent:titleError" desc="Title error hint">Eine Vorlage mit diesem Namen existiert bereits. Bitte wählen Sie einen anderen Namen.</translation>
+  <translation id="UpdateTemplateDialogComponent:descriptionLabel" desc="Description input label">Beschreibung</translation>
+  <translation id="UpdateTemplateDialogComponent:descriptionError" desc="Description error hint">Eine Vorlage mit dieser Beschreibung existiert bereits. Bitte wählen Sie eine andere Beschreibung.</translation>
+  <translation id="UpdateTemplateDialogComponent:updateButton" desc="Update button">Aktualisieren</translation>
+  <translation id="TemplateComponent:title" desc="Title">Titel</translation>
+  <translation id="TemplateComponent:description" desc="Description">Beschreibung</translation>
+  <translation id="TemplateComponent:hint" desc="Page hint"> In dieser Ansicht können Sie den Titel und die Beschreibung der Vorlage anpassen. Außerdem haben Sie die Möglichkeit, Ereignisse zu hinterlegen, die während des Protokollierungsprozesses auftreten können. </translation>
+  <translation id="TemplateComponent:tableHeadline" desc="Table headline">Ereignisvorlagen</translation>
+  <translation id="TemplateComponent:seachPlaceholder" desc="Search placeholder">Suchbegriff</translation>
+  <translation id="TemplateComponent:empty" desc="Empty table message"> Keine Ereignisvorlagen gefunden. </translation>
+  <translation id="TemplateComponent:deleteErrorHeadline" desc="Delete template error headline">Vorlage kann nicht gelöscht werden!</translation>
+  <translation id="TemplateComponent:deleteErrorDetails" desc="Delete template error details">Die Vorlage wird zurzeit von einem Protokoll verwendet.</translation>
+  <translation id="TemplatesComponent:header" desc="Page headline">Vorlagen</translation>
+  <translation id="TemplatesComponent:seachPlaceholder" desc="Search placeholder">Suchbegriff</translation>
+  <translation id="TemplatesComponent:empty" desc="Empty table message"> Keine Vorlagen gefunden. Bitte fügen Sie mindestens eine Vorlage hinzu. Danach können Sie Protokolle erstellen. </translation>
+  <translation id="TemplateEffects:loadTemplateFailureHeadline" desc="Template not found error">Fehler beim Laden der Vorlage!</translation>
+  <translation id="TemplateEffects:createTemplateFailureHeadline" desc="Template not created error">Fehler beim Erstellen der Vorlage!</translation>
+  <translation id="TemplateEffects:updateTemplateFailureHeadline" desc="Template not updated error">Fehler beim Aktualisieren der Vorlage!</translation>
+  <translation id="TemplateEffects:deleteTemplateFailureHeadline" desc="Template not deleted error">Fehler beim Löschen der Vorlage!</translation>
+  <translation id="EventLabelPipe:start" desc="Start label">Start</translation>
+  <translation id="EventLabelPipe:pause" desc="Pause label">Pause</translation>
+  <translation id="EventLabelPipe:resume" desc="Resume label">Fortsetzen</translation>
+  <translation id="EventLabelPipe:end" desc="End label">Ende</translation>
+  <translation id="EventLabelPipe:text" desc="Text label">Text</translation>
+  <translation id="EventLabelPipe:photo" desc="Photo label">Foto</translation>
+  <translation id="EventLabelPipe:audio" desc="Audio label">Audio</translation>
+  <translation id="EventLabelPipe:custom" desc="Custom label">Individuell</translation>
+  <translation id="TemplateTitlePipe:unknownTemplateError" desc="Unknown template error">Unbekannte Vorlage: Bitte importieren Sie zunächst die entsprechende Vorlage.</translation>
+  <translation id="lib:titleColumn" desc="Title column">Titel</translation>
+  <translation id="lib:descriptionColumn" desc="Description column">Beschreibung</translation>
+  <translation id="lib:typeColumn" desc="Type column">Typ</translation>
+  <translation id="lib:RecordsColumn" desc="Records column">Aufzeichnungen</translation>
+  <translation id="lib:iconColumn" desc="Icon column">Symbol</translation>
+  <translation id="lib:nameColumn" desc="Name column">Name</translation>
+  <translation id="lib:absTimeCol" desc="Absolute time column">Absolute Zeit</translation>
+  <translation id="lib:modifiedColumn" desc="Modified column">Erstellt/Geändert</translation>
+  <translation id="lib:eventTypeColumn" desc="Event type column">Typ</translation>
+  <translation id="lib:mediaErrorHeadline" desc="No camera/microphone access error headline">Browserfunktion &quot;navigator.mediaDevices.getUserMedia&quot; nicht verfügbar!</translation>
+  <translation id="lib:mediaErrorDetails" desc="No camera/microphone access error details">Grund: unsichere Verbindung (kein https) oder inkompatibler Browser</translation>
+  <translation id="SettingsState:defaultSeperator" desc="Default csv seperator">;</translation>
+  <translation id="SettingsComponent:resetAppButton" desc="Reset button">App-Daten zurücksetzen</translation>
+  <translation id="LogComponent:startLoggingButton" desc="Start logging button">Protokollierung beginnen</translation>
+  <translation id="LogComponent:resumeLoggingButton" desc="Resume logging button">Protokollierung fortsetzen</translation>
+  <translation id="LogComponent:shareRecordsButton" desc="Share records button">Aufzeichnungen teilen</translation>
+  <translation id="LogComponent:clearRecordsButton" desc="Clear records button">Aufzeichnungen löschen</translation>
+  <translation id="AppComponent:generatingDownload" desc="Generating download message">Bitte warten (Download-Datei wird erstellt)</translation>
+  <translation id="RecordsComponent:timeDifferenceCol" desc="Time difference column">Zeitunterschied</translation>
+</translationbundle>

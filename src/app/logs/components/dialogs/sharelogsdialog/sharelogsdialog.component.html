@@ -1,0 +1,46 @@
+<p-dialog i18n-header="Dialog headline@@ShareLogsDialogComponent:header" header="Share Logs" [resizable]="true" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <span i18n="Dialog description@@ShareLogsDialogComponent:description" class="flex text-center font-light">
+        Please select all logs, you want to export in an overview. If recordings are also available for individual logs all download files will be provided in a common ZIP file.
+    </span>
+    <ng-container *ngrxLet="templates$ as templates">
+        <p-table
+            styleClass="p-datatable-striped mt-3"
+            breakpoint="{{breakpoint}}px"
+            selectionMode="multiple"
+            (selectionChange)="this.form.patchValue({ logs: $event })"
+            [selection]="form.value.logs"
+            [rowHover]="true"
+            [columns]="cols"
+            [value]="logs$ | async">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th class="w-3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th *ngFor="let col of columns" [class]="col.class">{{ col.header }}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-log>
+                <tr [pSelectableRow]="log">
+                    <td>
+                        <p-tableCheckbox [pSelectableRow]="log" [value]="log"></p-tableCheckbox>
+                    </td>
+                    <td>{{ log.title }}</td>
+                    <td>{{ log.desc }}</td>
+                    <td class="flex-wrap">
+                        <span class="text-overflow-anywhere">{{ log.templateId | templateTitle: templates }}</span>
+                        <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
+                            <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
+                        </ng-container>
+                    </td>
+                    <td class="text-center">{{ log.recordsCount }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <ng-template pTemplate="footer">
+            <form [formGroup]="form" (ngSubmit)="submit(templates)">
+                <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-share-alt" i18n-label="Share button@@ShareLogsDialogComponent:shareButton" label="Share" class="p-button-info p-button-text"></button>
+            </form>
+        </ng-template>
+    </ng-container>
+</p-dialog>

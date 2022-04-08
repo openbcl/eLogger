@@ -1,0 +1,50 @@
+<p-dialog i18n-header="Dialog headline@@CreateLogDialogComponent:header" header="Add new Log" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <form [formGroup]="form">
+        <p-dropdown
+            i18n-placeholder="Dropdown placeholder no items@@CreateLogDialogComponent:dropdownPlaceholder"
+            optionLabel="title"
+            optionValue="id"
+            [options]="templates$ | async"
+            formControlName="templateId"
+            styleClass="w-full white-space-normal"
+            panelStyleClass="white-space-normal"
+            placeholder="Please Choose a template ...">
+            <ng-template let-template pTemplate="selectedItem">
+                <div class="flex flex-wrap align-items-center">
+                    <span class="text-overflow-anywhere">{{ template.title }}</span>
+                    <span *ngIf="!!template.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ template.desc }})</span>
+                </div>
+            </ng-template>
+            <ng-template let-template pTemplate="item">
+                <div class="flex flex-wrap align-items-center">
+                    <span class="text-overflow-anywhere">{{ template.title }}</span>
+                    <span *ngIf="!!template.desc?.length" class="pl-2 text-overflow-anywhere font-light text-500">({{ template.desc }})</span>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        <span class="p-float-label mt-5 field">
+            <input formControlName="title" pInputText type="text" class="inputfield w-full"
+                [class.ng-invalid]="form.errors?.[abstractLogIsUniqueError] || !form.get('title').valid"
+                [class.ng-valid]="!form.errors?.[abstractLogIsUniqueError] && form.get('title').valid">
+            <label i18n="Title input label@@CreateLogDialogComponent:titleLabel" for="float-input">Title</label>
+            <div *ngIf="form.errors?.[abstractLogIsUniqueError]" class="w-full mt-1 px-2">
+                <span i18n="Title error hint@@CreateLogDialogComponent:titleError" class="p-error text-xs">A log with this name already exists. Please choose another name.</span>
+            </div>
+        </span>
+        <span class="p-float-label mt-5 field">
+            <input formControlName="desc" pInputText type="text" class="inputfield w-full"
+                [class.ng-invalid]="form.errors?.[abstractLogIsUniqueError] || !form.get('desc').valid"
+                [class.ng-valid]="!form.errors?.[abstractLogIsUniqueError] && form.get('desc').valid">
+            <label i18n="Description input label@@CreateLogDialogComponent:descriptionLabel" for="float-input">Description</label>
+            <div *ngIf="form.errors?.[abstractLogIsUniqueError]" class="w-full mt-1 px-2">
+                <span i18n="Description error hint@@CreateLogDialogComponent:descriptionError" class="p-error text-xs">A log with this description already exists. Please choose another description.</span>
+            </div>
+        </span>
+    </form>
+    
+    <ng-template pTemplate="footer">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <button pButton pRipple type="submit" [disabled]="form.invalid" icon="pi pi-plus" i18n-label="Add button@@CreateLogDialogComponent:addButton" label="Add" class="p-button-success p-button-text"></button>
+        </form>
+    </ng-template>
+</p-dialog>

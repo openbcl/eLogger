@@ -1,0 +1,13 @@
+@import '~primeng/resources/themes/bootstrap4-dark-blue/theme.css';
+
+body {
+    background: linear-gradient(180deg, var(--primary-color), #343e4d);
+}
+
+p-menubar {
+    box-shadow: 0 -0.25rem 0.5rem 0.5rem var(--primary-color);
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    border-width: 0 0 1px 0;
+}

@@ -1,0 +1,63 @@
+<p-panel i18n-header="Page headline@@LogsComponent:header" header="Logs" *ngrxLet="templates$ as templates">
+    <p-table
+        #dt
+        styleClass="p-datatable-striped"
+        dataKey="id"
+        breakpoint="500px"
+        [rowHover]="true"
+        [reorderableColumns]="true"
+        (onRowReorder)="onRowReorder(dt.value)"
+        [columns]="cols"
+        [value]="logs$ | async"
+        [loading]="logsLoading$ | async">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
+                <div class="p-inputgroup max-w-full sm:w-auto m-1">
+                    <i class="p-inputgroup-addon pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" i18n-placeholder="Search placeholder@@LogsComponent:seachPlaceholder" placeholder="Search keyword" />
+                </div>
+                <div class="flex flex-wrap">
+                    <button pButton pRipple *ngIf="!!dt.value?.length" type="button" icon="pi pi-share-alt" class="p-button-outlined p-button-rounded p-button-info m-1" [disabled]="downloading$ | async" (click)="displayShareLogsDialog = true"></button>
+                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateLogDialog = true"></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngIf="dt.value?.length > 1" class="w-3rem"></th>
+                <th *ngFor="let col of columns" [class]="col.class">{{ col.header }}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-log let-index="rowIndex">
+            <tr draggable="true" [pReorderableRow]="index" class="cursor-pointer">
+                <td *ngIf="dt.value?.length > 1" class="cursor-move hide-on-smallscreen">
+                    <span class="pi pi-bars" draggable="true" [pReorderableRowHandle]="index"></span>
+                </td>
+                <td *ngIf="dt.value?.length > 1" class="flex flex-wrap justify-content-between hide-on-bigscreen">
+                    <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, -1, dt.value)"></button>
+                    <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, 1, dt.value)"></button>
+                </td>
+                <td [routerLink]="[log.id]">{{ log.title }}</td>
+                <td [routerLink]="[log.id]">{{ log.desc }}</td>
+                <td [routerLink]="[log.id]" class="flex-wrap">
+                    <span [ngClass]="{'p-error': !(log.templateId | templateExists: templates)}" class="text-overflow-anywhere ">
+                        {{ log.templateId | templateTitle: templates }}
+                    </span>
+                    <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
+                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
+                    </ng-container>
+                </td>
+                <td class="text-center" [routerLink]="[log.id]">{{ log.recordsCount }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td i18n="Empty table message@@LogsComponent:empty" class="text-center" [attr.colspan]="cols.length + 1">
+                    No Logs found.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+<el-create-log-dialog [(visible)]="displayCreateLogDialog"></el-create-log-dialog>
+<el-share-logs-dialog [(visible)]="displayShareLogsDialog"></el-share-logs-dialog>

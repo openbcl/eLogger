@@ -1,0 +1,26 @@
+:host ::ng-deep {
+
+  .p-dialog:not(.p-dialog-maximized) .p-dialog-content {
+      max-width: 100vh;
+  }
+
+  .p-dialog.p-dialog-maximized .el-oscilloscope-container{
+    max-width: calc(100vw - 2rem);
+}
+ 
+  .p-dropdown {
+      width: 100%;
+  }
+
+  .p-dialog .p-dialog-footer {
+      text-align: center;
+  }
+}
+
+.el-oscilloscope-container {
+    display: flex;
+    max-width: calc(100vw - 3rem);
+    border-radius: 2px;
+    padding: 1px;
+    background-color: var(--primary-color);
+}

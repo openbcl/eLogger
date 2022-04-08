@@ -1,0 +1,53 @@
+<p-panel i18n-header="Page headline@@SettingsComponent:header" header="App Settings">
+    <form [formGroup]="form" class="grid">
+        <p-fieldset class="col-12" *ngrxLet="seperator$">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-content-center align-items-center">
+                    <span i18n="Choose CSV seperator headline@@SettingsComponent:chooseSeperator" class="py-2 pr-2">CSV Seperator:</span>
+                    <p-selectButton formControlName="seperator" [options]="seperators" (onChange)="submitSeperator($event)"></p-selectButton>
+                </div>
+            </ng-template>
+            <ng-container i18n="Description about CSV seperators@@SettingsComponent:seperatorText">
+                Logs and records are exported in CSV file format (comma-separated values).
+                Depending on the country either point (.) or comma (,) is used as a decimal
+                separator of a number. If the comma is used as a decimal separator it can
+                no longer be used for seperating values in CSV files. In this case a
+                semicolon must be used as a separator for the CSV format.
+            </ng-container>
+        </p-fieldset>
+        <p-fieldset class="col-12" *ngrxLet="quality$"  legend="">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-content-center align-items-center">
+                    <span i18n="Choose JPEG quality headline@@SettingsComponent:chooseQuality"class="py-2 pr-2">JPEG Quality:</span>
+                    <span>{{ form.value.quality }}</span>
+                </div>
+            </ng-template>
+            <p-slider formControlName="quality" [min]="1" [step]="1" [max]="10" (onChange)="submitQuality($event)"></p-slider>
+            <p i18n="Description about JPEG quality settings@@SettingsComponent:qualityText">
+                If you use photo events in your logs you should set quality rate of photo files. The higher the quality the larger the resulting file size.
+            </p>
+        </p-fieldset>
+        <p-fieldset class="col-12" *ngrxLet="beep$">
+            <ng-template pTemplate="header">
+                <div class="flex flex-wrap align-content-center align-items-center">
+                    <span i18n="Enable event sound headline@@SettingsComponent:chooseBeep" class="py-2 pr-2">Enable Event Sound:</span>
+                    <p-inputSwitch formControlName="beep" class="flex" (onChange)="submitBeep($event)"></p-inputSwitch>
+                </div>
+            </ng-template>
+            <ng-container i18n="Description about audio feedback settings@@SettingsComponent:beepText">
+                During a log recording additional audio feedback can be emitted when events are triggered.
+            </ng-container>
+        </p-fieldset>
+        <p-fieldset class="col-12" i18n-legend="Reset app data headline@@SettingsComponent:resetAppData" legend="Reset Data">
+            <div class="flex flex-wrap justify-content-between">
+                <p>
+                    <span i18n="Description about resetting app data@@SettingsComponent:resetAppText">Here you can delete all templates, logs and records at once.</span>
+                    <span>&nbsp;</span>
+                    <span i18n="Warning about resetting app data@@SettingsComponent:resetAppWarning" class="p-error">Caution: This process cannot be undone!</span>
+                </p>
+                <button pButton pRipple icon="fas fa-skull-crossbones" i18n-label="Reset button@@SettingsComponent:resetAppButton" label="Reset App Data" class="p-button-danger" (click)="displayResetDbDialog = true"></button>
+            </div>
+        </p-fieldset>
+    </form>
+</p-panel>
+<el-reset-db-dialog [(visible)]="displayResetDbDialog"></el-reset-db-dialog>

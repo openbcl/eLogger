@@ -1,0 +1,31 @@
+
+<p-dialog i18n-header="Dialog headline@@PhotoRecordDialogComponent:header" #cameraDialog header="Photo Event" (onShow)="showDialogMaximized(cameraDialog, true)" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <form [formGroup]="form">
+        <div class="grid">
+            <ng-container *ngIf="!blockUI">
+                <p-dropdown
+                    i18n-placeholder="Dropdown placeholder no items@@PhotoRecordDialogComponent:dropdownPlaceholder" 
+                    class="col-12"
+                    formControlName="deviceCurrent"
+                    [options]="availableDevices"
+                    (onChange)="deviceChange($event)"
+                    placeholder="Loading cameras ...">
+                </p-dropdown>
+                <div class="col-12 pb-0 relative">
+                    <div #camera id="camera" class="p-2 align-content-center text-center">
+                        <video #video autoplay muted webkit-playsinline playsinline></video>
+                    </div>
+                    <p-progressSpinner class="absolute bottom-0 left-0 right-0 top-0 align-content-center"></p-progressSpinner>
+                </div>
+            </ng-container>
+            <span i18n="No camera access@@PhotoRecordDialogComponent:error" *ngIf="blockUI" class="col-12 text-center p-error">
+            Could not access camera(s).
+            </span>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <form *ngrxLet="quality$ as quality" [formGroup]="form" (ngSubmit)="submit(quality)">
+            <button pButton pRipple [disabled]="blockUI" type="submit" [icon]="blockUI ? 'pi pi-lock' : 'pi pi-camera'" class="p-button-rounded p-button-danger m-1 w-5rem h-5rem text-4xl"></button>
+        </form>
+    </ng-template>
+</p-dialog>

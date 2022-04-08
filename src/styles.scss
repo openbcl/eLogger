@@ -1,0 +1,127 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+body {
+    -webkit-text-size-adjust: none;
+    background-attachment: fixed;
+    color: var(--text-color);
+    el-root {
+        display: grid;
+    }
+}
+
+.el-font-monospace {
+    font-family: monospace;
+}
+
+.el-unset-order {
+    order: unset !important;
+}
+
+.p-dialog:not(.p-dialog-maximized) {
+    border-width: 1px;
+    border-color: var(--primary-color);
+    border-style: solid;
+    margin: 0.75rem;
+}
+
+.p-dialog-maximized {
+    border-radius: 0;
+    border: unset;
+}
+
+.p-dialog-maximized .p-dialog-header, .p-dialog-footer {
+    border-radius: 0;
+}
+
+.p-dialog {
+    .p-dialog-header, .p-dialog-footer {
+        background: var(--surface-b);
+    }
+    .p-dialog-content {
+        padding: 1rem;
+    }
+    .p-dialog-footer {
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+.p-dropdown-label.p-placeholder {
+    white-space: normal !important;
+}
+
+.p-image-toolbar {
+    z-index: 1200;
+    background: rgba(0,0,0,0.25);
+    padding: 0.5rem;
+    justify-content: right;
+    left: 0;
+  }
+
+.el-dropdown-items-p-0 .p-dropdown-panel .p-dropdown-items li.p-dropdown-item  {
+    padding: 0;
+}
+
+i.el-invisible {
+    opacity: 0;
+}
+
+i.el-icon-w16 {
+    width: 16px;
+}
+
+.text-overflow-anywhere {
+    overflow-wrap: anywhere;
+    word-wrap: anywhere;
+    word-break: break-all;
+}
+
+.p-component-overlay {
+    backdrop-filter: blur(0.5rem);
+}
+
+.p-panel .p-panel-content {
+    padding: 0.75rem;
+    .p-datatable .p-datatable-header {
+        padding: 0.25rem;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .p-datatable-tbody > tr > td.justify-content-between {
+        padding: 0.5rem;
+        justify-content: space-between !important;
+    }
+    .p-datatable-tbody > tr > td {
+        justify-content: center !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .hide-on-smallscreen {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .hide-on-bigscreen {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .sm\:col {
+        flex-grow: 1;
+        flex-basis: 0;
+        padding: 0.5rem;
+        width: unset;
+    }
+    .sm\:col-fixed {
+        flex: 0 0 auto;
+        padding: 0.5rem;
+        width: unset;
+    }
+}

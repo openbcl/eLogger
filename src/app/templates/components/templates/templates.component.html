@@ -1,0 +1,41 @@
+<p-panel i18n-header="Page headline@@TemplatesComponent:header" header="Templates">
+    <p-table
+        #dt
+        styleClass="p-datatable-striped"
+        dataKey="id"
+        breakpoint="520px"
+        [rowHover]="true"
+        [columns]="cols"
+        [value]="templates$ | async"
+        [loading]="templatesLoading$ | async">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap table-header sm:justify-content-between justify-content-around">
+                <div class="p-inputgroup max-w-full sm:w-auto m-1">
+                    <i class="p-inputgroup-addon pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($any($event).target.value, 'contains')" i18n-placeholder="Search placeholder@@TemplatesComponent:seachPlaceholder" placeholder="Search keyword" />
+                </div>
+                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-outlined p-button-rounded p-button-success m-1" (click)="displayCreateTemplateDialog = true"></button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">{{ col.header }} <p-sortIcon [field]="col.field"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-template>
+            <tr class="cursor-pointer" [routerLink]="[template.id]">
+                <td>{{ template.title }}</td>
+                <td>{{ template.desc }}</td>
+                <td>{{ template.revision | date : 'medium' }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td i18n="Empty table message@@TemplatesComponent:empty" class="text-center" [attr.colspan]="cols.length">
+                    No Templates found. Please add at least one template. Afterwards you can create protocols.
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>
+<el-create-template-dialog [(visible)]="displayCreateTemplateDialog"></el-create-template-dialog>

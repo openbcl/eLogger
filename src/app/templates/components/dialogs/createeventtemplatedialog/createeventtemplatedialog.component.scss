@@ -1,0 +1,27 @@
+:host ::ng-deep {
+    .el-icon-selector .p-selectbutton {
+        text-align: center;
+        .p-button {
+            display: inline-block;
+            padding: 0.5rem;
+            border-radius: 4px !important;
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent;
+            margin: 0.25em;
+            span {
+                word-break: break-all;
+                word-wrap: break-word;
+            }
+        }
+        .p-highlight {
+            border-color: var(--primary-color);
+        }
+    }
+
+    p-dialog .p-dropdown .p-element.p-dropdown-label {
+        padding-top: 0rem;
+        padding-left: 0rem;
+        padding-bottom: 0rem;
+    }
+}

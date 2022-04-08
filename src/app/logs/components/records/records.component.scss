@@ -1,0 +1,6 @@
+:host ::ng-deep {
+    td p-image img:not(.p-image-preview) {
+        max-width: 100%;
+        border-radius: 6px;
+    }
+}

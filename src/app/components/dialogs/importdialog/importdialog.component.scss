@@ -1,0 +1,54 @@
+:host ::ng-deep {
+
+    .p-dialog:not(.p-dialog-maximized) .p-dialog-content {
+        max-width: 100vh;
+    }
+
+    .p-dialog.p-dialog-maximized zxing-scanner {
+        max-height: calc(100vh - 18.5rem);
+        video {
+            max-height: calc(100vh - 19.5rem);
+        }
+    }
+
+    .p-dropdown {
+        width: 100%;
+    }
+
+    p-selectbutton .p-button {
+        width: 50%;
+    }
+
+    p-progressspinner, zxing-scanner {
+        display: grid;
+    }
+    
+    zxing-scanner video {
+        z-index: 2;
+        border-radius: 6px;
+        max-height: calc(100vh - 27.25rem);
+        object-fit: contain !important;
+    }
+    
+    p-fileUpload, zxing-scanner {
+        border-radius: 6px;
+        background-color: var(--surface-c);
+        max-height: calc(100vh - 26.25rem);
+        .p-fileupload-content {
+            display: grid;
+            text-align: center;
+            align-content: center;
+            i {
+                font-size: 5vh;
+                padding: 2vh;
+                color: var(--surface-c);
+            }
+            p-progressbar {
+                display: none;
+            }
+        }
+        .p-fileupload-files {
+            display: none;
+        }
+    }
+}

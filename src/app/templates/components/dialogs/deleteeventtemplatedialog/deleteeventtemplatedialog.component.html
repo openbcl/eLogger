@@ -1,0 +1,11 @@
+<p-dialog i18n-header="Dialog headline@@DeleteEventTemplateDialogComponent:header" *ngrxLet="template$ as template" header="Delete Template" styleClass="w-full sm:w-30rem" [resizable]="false" [maximizable]="true" [visible]="eventTemplate" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+    <ng-container i18n="Dialog question@@DeleteEventTemplateDialogComponent:question">
+        Are you sure you want to delete this event template?
+    </ng-container>
+    <p i18n="Warning about deletion@@DeleteEventTemplateDialogComponent:warning" class="mb-0 font-light">
+        If you decide to do so this event template will no longer be available for future logging. Existing log entries remain unaffected.
+    </p>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-trash" i18n-label="Delete button@@DeleteEventTemplateDialogComponent:deleteButton" label="Delete" class="p-button-danger p-button-text" (click)="delete(template)"></button>
+    </ng-template>
+</p-dialog>

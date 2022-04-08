@@ -1,0 +1,32 @@
+
+<p-dialog i18n-header="Dialog headline@@AudioRecordDialogComponent:header" header="Audio Event" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+  <form [formGroup]="form">
+      <div class="grid">
+        <ng-container *ngIf="!blockUI">
+            <p-dropdown
+                i18n-placeholder="Dropdown placeholder no items@@AudioRecordDialogComponent:dropdownPlaceholder" 
+                class="col-12"
+                formControlName="deviceCurrent"
+                [options]="availableDevices"
+                (onChange)="deviceChange($event)"
+                placeholder="Loading microphones ...">
+            </p-dropdown>
+            <div class="col-12 text-center" >
+              <p-progressSpinner *ngIf="!hasDevices"></p-progressSpinner>
+              <div *ngIf="hasDevices" #oscilloscopeContainer class="el-oscilloscope-container">
+                <canvas height="80px" #oscilloscope></canvas>
+              </div>
+            </div>
+            <span i18n="How to record hint@@AudioRecordDialogComponent:hint" header="Audio Event" class="col-12 text-center">
+              Please hold the microphone button to record your voice message.
+            </span>
+          </ng-container>
+          <span i18n="No microphone access@@AudioRecordDialogComponent:error" *ngIf="blockUI" class="col-12 text-center p-error">
+            Could not access microphone(s).
+          </span>
+      </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple [disabled]="blockUI" [icon]="blockUI ? 'pi pi-lock' : 'fas fa-microphone'" class="p-button-rounded p-button-danger m-1 w-5rem h-5rem text-4xl" (pointerdown)="mediaRecorder.start()" (pointerup)="mediaRecorder.stop()"></button>
+  </ng-template>
+</p-dialog>

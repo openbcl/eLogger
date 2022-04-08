@@ -1,0 +1,51 @@
+@import '~primeng/resources/themes/mdc-dark-indigo/theme.css';
+
+body {
+    background: linear-gradient(180deg, var(--gray-400), var(--surface-a));
+}
+
+p-menubar {
+    box-shadow: 0 -0.25rem 0.5rem 0.5rem var(--gray-400);
+}
+
+.p-panel .p-panel-header {
+    background: var(--surface-f);
+    padding: 1rem 1.25rem;
+}
+
+
+.p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button, .p-splitbutton.p-button-secondary > .p-button {
+    color: #ffffff;
+    background: #6c757d;
+}
+.p-button.p-button-secondary:enabled:hover, .p-buttonset.p-button-secondary > .p-button:enabled:hover, .p-splitbutton.p-button-secondary > .p-button:enabled:hover {
+    color: #ffffff;
+    background: #5a6268;
+}
+
+.p-button.p-button-secondary:enabled:active, .p-buttonset.p-button-secondary > .p-button:enabled:active, .p-splitbutton.p-button-secondary > .p-button:enabled:active {
+    color: #ffffff;
+    background: #545b62;
+}
+.p-button.p-button-secondary.p-button-outlined, .p-buttonset.p-button-secondary > .p-button.p-button-outlined, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined {
+    color: #6c757d;
+}
+.p-button.p-button-secondary.p-button-outlined:enabled:hover, .p-buttonset.p-button-secondary > .p-button.p-button-outlined:enabled:hover, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:enabled:hover {
+    background: rgba(108, 117, 125, 0.04);
+    color: #6c757d;
+}
+.p-button.p-button-secondary.p-button-outlined:enabled:active, .p-buttonset.p-button-secondary > .p-button.p-button-outlined:enabled:active, .p-splitbutton.p-button-secondary > .p-button.p-button-outlined:enabled:active {
+    background: rgba(108, 117, 125, 0.16);
+    color: #6c757d;
+}
+.p-button.p-button-secondary.p-button-text, .p-buttonset.p-button-secondary > .p-button.p-button-text, .p-splitbutton.p-button-secondary > .p-button.p-button-text {
+    color: #6c757d;
+}
+.p-button.p-button-secondary.p-button-text:enabled:hover, .p-buttonset.p-button-secondary > .p-button.p-button-text:enabled:hover, .p-splitbutton.p-button-secondary > .p-button.p-button-text:enabled:hover {
+    background: rgba(108, 117, 125, 0.04);
+    color: #6c757d;
+}
+.p-button.p-button-secondary.p-button-text:enabled:active, .p-buttonset.p-button-secondary > .p-button.p-button-text:enabled:active, .p-splitbutton.p-button-secondary > .p-button.p-button-text:enabled:active {
+    background: rgba(108, 117, 125, 0.16);
+    color: #6c757d;
+}
