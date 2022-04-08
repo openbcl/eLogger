@@ -139,8 +139,6 @@ export class ExportService {
                 if (containData) {
                     switch(record.eventType) {
                         case EventType.PHOTO:
-                            row.push(!!record.data?.length ? this.mediaFilename(record, log) : '');
-                            break;
                         case EventType.AUDIO:
                             row.push(!!record.data?.length ? this.mediaFilename(record, log) : '');
                             break;

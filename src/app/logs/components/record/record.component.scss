@@ -1,6 +1,10 @@
 :host ::ng-deep {
     .el-record-event-button.p-button {
         border-color: transparent;
+        span {
+            word-break: break-all;
+            word-wrap: break-word;
+        }
         .p-button-icon-left {
             font-size: 2rem;
             margin-right: 0;
