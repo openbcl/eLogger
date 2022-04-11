@@ -28,6 +28,7 @@ export class TemplateEffects {
 
   createTemplateSuccess$ = createEffect(() => this.actions$.pipe(
     ofType(TemplateActions.createTemplateSuccess),
+    tap(createTemplateSuccess => this.router.navigate(['templates', createTemplateSuccess.template.id])),
     switchMap(createTemplateSuccess => of(ToastActions.toastSuccess({
       summary: $localize`:Template created information@@TemplateEffects\:createTemplateSuccessHeadline:Template created successfully!`,
       detail: createTemplateSuccess.template.title

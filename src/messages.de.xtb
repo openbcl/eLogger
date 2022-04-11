@@ -54,10 +54,10 @@
   <translation id="ImportDialogComponent:scanErrorDetails" desc="Scan error details">Während des Scanvorgangs ist ein Fehler aufgetreten.</translation>
   <translation id="QRcodeDialogComponent:pngDownload" desc="PNG download button">PNG herunterladen</translation>
   <translation id="ResetDbDialogComponent:header" desc="Dialog headline">App-Daten zurücksetzen</translation>
-  <translation id="ResetDbDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Protokolle, deren Ereignisaufzeichnungen und alle Vorlagen löschen wollen? </translation>
-  <translation id="ResetDbDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Löschbefehl ein</translation>
-  <translation id="ResetDbDialogComponent:hint2" desc="Hint 2/2">, um die Löschung aller Daten zu bestätigen.</translation>
-  <translation id="ResetDbDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
+  <translation id="ResetDbDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Protokolle, deren Ereignisaufzeichnungen, und alle Vorlagen löschen wollen? </translation>
+  <translation id="ResetDbDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Löschbefehl</translation>
+  <translation id="ResetDbDialogComponent:hint2" desc="Hint 2/2">ein, um die Löschung aller Daten zu bestätigen.</translation>
+  <translation id="ResetDbDialogComponent:hintLabel" desc="Hint input label">Löschbefehl</translation>
   <translation id="ResetDbDialogComponent:deleteButton" desc="Reset App button">App-Daten zurücksetzen</translation>
   <translation id="ResetDbDialogComponent:deleteCommand" desc="Delete command">App-Daten zurücksetzen</translation>
   <translation id="InfoComponent:header" desc="Page headline">App Info</translation>
@@ -76,7 +76,7 @@
   <translation id="SettingsComponent:chooseSeperator" desc="Choose CSV seperator headline">CSV-Separator:</translation>
   <translation id="SettingsComponent:seperatorText" desc="Description about CSV seperators"> Protokolle und aufgezeichnete Ereignisse werden im CSV-Dateiformat (kommagetrennte Werte) exportiert. Je nach Land wird entweder ein Punkt (.) oder ein Komma (,) als Dezimaltrennzeichen für eine Zahl verwendet. Wenn das Komma als Dezimaltrennzeichen verwendet wird, kann es nicht mehr zur Trennung von Werten in CSV-Dateien verwendet werden. In diesem Fall muss ein Semikolon als Trennzeichen für das CSV-Format verwendet werden. </translation>
   <translation id="SettingsComponent:chooseQuality" desc="Choose JPEG quality headline">JPEG-Qualität:</translation>
-  <translation id="SettingsComponent:qualityText" desc="Description about JPEG quality settings"> Wenn Sie Fotoereignisse in Ihren Protokollen verwenden, sollten Sie die Qualität der Fotodateien festlegen. Je höher die Qualität, desto größer ist die resultierende Dateigröße. </translation>
+  <translation id="SettingsComponent:qualityText" desc="Description about JPEG quality settings"> Falls Sie Fotoereignisse in Ihren Protokollen verwenden, können Sie hier die Bildqualität der Fotos festlegen. (Je höher die Qualität, desto höher die resultierende Dateigröße)</translation>
   <translation id="SettingsComponent:chooseBeep" desc="Enable event sound headline">Ereigniston aktivieren:</translation>
   <translation id="SettingsComponent:beepText" desc="Description about audio feedback settings"> Während einer Protokollaufzeichnung kann bei Ereignissen ein zusätzliches Audio-Feedback ausgegeben werden. </translation>
   <translation id="SettingsComponent:resetAppData" desc="Reset app data headline">Daten zurücksetzen</translation>
@@ -100,13 +100,13 @@
   <translation id="DeleteLogDialogComponent:warning" desc="Warning about deletion"> Wenn Sie sich dafür entscheiden, werden auch alle Aufzeichnungen dieses Protokolls unwiederbringlich gelöscht. </translation>
   <translation id="DeleteLogDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
   <translation id="DeleteLogDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, das Sie löschen möchten, um den Löschvorgang zu bestätigen.</translation>
-  <translation id="DeleteLogDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
+  <translation id="DeleteLogDialogComponent:hintLabel" desc="Hint input label">Löschbefehl</translation>
   <translation id="DeleteLogDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
   <translation id="DeleteRecordsDialogComponent:header" desc="Dialog headline">Aufzeichnungen löschen</translation>
   <translation id="DeleteRecordsDialogComponent:question" desc="Dialog question"> Sind Sie sicher, dass Sie alle Ereignisaufzeichnungen dieses Protokolls löschen wollen? </translation>
   <translation id="DeleteRecordsDialogComponent:hint1" desc="Hint 1/2">Bitte geben Sie den Titel</translation>
   <translation id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2">des Protokolls ein, um die Löschung aller aufgezeichneten Ereignisse zu bestätigen.</translation>
-  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Löschkommando</translation>
+  <translation id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label">Löschbefehl</translation>
   <translation id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button">Löschen</translation>
   <translation id="PhotoRecordDialogComponent:header" desc="Dialog headline">Fotoereignis</translation>
   <translation id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items">Kameras werden geladen ...</translation>
