@@ -9,7 +9,7 @@
     "start-de": "node ./build && ng serve --configuration=de --hmr --host 0.0.0.0",
     "build": "node ./build && ng build",
     "build-de": "node ./build && ng build --configuration=production,de",
-    "deploy": "node ./build && ng build --base-href=/eLogger/de/ --configuration=production,de && ng build --base-href=/eLogger/en/ --output-path=dist/elogger/en && rm -rf ../eLogger-pages/de && rm -rf ../eLogger-pages/en && mv dist/elogger/* ../eLogger-pages",
+    "deploy": "node ./build && ng build --base-href=/de/ --configuration=production,de && ng build --base-href=/en/ --output-path=dist/elogger/en && rm -rf ../eLogger-pages/de && rm -rf ../eLogger-pages/en && mv dist/elogger/* ../eLogger-pages",
     "watch": "node ./build && ng build --watch --configuration development",
     "watch-de": "node ./build && ng build --watch --configuration=development,de",
     "test": "node ./build && ng test"
