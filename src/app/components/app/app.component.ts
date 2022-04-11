@@ -112,6 +112,7 @@ export class AppComponent {
     this.location.back();
   }
 
+
   ngOnInit(): void {
     this.primengConfig.ripple = true;
     this.store.dispatch(loadTheme()),
