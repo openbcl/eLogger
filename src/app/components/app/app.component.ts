@@ -1,5 +1,5 @@
 import { DOCUMENT, Location } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { select, Store } from '@ngrx/store';
 import { MenuItem, PrimeIcons, PrimeNGConfig } from 'primeng/api';
@@ -41,6 +41,12 @@ export class AppComponent {
   displayImportDialog = false;
   navigations = -1;
   navigating = false;
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    this.navigating = true;
+    this.navigations = this.navigations - 2;
+  }
 
   navitems: MenuItem[] = [
     { label: $localize`:MenuBar Item (Logs)@@AppComponent\:menuBarLogs:Logs`, icon: PrimeIcons.FILE, routerLink: ['/logs'] },
@@ -107,8 +113,6 @@ export class AppComponent {
   }
 
   navigateBack(): void {
-    this.navigations = this.navigations - 2;
-    this.navigating = true;
     this.location.back();
   }
 
