@@ -2,3 +2,9 @@
     display: block;
     width: 6.25rem;
 }
+
+a {
+    word-break: break-all;
+    border-top-right-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+}
