@@ -22,27 +22,27 @@
 ]>
 <messagebundle>
   <msg id="AppComponent:generatingDownload" desc="Generating download message"><source>src/app/components/app/app.component.html:6,12</source> Please wait (generating download file) </msg>
-  <msg id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)"><source>src/app/components/app/app.component.ts:42</source>Logs</msg>
-  <msg id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)"><source>src/app/components/app/app.component.ts:43</source>Templates</msg>
-  <msg id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)"><source>src/app/components/app/app.component.ts:44</source>Info</msg>
-  <msg id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)"><source>src/app/components/app/app.component.ts:45</source>Settings</msg>
-  <msg id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)"><source>src/app/components/app/app.component.ts:46</source>App Settings</msg>
-  <msg id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)"><source>src/app/components/app/app.component.ts:47</source>Import Configuration</msg>
-  <msg id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)"><source>src/app/components/app/app.component.ts:48</source>Export Configuration</msg>
-  <msg id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)"><source>src/app/components/app/app.component.ts:49</source>Logs</msg>
-  <msg id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)"><source>src/app/components/app/app.component.ts:50</source>Templates</msg>
-  <msg id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)"><source>src/app/components/app/app.component.ts:52</source>Themes</msg>
-  <msg id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)"><source>src/app/components/app/app.component.ts:53</source>Light</msg>
-  <msg id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)"><source>src/app/components/app/app.component.ts:54</source>Medium</msg>
-  <msg id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)"><source>src/app/components/app/app.component.ts:55</source>Dark</msg>
+  <msg id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)"><source>src/app/components/app/app.component.ts:45</source>Logs</msg>
+  <msg id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)"><source>src/app/components/app/app.component.ts:46</source>Templates</msg>
+  <msg id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)"><source>src/app/components/app/app.component.ts:47</source>Info</msg>
+  <msg id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)"><source>src/app/components/app/app.component.ts:48</source>Settings</msg>
+  <msg id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)"><source>src/app/components/app/app.component.ts:49</source>App Settings</msg>
+  <msg id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)"><source>src/app/components/app/app.component.ts:50</source>Import Configuration</msg>
+  <msg id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)"><source>src/app/components/app/app.component.ts:51</source>Export Configuration</msg>
+  <msg id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)"><source>src/app/components/app/app.component.ts:52</source>Logs</msg>
+  <msg id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)"><source>src/app/components/app/app.component.ts:53</source>Templates</msg>
+  <msg id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)"><source>src/app/components/app/app.component.ts:55</source>Themes</msg>
+  <msg id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)"><source>src/app/components/app/app.component.ts:56</source>Light</msg>
+  <msg id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)"><source>src/app/components/app/app.component.ts:57</source>Medium</msg>
+  <msg id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)"><source>src/app/components/app/app.component.ts:58</source>Dark</msg>
   <msg id="ExportLogsDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:0</source>Export configuration of logs</msg>
-  <msg id="ExportLogsDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:1,4</source> Please select all logs you want to export as json file or QR code. These can be imported again at any time or by another device. Only the configuration data and no records are exported. </msg>
+  <msg id="ExportLogsDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:1,4</source> Please select all logs you want to export as json file or QR code. These can be imported again at any time (or by another device). Only the configuration data and no records are exported. </msg>
   <msg id="ExportLogsDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:39,42</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
   <msg id="ExportLogsDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:46</source>Download JSON</msg>
   <msg id="ExportLogsDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:48</source>Show QR code</msg>
   <msg id="ExportLogsDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:52</source>Logs Configuration (QR code)</msg>
   <msg id="ExportTemplatesDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:0</source>Export configuration of templates</msg>
-  <msg id="ExportTemplatesDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:1,4</source> Please select all templates you want to export as json file or QR code. These can be imported again at any time or by another device. Only the configuration data and no records are exported. </msg>
+  <msg id="ExportTemplatesDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:1,4</source> Please select all templates you want to export as json file or QR code. These can be imported again at any time (or by another device). Only the configuration data and no records are exported. </msg>
   <msg id="ExportTemplatesDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:33,36</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
   <msg id="ExportTemplatesDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:40</source>Download JSON</msg>
   <msg id="ExportTemplatesDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:42</source>Show QR code</msg>
@@ -191,12 +191,12 @@
   <msg id="SettingEffects:resetDBSuccessHeadline" desc="Database resetted information"><source>src/app/store/setting.effects.ts:146</source>Database reset successfully!</msg>
   <msg id="SettingsState:defaultSeperator" desc="Default csv seperator"><source>src/app/store/setting.reducer.ts:15</source>,</msg>
   <msg id="ShareEffects:shareFailureHeadline" desc="Download failed error"><source>src/app/store/share.effects.ts:44</source>Download failed!</msg>
-  <msg id="TemplateEffects:createTemplateSuccessHeadline" desc="Template created information"><source>src/app/store/template.effects.ts:31</source>Template created successfully!</msg>
-  <msg id="TemplateEffects:updateTemplateSuccessHeadline" desc="Template updated information"><source>src/app/store/template.effects.ts:39</source>Template updated successfully!</msg>
-  <msg id="TemplateEffects:deleteTemplateSuccessHeadline" desc="Template deleted information"><source>src/app/store/template.effects.ts:47</source>Template deleted successfully!</msg>
-  <msg id="TemplateEffects:patchTemplatesSuccessHeadline" desc="Templates imported information"><source>src/app/store/template.effects.ts:55</source>Templates imported successfully!</msg>
-  <msg id="TemplateEffects:loadTemplatesFailureHeadline" desc="Templates not found error"><source>src/app/store/template.effects.ts:63</source>Error while loading templates!</msg>
-  <msg id="TemplateEffects:patchTemplatesFailureHeadline" desc="Templates not patched error"><source>src/app/store/template.effects.ts:71</source>Error while patching templates!</msg>
+  <msg id="TemplateEffects:createTemplateSuccessHeadline" desc="Template created information"><source>src/app/store/template.effects.ts:32</source>Template created successfully!</msg>
+  <msg id="TemplateEffects:updateTemplateSuccessHeadline" desc="Template updated information"><source>src/app/store/template.effects.ts:40</source>Template updated successfully!</msg>
+  <msg id="TemplateEffects:deleteTemplateSuccessHeadline" desc="Template deleted information"><source>src/app/store/template.effects.ts:48</source>Template deleted successfully!</msg>
+  <msg id="TemplateEffects:patchTemplatesSuccessHeadline" desc="Templates imported information"><source>src/app/store/template.effects.ts:56</source>Templates imported successfully!</msg>
+  <msg id="TemplateEffects:loadTemplatesFailureHeadline" desc="Templates not found error"><source>src/app/store/template.effects.ts:64</source>Error while loading templates!</msg>
+  <msg id="TemplateEffects:patchTemplatesFailureHeadline" desc="Templates not patched error"><source>src/app/store/template.effects.ts:72</source>Error while patching templates!</msg>
   <msg id="CreateEventTemplateDialogComponent:header" desc="Dialog headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:0</source>Add Event Template</msg>
   <msg id="CreateEventTemplateDialogComponent:knownTemplates" desc="Known templates headline"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:4,8</source>Known Event Templates</msg>
   <msg id="CreateEventTemplateDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder chooseItems"><source>src/app/templates/components/dialogs/createeventtemplatedialog/createeventtemplatedialog.component.html:16,19</source>Choose a known template ...</msg>

@@ -76,7 +76,7 @@ i.el-icon-w16 {
 .text-overflow-anywhere {
     overflow-wrap: anywhere;
     word-wrap: anywhere;
-    word-break: break-all;
+    word-wrap: break-word;
 }
 
 .p-component-overlay {

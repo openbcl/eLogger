@@ -10,6 +10,9 @@
 </p-blockUI>
 
 <p-menubar class="fixed w-full top-0 left-0 z-5" [model]="navitems">
+  <ng-template pTemplate="start">
+    <button pButton pRipple icon="pi pi-chevron-left" [disabled]="!this.navigating && navigations <= 0" class="p-button-rounded p-button-primary" iconPos="right" (click)="navigateBack()"></button>
+  </ng-template>
   <ng-template pTemplate="end">
     <a routerLink="/">
       <img src="assets/icons/icon-512x512.png" height="40" class="p-mr-2">

@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, Location } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { select, Store } from '@ngrx/store';
@@ -12,6 +12,7 @@ import { logsSelector } from '../../store/log.selectors';
 import { loadTemplates } from '../../store/template.actions';
 import { templatesSelector } from '../../store/template.selectors';
 import { downloadingSelector } from '../../store/share.selectors';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'el-root',
@@ -38,6 +39,8 @@ export class AppComponent {
   displayExportTemplatesDialog = false;
   displayExportLogsDialog = false;
   displayImportDialog = false;
+  navigations = -1;
+  navigating = false;
 
   navitems: MenuItem[] = [
     { label: $localize`:MenuBar Item (Logs)@@AppComponent\:menuBarLogs:Logs`, icon: PrimeIcons.FILE, routerLink: ['/logs'] },
@@ -93,8 +96,22 @@ export class AppComponent {
     @Inject(DOCUMENT) private document: Document,
     private swUpdate: SwUpdate,
     private primengConfig: PrimeNGConfig,
-    private store: Store
-  ){ }
+    private store: Store,
+    private location: Location,
+    private router: Router,
+  ){
+    router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
+      this.navigations++;
+      this.navigating = false;
+    });
+  }
+
+  navigateBack(): void {
+    this.navigations = this.navigations - 2;
+    this.navigating = true;
+    this.location.back();
+  }
+
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;

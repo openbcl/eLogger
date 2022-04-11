@@ -10,8 +10,9 @@
             border-color: transparent;
             margin: 0.25em;
             span {
-                word-break: break-all;
                 word-wrap: break-word;
+                overflow-wrap: anywhere;
+                word-wrap: anywhere;
             }
         }
         .p-highlight {
