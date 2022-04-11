@@ -1,8 +1,39 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="utf-8">
-  <title>eLogger Languages</title>
-  <link rel="icon" type="image/x-icon" href="https://openbcl.github.io/eLogger/en/favicon.ico">
-<body>
- <button onclick="window.location.href = 'https://openbcl.github.io/eLogger/en';">eLogger (english)</button>
- <button onclick="window.location.href = 'https://openbcl.github.io/eLogger/de';">eLogger (german)</button>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>eLogger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="icon" type="image/x-icon" href="en/favicon.ico">
+    <style>
+      body {
+        background: #262626;
+        color: lightgray;
+        font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+        text-align: center;
+      }
+      button {
+        font-size: large;
+        margin: 0.5rem;
+      }
+      img {
+        width: 70vw;
+        max-width: fit-content;
+      }
+      .welcome {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+      .hint {
+        font-weight: 400;
+      }
+    </style>
+  </head>
+  <body>
+      <p class="welcome">Welcome to eLogger!</p>
+      <img src="en/assets/icons/icon-512x512.png" alt="Logo"></img>
+      <p class="hint">Please choose your language</p>
+      <button onclick="window.location.href = 'en';">English</button>
+      <button onclick="window.location.href = 'de';">Deutsch</button>
+  </body>
+</html>

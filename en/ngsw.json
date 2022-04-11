@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1649427345622,
+  "timestamp": 1649666305467,
   "index": "/eLogger/en/index.html",
   "assetGroups": [
     {
@@ -11,18 +11,18 @@
         "ignoreVary": true
       },
       "urls": [
-        "/eLogger/en/468.a94d3df0552adc42.js",
-        "/eLogger/en/945.25c178cb8f1bf69f.js",
+        "/eLogger/en/468.0649405b5ccb04e2.js",
+        "/eLogger/en/945.7955ecca433bb08d.js",
         "/eLogger/en/dark.css",
         "/eLogger/en/favicon.ico",
         "/eLogger/en/index.html",
         "/eLogger/en/light.css",
-        "/eLogger/en/main.5c901cc831da3945.js",
+        "/eLogger/en/main.8016e753a7ec70b8.js",
         "/eLogger/en/manifest.webmanifest",
         "/eLogger/en/medium.css",
         "/eLogger/en/polyfills.cf6c3cad19e2d262.js",
-        "/eLogger/en/runtime.567896c44dc63dac.js",
-        "/eLogger/en/styles.3aabc760dc0df3dc.css"
+        "/eLogger/en/runtime.a7126b98fbf23142.js",
+        "/eLogger/en/styles.b02a8aa2a941aaf2.css"
       ],
       "patterns": []
     },
@@ -105,8 +105,8 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/eLogger/en/468.a94d3df0552adc42.js": "a876e50c34a203648ef20fb410b15cac31b19eaf",
-    "/eLogger/en/945.25c178cb8f1bf69f.js": "b0c52bd511412d7e307ed13d53ef45a3332e4244",
+    "/eLogger/en/468.0649405b5ccb04e2.js": "e4f2be3a3b4888205e2d5c44488500e082c03655",
+    "/eLogger/en/945.7955ecca433bb08d.js": "f33cdad6e22595a82c5b45bd6c26556d610527ae",
     "/eLogger/en/assets/icons/app_icon_152.png": "5e2a1cf7ca85e796455d8173bb65026b00e82f9a",
     "/eLogger/en/assets/icons/app_icon_167.png": "abf803cbbf90a8142a9cd2b19d00e26bc3f7c8c5",
     "/eLogger/en/assets/icons/app_icon_180.png": "4e7a62805b55118577af2c6e4a15e6aa279dde0a",
@@ -154,9 +154,9 @@
     "/eLogger/en/fa-solid-900.e67670b0779338ff.woff": "a22acd7697f36e7d4cc31a853c70e776eac54bb1",
     "/eLogger/en/favicon.ico": "ea901908fcdedca53013a0d9234d286331ac2a35",
     "/eLogger/en/hue.8b1818380241e6ac.png": "f81ae627637a684614aa726e206c73ce099a01fd",
-    "/eLogger/en/index.html": "a8f0b9b25b367e845be2d021c19c396d6ace3835",
+    "/eLogger/en/index.html": "73e65abf51e0ff428ef0b01775999a513dcb1b86",
     "/eLogger/en/light.css": "df3e6c22365f13ff8a457151a8951fa707eebbe5",
-    "/eLogger/en/main.5c901cc831da3945.js": "508f628dafbc56baa9d0c8c22e3bf1ba8d92ee43",
+    "/eLogger/en/main.8016e753a7ec70b8.js": "72995ba454266a0c34807bd6b64580df696e6b81",
     "/eLogger/en/manifest.webmanifest": "ce3c59ab74ea165bd84a1728d5c45f71e8bc41be",
     "/eLogger/en/medium.css": "1bb9d6d03441db3299ba98e44bb43fa4d0846cc5",
     "/eLogger/en/polyfills.cf6c3cad19e2d262.js": "bfb20a9ff7c1c6bd3228c37d0e57cd5101226249",
@@ -169,8 +169,8 @@
     "/eLogger/en/roboto-v20-latin-ext_latin-700.fea1ca242b09ae4c.woff2": "789d6227065d5d9767bc094e8fb384a26009c9de",
     "/eLogger/en/roboto-v20-latin-ext_latin-regular.5c59b24786083ffe.woff2": "a39cd33a2457d12a3eb61e0841c91b73e4af90ac",
     "/eLogger/en/roboto-v20-latin-ext_latin-regular.c9064c1abfc45804.woff": "c574d647bbf9412b82b0cdcb0e702a3a93ffd022",
-    "/eLogger/en/runtime.567896c44dc63dac.js": "e53024d6b6bb529a0a67dd5f5c96b76342b6ad3a",
-    "/eLogger/en/styles.3aabc760dc0df3dc.css": "9f09e11c1cab78f4600deedb9a29d67d9f936929"
+    "/eLogger/en/runtime.a7126b98fbf23142.js": "4e1212540bc23e39862a652c30dda4438ab05e85",
+    "/eLogger/en/styles.b02a8aa2a941aaf2.css": "db3318fb1cae928c57257f48c60a65043f57520c"
   },
   "navigationUrls": [
     {
