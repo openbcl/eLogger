@@ -1,6 +1,6 @@
 {
   "name": "elogger",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "homepage": "https://github.com/openbcl/eLogger",
   "author": "Robert Weiße",
   "scripts": {
