@@ -19,8 +19,8 @@
                         </ng-container>
                     </div>
                     <div *ngIf="(template | logEventTemplates | async).containStart" class="col-12 p-0 text-center pt-3">
-                        <span class="font-light text-4xl el-font-monospace" *ngIf="relDays$ | async as relDays">{{ relDays }}d&nbsp;</span>
-                        <span class="font-light text-4xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
+                        <span class="font-light text-3xl el-font-monospace" *ngIf="relDays$ | async as relDays">{{ relDays }}d&nbsp;</span>
+                        <span class="font-light text-3xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
                     </div>
                 </div>
             </ng-template>
