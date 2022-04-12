@@ -1,4 +1,4 @@
-<p-dialog i18n-header="Dialog headline@@ImportDialogComponent:header" #scanDialog header="Import configuration" (onShow)="showDialogMaximized(scanDialog, true)" [resizable]="false" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog i18n-header="Dialog headline@@ImportDialogComponent:header" #scanDialog header="Import configuration" (onShow)="showDialogMaximized(scanDialog, true)" [resizable]="false" [maximizable]="!isPWA()" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <span i18n="Dialog description@@ImportDialogComponent:description" class="flex justify-content-center text-center font-light pb-3">
         Please choose between the two options "File Upload" and "QR code" to import a configuration.
     </span>

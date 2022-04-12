@@ -16,11 +16,15 @@ export abstract class BaseDialogComponent {
 
     showDialogMaximized(dialog: Dialog, checkPWA = false) {
         if (checkPWA) {
-            if (['fullscreen', 'standalone', 'minimal-ui'].some((displayMode) => window.matchMedia('(display-mode: ' + displayMode + ')').matches)) {
+            if (this.isPWA()) {
                 dialog.maximize()
             }
         } else {
             dialog.maximize();
         }
+    }
+
+    isPWA() {
+        return ['fullscreen', 'standalone', 'minimal-ui'].some((displayMode) => window.matchMedia('(display-mode: ' + displayMode + ')').matches)
     }
 }

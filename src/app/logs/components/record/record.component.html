@@ -18,10 +18,16 @@
                             <span>&nbsp;({{ template.desc }})</span>
                         </ng-container>
                     </div>
-                    <div *ngIf="(template | logEventTemplates | async).containStart" class="col-12 p-0 text-center pt-3">
-                        <span class="font-light text-4xl el-font-monospace" *ngIf="relDays$ | async as relDays">{{ relDays }}d&nbsp;</span>
-                        <span class="font-light text-4xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
-                    </div>
+                    <ng-container *ngrxLet="(template | logEventTemplates) as logEventTemplate">
+                        <div *ngIf="logEventTemplate.containStart" class="col-12 p-0 text-center pt-2">
+                            <span class="font-light text-3xl el-font-monospace" *ngIf="relDays$ | async as relDays">{{ relDays }}d&nbsp;</span>
+                            <span class="font-light text-3xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
+                        </div>
+                        <div *ngIf="timeDiff$ | async as diff" class="col-12 p-0 text-center pt-1">
+                            <span *ngIf="diff.days" class="el-font-monospace" [ngClass]="{'font-light text-3xl': !logEventTemplate.containStart}">{{ diff.days }}d</span>
+                            <span class="el-font-monospace" [ngClass]="{'font-light text-3xl': !logEventTemplate.containStart}">{{ diff.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
+                        </div>
+                    </ng-container>
                 </div>
             </ng-template>
             <div class="grid" *ngrxLet="records$ as records">

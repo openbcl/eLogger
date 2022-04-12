@@ -1,4 +1,4 @@
-<p-dialog i18n-header="Dialog headline@@CreateEventTemplateDialogComponent:header" *ngrxLet="template$ as template" styleClass="w-full sm:w-8" [resizable]="false" header="Add Event Template" [maximizable]="true" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
+<p-dialog i18n-header="Dialog headline@@CreateEventTemplateDialogComponent:header" *ngrxLet="template$ as template" styleClass="w-full sm:w-8" [resizable]="false" #eventTemplateDialog header="Add Event Template" (onShow)="showDialogMaximized(eventTemplateDialog, true)" [maximizable]="!isPWA()" [visible]="visible" (visibleChange)="close()" [modal]="true" [closeOnEscape]="true">
     <div *ngrxLet="eventTemplates$ as eventTemplates">
         <form [formGroup]="form">
             <div *ngIf="eventTemplates.length">
