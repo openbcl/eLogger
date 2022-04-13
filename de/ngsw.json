@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1649781648469,
+  "timestamp": 1649833804345,
   "index": "/de/index.html",
   "assetGroups": [
     {
@@ -12,16 +12,16 @@
       },
       "urls": [
         "/de/468.be5018cf05473db7.js",
-        "/de/945.6bd25da81a25383e.js",
+        "/de/945.980df67e5a65ec76.js",
         "/de/dark.css",
         "/de/favicon.ico",
         "/de/index.html",
         "/de/light.css",
-        "/de/main.17e9195e3d3a5154.js",
+        "/de/main.2e369552f347d666.js",
         "/de/manifest.webmanifest",
         "/de/medium.css",
         "/de/polyfills.85dd01b072c8c0ef.js",
-        "/de/runtime.0d93924ac055f29b.js",
+        "/de/runtime.3f2f5dd83d1744f3.js",
         "/de/styles.b02a8aa2a941aaf2.css"
       ],
       "patterns": []
@@ -106,7 +106,7 @@
   "dataGroups": [],
   "hashTable": {
     "/de/468.be5018cf05473db7.js": "ba998a9f24562146393821394e06ed03f56af2aa",
-    "/de/945.6bd25da81a25383e.js": "a97c5d3ee1c4701f7db801f84032e85568e9d343",
+    "/de/945.980df67e5a65ec76.js": "7d1174b8a333284d514394e6731f1847cc96362d",
     "/de/assets/icons/app_icon_152.png": "5e2a1cf7ca85e796455d8173bb65026b00e82f9a",
     "/de/assets/icons/app_icon_167.png": "abf803cbbf90a8142a9cd2b19d00e26bc3f7c8c5",
     "/de/assets/icons/app_icon_180.png": "4e7a62805b55118577af2c6e4a15e6aa279dde0a",
@@ -154,9 +154,9 @@
     "/de/fa-solid-900.e67670b0779338ff.woff": "a22acd7697f36e7d4cc31a853c70e776eac54bb1",
     "/de/favicon.ico": "ea901908fcdedca53013a0d9234d286331ac2a35",
     "/de/hue.8b1818380241e6ac.png": "f81ae627637a684614aa726e206c73ce099a01fd",
-    "/de/index.html": "2329f89c8f6b99abd9b2e605a8c796bde49b3c8f",
+    "/de/index.html": "218755945d36244bfe0cb226455074d283d0db5c",
     "/de/light.css": "df3e6c22365f13ff8a457151a8951fa707eebbe5",
-    "/de/main.17e9195e3d3a5154.js": "03c2d3e201672e332563b98c15adcc7c83b2f170",
+    "/de/main.2e369552f347d666.js": "884f3bc6e94e785c8f80264a71858605b10d67d5",
     "/de/manifest.webmanifest": "ce3c59ab74ea165bd84a1728d5c45f71e8bc41be",
     "/de/medium.css": "1bb9d6d03441db3299ba98e44bb43fa4d0846cc5",
     "/de/polyfills.85dd01b072c8c0ef.js": "afb198645af9430dcddd62b9ebbd739717b6e0a9",
@@ -169,7 +169,7 @@
     "/de/roboto-v20-latin-ext_latin-700.fea1ca242b09ae4c.woff2": "789d6227065d5d9767bc094e8fb384a26009c9de",
     "/de/roboto-v20-latin-ext_latin-regular.5c59b24786083ffe.woff2": "a39cd33a2457d12a3eb61e0841c91b73e4af90ac",
     "/de/roboto-v20-latin-ext_latin-regular.c9064c1abfc45804.woff": "c574d647bbf9412b82b0cdcb0e702a3a93ffd022",
-    "/de/runtime.0d93924ac055f29b.js": "a00ce331b6b5eaf042902f4d499b16ca8a8d6ccb",
+    "/de/runtime.3f2f5dd83d1744f3.js": "f53ba2f0d830e76d42d2cf3a504a4fa6035eba06",
     "/de/styles.b02a8aa2a941aaf2.css": "db3318fb1cae928c57257f48c60a65043f57520c"
   },
   "navigationUrls": [
