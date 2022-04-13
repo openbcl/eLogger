@@ -1,18 +1,19 @@
 :host ::ng-deep {
     .el-record-event-button.p-button {
         border-color: transparent;
+        padding: 0.5rem 0.75rem;
         span {
             word-wrap: break-word;
             overflow-wrap: anywhere;
             word-wrap: anywhere;
         }
         .p-button-icon-left {
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-right: 0;
         }
         .p-button-label {
             font-weight: unset;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
         }
     }
 
