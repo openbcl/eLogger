@@ -1,6 +1,10 @@
 :host ::ng-deep {
+    .p-dialog.p-dialog-maximized .qrcode svg {
+        max-height: calc(100vh - 11.5rem);
+    }
     .qrcode svg {
         width: 100%;
         height: auto;
+        max-height: calc(100vh - 18.25rem);
     }
 }

@@ -24,7 +24,7 @@
                             <span class="font-light text-3xl el-font-monospace">{{ relTime$ | async | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
                         </div>
                         <div *ngIf="timeDiff$ | async as diff" class="col-12 p-0 text-center pt-1">
-                            <span *ngIf="diff.days" class="el-font-monospace" [ngClass]="{'font-light text-3xl': !logEventTemplate.containStart}">{{ diff.days }}d</span>
+                            <span *ngIf="diff.days" class="el-font-monospace" [ngClass]="{'font-light text-3xl': !logEventTemplate.containStart}">{{ diff.days }}d&nbsp;</span>
                             <span class="el-font-monospace" [ngClass]="{'font-light text-3xl': !logEventTemplate.containStart}">{{ diff.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
                         </div>
                     </ng-container>
