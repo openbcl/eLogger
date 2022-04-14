@@ -3,7 +3,7 @@
         #dt
         styleClass="p-datatable-striped"
         dataKey="id"
-        breakpoint="500px"
+        breakpoint="685px"
         [rowHover]="true"
         [reorderableColumns]="true"
         (onRowReorder)="onRowReorder(dt.value)"
@@ -37,17 +37,29 @@
                     <button pButton pRipple [disabled]="index === 0" type="button" icon="pi pi-chevron-up" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, -1, dt.value)"></button>
                     <button pButton pRipple [disabled]="index === dt.value.length - 1" type="button" icon="pi pi-chevron-down" class="p-button-secondary p-button-rounded mr-2" (click)="move(index, 1, dt.value)"></button>
                 </td>
-                <td [routerLink]="[log.id]">{{ log.title }}</td>
-                <td [routerLink]="[log.id]">{{ log.desc }}</td>
-                <td [routerLink]="[log.id]" class="flex-wrap">
-                    <span [ngClass]="{'p-error': !(log.templateId | templateExists: templates)}" class="text-overflow-anywhere ">
-                        {{ log.templateId | templateTitle: templates }}
-                    </span>
-                    <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
-                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
-                    </ng-container>
+                <td [routerLink]="[log.id]" class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[0].header}}</span>
+                    <span class="text-right">{{ log.title }}</span>
                 </td>
-                <td class="text-center" [routerLink]="[log.id]">{{ log.recordsCount }}</td>
+                <td [routerLink]="[log.id]" class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[1].header}}</span>
+                    <span class="text-right">{{ log.desc }}</span>
+                </td>
+                <td [routerLink]="[log.id]" class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[2].header}}</span>
+                    <span class="flex-wrap text-right">
+                        <span [ngClass]="{'p-error': !(log.templateId | templateExists: templates)}" class="text-overflow-anywhere ">
+                            {{ log.templateId | templateTitle: templates }}
+                        </span>
+                        <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
+                            <span class="text-overflow-anywhere font-light text-500">({{ desc }})</span>
+                        </ng-container>
+                    </span>
+                </td>
+                <td [routerLink]="[log.id]" class="justify-content-between text-center">
+                    <span class="p-column-title font-light">{{cols[3].header}}</span>
+                    <span class="text-right">{{ log.recordsCount }}</span>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>

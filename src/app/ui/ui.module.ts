@@ -17,6 +17,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DropdownModule } from 'primeng/dropdown';
 import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
+import { TagModule } from 'primeng/tag';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { BlockUIModule } from 'primeng/blockui';
@@ -61,6 +62,7 @@ const modules = [
   FieldsetModule,
   DropdownModule,
   BlockUIModule,
+  TagModule,
   AccordionModule,
   ProgressSpinnerModule,
   InputSwitchModule,

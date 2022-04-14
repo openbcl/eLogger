@@ -36,7 +36,7 @@
                 #dt
                 styleClass="p-datatable-striped"
                 dataKey="name"
-                breakpoint="500px"
+                breakpoint="685px"
                 [columns]="cols"
                 [rowHover]="true"
                 [reorderableColumns]="true"
@@ -55,9 +55,7 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th *ngIf="dt.value?.length > 1" class="w-3rem"></th>
-                        <th *ngFor="let col of cols" pReorderableColumn>
-                            {{col.header}}
-                        </th>
+                        <th *ngFor="let col of cols" pReorderableColumn>{{col.header}}</th>
                         <th class="w-3rem hide-on-smallscreen"></th>
                     </tr>
                 </ng-template>
@@ -73,9 +71,18 @@
                             </div>
                             <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>
-                        <td>{{ eventTemplate.name }}</td>
-                        <td>{{ eventTemplate.eventType | eventLabel}}</td>
-                        <td class="text-center w-3rem"><i class="{{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i></td>
+                        <td class="justify-content-between">
+                            <span class="p-column-title font-light">{{cols[0].header}}</span>
+                            <span class="text-right">{{ eventTemplate.name }}</span>
+                        </td>
+                        <td class="justify-content-between">
+                            <span class="p-column-title font-light">{{cols[1].header}}</span>
+                            <span class="text-right">{{ eventTemplate.eventType | eventLabel}}</span>
+                        </td>
+                        <td class="justify-content-between text-center w-3rem">
+                            <span class="p-column-title font-light">{{cols[2].header}}</span>
+                            <i class="text-right {{ eventTemplate.icon.value }} {{ eventTemplate.icon.styleClass }}"></i>
+                        </td>
                         <td [ngClass]="{'hide-on-smallscreen': dt.value?.length > 1 }" class="px-2">
                             <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" iconPos="right" (click)="deletableEventTemplate = eventTemplate"></button>
                         </td>

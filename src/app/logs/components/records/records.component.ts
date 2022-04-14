@@ -37,7 +37,13 @@ export class RecordsComponent {
   @Input()
   showRevokeButton = false;
 
-  cols: any[] = [iconCol, nameCol, absTimeCol];
+  cols: any[] = [
+    { header: $localize`:Event column@@RecordsComponent\:eventColumn:Event` },
+    { header: $localize`:Data column@@RecordsComponent\:dataColumn:Data` },
+    { header: $localize`:Absolute time column@@RecordsComponent\:absoluteTimeColumn:Absolute Time` },
+    { header: $localize`:Time difference column@@RecordsComponent\:timeDifferenceCol:Time Difference` },
+    { header: $localize`:Relative time column@@RecordsComponent\:relativeTimeColumn:Relative Time` }
+  ];
 
   processingRevoke$ =this.store.pipe(select(recordsProcessingSelector))
 

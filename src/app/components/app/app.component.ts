@@ -41,11 +41,14 @@ export class AppComponent {
   displayImportDialog = false;
   navigations = -1;
   navigating = false;
+  wakeLock: any = null;
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
     this.navigating = true;
-    this.navigations = this.navigations - 2;
+    if (this.navigations > -1) {
+      this.navigations = this.navigations - 2;
+    }
   }
 
   navitems: MenuItem[] = [
@@ -129,6 +132,30 @@ export class AppComponent {
       this.swUpdate.versionUpdates.pipe(
         filter((evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY')
       ).subscribe(() => window.location.reload());
+    }
+    this.enableWakeLock();
+  }
+
+  enableWakeLock() {
+    if ('wakeLock' in navigator && 'request' in (navigator as any)['wakeLock']) {        
+      const requestWakeLock = async () => {
+        try {
+          this.wakeLock = await (navigator as any)['wakeLock'].request('screen');
+          this.wakeLock.addEventListener('release', () => {
+            this.wakeLock = null;
+          });
+        } catch (err) {      
+          console.error(err);
+        } 
+      };    
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          requestWakeLock()
+        } else if (this.wakeLock !== null) {
+          this.wakeLock.release();
+        }
+      });
+      requestWakeLock();
     }
   }
 

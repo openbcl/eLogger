@@ -16,8 +16,6 @@ export class ExportTemplatesDialogComponent extends BaseDialogComponent {
   isQRcodeCompatibleError = isQRcodeCompatibleError;
   displayQRcodeDialog = false;
 
-  breakpoint = 500;
-
   @Input()
   templates: Template[];
 
