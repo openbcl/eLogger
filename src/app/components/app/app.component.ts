@@ -46,7 +46,9 @@ export class AppComponent {
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
     this.navigating = true;
-    this.navigations = this.navigations - 2;
+    if (this.navigations > -1) {
+      this.navigations = this.navigations - 2;
+    }
   }
 
   navitems: MenuItem[] = [
