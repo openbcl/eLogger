@@ -14,9 +14,23 @@
     <button pButton pRipple type="button" icon="pi pi-chevron-left" [disabled]="!this.navigating && navigations <= 0" class="p-button-rounded p-button-primary mr-1 w-2rem h-2rem" iconPos="right" (click)="navigateBack()"></button>
   </ng-template>
   <ng-template pTemplate="end">
-    <a routerLink="/">
-      <img src="assets/icons/icon-512x512.png" height="40" class="p-mr-2">
-    </a>
+    <div class="flex align-items-center">
+      <span class="cursor-pointer" routerLink="logs" routerLinkActive #logsLink="routerLinkActive">
+        <p-tag *ngIf="logsLink.isActive" styleClass="mr-2" severity="success" [value]="navitems[0].label" [rounded]="true"></p-tag>
+      </span>
+      <span class="cursor-pointer" routerLink="templates" routerLinkActive #templatesLink="routerLinkActive">
+        <p-tag *ngIf="templatesLink.isActive" styleClass="mr-2" severity="warning" [value]="navitems[1].label" [rounded]="true"></p-tag>
+      </span>
+      <span class="cursor-pointer" routerLink="info" routerLinkActive #infoLink="routerLinkActive">
+        <p-tag *ngIf="infoLink.isActive" styleClass="mr-2" severity="primary" [value]="navitems[2].label" [rounded]="true"></p-tag>
+      </span>
+      <span class="cursor-pointer" routerLink="settings" routerLinkActive #settingsLink="routerLinkActive">
+        <p-tag *ngIf="settingsLink.isActive" styleClass="mr-2" severity="info" [value]="navitems[3].label" [rounded]="true"></p-tag>
+      </span>
+      <a routerLink="/">
+        <img src="assets/icons/icon-512x512.png" height="40" class="p-mr-2">
+      </a>
+    </div>
   </ng-template>
 </p-menubar>
 <router-outlet *ngrxLet="theme$"></router-outlet>
