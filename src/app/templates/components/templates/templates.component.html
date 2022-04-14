@@ -24,9 +24,18 @@
         </ng-template>
         <ng-template pTemplate="body" let-template>
             <tr class="cursor-pointer" [routerLink]="[template.id]">
-                <td>{{ template.title }}</td>
-                <td>{{ template.desc }}</td>
-                <td>{{ template.revision | date : 'medium' }}</td>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[0].header}}</span>
+                    <span class="text-right">{{ template.title }}</span>
+                </td>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[1].header}}</span>
+                    <span class="text-right">{{ template.desc }}</span>
+                </td>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[2].header}}</span>
+                    <span class="text-right">{{ template.revision | date : 'medium' }}</span>
+                </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage" let-columns>

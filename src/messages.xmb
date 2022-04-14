@@ -22,31 +22,31 @@
 ]>
 <messagebundle>
   <msg id="AppComponent:generatingDownload" desc="Generating download message"><source>src/app/components/app/app.component.html:6,12</source> Please wait (generating download file) </msg>
-  <msg id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)"><source>src/app/components/app/app.component.ts:45</source>Logs</msg>
-  <msg id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)"><source>src/app/components/app/app.component.ts:46</source>Templates</msg>
-  <msg id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)"><source>src/app/components/app/app.component.ts:47</source>Info</msg>
-  <msg id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)"><source>src/app/components/app/app.component.ts:48</source>Settings</msg>
-  <msg id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)"><source>src/app/components/app/app.component.ts:49</source>App Settings</msg>
-  <msg id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)"><source>src/app/components/app/app.component.ts:50</source>Import Configuration</msg>
-  <msg id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)"><source>src/app/components/app/app.component.ts:51</source>Export Configuration</msg>
-  <msg id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)"><source>src/app/components/app/app.component.ts:52</source>Logs</msg>
-  <msg id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)"><source>src/app/components/app/app.component.ts:53</source>Templates</msg>
-  <msg id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)"><source>src/app/components/app/app.component.ts:55</source>Themes</msg>
-  <msg id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)"><source>src/app/components/app/app.component.ts:56</source>Light</msg>
-  <msg id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)"><source>src/app/components/app/app.component.ts:57</source>Medium</msg>
-  <msg id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)"><source>src/app/components/app/app.component.ts:58</source>Dark</msg>
+  <msg id="AppComponent:menuBarLogs" desc="MenuBar Item (Logs)"><source>src/app/components/app/app.component.ts:54</source>Logs</msg>
+  <msg id="AppComponent:menuBarTemplates" desc="MenuBar Item (Templates)"><source>src/app/components/app/app.component.ts:55</source>Templates</msg>
+  <msg id="AppComponent:menuBarInfo" desc="MenuBar Item (Info)"><source>src/app/components/app/app.component.ts:56</source>Info</msg>
+  <msg id="AppComponent:menuBarSettings" desc="MenuBar Item (Settings)"><source>src/app/components/app/app.component.ts:57</source>Settings</msg>
+  <msg id="AppComponent:menuBarAppSettings" desc="MenuBar Item (App Settings)"><source>src/app/components/app/app.component.ts:58</source>App Settings</msg>
+  <msg id="AppComponent:menuBarImportConfiguration" desc="MenuBar Item (Import Configuration)"><source>src/app/components/app/app.component.ts:59</source>Import Configuration</msg>
+  <msg id="AppComponent:menuBarExportConfiguration" desc="MenuBar Item (Export Configuration)"><source>src/app/components/app/app.component.ts:60</source>Export Configuration</msg>
+  <msg id="AppComponent:menuBarExportLogs" desc="MenuBar Item (Export Configuration Logs)"><source>src/app/components/app/app.component.ts:61</source>Logs</msg>
+  <msg id="AppComponent:menuBarExportTemplates" desc="MenuBar Item (Export Configuration Templates)"><source>src/app/components/app/app.component.ts:62</source>Templates</msg>
+  <msg id="AppComponent:menuBarThemes" desc="MenuBar Item (Themes)"><source>src/app/components/app/app.component.ts:64</source>Themes</msg>
+  <msg id="AppComponent:menuBarThemeLight" desc="MenuBar Item (Theme Light)"><source>src/app/components/app/app.component.ts:65</source>Light</msg>
+  <msg id="AppComponent:menuBarThemeMedium" desc="MenuBar Item (ThemeMedium)"><source>src/app/components/app/app.component.ts:66</source>Medium</msg>
+  <msg id="AppComponent:menuBarThemeDark" desc="MenuBar Item (ThemeDark)"><source>src/app/components/app/app.component.ts:67</source>Dark</msg>
   <msg id="ExportLogsDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:0</source>Export configuration of logs</msg>
   <msg id="ExportLogsDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:1,4</source> Please select all logs you want to export as json file or QR code. These can be imported again at any time (or by another device). Only the configuration data and no records are exported. </msg>
-  <msg id="ExportLogsDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:39,42</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
-  <msg id="ExportLogsDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:46</source>Download JSON</msg>
-  <msg id="ExportLogsDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:48</source>Show QR code</msg>
-  <msg id="ExportLogsDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:52</source>Logs Configuration (QR code)</msg>
+  <msg id="ExportLogsDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:49,52</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
+  <msg id="ExportLogsDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:56</source>Download JSON</msg>
+  <msg id="ExportLogsDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:58</source>Show QR code</msg>
+  <msg id="ExportLogsDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exportlogsdialog/exportlogsdialog.component.html:62</source>Logs Configuration (QR code)</msg>
   <msg id="ExportTemplatesDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:0</source>Export configuration of templates</msg>
   <msg id="ExportTemplatesDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:1,4</source> Please select all templates you want to export as json file or QR code. These can be imported again at any time (or by another device). Only the configuration data and no records are exported. </msg>
-  <msg id="ExportTemplatesDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:33,36</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
-  <msg id="ExportTemplatesDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:40</source>Download JSON</msg>
-  <msg id="ExportTemplatesDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:42</source>Show QR code</msg>
-  <msg id="ExportTemplatesDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:46</source>Template Configuration (QR code)</msg>
+  <msg id="ExportTemplatesDialogComponent:error" desc="Error message"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:42,45</source> The total size of selected data exceeds the maximum size allowed for a QR code. Please reduce your selection or use the file download. </msg>
+  <msg id="ExportTemplatesDialogComponent:qrDownload" desc="QR code download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:49</source>Download JSON</msg>
+  <msg id="ExportTemplatesDialogComponent:jsonDownload" desc="JSON download button"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:51</source>Show QR code</msg>
+  <msg id="ExportTemplatesDialogComponent:headerQRDialog" desc="QR Code Dialog header"><source>src/app/components/dialogs/exporttemplatesdialog/exporttemplatesdialog.component.html:55</source>Template Configuration (QR code)</msg>
   <msg id="ImportDialogComponent:header" desc="Dialog headline"><source>src/app/components/dialogs/importdialog/importdialog.component.html:0</source>Import configuration</msg>
   <msg id="ImportDialogComponent:description" desc="Dialog description"><source>src/app/components/dialogs/importdialog/importdialog.component.html:1,4</source> Please choose between the two options &quot;File Upload&quot; and &quot;QR code&quot; to import a configuration. </msg>
   <msg id="ImportDialogComponent:jsonUpload" desc="JSON uploud button"><source>src/app/components/dialogs/importdialog/importdialog.component.html:8</source>Upload File</msg>
@@ -116,14 +116,14 @@
   <msg id="DeleteRecordsDialogComponent:hint2" desc="Hint 2/2"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:12,15</source>of the log to confirm the deletion of all records.</msg>
   <msg id="DeleteRecordsDialogComponent:hintLabel" desc="Hint input label"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:16,20</source>Delete command</msg>
   <msg id="DeleteRecordsDialogComponent:deleteButton" desc="Delete button"><source>src/app/logs/components/dialogs/deleterecordsdialog/deleterecordsdialog.component.html:21,24</source>Delete</msg>
-  <msg id="PhotoRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:1</source>Photo Event</msg>
-  <msg id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:11,15</source>Loading cameras ...</msg>
-  <msg id="PhotoRecordDialogComponent:error" desc="No camera access"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:21,26</source> Could not access camera(s). </msg>
+  <msg id="PhotoRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:0</source>Photo Event</msg>
+  <msg id="PhotoRecordDialogComponent:dropdownPlaceholder" desc="Dropdown placeholder no items"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:10,14</source>Loading cameras ...</msg>
+  <msg id="PhotoRecordDialogComponent:error" desc="No camera access"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.html:20,25</source> Could not access camera(s). </msg>
   <msg id="PhotoRecordDialogComponent:cameraErrorHeadline" desc="Camera error headline"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.ts:91,91</source>&apos;Camera error</msg>
   <msg id="PhotoRecordDialogComponent:cameraErrorDetails" desc="Camera error details"><source>src/app/logs/components/dialogs/photorecorddialog/photorecorddialog.component.ts:92</source>Can not access camera.</msg>
   <msg id="ShareLogsDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:0</source>Share Logs</msg>
   <msg id="ShareLogsDialogComponent:description" desc="Dialog description"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:2,5</source> Please select all logs, you want to export in an overview. If recordings are also available for individual logs all download files will be provided in a common ZIP file. </msg>
-  <msg id="ShareLogsDialogComponent:shareButton" desc="Share button"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:41,43</source>Share</msg>
+  <msg id="ShareLogsDialogComponent:shareButton" desc="Share button"><source>src/app/logs/components/dialogs/sharelogsdialog/sharelogsdialog.component.html:55,57</source>Share</msg>
   <msg id="TextRecordDialogComponent:header" desc="Dialog headline"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:0</source>Text Event</msg>
   <msg id="TextRecordDialogComponent:description" desc="Dialog description"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:1,4</source> Please enter a suitable text for the event. </msg>
   <msg id="TextRecordDialogComponent:textLabel" desc="Text input label"><source>src/app/logs/components/dialogs/textrecorddialog/textrecorddialog.component.html:7</source>Text</msg>
@@ -144,18 +144,18 @@
   <msg id="LogComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/log/log.component.html:37,39</source>Event Records</msg>
   <msg id="LogsComponent:header" desc="Page headline"><source>src/app/logs/components/logs/logs.component.html:0,2</source>Logs</msg>
   <msg id="LogsComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/logs/components/logs/logs.component.html:16,19</source>Search keyword</msg>
-  <msg id="LogsComponent:empty" desc="Empty table message"><source>src/app/logs/components/logs/logs.component.html:55,58</source> No Logs found. </msg>
-  <msg id="RecordComponent:header" desc="Page headline"><source>src/app/logs/components/record/record.component.html:27,29</source>Record Event</msg>
-  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:37,40</source>No configured events found. Please add some events to your template first.</msg>
-  <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:40,42</source>Recorded Events</msg>
-  <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:44,46</source>Recorded Events</msg>
+  <msg id="LogsComponent:empty" desc="Empty table message"><source>src/app/logs/components/logs/logs.component.html:67,70</source> No Logs found. </msg>
+  <msg id="RecordComponent:header" desc="Page headline"><source>src/app/logs/components/record/record.component.html:33,35</source>Record Event</msg>
+  <msg id="RecordComponent:error" desc="Error message"><source>src/app/logs/components/record/record.component.html:43,46</source>No configured events found. Please add some events to your template first.</msg>
+  <msg id="RecordComponent:tableContainerHeadline" desc="Table container headline"><source>src/app/logs/components/record/record.component.html:46,48</source>Recorded Events</msg>
+  <msg id="RecordComponent:tableHeadline" desc="Table headline"><source>src/app/logs/components/record/record.component.html:50,52</source>Recorded Events</msg>
   <msg id="RecordsComponent:revokeButton" desc="Revoke button"><source>src/app/logs/components/records/records.component.html:13,16</source>Revoke last record</msg>
-  <msg id="RecordsComponent:eventColumn" desc="Event column"><source>src/app/logs/components/records/records.component.html:19,21</source>Event</msg>
-  <msg id="RecordsComponent:dataColumn" desc="Data column"><source>src/app/logs/components/records/records.component.html:20,22</source>Data</msg>
-  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.html:21,23</source>Absolute Time</msg>
-  <msg id="RecordsComponent:timeDifferenceCol" desc="Time difference column"><source>src/app/logs/components/records/records.component.html:22,24</source>Time Difference</msg>
-  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.html:23,27</source>Relative Time</msg>
-  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:70,73</source> No records found. </msg>
+  <msg id="RecordsComponent:empty" desc="Empty table message"><source>src/app/logs/components/records/records.component.html:67,70</source> No records found. </msg>
+  <msg id="RecordsComponent:eventColumn" desc="Event column"><source>src/app/logs/components/records/records.component.ts:40</source>Event</msg>
+  <msg id="RecordsComponent:dataColumn" desc="Data column"><source>src/app/logs/components/records/records.component.ts:41</source>Data</msg>
+  <msg id="RecordsComponent:absoluteTimeColumn" desc="Absolute time column"><source>src/app/logs/components/records/records.component.ts:42</source>Absolute Time</msg>
+  <msg id="RecordsComponent:timeDifferenceCol" desc="Time difference column"><source>src/app/logs/components/records/records.component.ts:43</source>Time Difference</msg>
+  <msg id="RecordsComponent:relativeTimeColumn" desc="Relative time column"><source>src/app/logs/components/records/records.component.ts:44</source>Relative Time</msg>
   <msg id="LogEffects:loadLogFailureHeadline" desc="Log not found error"><source>src/app/logs/store/log.effects.ts:89</source>Error while loading log!</msg>
   <msg id="LogEffects:createLogFailureHeadline" desc="Log not created error"><source>src/app/logs/store/log.effects.ts:97</source>Error while creating log!</msg>
   <msg id="LogEffects:updateLogFailureHeadline" desc="Log not updated error"><source>src/app/logs/store/log.effects.ts:105</source>Error while updating log!</msg>
@@ -231,12 +231,12 @@
   <msg id="TemplateComponent:hint" desc="Page hint"><source>src/app/templates/components/template/template.component.html:29,32</source> In this view you can customize the title and description of the template. Furthermore you have the possibility to specify events that might occur during the logging process. </msg>
   <msg id="TemplateComponent:tableHeadline" desc="Table headline"><source>src/app/templates/components/template/template.component.html:33</source>Event Templates</msg>
   <msg id="TemplateComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/templates/components/template/template.component.html:49</source>Search keyword</msg>
-  <msg id="TemplateComponent:empty" desc="Empty table message"><source>src/app/templates/components/template/template.component.html:85,88</source> No Event Templates found. </msg>
+  <msg id="TemplateComponent:empty" desc="Empty table message"><source>src/app/templates/components/template/template.component.html:92,95</source> No Event Templates found. </msg>
   <msg id="TemplateComponent:deleteErrorHeadline" desc="Delete template error headline"><source>src/app/templates/components/template/template.component.ts:67</source>Can not delete template!</msg>
   <msg id="TemplateComponent:deleteErrorDetails" desc="Delete template error details"><source>src/app/templates/components/template/template.component.ts:68</source>The template is used by a log.</msg>
   <msg id="TemplatesComponent:header" desc="Page headline"><source>src/app/templates/components/templates/templates.component.html:0,4</source>Templates</msg>
   <msg id="TemplatesComponent:seachPlaceholder" desc="Search placeholder"><source>src/app/templates/components/templates/templates.component.html:14,17</source>Search keyword</msg>
-  <msg id="TemplatesComponent:empty" desc="Empty table message"><source>src/app/templates/components/templates/templates.component.html:34,37</source> No Templates found. Please add at least one template. Afterwards you can create protocols. </msg>
+  <msg id="TemplatesComponent:empty" desc="Empty table message"><source>src/app/templates/components/templates/templates.component.html:43,46</source> No Templates found. Please add at least one template. Afterwards you can create protocols. </msg>
   <msg id="TemplateEffects:loadTemplateFailureHeadline" desc="Template not found error"><source>src/app/templates/store/template.effects.ts:58</source>Error while loading template!</msg>
   <msg id="TemplateEffects:createTemplateFailureHeadline" desc="Template not created error"><source>src/app/templates/store/template.effects.ts:66</source>Error while creating template!</msg>
   <msg id="TemplateEffects:updateTemplateFailureHeadline" desc="Template not updated error"><source>src/app/templates/store/template.effects.ts:74</source>Error while updating template!</msg>

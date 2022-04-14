@@ -16,8 +16,6 @@ import { titleCol, descCol, typeCol, recordsCol } from '../../../../utils/lib';
 })
 export class ShareLogsDialogComponent extends BaseDialogComponent {
 
-  breakpoint = 500;
-
   logs$ = this.store.pipe(select(logsSelector), map(logs => [ ...logs ]));
   templates$ = this.store.pipe(select(templatesSelector));
 

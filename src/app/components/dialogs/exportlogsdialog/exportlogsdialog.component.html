@@ -4,7 +4,7 @@
     </span>
     <p-table
         styleClass="p-datatable-striped mt-3"
-        breakpoint="{{breakpoint}}px"
+        breakpoint="545px"
         selectionMode="multiple"
         (selectionChange)="this.form.patchValue({ logs: $event })"
         [selection]="form.value.logs"
@@ -24,15 +24,25 @@
                 <td>
                     <p-tableCheckbox [pSelectableRow]="log" [value]="log"></p-tableCheckbox>
                 </td>
-                <td>{{ log.title }}</td>
-                <td>{{ log.desc }}</td>
-                <td class="flex-wrap">
-                    <span class="text-overflow-anywhere">{{ log.templateId | templateTitle: templates }}</span>
-                    <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
-                        <span class="text-overflow-anywhere font-light text-500">&nbsp;({{ desc }})&nbsp;</span>
-                    </ng-container>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[0].header}}</span>
+                    <span class="text-right">{{ log.title }}</span>
                 </td>
-                <td class="text-center">{{ log.recordsCount }}</td>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[1].header}}</span>
+                    <span class="text-right">{{ log.desc }}</span>
+                </td>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[2].header}}</span>
+                    <span class="flex-wrap text-right">
+                        <span class="text-overflow-anywhere">
+                            {{ log.templateId | templateTitle: templates }}
+                        </span>
+                        <ng-container *ngIf="log.templateId | templateDesc: templates as desc">
+                            <span class="text-overflow-anywhere font-light text-500">({{ desc }})</span>
+                        </ng-container>
+                    </span>
+                </td>
             </tr>
         </ng-template>
     </p-table>

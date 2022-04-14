@@ -4,7 +4,7 @@ import { Log, Template } from '../../../models';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AppValidators, isQRcodeCompatibleError } from '../../../utils/validators';
 import { BaseDialogComponent } from '../../basedialog/basedialog.component';
-import { descCol, recordsCol, titleCol, typeCol } from '../../../utils/lib';
+import { descCol, titleCol, typeCol } from '../../../utils/lib';
 
 @Component({
   selector: 'el-export-logs-dialog',
@@ -16,15 +16,13 @@ export class ExportLogsDialogComponent extends BaseDialogComponent {
   isQRcodeCompatibleError = isQRcodeCompatibleError;
   displayQRcodeDialog = false;
 
-  breakpoint = 500;
-
   @Input()
   logs: Log[];
 
   @Input()
   templates: Template[];
   
-  cols: any[] = [ titleCol, descCol, typeCol, recordsCol ];
+  cols: any[] = [ titleCol, descCol, typeCol ];
 
   form = this.fb.group({ logs: [[], Validators.required] }, {
     validators: [AppValidators.isQRcodeCompatible('logs')]

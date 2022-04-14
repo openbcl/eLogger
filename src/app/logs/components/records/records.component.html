@@ -17,19 +17,23 @@
         <ng-template pTemplate="header">
             <tr>
                 <th></th>
-                <th i18n="Event column@@RecordsComponent:eventColumn">Event</th>
-                <th i18n="Data column@@RecordsComponent:dataColumn" *ngIf="logEventTemplates.containData && hasData(records) && showDataColumn" class="text-center w-min lg:w-5 xl:w-3">Data</th>
-                <th i18n="Absolute time column@@RecordsComponent:absoluteTimeColumn" class="text-center">Absolute Time</th>
-                <th i18n="Time difference column@@RecordsComponent:timeDifferenceCol" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">Time Difference</th>
-                <th i18n="Relative time column@@RecordsComponent:relativeTimeColumn" *ngIf="logEventTemplates.containStart" class="text-right">Relative Time</th>
+                <th>{{cols[0].header}}</th>
+                <th *ngIf="logEventTemplates.containData && hasData(records) && showDataColumn" class="text-center w-min lg:w-5 xl:w-3">{{cols[1].header}}</th>
+                <th class="text-center">{{cols[2].header}}</th>
+                <th [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">{{cols[3].header}}</th>
+                <th *ngIf="logEventTemplates.containStart" class="text-right">{{cols[4].header}}</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-record let-rowIndex="rowIndex">
             <tr [class]="record.color | colorClass">
                 <td class="text-center w-3rem"><i class="{{ record.icon.value }} {{ record.icon.styleClass }}"></i></td>
-                <td>{{ record.name }}</td>
-                <td class="text-center" *ngIf="logEventTemplates.containData && hasData(records) && showDataColumn">
-                    <span *ngIf="record.eventType === EventType.TEXT">{{ record.data }}</span>
+                <td class="justify-content-between">
+                    <span class="p-column-title font-light">{{cols[0].header}}</span>
+                    <span class="text-right">{{ record.name }}</span>
+                </td>
+                <td class="justify-content-between" *ngIf="logEventTemplates.containData && hasData(records) && showDataColumn">
+                    <span *ngIf="record.eventType === EventType.TEXT" class="p-column-title font-light">{{cols[1].header}}</span>
+                    <span *ngIf="record.eventType === EventType.TEXT" class="text-right">{{ record.data }}</span>
                     <ng-container *ngIf="[EventType.AUDIO, EventType.PHOTO].includes(record.eventType)">
                         <ng-container *ngIf="loadRecordData(record.key) | async as data">
                             <p-image *ngIf="record.eventType === EventType.PHOTO" [src]="data" [preview]="true"></p-image>
@@ -37,31 +41,24 @@
                         </ng-container>
                     </ng-container>
                 </td>
-                <td class="text-center">
-                    {{ record.date | date : 'medium' }}
+                <td class="justify-content-between text-center">
+                    <span class="p-column-title font-light text-left">{{cols[2].header}}</span>
+                    <span class="text-right">{{ record.date | date : 'medium' }}</span>
                 </td>
-                <td [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
-                    <ng-container *ngIf="record | eventTimeDiff: records as diff">
-                        <span *ngIf="diff.days" class="el-font-monospace">
-                            {{ diff.days }}d
-                        </span>
-                        <span class="el-font-monospace">
-                            {{ diff.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
-                        </span>
-                    </ng-container>
+                <td class="justify-content-between" [ngClass]="{'text-center': logEventTemplates.containStart, 'text-right': !logEventTemplates.containStart}">
+                    <span class="p-column-title font-light text-left">{{cols[3].header}}</span>
+                    <span class="text-right" *ngIf="record | eventTimeDiff: records as diff">
+                        <span *ngIf="diff.days" class="el-font-monospace">{{ diff.days }}d&nbsp;</span>
+                        <span class="el-font-monospace">{{ diff.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
+                    </span>
                 </td>
-                <td *ngIf="logEventTemplates.containStart" class="text-right">
-                    <ng-container *ngIf="record | eventRelTime: records as rel">
-                        <span class="el-font-monospace">
-                            {{ rel.prefix }}
-                        </span>
-                        <span *ngIf="rel.days" class="el-font-monospace">
-                            {{ rel.days }}d
-                        </span>
-                        <span class="el-font-monospace">
-                            {{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}
-                        </span>
-                    </ng-container>
+                <td *ngIf="logEventTemplates.containStart" class="justify-content-between text-right">
+                    <span class="p-column-title font-light">{{cols[4].header}}</span>
+                    <span  class="text-right" *ngIf="record | eventRelTime: records as rel">
+                        <span class="el-font-monospace">{{ rel.prefix }}&nbsp;</span>
+                        <span *ngIf="rel.days" class="el-font-monospace">{{ rel.days }}d&nbsp;</span>
+                        <span class="el-font-monospace">{{ rel.time | date: 'HH:mm:ss.SSS': 'UTC+0' }}</span>
+                    </span>
                 </td>
             </tr>
         </ng-template>
